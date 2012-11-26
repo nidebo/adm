@@ -1,4 +1,0 @@
-adm
-===
-
-Proyecto ADM
