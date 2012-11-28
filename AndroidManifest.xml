@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.bookache.DetallesLibroActivity"
+            android:label="@string/title_activity_detalles_libro" >
+        </activity>
+        <activity
+            android:name="com.example.bookache.BuscarLibrosActivity"
+            android:label="@string/title_activity_buscar_libros" >
+        </activity>
+        <activity
+            android:name="com.example.bookache.ResultadoBusquedaLibrosActivity"
+            android:label="@string/title_activity_resultado_busqueda_libros" >
+        </activity>
     </application>
 
 </manifest>

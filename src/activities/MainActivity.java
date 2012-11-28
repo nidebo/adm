@@ -1,4 +1,6 @@
-package com.example.bookache;
+package activities;
+
+import com.example.bookache.R;
 
 import android.os.Bundle;
 import android.app.Activity;
