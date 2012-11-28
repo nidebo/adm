@@ -9,5 +9,8 @@
     <string name="title_activity_resultado_busqueda_libros">Resultado de la búsqueda</string>
     <string name="title_activity_prueba_internet">PruebaInternet</string>
     <string name="title_activity_uj">UJ</string>
+    <string name="books">Books</string>
+    <string name="crossing">Crossings</string>
+    <string name="friends">Friends</string>
 
 </resources>
