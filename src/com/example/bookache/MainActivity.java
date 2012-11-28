@@ -1,10 +1,11 @@
-package activities;
+package com.example.bookache;
 
 import com.example.bookache.R;
-
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
@@ -20,5 +21,11 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
+    public void onPressNico(View view) {
+        // Do something in response to button
+        	Intent intent = new Intent(this, PruebaInternet.class);
+        	startActivity(intent);
+        }
     
 }
