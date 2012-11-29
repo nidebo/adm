@@ -1,8 +1,6 @@
 package com.example.bookache;
 
 import com.example.bookache.R;
-import com.example.bookache.R.layout;
-import com.example.bookache.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
