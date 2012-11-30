@@ -9,5 +9,6 @@
     <string name="title_activity_resultado_busqueda_libros">Resultado de la búsqueda</string>
     <string name="title_activity_prueba_internet">PruebaInternet</string>
     <string name="title_activity_uj">UJ</string>
+    <string name="title_activity_books_tab">Books</string>
 
 </resources>

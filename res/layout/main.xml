@@ -4,20 +4,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="onPressNico"
-        android:text="Button" />
-
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
 
@@ -35,19 +25,20 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="355dp" >
 
                 <LinearLayout
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="wrap_content" >
 
-	                <ListView
-	                    android:id="@+id/listView1"
-	                    android:layout_width="match_parent"
-	                    android:layout_height="match_parent" >
-	                </ListView>
-
+                    <!--
+                    <ListView
+                        android:id="@+id/listView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+                    </ListView>
+                    -->
                 </LinearLayout>
 
                 <LinearLayout
@@ -63,6 +54,16 @@
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
+
     </TabHost>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onPressNico"
+        android:text="Button" />
 
 </RelativeLayout>

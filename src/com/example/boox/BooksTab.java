@@ -1,19 +1,16 @@
-package com.example.bookache;
+package com.example.boox;
 
-import java.util.ArrayList;
+import com.example.boox.R;
 
-import com.example.bookache.R;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.support.v4.app.NavUtils;
 
-public class MainActivity extends Activity {
-	
-	ListView lvDatos;
+public class BooksTab extends Activity {
 
 	String strings[] = new String[]{
 			"All", 
@@ -26,12 +23,15 @@ public class MainActivity extends Activity {
 			"Custom list 5",
 			"Custom list 6",
 			"Custom list 7"};
-
+	
+	ListView lvDatos;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.books_tab);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        
         lvDatos = (ListView) findViewById(R.id.listView1);
     	
     	//final ArrayList<String> mLista = new ArrayList<String>();
@@ -41,19 +41,24 @@ public class MainActivity extends Activity {
         
         //mLista.add("Lista Prueba 1");
         mAdapter.notifyDataSetChanged();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
+        getMenuInflater().inflate(R.menu.activity_books_tab, menu);
         return true;
     }
+
     
-    public void onPressNico(View view) {
-        // Do something in response to button
-        	Intent intent = new Intent(this, PruebaInternet.class);
-        	startActivity(intent);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
-    
+        return super.onOptionsItemSelected(item);
+    }
+
 }

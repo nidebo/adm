@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bookache"
+    package="com.example.boox"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.bookache.MainActivity"
+            android:name="com.example.boox.Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,20 +26,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.bookache.DetallesLibroActivity"
+            android:name="com.example.boox.DetallesLibroActivity"
             android:label="@string/title_activity_detalles_libro" >
         </activity>
         <activity
-            android:name="com.example.bookache.BuscarLibrosActivity"
+            android:name="com.example.boox.BuscarLibrosActivity"
             android:label="@string/title_activity_buscar_libros" >
         </activity>
         <activity
-            android:name="com.example.bookache.ResultadoBusquedaLibrosActivity"
+            android:name="com.example.boox.ResultadoBusquedaLibrosActivity"
             android:label="@string/title_activity_resultado_busqueda_libros" >
         </activity>
         <activity
-            android:name="com.example.bookache.PruebaInternet"
+            android:name="com.example.boox.PruebaInternet"
             android:label="@string/title_activity_prueba_internet" >
+        </activity>
+        <activity
+            android:name="com.example.boox.BooksTab"
+            android:label="@string/title_activity_books_tab" >
         </activity>
     </application>
 
