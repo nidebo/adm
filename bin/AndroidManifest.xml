@@ -45,6 +45,10 @@
             android:name="com.example.boox.BooksTab"
             android:label="@string/title_activity_books_tab" >
         </activity>
+        <activity
+            android:name="com.example.boox.Tabs"
+            android:label="@string/title_activity_tabs" >
+        </activity>
     </application>
 
 </manifest>

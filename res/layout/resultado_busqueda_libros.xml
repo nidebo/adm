@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultadoBusquedaLibrosActivity" >
+    tools:context=".ResultadoBusquedaLibrosActivity"
+    android:background="#FFBB33" >
 
     <TextView
         android:layout_width="wrap_content"

@@ -64,6 +64,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="onPressNico"
-        android:text="Button" />
+        android:text="Nico" />
+    
+        <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="onPressEliu"
+        android:text="Eliu" />
 
 </RelativeLayout>

@@ -49,6 +49,11 @@ public class Main extends TabActivity {
         	Intent intent = new Intent(this, PruebaInternet.class);
         	startActivity(intent);
         }
+    public void onPressEliu(View view) {
+        // Do something in response to button
+        	Intent intent = new Intent(this, Tabs.class);
+        	startActivity(intent);
+        }
     
     private void addBooksTab() {
     	 
