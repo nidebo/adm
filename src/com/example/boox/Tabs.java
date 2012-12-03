@@ -3,6 +3,7 @@ package com.example.boox;
 import com.example.boox.R;
 
 import android.app.ActionBar;
+import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -53,13 +55,12 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						actionBar.setSelectedNavigationItem(position);
-					}
-				});
+		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+				actionBar.setSelectedNavigationItem(position);
+			}
+		});
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -79,9 +80,23 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		getMenuInflater().inflate(R.menu.activity_tabs, menu);
 		return true;
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        /*case R.id.menu_camera:
+
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, ScanBarActivity.class);
+	            intent.putExtra("METHODE", "SCAN");
+	            startActivityForResult(intent, SCAN);
+	            return true;*/
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	@Override
-	public void onTabSelected(ActionBar.Tab tab,
+	public void onTabSelected(ActionBar.Tab tab, 
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
@@ -97,6 +112,8 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 	}
+	
+	/*-------------------------*/
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -109,13 +126,20 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		}
 
 		@Override
-		public Fragment getItem(int position) {
+		public Fragment getItem(int i) {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
+			Fragment fragment;
+			switch(i){
+				case 0:
+					fragment = new BooksTab(); //new DummySectionFragment();
+					break;
+				default:
+					fragment = new DummySectionFragment();
+			};
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -129,12 +153,9 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		@Override
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
-			case 0:
-				return getString(R.string.tab1).toUpperCase();
-			case 1:
-				return getString(R.string.tab2).toUpperCase();
-			case 2:
-				return getString(R.string.tab3).toUpperCase();
+				case 0: return getString(R.string.tab1).toUpperCase();
+				case 1: return getString(R.string.tab2).toUpperCase();
+				case 2: return getString(R.string.tab3).toUpperCase();
 			}
 			return null;
 		}
@@ -161,8 +182,9 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 			// number argument value.
 			
 			View view;
-			if((getArguments().getInt(ARG_SECTION_NUMBER)) == 1)
-				view = inflater.inflate(R.layout.buscar_libros, null);
+			if((getArguments().getInt(ARG_SECTION_NUMBER)) == 1){
+				view = inflater.inflate(R.layout.books_tab, null);
+			}
 			else
 				if(getArguments().getInt(ARG_SECTION_NUMBER) == 2)
 					view = inflater.inflate(R.layout.detalles_libro, null);

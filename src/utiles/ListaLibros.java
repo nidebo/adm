@@ -62,7 +62,7 @@ public class ListaLibros {
 	//Funciones relativas al servidor
 	public void guardaListaLibros(){
 		//Nico haz algo aqui para meter la lista en el servidor
-//La funcion deberá recibir el nombre o id del usuario, supongo y usar s_NombreLista
+		//La funcion deberá recibir el nombre o id del usuario, supongo y usar s_NombreLista
 		
 		//Habría que comprobar si existe la lista y modificarla, y sino, crearla
 	}

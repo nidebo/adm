@@ -30,7 +30,7 @@ public class Main extends TabActivity {
         mTabHost = getTabHost();
         mResources = getResources(); 
         
-        addBooksTab();  
+        //addBooksTab();  
         //addCrossingsTab();
         //addFriendsTab();
 
