@@ -2,6 +2,7 @@ package com.example.boox;
 
 import com.example.boox.R;
 
+import com.example.boox.BooksTab;
 import android.app.ActionBar;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
@@ -134,6 +135,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 			switch(i){
 				case 0:
 					fragment = new BooksTab(); //new DummySectionFragment();
+					((BooksTab) fragment).addItem("pruebas");
 					break;
 				default:
 					fragment = new DummySectionFragment();
@@ -193,6 +195,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 						view = inflater.inflate(R.layout.resultado_busqueda_libros, null);
 					else
 						view = inflater.inflate(R.layout.activity_tabs, null);
+			
 			
 			/*			
 			int i = getArguments().getInt(ARG_SECTION_NUMBER);
