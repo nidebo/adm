@@ -1,5 +1,7 @@
 package com.example.boox;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -22,37 +24,39 @@ public class BooksTab extends ListFragment {
 			"Custom list 5",
 			"Custom list 6",
 			"Custom list 7"};
+
+	public ArrayList<String> list = new ArrayList<String>();
+
 	
 	//ListView lvDatos;
 
 	//public BooksTab() {
 	//}
 
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							Bundle savedInstanceState) {
-		
+
+		for(int i = 0; i<strings.length; ++i)
+			list.add(strings[i]);	
 		ArrayAdapter<String> mAdapter = 
     			new ArrayAdapter<String>(getActivity().getBaseContext(), 
     									 android.R.layout.simple_list_item_1, 
-    									 strings); //mLista);
-    	setListAdapter(mAdapter);
-    	
+    									 list); //mLista);
+		
+		setListAdapter(mAdapter);
     	return super.onCreateView(inflater, container, savedInstanceState);
-		
-		// Create a new TextView and set its text to the fragment's section
-		// number argument value.
-		
-		//View view = inflater.inflate(R.layout.books_tab, null);
-		//return view;
+    	
 	}
-	
+
 	@Override
 	public void onStart(){
 		super.onStart();
-		
 		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
+	}
+	
+	public void addItem(String s){
+		list.add(s);
 	}
 
 	/*
