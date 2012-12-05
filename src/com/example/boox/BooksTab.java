@@ -28,8 +28,6 @@ public class BooksTab extends ListFragment {
 	public ArrayList<String> list = new ArrayList<String>();
 
 	
-	//ListView lvDatos;
-
 	//public BooksTab() {
 	//}
 
