@@ -4,6 +4,7 @@
     <string name="app_name">BooX</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="bar_search">Search bar</string>
     <string name="title_activity_detalles_libro">DetallesLibroActivity</string>
     <string name="title_activity_buscar_libros">Búsqueda de libros</string>
     <string name="title_activity_resultado_busqueda_libros">Resultado de la búsqueda</string>

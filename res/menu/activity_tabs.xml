@@ -1,12 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
         android:id="@+id/menu_settings"
+        android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_settings"/>
     
     <item android:id="@+id/search"
-          android:title="Titulo"
+          android:title="@string/bar_search"
           android:icon="@drawable/ic_action_search"
           android:showAsAction="collapseActionView|ifRoom"
           android:actionViewClass="android.widget.SearchView" />
