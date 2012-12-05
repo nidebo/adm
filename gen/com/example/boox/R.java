@@ -23,7 +23,11 @@ public final class R {
         public static final int listView1=0x7f070006;
         public static final int menu_settings=0x7f07000a;
         public static final int pager=0x7f070004;
-        public static final int search=0x7f07000b;
+        public static final int search=0x7f07000f;
+        public static final int subitem1=0x7f07000b;
+        public static final int subitem2=0x7f07000c;
+        public static final int subitem3=0x7f07000d;
+        public static final int subitem4=0x7f07000e;
         public static final int tab1=0x7f070005;
         public static final int tab2=0x7f070007;
         public static final int tab3=0x7f070008;
@@ -50,19 +54,23 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int bar_search=0x7f040003;
+        public static final int bar_search=0x7f040007;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
-        public static final int tab1=0x7f04000a;
-        public static final int tab2=0x7f04000b;
-        public static final int tab3=0x7f04000c;
-        public static final int title_activity_books_tab=0x7f040009;
-        public static final int title_activity_buscar_libros=0x7f040005;
-        public static final int title_activity_detalles_libro=0x7f040004;
-        public static final int title_activity_prueba_internet=0x7f040007;
-        public static final int title_activity_resultado_busqueda_libros=0x7f040006;
-        public static final int title_activity_tabs=0x7f04000d;
-        public static final int title_activity_uj=0x7f040008;
+        public static final int subitem1=0x7f040003;
+        public static final int subitem2=0x7f040004;
+        public static final int subitem3=0x7f040005;
+        public static final int subitem4=0x7f040006;
+        public static final int tab1=0x7f04000e;
+        public static final int tab2=0x7f04000f;
+        public static final int tab3=0x7f040010;
+        public static final int title_activity_books_tab=0x7f04000d;
+        public static final int title_activity_buscar_libros=0x7f040009;
+        public static final int title_activity_detalles_libro=0x7f040008;
+        public static final int title_activity_prueba_internet=0x7f04000b;
+        public static final int title_activity_resultado_busqueda_libros=0x7f04000a;
+        public static final int title_activity_tabs=0x7f040011;
+        public static final int title_activity_uj=0x7f04000c;
     }
     public static final class style {
         /** 
