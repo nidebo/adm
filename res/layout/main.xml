@@ -66,7 +66,7 @@
         android:onClick="onPressNico"
         android:text="Nico" />
     
-        <Button
+    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,5 +74,14 @@
         android:layout_alignParentLeft="true"
         android:onClick="onPressEliu"
         android:text="Eliu" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="onPressMario"
+        android:text="Mario" />
 
 </RelativeLayout>
