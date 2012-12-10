@@ -26,12 +26,20 @@ public final class R {
         public static final int detallesLibroFragment=0x7f070011;
         public static final int editText1=0x7f070002;
         public static final int menu_settings=0x7f070016;
+        public static final int menu_settings_book_list=0x7f07001c;
+        public static final int menu_settings_detalles_libro=0x7f070022;
         public static final int pager=0x7f070004;
         public static final int search=0x7f07001b;
+        public static final int search_book_list=0x7f070021;
         public static final int subitem1=0x7f070017;
+        public static final int subitem1_book_list=0x7f07001d;
+        public static final int subitem1_detalles_libro=0x7f070023;
         public static final int subitem2=0x7f070018;
+        public static final int subitem2_book_list=0x7f07001e;
         public static final int subitem3=0x7f070019;
+        public static final int subitem3_book_list=0x7f07001f;
         public static final int subitem4=0x7f07001a;
+        public static final int subitem4_book_list=0x7f070020;
         public static final int tab1=0x7f070005;
         public static final int tab2=0x7f070012;
         public static final int tab3=0x7f070013;
@@ -62,38 +70,51 @@ public final class R {
         public static final int activity_main=0x7f060001;
         public static final int activity_prueba_internet=0x7f060002;
         public static final int activity_tabs=0x7f060003;
-        public static final int buscar_libros=0x7f060004;
-        public static final int detalles_libro=0x7f060005;
-        public static final int resultado_busqueda_libros=0x7f060006;
+        public static final int book_list_activity=0x7f060004;
+        public static final int buscar_libros=0x7f060005;
+        public static final int detalles_libro=0x7f060006;
+        public static final int resultado_busqueda_libros=0x7f060007;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int bar_search=0x7f040007;
-        public static final int example_author=0x7f040015;
-        public static final int example_subtitle=0x7f040014;
+        public static final int bar_search_book_list=0x7f04000d;
+        public static final int bar_search_detalles_libro=0x7f040013;
+        public static final int example_author=0x7f040021;
+        public static final int example_subtitle=0x7f040020;
         /**  Libro ejemplo 
          */
-        public static final int example_title=0x7f040013;
+        public static final int example_title=0x7f04001f;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
+        public static final int menu_settings_book_list=0x7f040008;
+        public static final int menu_settings_detalles_libro=0x7f04000e;
         public static final int subitem1=0x7f040003;
+        public static final int subitem1_book_list=0x7f040009;
+        public static final int subitem1_detalles_libro=0x7f04000f;
         public static final int subitem2=0x7f040004;
+        public static final int subitem2_book_list=0x7f04000a;
+        public static final int subitem2_detalles_libro=0x7f040010;
         public static final int subitem3=0x7f040005;
+        public static final int subitem3_book_list=0x7f04000b;
+        public static final int subitem3_detalles_libro=0x7f040011;
         public static final int subitem4=0x7f040006;
-        public static final int tab1=0x7f04000f;
-        public static final int tab2=0x7f040010;
-        public static final int tab3=0x7f040011;
-        public static final int title_activity_book_list=0x7f040018;
-        public static final int title_activity_books_tab=0x7f04000e;
-        public static final int title_activity_buscar_libros=0x7f04000a;
-        public static final int title_activity_detalles_libro=0x7f040008;
-        public static final int title_activity_detalles_libro_activity=0x7f040009;
-        public static final int title_activity_prueba_internet=0x7f04000c;
-        public static final int title_activity_resultado_busqueda_libros=0x7f04000b;
-        public static final int title_activity_tabs=0x7f040012;
-        public static final int title_activity_uj=0x7f04000d;
-        public static final int title_testitem_detail=0x7f040016;
-        public static final int title_testitem_list=0x7f040017;
+        public static final int subitem4_book_list=0x7f04000c;
+        public static final int subitem4_detalles_libro=0x7f040012;
+        public static final int tab1=0x7f04001b;
+        public static final int tab2=0x7f04001c;
+        public static final int tab3=0x7f04001d;
+        public static final int title_activity_book_list=0x7f040024;
+        public static final int title_activity_books_tab=0x7f04001a;
+        public static final int title_activity_buscar_libros=0x7f040016;
+        public static final int title_activity_detalles_libro=0x7f040014;
+        public static final int title_activity_detalles_libro_activity=0x7f040015;
+        public static final int title_activity_prueba_internet=0x7f040018;
+        public static final int title_activity_resultado_busqueda_libros=0x7f040017;
+        public static final int title_activity_tabs=0x7f04001e;
+        public static final int title_activity_uj=0x7f040019;
+        public static final int title_testitem_detail=0x7f040022;
+        public static final int title_testitem_list=0x7f040023;
     }
     public static final class style {
         /** 

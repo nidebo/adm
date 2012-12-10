@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
-        android:id="@+id/menu_settings_detalles_libro"
+        android:id="@+id/menu_settings_book_list"
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
@@ -8,17 +8,17 @@
         android:menuCategory="container">
         <menu>
             <item
-                 android:id="@+id/subitem1_detalles_libro"
-                 android:title="@string/subitem1_detalles_libro"/>
+                 android:id="@+id/subitem1_book_list"
+                 android:title="@string/subitem1_book_list"/>
             <item
                  android:id="@+id/subitem2_book_list"
-                 android:title="@string/subitem2_detalles_libro"/>
+                 android:title="@string/subitem2_book_list"/>
             <item
                  android:id="@+id/subitem3_book_list"
-                 android:title="@string/subitem3_detalles_libro"/>
+                 android:title="@string/subitem3_book_list"/>
            	<item
                  android:id="@+id/subitem4_book_list"
-                 android:title="@string/subitem4_detalles_libro"/>
+                 android:title="@string/subitem4_book_list"/>
         </menu>
     </item>
     
