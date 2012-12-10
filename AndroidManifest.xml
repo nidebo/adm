@@ -30,6 +30,10 @@
             android:label="@string/title_activity_detalles_libro" >
         </activity>
         <activity
+            android:name=".DetallesLibroActivity"
+            android:label="@string/title_activity_detalles_libro_activity" >
+        </activity>
+        <activity
             android:name="com.example.boox.BuscarLibrosActivity"
             android:label="@string/title_activity_buscar_libros" >
         </activity>
@@ -48,6 +52,10 @@
         <activity
             android:name="com.example.boox.Tabs"
             android:label="@string/title_activity_tabs" >
+        </activity>
+        <activity
+            android:name=".BookListActivity"
+            android:label="@string/title_activity_book_list" >
         </activity>
     </application>
 

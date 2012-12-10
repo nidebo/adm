@@ -56,7 +56,7 @@ public class Main extends TabActivity {
         }
     public void onPressMario(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, DetallesLibro.class);
+        	Intent intent = new Intent(this, DetallesLibroActivity.class);
         	startActivity(intent);
         }
     
