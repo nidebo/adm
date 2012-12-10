@@ -3,8 +3,32 @@
 
     <string name="app_name">BooX</string>
     <string name="hello_world">Hello world!</string>
+<<<<<<< HEAD
     <string name="menu_settings">Settings</string>
     <string name="title_activity_detalles_libro">DetallesLibro</string>
+=======
+<<<<<<< .merge_file_fr6aG4
+<<<<<<< HEAD
+    
+    
+    <string name="menu_settings">Opciones</string>
+    <string name="subitem1">Nueva lista</string>
+    <string name="subitem2">Perfil</string>
+    <string name="subitem3">Configuración</string>
+    <string name="subitem4">Ayuda</string>
+    
+    
+    <string name="bar_search">Search bar</string>
+    <string name="title_activity_detalles_libro">DetallesLibroActivity</string>
+=======
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_detalles_libro">DetallesLibro</string>
+>>>>>>> Commit MALO
+=======
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_detalles_libro">DetallesLibro</string>
+>>>>>>> .merge_file_E0tmzr
+>>>>>>> temp
     <string name="title_activity_buscar_libros">Búsqueda de libros</string>
     <string name="title_activity_resultado_busqueda_libros">Resultado de la búsqueda</string>
     <string name="title_activity_prueba_internet">PruebaInternet</string>

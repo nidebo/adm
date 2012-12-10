@@ -2,6 +2,7 @@ package com.example.boox;
 
 import com.example.boox.R;
 
+import com.example.boox.BooksTab;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +64,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		});
 
 		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+		for (int i = 0;i < mSectionsPagerAdapter.getCount(); i++) {
 			// Create a tab with text corresponding to the page title defined by
 			// the adapter. Also specify this Activity object, which implements
 			// the TabListener interface, as the callback (listener) for when
@@ -76,7 +78,9 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_tabs, menu);
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.activity_tabs, menu);
+	    
 		return true;
 	}
 	
@@ -133,6 +137,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 			switch(i){
 				case 0:
 					fragment = new BooksTab(); //new DummySectionFragment();
+				//	((BooksTab) fragment).addItem("pruebas1"); //Llama y añade a una lista un elemento en bookstab.
 					break;
 				default:
 					fragment = new DummySectionFragment();
@@ -193,20 +198,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 					else
 						view = inflater.inflate(R.layout.activity_tabs, null);
 			
-			/*			
-			int i = getArguments().getInt(ARG_SECTION_NUMBER);
-			switch(i){
-			case 1:
-				view = inflater.inflate(R.layout.activity_tabs, null);
-			case 2:
-				view = inflater.inflate(R.layout.detalles_libro, null);
-			case 3:
-				view = inflater.inflate(R.layout.resultado_busqueda_libros, null);
-		//	default:
-		//		view = inflater.inflate(R.layout.activity_tabs, null);
-				
-			}
-*/
+
 			return view;
 		}
 	}
