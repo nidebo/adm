@@ -54,6 +54,11 @@ public class Main extends TabActivity {
         	Intent intent = new Intent(this, Tabs.class);
         	startActivity(intent);
         }
+    public void onPressMario(View view) {
+        // Do something in response to button
+        	Intent intent = new Intent(this, DetallesLibro.class);
+        	startActivity(intent);
+        }
     
     private void addBooksTab() {
     	 
