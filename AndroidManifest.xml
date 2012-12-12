@@ -57,6 +57,17 @@
             android:name=".BookListActivity"
             android:label="@string/title_activity_book_list" >
         </activity>
+        <activity
+            android:name=".CrossingListActivity"
+            android:label="@string/title_activity_crossing_list" >
+        </activity>
+        <activity
+            android:name=".CrossingActivity"
+            android:label="@string/title_activity_crossing" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.boox.CrossingListActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -3,32 +3,24 @@
 
     <string name="app_name">BooX</string>
     <string name="hello_world">Hello world!</string>
-    
-    
     <string name="menu_settings">Settings</string>
     <string name="subitem1">Nueva lista</string>
     <string name="subitem2">Perfil</string>
     <string name="subitem3">Configuración</string>
-    <string name="subitem4">Ayuda</string> 
+    <string name="subitem4">Ayuda</string>
     <string name="bar_search">Search bar</string>
-    
     <string name="menu_settings_book_list">Settings</string>
     <string name="subitem1_book_list">Nuevo libro</string>
     <string name="subitem2_book_list">Perfil</string>
     <string name="subitem3_book_list">Configuración</string>
-    <string name="subitem4_book_list">Ayuda</string> 
+    <string name="subitem4_book_list">Ayuda</string>
     <string name="bar_search_book_list">Search bar</string>
-    
     <string name="menu_settings_detalles_libro">Settings</string>
     <string name="subitem1_detalles_libro">Añadir a lista</string>
     <string name="subitem2_detalles_libro">Perfil</string>
     <string name="subitem3_detalles_libro">Configuración</string>
-    <string name="subitem4_detalles_libro">Ayuda</string> 
+    <string name="subitem4_detalles_libro">Ayuda</string>
     <string name="bar_search_detalles_libro">Search bar</string>
-    
-    
-    
-    
     <string name="title_activity_detalles_libro">DetallesLibro</string>
     <string name="title_activity_detalles_libro_activity">DetallesLibro</string>
     <string name="title_activity_buscar_libros">Búsqueda de libros</string>
@@ -48,5 +40,7 @@
     <string name="title_testitem_detail">TestItem Detail</string>
     <string name="title_testitem_list">TestItems</string>
     <string name="title_activity_book_list">BookListActivity</string>
+    <string name="title_activity_crossing_list">CrossingListActivity</string>
+    <string name="title_activity_crossing">CrossingActivity</string>
 
 </resources>
