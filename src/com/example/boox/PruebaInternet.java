@@ -22,7 +22,11 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import utiles.AmigoList;
+
 import com.example.boox.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -96,6 +100,76 @@ public class PruebaInternet extends Activity {
 	}
 	
 	
+	public class AsyncFriends extends AsyncTask<Void, Void, Void> {
+
+		//boolean cool = true;
+		StringBuilder sb;
+		String responseString;
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			
+			 URL url;
+			try {
+				//String uname = "nicolas";
+				url = new URL("http://boox.eu01.aws.af.cm/users/nicolas/friendList");
+			
+			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(in));
+				sb = new StringBuilder();
+				String line = null;
+				//line = reader.readLine();
+				//sb.append(line);
+				while ((line = reader.readLine()) != null) { 
+				    sb.append(line + "\n"); 
+				}
+				in.close();
+				responseString = sb.toString();
+			    
+			    urlConnection.disconnect();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			     
+			return null;
+		}
+
+		protected void onPostExecute(Void result) {
+			
+			TextView txt = (TextView) findViewById(R.id.textView1);
+			//txt.setText(sb.toString());
+			GsonBuilder builder = new GsonBuilder();
+			Gson gson = builder.create();
+
+			JSONObject json;
+			AmigoList al;
+			try {
+				json = new JSONObject(responseString);
+
+			    al = gson.fromJson(json.toString(),
+					AmigoList.class);
+			    txt.setText(String.valueOf(al.getAmigos().size()));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		}
+	
+	}
+	
+	
+	
+	
 	public class AsyncAdd extends AsyncTask<Void, Void, Void> {
 
 		//boolean cool = true;
@@ -110,13 +184,13 @@ public class PruebaInternet extends Activity {
             EditText etxt = (EditText) findViewById(R.id.editText1);
             String username = etxt.getText().toString();
 
-            //String uname ="{\"name\":\"" + username + "\"}";
+            //String uname ="{\"uname\":\"" + username + "\"}";
 
             JSONObject json = new JSONObject();
             
             try {
 
-				json.put("name", username);
+				json.put("uname", username);
                 StringEntity se;
 				se = new StringEntity(json.toString());
  
@@ -168,6 +242,12 @@ public class PruebaInternet extends Activity {
 		a1.execute(null, null, null);
 			
     }
+	
+	public void onPressAmigos(View view) {
+		
+		AsyncFriends a2 = new AsyncFriends();
+		a2.execute(null, null, null);
 
 
+	}
 }

@@ -4,25 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".PruebaInternet" >
 
-    <Button
-        android:id="@+id/botonprueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
-        android:onClick="onPressPrueba"
-        android:text="Button" />
-
-    <TextView
-        android:id="@+id/textoprueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/botonprueba"
-        android:layout_below="@+id/botonprueba"
-        android:layout_marginTop="26dp"
-        android:text="@string/hello_world" />
-
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
@@ -45,5 +26,54 @@
         android:layout_marginTop="34dp"
         android:onClick="onPressAnyadir"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/botonprueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="57dp"
+        android:onClick="onPressPrueba"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/textoprueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/botonprueba"
+        android:layout_alignBottom="@+id/botonprueba"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_marginLeft="30dp"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/botonprueba"
+        android:onClick="onPressAmigos"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textoprueba"
+        android:layout_below="@+id/botonprueba"
+        android:layout_marginTop="19dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/button3"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginBottom="38dp"
+        android:text="Mapa" />
 
 </RelativeLayout>
