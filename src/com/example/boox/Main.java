@@ -1,5 +1,8 @@
 package com.example.boox;
 
+import usuarios.Usuario;
+import internet.PruebaInternet;
+
 import com.example.boox.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -12,7 +15,10 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 public class Main extends TabActivity {
-	
+	///////////////////////////////
+	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015); 
+	///////////////////////////////
+		
 	private TabHost mTabHost;
     private Resources mResources;
  
