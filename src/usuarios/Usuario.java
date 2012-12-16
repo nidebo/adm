@@ -1,13 +1,27 @@
 package usuarios;
 
 public class Usuario extends Persona {
-
-	public Usuario(String idUsuario, int codigoPostal) {
+	String password;
+	
+	public Usuario(String idUsuario, int codigoPostal, String password) {
 		super(idUsuario);
 		this.CodigoPostal=codigoPostal;
+		this.password=password;
 	}
 
 	
+	public Boolean validatePassword(String pass) {
+		if(pass==password)
+			return true;
+		return false;
+	}
+
+
+	public void changePassword(String password) {
+		this.password = password;
+	}
+
+
 	public void setIdUsuario(String idUsuario) {
 		this.id = idUsuario;
 	}

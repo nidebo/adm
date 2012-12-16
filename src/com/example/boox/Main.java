@@ -16,9 +16,8 @@ import android.widget.TabHost.TabSpec;
 
 public class Main extends TabActivity {
 	///////////////////////////////
-	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015); 
+	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contraseña"); 
 	///////////////////////////////
-		
 	private TabHost mTabHost;
     private Resources mResources;
  
