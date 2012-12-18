@@ -61,13 +61,13 @@ public class Main extends TabActivity {
         }
     public void onPressMario(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, DetallesLibroActivity.class);
+        	Intent intent = new Intent(this, BookDetailsActivity.class);
         	startActivity(intent);
         }
     
     private void addBooksTab() {
     	 
-    	Intent intent = new Intent(this, BooksTab.class);
+    	Intent intent = new Intent(this, BooksTabFragment.class);
  
         TabSpec spec = mTabHost.newTabSpec(TAG_SCHEDULED);
         spec.setIndicator(mResources.getString(R.string.title_activity_books_tab));

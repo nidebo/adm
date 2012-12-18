@@ -2,7 +2,7 @@ package com.example.boox;
 
 import com.example.boox.R;
 
-import com.example.boox.BooksTab;
+import com.example.boox.BooksTabFragment;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -64,7 +64,7 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 		});
 
 		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0;i < mSectionsPagerAdapter.getCount(); i++) {
+		for (int i=0; i<mSectionsPagerAdapter.getCount(); i++) {
 			// Create a tab with text corresponding to the page title defined by
 			// the adapter. Also specify this Activity object, which implements
 			// the TabListener interface, as the callback (listener) for when
@@ -84,6 +84,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		return true;
 	}
 	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        /*case R.id.menu_camera:
@@ -133,17 +134,20 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment;
+			Fragment fragment = null;
 			switch(i){
 				case 0:
-					fragment = new BooksTab(); //new DummySectionFragment();
-				//	((BooksTab) fragment).addItem("pruebas1"); //Llama y añade a una lista un elemento en bookstab.
+					fragment = new BooksTabFragment();
 					break;
-				default:
-					fragment = new DummySectionFragment();
+				case 1:
+					fragment = new CrossingsTabFragment();
+					break;
+				case 2:
+					fragment = new BooksTabFragment(); //DummySectionFragment();
+					break;
 			};
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
+			//args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -169,11 +173,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
+	/*public static class DummySectionFragment extends Fragment {
+
+		 //The fragment argument representing the section number for this
+		 //fragment.
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DummySectionFragment() {
@@ -191,7 +194,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			}
 			else
 				if(getArguments().getInt(ARG_SECTION_NUMBER) == 2)
-					view = inflater.inflate(R.layout.detalles_libro, null);
+					view = inflater.inflate(R.layout.fragment_book_details, null);
 				else
 					if(getArguments().getInt(ARG_SECTION_NUMBER)==3)
 						view = inflater.inflate(R.layout.resultado_busqueda_libros, null);
@@ -201,6 +204,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 			return view;
 		}
-	}
+	}*/
 
 }
