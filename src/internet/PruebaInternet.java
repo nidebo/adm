@@ -23,14 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import usuarios.AmigoList;
-
-import com.example.boox.R;
-import com.example.boox.R.id;
-import com.example.boox.R.layout;
-import com.example.boox.R.menu;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,6 +30,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.boox.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class PruebaInternet extends Activity {
 
@@ -93,6 +89,7 @@ public class PruebaInternet extends Activity {
 			return null;
 		}
 
+		@Override
 		protected void onPostExecute(Void result) {
 			
 	        TextView txt = (TextView) findViewById(R.id.textoprueba);
@@ -145,6 +142,7 @@ public class PruebaInternet extends Activity {
 			return null;
 		}
 
+		@Override
 		protected void onPostExecute(Void result) {
 			
 			TextView txt = (TextView) findViewById(R.id.textView1);
@@ -220,6 +218,7 @@ public class PruebaInternet extends Activity {
 			return null;
 		}
 
+		@Override
 		protected void onPostExecute(Void result) {
 			
 	        EditText etxt = (EditText) findViewById(R.id.editText1);

@@ -28,6 +28,7 @@
     <string name="title_activity_prueba_internet">PruebaInternet</string>
     <string name="title_activity_uj">UJ</string>
     <string name="title_activity_books_tab">Books</string>
+    <string name="title_activity_user">User</string>
     <string name="tab1">Books</string>
     <string name="tab2">Crossings</string>
     <string name="tab3">Friends</string>
@@ -42,5 +43,9 @@
     <string name="title_activity_book_list">BookListActivity</string>
     <string name="title_activity_crossing_list">CrossingListActivity</string>
     <string name="title_activity_crossing">CrossingActivity</string>
+    
+    <!-- Login -->
+    <string name="usernameHint">username</string>
+    <string name="passwordHint">password</string>
 
 </resources>

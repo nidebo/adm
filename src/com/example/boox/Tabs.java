@@ -1,8 +1,5 @@
 package com.example.boox;
 
-import com.example.boox.R;
-
-import com.example.boox.BooksTabFragment;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,12 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 
@@ -137,13 +131,13 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			Fragment fragment = null;
 			switch(i){
 				case 0:
-					fragment = new BooksTabFragment();
+					fragment = new TabBooksFragment();
 					break;
 				case 1:
-					fragment = new CrossingsTabFragment();
+					fragment = new TabCrossingsFragment();
 					break;
 				case 2:
-					fragment = new BooksTabFragment(); //DummySectionFragment();
+					fragment = new TabBooksFragment(); //DummySectionFragment();
 					break;
 			};
 			Bundle args = new Bundle();

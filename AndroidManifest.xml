@@ -26,11 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetallesLibro"
+            android:name=".BookFragment"
             android:label="@string/title_activity_detalles_libro" >
         </activity>
         <activity
-            android:name=".DetallesLibroActivity"
+            android:name=".BookActivity"
             android:label="@string/title_activity_detalles_libro_activity" >
         </activity>
         <activity
@@ -42,11 +42,11 @@
             android:label="@string/title_activity_resultado_busqueda_libros" >
         </activity>
         <activity
-            android:name="com.example.boox.PruebaInternet"
+            android:name="internet.PruebaInternet"
             android:label="@string/title_activity_prueba_internet" >
         </activity>
         <activity
-            android:name="com.example.boox.BooksTab"
+            android:name=".TabBooksFragment"
             android:label="@string/title_activity_books_tab" >
         </activity>
         <activity
@@ -67,6 +67,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.boox.CrossingListActivity" />
+        </activity>
+        <activity
+            android:name=".UserActivity"
+            android:label="@string/title_activity_user" >
         </activity>
     </application>
 

@@ -102,10 +102,10 @@ public class BookListFragment extends ListFragment {
             getListView().setItemChecked(index, true);
 
             // Check what fragment is shown, replace if needed.
-            BookDetailsFragment bookDetails = (BookDetailsFragment) getFragmentManager().findFragmentById(R.id.details);
+            BookFragment bookDetails = (BookFragment) getFragmentManager().findFragmentById(R.id.details);
             if (bookDetails == null || bookDetails.getShownIndex() != index) {
                 // Make new fragment to show this selection.
-                bookDetails = BookDetailsFragment.newInstance(index);
+                bookDetails = BookFragment.newInstance(index);
 
                 // Execute a transaction, replacing any existing
                 // fragment with this one inside the frame.
@@ -119,7 +119,7 @@ public class BookListFragment extends ListFragment {
             // Otherwise we need to launch a new activity to display
             // the dialog fragment with selected text.
             Intent intent = new Intent();
-            intent.setClass(getActivity(), BookDetailsActivity.class);
+            intent.setClass(getActivity(), BookActivity.class);
             intent.putExtra("index", index);
             startActivity(intent);
         }

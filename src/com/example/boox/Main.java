@@ -1,30 +1,25 @@
 package com.example.boox;
 
-import usuarios.Usuario;
 import internet.PruebaInternet;
-
-import com.example.boox.R;
-import android.os.Bundle;
+import usuarios.Usuario;
 import android.app.Activity;
-import android.app.TabActivity;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 
-public class Main extends TabActivity {
+public class Main extends Activity {
 	///////////////////////////////
-	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contraseña"); 
+	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contrasenya"); 
 	///////////////////////////////
-	private TabHost mTabHost;
-    private Resources mResources;
+		
+	//private TabHost mTabHost;
+    //private Resources mResources;
  
-    private static final String TAG_SCHEDULED = "Scheduled";
-    private static final String TAG_CREATE = "Create";
-    private static final String TAG_OPTIONS = "Options";
-    private static final String PREF_STICKY_TAB = "stickyTab";
+    //private static final String TAG_SCHEDULED = "Scheduled";
+    //private static final String TAG_CREATE = "Create";
+    //private static final String TAG_OPTIONS = "Options";
+    //private static final String PREF_STICKY_TAB = "stickyTab";
 
 
     @Override
@@ -32,14 +27,14 @@ public class Main extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
  
-        mTabHost = getTabHost();
-        mResources = getResources(); 
+        //mTabHost = getTabHost();
+        //mResources = getResources(); 
         
         //addBooksTab();  
         //addCrossingsTab();
         //addFriendsTab();
 
-        mTabHost.setCurrentTabByTag("BooksTabActivity");
+        //mTabHost.setCurrentTabByTag("BooksTabActivity");
     }
 
     @Override
@@ -61,11 +56,11 @@ public class Main extends TabActivity {
         }
     public void onPressMario(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, BookDetailsActivity.class);
+        	Intent intent = new Intent(this, BookActivity.class);
         	startActivity(intent);
         }
     
-    private void addBooksTab() {
+    /*private void addBooksTab() {
     	 
     	Intent intent = new Intent(this, BooksTabFragment.class);
  
@@ -74,6 +69,6 @@ public class Main extends TabActivity {
         spec.setContent(intent);
  
         mTabHost.addTab(spec);
-    }
+    }*/
     
 }
