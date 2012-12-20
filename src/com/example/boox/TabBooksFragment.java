@@ -2,15 +2,22 @@ package com.example.boox;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class TabBooksFragment extends ListFragment {
+
+	private static final String DEBUG_TAG = "TabBooksFragment";
 
     boolean mDualPane;
     int mCurCheckPosition = 0;
@@ -28,18 +35,29 @@ public class TabBooksFragment extends ListFragment {
 			"Custom list 7"};
 
 	public ArrayList<String> list = new ArrayList<String>();
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return super.onCreateView(inflater, container, savedInstanceState);
+	}
 	
 	
 	@Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
+        
+        //restoreData()
 
         // Populate list with our static array of titles.
-		for(int i=0; i<strings.length; ++i)
-			list.add(strings[i]);	
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                list));
+        if(list.isEmpty()){
+			for(int i=0; i<strings.length; ++i)
+				list.add(strings[i]);	
+	        setListAdapter(new ArrayAdapter<String>(getActivity(),
+	                android.R.layout.simple_list_item_1,
+	                list));
+        }
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
@@ -60,6 +78,10 @@ public class TabBooksFragment extends ListFragment {
             showDetails(mCurCheckPosition);
         }*/
     }
+	
+	public void addItem(String s){
+		list.add(s);
+	}
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -77,6 +99,21 @@ public class TabBooksFragment extends ListFragment {
         startActivity(intent);
     	
         //showDetails(pos);
+    }
+
+	private void saveData() {
+		Log.d(DEBUG_TAG, "saveData");
+    	SharedPreferences preferences = this.getActivity().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+    	Editor editor = preferences.edit();
+	}
+    
+    private void restoreData() {
+		Log.d(DEBUG_TAG, "restoreData");
+    	SharedPreferences preferences = this.getActivity().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+    	
+    	//EditText text = (EditText) findViewById(R.id.settings_name);
+    	//text.setText(preferences.getString("username", ""));
+    	
     }
 
 	/*@Override
@@ -135,10 +172,6 @@ public class TabBooksFragment extends ListFragment {
 		//super.onStart();
 		//getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
 	//}
-	
-	public void addItem(String s){
-		list.add(s);
-	}
 
 	/*
 	@Override

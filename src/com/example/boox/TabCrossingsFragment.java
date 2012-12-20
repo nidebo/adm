@@ -13,14 +13,14 @@ import android.widget.ListView;
 public class TabCrossingsFragment extends ListFragment {
 
     boolean mDualPane;
-    int mCurCheckPosition = 0;
+    int mCurCheckPosition = 1;
 
 	String strings[] = new String[]{
 			"Crossing list 1", 
 			"Crossing list 2",
 			"Crossing list 3"};
 
-	public ArrayList<String> list = new ArrayList<String>();
+	public ArrayList<String> list = new ArrayList<String>(); 
 	
 	
 	@Override
@@ -28,11 +28,13 @@ public class TabCrossingsFragment extends ListFragment {
         super.onActivityCreated(savedState);
 
         // Populate list with our static array of titles.
-		for(int i=0; i<strings.length; ++i)
-			list.add(strings[i]);	
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                list));
+        if(list.isEmpty()){
+        	for(int i=0; i<strings.length; ++i)
+        		list.add(strings[i]);	
+        	setListAdapter(new ArrayAdapter<String>(getActivity(),
+        			android.R.layout.simple_list_item_1,
+        			list));
+        }
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
