@@ -15,7 +15,7 @@
                  android:title="@string/subitem2"/>
             <item
                  android:id="@+id/subitem3"
-                 android:title="@string/subitem3"/>
+                 android:title="@string/subitem3" />
            	<item
                  android:id="@+id/subitem4"
                  android:title="@string/subitem4"/>

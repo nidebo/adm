@@ -2,6 +2,7 @@ package com.example.boox;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -70,27 +71,22 @@ public class Tabs extends FragmentActivity implements ActionBar.TabListener {
 	}
 
 	@Override
-public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.activity_tabs, menu);
     
 		return true;
 	}
-	
-	@Override
+    
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        /*case R.id.menu_camera:
-
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, ScanBarActivity.class);
-	            intent.putExtra("METHODE", "SCAN");
-	            startActivityForResult(intent, SCAN);
-	            return true;*/
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+    	switch (item.getItemId()) {
+	    	case R.id.subitem3:
+	    		startActivity(new Intent(this, SettingsActivity.class));
+	        	return true;
+	    	}
+    	return false;
 	}
 
 	@Override

@@ -2,10 +2,12 @@ package com.example.boox;
 
 import internet.PruebaInternet;
 import usuarios.Usuario;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class Main extends Activity {
@@ -35,6 +37,9 @@ public class Main extends Activity {
         //addFriendsTab();
 
         //mTabHost.setCurrentTabByTag("BooksTabActivity");
+        
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
     }
 
     @Override
@@ -44,7 +49,17 @@ public class Main extends Activity {
         return true;
     }
     
-    public void onPressNico(View view) {
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+	    	case R.id.subitem3:
+	    		startActivity(new Intent(this, SettingsActivity.class));
+	        	return true;
+	    	}
+    	return false;
+	}
+
+	public void onPressNico(View view) {
         // Do something in response to button
         	Intent intent = new Intent(this, PruebaInternet.class);
         	startActivity(intent);
