@@ -54,5 +54,8 @@
     <string name="set_new_password_hint">New password</string>
     <string name="set_confirm_password_hint">Confirm password</string>
     <string name="set_submitButton_text">Submit</string>
+    <string name="login_username_hint">user</string>
+    <string name="login_password_hint">password</string>
+    <string name="login_button_text">Log in!</string>
 
 </resources>
