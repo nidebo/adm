@@ -56,7 +56,7 @@ public class Main extends Activity {
         }
     public void onPressMario(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, BookActivity.class);
+        	Intent intent = new Intent(this, SettingsActivity.class);
         	startActivity(intent);
         }
     

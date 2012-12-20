@@ -43,9 +43,16 @@
     <string name="title_activity_book_list">BookListActivity</string>
     <string name="title_activity_crossing_list">CrossingListActivity</string>
     <string name="title_activity_crossing">CrossingActivity</string>
-    
+
     <!-- Login -->
     <string name="usernameHint">username</string>
     <string name="passwordHint">password</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    
+    <!-- Settings -->
+    <string name="set_new_username_hint">New username</string>
+    <string name="set_new_password_hint">New password</string>
+    <string name="set_confirm_password_hint">Confirm password</string>
+    <string name="set_submitButton_text">Submit</string>
 
 </resources>
