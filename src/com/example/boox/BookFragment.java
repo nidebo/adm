@@ -55,7 +55,7 @@ public class BookFragment extends Fragment {
             return null;
         }
 
-        bookdetails_view = inflater.inflate(R.layout.detalles_libro, container, false);
+        bookdetails_view = inflater.inflate(R.layout.fragment_book, container, false);
         loadThumbnail();
         
     	Log.d("BookFragment", "onCreateView done");

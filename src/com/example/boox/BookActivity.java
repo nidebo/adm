@@ -25,6 +25,14 @@ public class BookActivity extends FragmentActivity {
             	.commit();
         }
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_book_details, menu);
+		return true;
+	}
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -35,18 +43,11 @@ public class BookActivity extends FragmentActivity {
                 parentActivityIntent.addFlags(
                         Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(parentActivityIntent);
+                //startActivity(parentActivityIntent);
                 finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_book_details, menu);
-		return true;
-	}
 
 }

@@ -38,11 +38,11 @@ public class CrossingListActivity extends FragmentActivity {
             case android.R.id.home:
                 // This is called when the Home (Up) button is pressed
                 // in the Action Bar.
-                Intent parentActivityIntent = new Intent(this, Tabs.class);
+                Intent parentActivityIntent = new Intent(this, TabsActivity.class);
                 parentActivityIntent.addFlags(
                         Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(parentActivityIntent);
+                //startActivity(parentActivityIntent);
                 finish();
                 return true;
         }

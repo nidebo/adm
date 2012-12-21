@@ -66,7 +66,7 @@ public class Main extends Activity {
         }
     public void onPressEliu(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, Tabs.class);
+        	Intent intent = new Intent(this, TabsActivity.class);
         	startActivity(intent);
         }
     public void onPressMario(View view) {

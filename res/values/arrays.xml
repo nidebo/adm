@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="about_authors">
+        <item>Beatriz Cortés</item>
+        <item>Eliú Crespo</item>
+        <item>Nicolás De Boni</item>
+        <item>Juan Muñoz</item>
+        <item>Mario Sanz</item>
+    </string-array>
+    
+</resources>

@@ -50,7 +50,7 @@
             android:label="@string/title_activity_books_tab" >
         </activity>
         <activity
-            android:name="com.example.boox.Tabs"
+            android:name=".TabsActivity"
             android:label="@string/title_activity_tabs" >
         </activity>
         <activity
@@ -75,6 +75,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
         </activity>
     </application>
 
