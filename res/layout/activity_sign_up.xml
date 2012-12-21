@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark" >
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_launcher" />
+
+
+    <EditText
+        android:id="@+id/signup_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/signup_username_hint"
+        android:textColor="@android:color/primary_text_dark" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/signup_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/signup_password_hint"
+        android:inputType="textPassword"
+        android:textColor="@android:color/primary_text_dark" />
+
+    <EditText
+        android:id="@+id/signup_confirm_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_password"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/signup_confirm_password_hint"
+        android:inputType="textPassword"
+        android:textColor="@android:color/primary_text_dark" />
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_confirm_password"
+        android:layout_centerHorizontal="true"
+        android:text="@string/signup_button_text"
+        android:textColor="@android:color/holo_blue_light" />
+
+</RelativeLayout>

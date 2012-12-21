@@ -70,12 +70,15 @@
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="right" >
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="1"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -94,9 +97,9 @@
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="15dp"
+                	android:gravity="right"
+                    android:layout_marginRight="15dp"
                     android:src="@android:drawable/picture_frame" />
 
                 <TextView
@@ -104,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imageView2"
+                    android:layout_toLeftOf="@+id/imageView2"
                     android:text="TextView" />
 
                 <TextView
@@ -112,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView5"
-                    android:layout_toRightOf="@+id/imageView2"
+                    android:layout_toLeftOf="@+id/imageView2"
                     android:text="TextView" />
 
             </RelativeLayout>

@@ -59,21 +59,27 @@ public class Main extends Activity {
     	return false;
 	}
 
+	public void onPressNotAUser(View view) {
+        // Do something in response to button
+    	Intent intent = new Intent(this, SignUpActivity.class);
+    	startActivity(intent);
+    }
+
 	public void onPressNico(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, PruebaInternet.class);
-        	startActivity(intent);
-        }
+    	Intent intent = new Intent(this, PruebaInternet.class);
+    	startActivity(intent);
+    }
     public void onPressEliu(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, TabsActivity.class);
-        	startActivity(intent);
-        }
+        Intent intent = new Intent(this, TabsActivity.class);
+       	startActivity(intent);
+    }
     public void onPressMario(View view) {
         // Do something in response to button
-        	Intent intent = new Intent(this, SettingsActivity.class);
-        	startActivity(intent);
-        }
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
     
     /*private void addBooksTab() {
     	 
