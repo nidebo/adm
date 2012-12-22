@@ -14,28 +14,32 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class CrossingListFragment extends ListFragment {
+public class CrossingListFragment extends ListFragment implements OnItemClickListener {
 
     boolean mDualPane;
     int mCurCheckPosition = 0; 
 
-	String crossings[] = new String[]{
+	/*String crossings[] = new String[]{
 			"Crossing 1", 
 			"Crossing 2",
 			"Crossing 3",
 			"Crossing 4"};
 
-	public ArrayList<String> crossinglist = new ArrayList<String>();
+	public ArrayList<String> crossinglist = new ArrayList<String>();*/
 	
 	public ListView crossingListView;
 	public ArrayList<CrossingListRow> crossingList;
@@ -45,8 +49,7 @@ public class CrossingListFragment extends ListFragment {
 	@Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
-        
-        crossingListView = (ListView) getActivity().findViewById(R.id.crossingList);
+
         
         crossingList = new ArrayList<CrossingListRow>();
         CrossingListRow row;
@@ -60,30 +63,12 @@ public class CrossingListFragment extends ListFragment {
         row.setAuthor2("G.R.R. Martin");
         row.setState("Rejected");
         crossingList.add(row);
-        
-        row = new CrossingListRow();
-        row.setThumb1(R.drawable.got_thumbnail_small);
-        row.setTitle1("Juego de Tronos");
-        row.setAuthor1("G.R.R. Martin");
-        row.setThumb2(R.drawable.got_thumbnail_small);
-        row.setTitle2("Choque de Reyes");
-        row.setAuthor2("G.R.R. Martin");
-        row.setState("Rejected");
-        crossingList.add(row);
-        
-        crossingListView.setAdapter(new CrossingListAdapter(crossingList, getActivity().getBaseContext()));
-        
-        registerForContextMenu(crossingListView);
-        crossingListView.setOnItemClickListener(new OnItemClickListener() {
-        	@Override
-			public void onItemClick(AdapterView a, View v, int position, long id) {
-        		 Intent intent = new Intent();
-                 intent.setClass(getActivity(), CrossingActivity.class);
-                 intent.putExtra("index", position);
-                 startActivity(intent);
-            }
-        });
-        
+
+		crossingListView = (ListView) getActivity().findViewById(R.id.crossingList);
+		CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
+        crossingListView.setAdapter(adapter);
+        crossingListView.setOnItemClickListener(this);
+
         // Populate list with our static array of titles.
 		/*for(int i=0; i<crossings.length; ++i)
 			crossinglist.add(crossings[i]);	
@@ -110,7 +95,24 @@ public class CrossingListFragment extends ListFragment {
             showDetails(mCurCheckPosition);
         }*/
     }
+
+	@Override
+	public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+		
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), CrossingActivity.class);
+        intent.putExtra("index", position);
+        startActivity(intent);
+	}
 	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		return super.onCreateView(inflater, container, savedInstanceState);
+	}
+
+
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);

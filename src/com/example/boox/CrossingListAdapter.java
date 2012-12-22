@@ -3,6 +3,7 @@ package com.example.boox;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ public class CrossingListAdapter extends BaseAdapter {
 	private ArrayList<CrossingListRow> data;
     Context c;
     
-    CrossingListAdapter(ArrayList<CrossingListRow> _data, Context _c){
+    CrossingListAdapter(Context _c, ArrayList<CrossingListRow> _data){
         data = _data;
         c = _c;
     }
@@ -41,6 +42,8 @@ public class CrossingListAdapter extends BaseAdapter {
     	if(view == null){
     		LayoutInflater li = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     		view = li.inflate(R.layout.activity_crossing_list_row, null);
+    		
+    		Log.d("CrossingListAdapter", "layout inflado");
     	}
 
     	ImageView thumb1 = (ImageView)view.findViewById(R.id.thumbnail1);
