@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:src="@drawable/ic_launcher" />
-
+        
     <EditText
         android:id="@+id/login_username"
         android:layout_width="wrap_content"
@@ -51,10 +51,10 @@
         android:ems="10"
         android:hint="@string/login_username_hint"
         android:textColor="@android:color/primary_text_dark" >
-
-        <requestFocus />
-    </EditText>
-
+        
+        <requestFocus ></requestFocus>
+   </EditText>
+   
     <EditText
         android:id="@+id/login_password"
         android:layout_width="wrap_content"
@@ -65,7 +65,8 @@
         android:ems="10"
         android:hint="@string/login_password_hint"
         android:inputType="textPassword"
-        android:textColor="@android:color/primary_text_dark" />
+        android:textColor="@android:color/primary_text_dark" />
+    
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -73,8 +74,9 @@
         android:layout_below="@+id/login_password"
         android:layout_centerHorizontal="true"
         android:text="@string/login_button_text"
-        android:textColor="@android:color/holo_blue_light" />
-
+        android:onClick="onPressLogin"
+		android:textColor="@android:color/holo_blue_light" />
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"

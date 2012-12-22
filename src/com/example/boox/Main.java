@@ -1,14 +1,27 @@
 package com.example.boox;
 
 import internet.PruebaInternet;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
 import usuarios.Usuario;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class Main extends Activity {
 	///////////////////////////////
@@ -81,6 +94,63 @@ public class Main extends Activity {
         startActivity(intent);
     }
     
+    
+	public void onPressLogin(View view) {
+        // Do something in response to button
+
+		AsyncLogin lg = new AsyncLogin();
+		lg.execute(null, null, null);
+			
+    }
+	
+	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
+
+		//boolean cool = true;
+		StringBuilder sb;
+		String responseString;
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			
+			 URL url;
+			try {
+				//String uname = "nicolas";
+				url = new URL("http://boox.eu01.aws.af.cm/checkUser/kike/aabbcc");
+			
+			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(in));
+				String line = null;
+				line = reader.readLine();
+				in.close();
+				responseString = line;
+			    
+			    urlConnection.disconnect();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			     
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			
+			TextView txt = (TextView) findViewById(R.id.textView1);
+			txt.setText(responseString);
+			//txt.setTextColor(0xFFFFFFFF);
+
+
+		}
+	
+	}
     /*private void addBooksTab() {
     	 
     	Intent intent = new Intent(this, BooksTabFragment.class);
