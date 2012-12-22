@@ -83,17 +83,10 @@ public class BookFragment extends Fragment {
 	
 	private void loadThumbnail(){
 
-		//String img_name = "got_thumbnail";
 		String img_route = "/got_thumbnail.jpeg";
 
 		String imageInSD = Environment.getExternalStorageDirectory().getAbsolutePath() + img_route;
-		//String imageInSD = "/sdcard/got_thumbnail.jpeg";
 		Log.d("DetallesLibro", "loadThumbnail(" + imageInSD + ")");
-		
-		/*Bitmap bitmap = BitmapFactory.decodeFile(imageInSD);
-		
-        thumbnail = (ImageView)getActivity().findViewById(R.id.thumbnail_imageView);
-        thumbnail.setImageBitmap(bitmap);*/
 		
 		FileInputStream is = null;
         BufferedInputStream bis = null;
@@ -105,22 +98,22 @@ public class BookFragment extends Fragment {
             //bitmap.recycle();
             //Display bitmap (useThisBitmap)
             thumbnail = (ImageView) bookdetails_view.findViewById(R.id.thumbnail_imageView);
-    		if(thumbnail != null) 
-    			Log.d("DetallesLibro", "bitmap loaded into thumbnail");
+    		/*if(thumbnail != null) 
+    			Log.d("DetallesLibro", "bitmap loaded into thumbnail");*/
             thumbnail.setImageBitmap(bitmap);
         } 
-        catch (Exception e) {
+        catch(Exception e){
             //Try to recover
         }
-        finally {
-            try {
-                if (bis != null) {
+        finally{
+            try{
+                if(bis != null){
                     bis.close();
                 }
-                if (is != null) {
+                if(is != null){
                     is.close();
                 }
-            } catch (Exception e) {
+            }catch(Exception e){
             }
         }
 	}

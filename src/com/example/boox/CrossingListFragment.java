@@ -1,13 +1,27 @@
 package com.example.boox;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class CrossingListFragment extends ListFragment {
@@ -23,21 +37,63 @@ public class CrossingListFragment extends ListFragment {
 
 	public ArrayList<String> crossinglist = new ArrayList<String>();
 	
+	public ListView crossingListView;
+	public ArrayList<CrossingListRow> crossingList;
+    AdapterView.AdapterContextMenuInfo info;
+	
 	
 	@Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
-
+        
+        crossingListView = (ListView) getActivity().findViewById(R.id.crossingList);
+        
+        crossingList = new ArrayList<CrossingListRow>();
+        CrossingListRow row;
+        
+        row = new CrossingListRow();
+        row.setThumb1(R.drawable.got_thumbnail_small);
+        row.setTitle1("Juego de Tronos");
+        row.setAuthor1("G.R.R. Martin");
+        row.setThumb2(R.drawable.got_thumbnail_small);
+        row.setTitle2("Choque de Reyes");
+        row.setAuthor2("G.R.R. Martin");
+        row.setState("Rejected");
+        crossingList.add(row);
+        
+        row = new CrossingListRow();
+        row.setThumb1(R.drawable.got_thumbnail_small);
+        row.setTitle1("Juego de Tronos");
+        row.setAuthor1("G.R.R. Martin");
+        row.setThumb2(R.drawable.got_thumbnail_small);
+        row.setTitle2("Choque de Reyes");
+        row.setAuthor2("G.R.R. Martin");
+        row.setState("Rejected");
+        crossingList.add(row);
+        
+        crossingListView.setAdapter(new CrossingListAdapter(crossingList, getActivity().getBaseContext()));
+        
+        registerForContextMenu(crossingListView);
+        crossingListView.setOnItemClickListener(new OnItemClickListener() {
+        	@Override
+			public void onItemClick(AdapterView a, View v, int position, long id) {
+        		 Intent intent = new Intent();
+                 intent.setClass(getActivity(), CrossingActivity.class);
+                 intent.putExtra("index", position);
+                 startActivity(intent);
+            }
+        });
+        
         // Populate list with our static array of titles.
-		for(int i=0; i<crossings.length; ++i)
+		/*for(int i=0; i<crossings.length; ++i)
 			crossinglist.add(crossings[i]);	
         setListAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1,
-                crossinglist));
+                crossinglist));*/
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
-        View detallesCrossing = getActivity().findViewById(R.id.details);
+        /*View detallesCrossing = getActivity().findViewById(R.id.details);
         mDualPane = detallesCrossing != null && detallesCrossing.getVisibility() == View.VISIBLE;
     	Log.d("CrossingList", "onActivityCreated -> mDualPane = " + (mDualPane ? "true" : "false"));
 
@@ -52,8 +108,34 @@ public class CrossingListFragment extends ListFragment {
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             // Make sure our UI is in the correct state.
             showDetails(mCurCheckPosition);
-        }
+        }*/
     }
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+		info = (AdapterContextMenuInfo) menuInfo;
+
+		menu.setHeaderTitle("Crossing options"); //(crossingList.get(info.position).getTitle2());
+		menu.add(Menu.NONE, v.getId(), 0, "View");
+		menu.add(Menu.NONE, v.getId(), 0, "Delete");
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		if(item.getTitle() == "View"){
+			Intent intent = new Intent();
+            intent.setClass(getActivity(), CrossingActivity.class);
+            //intent.putExtra("index", item.getPosition());
+            startActivity(intent);
+		}else if(item.getTitle() == "Delete"){
+			// Do something
+		}else {
+			return false;
+		}
+		return true;
+	}
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -61,11 +143,11 @@ public class CrossingListFragment extends ListFragment {
         outState.putInt("curChoice", mCurCheckPosition);
     }
     
-    @Override
+    /*@Override
     public void onListItemClick(ListView l, View v, int pos, long id) {
     	Log.d("CrossingList", "onListItemClick(" + pos + ")");
         showDetails(pos);
-    }
+    }*/
 
 	/*@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -84,7 +166,7 @@ public class CrossingListFragment extends ListFragment {
      * displaying a fragment in-place in the current UI, or starting a
      * whole new activity in which it is displayed.
      */
-    void showDetails(int index) {
+    /*void showDetails(int index) {
     	
         mCurCheckPosition = index;
 
@@ -107,7 +189,7 @@ public class CrossingListFragment extends ListFragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
             }
-        } else { */
+        } else { 
         	Log.d("CrossingList", "showDetails(MonoPane)");
             // Otherwise we need to launch a new activity to display
             // the dialog fragment with selected text.
@@ -116,7 +198,7 @@ public class CrossingListFragment extends ListFragment {
             intent.putExtra("index", index);
             startActivity(intent);
         //}
-    }
+    }*/
 
 	//@Override
 	//public void onStart(){
@@ -124,9 +206,9 @@ public class CrossingListFragment extends ListFragment {
 		//getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
 	//}
 	
-	public void addItem(String s){
-		crossinglist.add(s);
-	}
+	//public void addItem(String s){
+		//crossinglist.add(s);
+	//}
 
 	/*
 	@Override
@@ -163,5 +245,42 @@ public class CrossingListFragment extends ListFragment {
         }
         return super.onOptionsItemSelected(item);
     }*/
+	
+	/*private void loadThumbnail(){
+
+		String img_route = "/got_thumbnail.jpeg";
+
+		String imageInSD = Environment.getExternalStorageDirectory().getAbsolutePath() + img_route;
+		Log.d("DetallesLibro", "loadThumbnail(" + imageInSD + ")");
+		
+		FileInputStream is = null;
+        BufferedInputStream bis = null;
+        try {
+            is = new FileInputStream(new File(imageInSD));
+            bis = new BufferedInputStream(is);
+            Bitmap bitmap = BitmapFactory.decodeStream(bis);
+            //Bitmap useThisBitmap = Bitmap.createScaledBitmap(bitmap, 30, 60, true);
+            //bitmap.recycle();
+            //Display bitmap (useThisBitmap)
+            thumbnail = (ImageView) bookdetails_view.findViewById(R.id.thumbnail_imageView);
+    		//if(thumbnail != null) 
+    			//Log.d("DetallesLibro", "bitmap loaded into thumbnail");
+            thumbnail.setImageBitmap(bitmap);
+        } 
+        catch(Exception e){
+            //Try to recover
+        }
+        finally{
+            try{
+                if(bis != null){
+                    bis.close();
+                }
+                if(is != null){
+                    is.close();
+                }
+            }catch(Exception e){
+            }
+        }
+	}*/
 
 }
