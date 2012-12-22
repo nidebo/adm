@@ -48,6 +48,7 @@
     <string name="usernameHint">username</string>
     <string name="passwordHint">password</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="baduser">Wrong</string>
 
     <!-- Settings -->
     <string name="set_new_username_hint">New username</string>

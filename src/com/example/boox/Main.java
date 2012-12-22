@@ -11,19 +11,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
 import usuarios.Usuario;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main extends Activity {
+	
+	Context contexto = this;
 	///////////////////////////////
 	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contrasenya"); 
 	///////////////////////////////
@@ -108,6 +112,16 @@ public class Main extends Activity {
 		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
+		String uname;
+		String pass;
+		
+		@Override
+		protected void onPreExecute(){
+			EditText et1 = (EditText) findViewById(R.id.login_username);
+			EditText et2 = (EditText) findViewById(R.id.login_password);
+			uname = et1.getText().toString();
+			pass = et2.getText().toString();
+		}
 		
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -116,7 +130,7 @@ public class Main extends Activity {
 			 URL url;
 			try {
 				//String uname = "nicolas";
-				url = new URL("http://boox.eu01.aws.af.cm/checkUser/kike/aabbcc");
+				url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
 			
 			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -143,9 +157,14 @@ public class Main extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			
-			TextView txt = (TextView) findViewById(R.id.textView1);
-			txt.setText(responseString);
-			//txt.setTextColor(0xFFFFFFFF);
+			if(responseString.equals("true")){
+		        Intent intent = new Intent(contexto, TabsActivity.class);
+		       	startActivity(intent);
+			}
+			else {
+				Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.baduser), Toast.LENGTH_SHORT);
+				toast.show();
+			}
 
 
 		}

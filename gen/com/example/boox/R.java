@@ -109,13 +109,14 @@ public final class R {
         public static final int resultado_busqueda_libros=0x7f08000d;
     }
     public static final class string {
-        public static final int about_author1=0x7f050038;
-        public static final int about_author2=0x7f050039;
-        public static final int about_author3=0x7f05003a;
-        public static final int about_author4=0x7f05003b;
-        public static final int about_author5=0x7f05003c;
-        public static final int about_authors_title=0x7f050037;
+        public static final int about_author1=0x7f050039;
+        public static final int about_author2=0x7f05003a;
+        public static final int about_author3=0x7f05003b;
+        public static final int about_author4=0x7f05003c;
+        public static final int about_author5=0x7f05003d;
+        public static final int about_authors_title=0x7f050038;
         public static final int app_name=0x7f050000;
+        public static final int baduser=0x7f05002b;
         public static final int bar_search=0x7f050007;
         public static final int bar_search_book_list=0x7f05000d;
         public static final int bar_search_detalles_libro=0x7f050013;
@@ -125,24 +126,24 @@ public final class R {
          */
         public static final int example_title=0x7f050020;
         public static final int hello_world=0x7f050001;
-        public static final int login_button_text=0x7f050031;
-        public static final int login_notauser=0x7f05003e;
-        public static final int login_password_hint=0x7f050030;
-        public static final int login_username_hint=0x7f05002f;
+        public static final int login_button_text=0x7f050032;
+        public static final int login_notauser=0x7f05003f;
+        public static final int login_password_hint=0x7f050031;
+        public static final int login_username_hint=0x7f050030;
         public static final int menu_settings=0x7f050002;
         public static final int menu_settings_book_list=0x7f050008;
         public static final int menu_settings_detalles_libro=0x7f05000e;
         public static final int passwordHint=0x7f050029;
-        public static final int set_confirm_password_hint=0x7f05002d;
-        public static final int set_new_password_hint=0x7f05002c;
+        public static final int set_confirm_password_hint=0x7f05002e;
+        public static final int set_new_password_hint=0x7f05002d;
         /**  Settings 
          */
-        public static final int set_new_username_hint=0x7f05002b;
-        public static final int set_submitButton_text=0x7f05002e;
-        public static final int signup_button_text=0x7f050035;
-        public static final int signup_confirm_password_hint=0x7f050034;
-        public static final int signup_password_hint=0x7f050033;
-        public static final int signup_username_hint=0x7f050032;
+        public static final int set_new_username_hint=0x7f05002c;
+        public static final int set_submitButton_text=0x7f05002f;
+        public static final int signup_button_text=0x7f050036;
+        public static final int signup_confirm_password_hint=0x7f050035;
+        public static final int signup_password_hint=0x7f050034;
+        public static final int signup_username_hint=0x7f050033;
         public static final int subitem1=0x7f050003;
         public static final int subitem1_book_list=0x7f050009;
         public static final int subitem1_detalles_libro=0x7f05000f;
@@ -160,7 +161,7 @@ public final class R {
         public static final int tab3=0x7f05001e;
         /**  About 
          */
-        public static final int title_activity_about=0x7f050036;
+        public static final int title_activity_about=0x7f050037;
         public static final int title_activity_book_list=0x7f05001b;
         public static final int title_activity_books_tab=0x7f05001a;
         public static final int title_activity_buscar_libros=0x7f050016;
@@ -171,7 +172,7 @@ public final class R {
         public static final int title_activity_prueba_internet=0x7f050018;
         public static final int title_activity_resultado_busqueda_libros=0x7f050017;
         public static final int title_activity_settings=0x7f05002a;
-        public static final int title_activity_sign_up=0x7f05003d;
+        public static final int title_activity_sign_up=0x7f05003e;
         public static final int title_activity_tabs=0x7f05001f;
         public static final int title_activity_uj=0x7f050019;
         public static final int title_activity_user=0x7f050027;
