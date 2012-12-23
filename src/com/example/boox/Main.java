@@ -14,6 +14,7 @@ import java.net.URL;
 import usuarios.Usuario;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -21,8 +22,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
@@ -39,12 +40,17 @@ public class Main extends Activity {
     //private static final String TAG_CREATE = "Create";
     //private static final String TAG_OPTIONS = "Options";
     //private static final String PREF_STICKY_TAB = "stickyTab";
-
+	
+	ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        
         setContentView(R.layout.main);
+        
  
         //mTabHost = getTabHost();
         //mResources = getResources(); 
@@ -77,34 +83,39 @@ public class Main extends Activity {
 	}
 
 	public void onPressNotAUser(View view) {
-        // Do something in response to button
+
     	Intent intent = new Intent(this, SignUpActivity.class);
     	startActivity(intent);
     }
 
 	public void onPressNico(View view) {
-        // Do something in response to button
+
     	Intent intent = new Intent(this, PruebaInternet.class);
     	startActivity(intent);
     }
+	
     public void onPressEliu(View view) {
-        // Do something in response to button
+    	
         Intent intent = new Intent(this, TabsActivity.class);
        	startActivity(intent);
     }
+    
     public void onPressMario(View view) {
-        // Do something in response to button
+
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
     
     
 	public void onPressLogin(View view) {
-        // Do something in response to button
+		
+        setProgressBarIndeterminateVisibility(true);
+        progressDialog = ProgressDialog.show(Main.this, 
+        		getResources().getString(R.string.login_logging),
+        		getResources().getString(R.string.login_pleasewait));
 
 		AsyncLogin lg = new AsyncLogin();
 		lg.execute(null, null, null);
-			
     }
 	
 	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
@@ -125,9 +136,8 @@ public class Main extends Activity {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
 			
-			 URL url;
+			URL url;
 			try {
 				//String uname = "nicolas";
 				url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
@@ -156,19 +166,23 @@ public class Main extends Activity {
 
 		@Override
 		protected void onPostExecute(Void result) {
+
+			// Stop the indeterminate progress bar and close dialog
+	        setProgressBarIndeterminateVisibility(false);
+	        progressDialog.dismiss();
 			
 			if(responseString.equals("true")){
 		        Intent intent = new Intent(contexto, TabsActivity.class);
 		       	startActivity(intent);
 			}
 			else {
-				Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.baduser), Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.login_invalid), 
+						Toast.LENGTH_SHORT);
 				toast.show();
 			}
-
-
 		}
-	
 	}
     /*private void addBooksTab() {
     	 

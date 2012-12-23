@@ -9,7 +9,7 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
 
     <application
         android:allowBackup="true"
@@ -27,11 +27,11 @@
         </activity>
         <activity
             android:name=".BookFragment"
-            android:label="@string/title_activity_detalles_libro" >
+            android:label="@string/title_activity_book_fragment" >
         </activity>
         <activity
             android:name=".BookActivity"
-            android:label="@string/title_activity_detalles_libro_activity" >
+            android:label="@string/title_activity_book_activity" >
         </activity>
         <activity
             android:name="com.example.boox.BuscarLibrosActivity"
@@ -44,10 +44,6 @@
         <activity
             android:name="internet.PruebaInternet"
             android:label="@string/title_activity_prueba_internet" >
-        </activity>
-        <activity
-            android:name=".TabBooksFragment"
-            android:label="@string/title_activity_books_tab" >
         </activity>
         <activity
             android:name=".TabsActivity"
