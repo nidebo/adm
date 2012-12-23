@@ -77,7 +77,7 @@
         android:text="@string/login_button_text"
         android:onClick="onPressLogin"
 		android:textColor="@android:color/holo_blue_light" />
-    
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
