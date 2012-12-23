@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/thumbnail1"
-                	android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/author1"
@@ -77,14 +77,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/thumbnail2"
-                	android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:gravity="right"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/author2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/thumbnail2"
-                    android:layout_below="@+id/title2" />
+                    android:layout_below="@+id/title2"
+                    android:gravity="right" />
 
             </RelativeLayout>
         </TableRow>

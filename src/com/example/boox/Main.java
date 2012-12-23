@@ -102,7 +102,7 @@ public class Main extends Activity {
     
     public void onPressMario(View view) {
 
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, SearchBookActivity.class);
         startActivity(intent);
     }
     

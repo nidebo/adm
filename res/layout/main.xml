@@ -30,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="onPressMario"
-        android:text="Settings" />
+        android:text="Mario" />
 
     <ImageView
         android:id="@+id/imageView1"
