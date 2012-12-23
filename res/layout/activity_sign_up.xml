@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" />
 
 
@@ -51,11 +51,34 @@
         android:inputType="textPassword"
         android:textColor="@android:color/primary_text_dark" />
 
+    <EditText
+        android:id="@+id/signup_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_confirm_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/signup_fullname_hint"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/primary_text_dark" />
+
+    <EditText
+        android:id="@+id/signup_zipcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_fullname"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/signup_zipcode_hint"
+        android:inputType="number"
+        android:textColor="@android:color/primary_text_dark" />
+
     <Button
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signup_confirm_password"
+        android:layout_below="@+id/signup_zipcode"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:text="@string/signup_button_text"
