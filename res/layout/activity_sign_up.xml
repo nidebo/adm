@@ -82,6 +82,7 @@
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:text="@string/signup_button_text"
+        android:onClick="onPressSignUp"
         android:textColor="@android:color/holo_blue_light" />
 
 </RelativeLayout>
