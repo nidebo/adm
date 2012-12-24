@@ -105,7 +105,8 @@ public final class R {
         public static final int book_list=0x7f03000c;
         public static final int fragment_book=0x7f03000d;
         public static final int main=0x7f03000e;
-        public static final int resultado_busqueda_libros=0x7f03000f;
+        public static final int request_api=0x7f03000f;
+        public static final int resultado_busqueda_libros=0x7f030010;
     }
     public static final class menu {
         public static final int activity_about=0x7f080000;
