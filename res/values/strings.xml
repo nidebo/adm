@@ -107,5 +107,6 @@
     <string name="title_activity_user_profile">UserProfileActivity</string>
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">search here</string>
+    <string name="userprofile_addfriend">Add to friendlist</string>
 
 </resources>

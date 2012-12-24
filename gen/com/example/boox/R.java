@@ -101,12 +101,11 @@ public final class R {
         public static final int activity_settings=0x7f030008;
         public static final int activity_sign_up=0x7f030009;
         public static final int activity_tabs=0x7f03000a;
-        public static final int activity_user=0x7f03000b;
-        public static final int activity_user_profile=0x7f03000c;
-        public static final int book_list=0x7f03000d;
-        public static final int fragment_book=0x7f03000e;
-        public static final int main=0x7f03000f;
-        public static final int resultado_busqueda_libros=0x7f030010;
+        public static final int activity_user_profile=0x7f03000b;
+        public static final int book_list=0x7f03000c;
+        public static final int fragment_book=0x7f03000d;
+        public static final int main=0x7f03000e;
+        public static final int resultado_busqueda_libros=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_about=0x7f080000;
@@ -227,6 +226,7 @@ public final class R {
         public static final int title_activity_user_profile=0x7f040046;
         public static final int title_testitem_detail=0x7f040024;
         public static final int title_testitem_list=0x7f040025;
+        public static final int userprofile_addfriend=0x7f040049;
     }
     public static final class style {
         /** 
