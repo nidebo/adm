@@ -13,6 +13,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:ems="10"
+        android:hint="@string/searchbook_searchbox_hint"
         android:textColor="@android:color/primary_text_light" >
 
         <requestFocus />
@@ -42,5 +43,24 @@
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignRight="@+id/imageButton1"
         android:layout_toRightOf="@+id/textView1" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/searchbook_scanbutton" 
+        android:onClick="onPressScanBarcode" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="[isbn]" />
 
 </RelativeLayout>

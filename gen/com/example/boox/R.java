@@ -156,6 +156,8 @@ public final class R {
         public static final int menu_settings=0x7f040009;
         public static final int menu_settings_book_list=0x7f040010;
         public static final int menu_settings_detalles_libro=0x7f040018;
+        public static final int searchbook_scanbutton=0x7f040047;
+        public static final int searchbook_searchbox_hint=0x7f040048;
         /**  Search Book 
          */
         public static final int searchbook_searchby=0x7f040027;
@@ -220,6 +222,8 @@ public final class R {
         /**  User 
          */
         public static final int title_activity_user=0x7f040026;
+        /**  User Profile 
+         */
         public static final int title_activity_user_profile=0x7f040046;
         public static final int title_testitem_detail=0x7f040024;
         public static final int title_testitem_list=0x7f040025;
