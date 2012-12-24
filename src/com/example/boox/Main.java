@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class Main extends Activity {
 	
-	Context contexto = this;
+	Context context = this;
 	///////////////////////////////
 	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contrasenya"); 
 	///////////////////////////////
@@ -172,7 +172,7 @@ public class Main extends Activity {
 	        progressDialog.dismiss();
 			
 			if(responseString.equals("true")){
-		        Intent intent = new Intent(contexto, TabsActivity.class);
+		        Intent intent = new Intent(context, TabsActivity.class);
 		       	startActivity(intent);
 			}
 			else {

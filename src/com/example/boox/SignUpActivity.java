@@ -19,17 +19,28 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
 //no comprueba si usuario ya existe, DE MOMENTO
 public class SignUpActivity extends Activity {
+	
+	Context context = this;
+	
+	ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        
         setContentView(R.layout.activity_sign_up);
         
         ActionBar actionBar = getActionBar();
@@ -43,11 +54,14 @@ public class SignUpActivity extends Activity {
     }
     
 	public void onPressSignUp(View view) {
-        // Do something in response to button
+		
+        setProgressBarIndeterminateVisibility(true);
+        progressDialog = ProgressDialog.show(context, 
+        		getResources().getString(R.string.signup_sending),
+        		getResources().getString(R.string.signup_pleasewait));
 
-		AsyncAdd a1 = new AsyncAdd();
-		a1.execute(null, null, null);
-			
+		AsyncAdd add = new AsyncAdd();
+		add.execute(null, null, null);
     }
     
     
@@ -89,7 +103,6 @@ public class SignUpActivity extends Activity {
 	            JSONObject json = new JSONObject();
 	            
 	            try {
-
 					json.put("uname", username);
 					json.put("pass", pass);
 					json.put("postal", cp);
@@ -102,7 +115,7 @@ public class SignUpActivity extends Activity {
 	                HttpResponse response;
 					response = httpclient.execute(httppost);
 
-	                HttpEntity responseEntity =response.getEntity();
+	                HttpEntity responseEntity = response.getEntity();
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -117,28 +130,33 @@ public class SignUpActivity extends Activity {
 						e.printStackTrace();
 					}
 			}
-
-				
-			     
+  
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
+
+			// Stop the indeterminate progress bar and close dialog
+	        setProgressBarIndeterminateVisibility(false);
+	        progressDialog.dismiss();
 			
 			if(!flag){
 				Toast toast = Toast.makeText(
 						getApplicationContext(), 
-						getResources().getString(R.string.signup_confirmPassError), 
+						getResources().getString(R.string.signup_confirm_pass_error), 
 						Toast.LENGTH_SHORT);
 				toast.show();
 			}
 			else {
 				Toast toast = Toast.makeText(
 						getApplicationContext(), 
-						getResources().getString(R.string.signup_createdUser), 
+						getResources().getString(R.string.signup_user_created), 
 						Toast.LENGTH_SHORT);
 				toast.show();
+				
+		        Intent intent = new Intent(context, TabsActivity.class);
+		       	startActivity(intent);
 			}
 	        //EditText etxt = (EditText) findViewById(R.id.editText1);
 			//etxt.setText("");

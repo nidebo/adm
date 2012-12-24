@@ -85,8 +85,10 @@
     <string name="signup_fullname_hint">fullname</string>
     <string name="signup_zipcode_hint">zipcode</string>
     <string name="signup_button_text">Sign up!</string>
-    <string name="signup_confirmPassError">Please repeat password correctly.</string>
-    <string name ="signup_createdUser">User created successfully.</string>
+    <string name="signup_sending">Sending data…</string>
+    <string name="signup_pleasewait">Please, wait a moment.</string>
+    <string name="signup_confirm_pass_error">Password confirmation failed. Please try again.</string>
+    <string name="signup_user_created">User successfully created</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">SettingsActivity</string>
