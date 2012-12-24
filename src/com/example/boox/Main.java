@@ -29,9 +29,9 @@ import android.widget.Toast;
 public class Main extends Activity {
 	
 	Context context = this;
-	///////////////////////////////
+
 	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", 46015, "contrasenya"); 
-	///////////////////////////////
+
 		
 	//private TabHost mTabHost;
     //private Resources mResources;
@@ -46,7 +46,8 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // This must be called before ANY content is created
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
         setContentView(R.layout.main);

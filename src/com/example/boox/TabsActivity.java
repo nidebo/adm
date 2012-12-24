@@ -136,7 +136,7 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
 					fragment = new TabCrossingsFragment();
 					break;
 				case 2:
-					fragment = new TabBooksFragment(); //DummySectionFragment();
+					fragment = new TabFriendsFragment(); //DummySectionFragment();
 					break;
 			};
 			Bundle args = new Bundle();

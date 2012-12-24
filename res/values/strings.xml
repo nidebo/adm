@@ -5,12 +5,11 @@
     <string name="example_title">Juego de Tronos</string>
     <string name="example_subtitle">Canción de hielo y fuego 1</string>
     <string name="example_author">George R.R. Martin</string>
-    
 
     <!-- Main -->
     <string name="app_name">BooX</string>
     <string name="hello_world">Hello world!</string>
-    
+
     <!-- Tabs -->
     <string name="title_activity_tabs">BooX</string>
     <string name="tab1">Books</string>
@@ -20,48 +19,46 @@
     <string name="subitem1">New list</string>
     <string name="subitem2">Profile</string>
     <string name="subitem3">Settings</string>
-    <string name="subitem4">About</string>    
+    <string name="subitem4">About</string>
     <string name="bar_search">Search bar</string>
-    
-	    <!-- BookList -->
-	    <string name="title_activity_book_list">BookListActivity</string>
-	    <string name="menu_settings_book_list">Settings</string>
-	    <string name="subitem1_book_list">Add book</string>
-	    <string name="subitem2_book_list">Profile</string>
-	    <string name="subitem3_book_list">Settings</string>
-	    <string name="subitem4_book_list">About</string>
-	    <string name="bar_search_book_list">Search bar</string>
-	    
-		    <!-- Book -->
-		    <string name="title_activity_book_fragment">Book</string>
-		    <string name="title_activity_book_activity">Book</string>
-		    <string name="menu_settings_detalles_libro">Settings</string>
-		    <string name="subitem1_detalles_libro">Add to list</string>
-		    <string name="subitem2_detalles_libro">Profile</string>
-		    <string name="subitem3_detalles_libro">Settings</string>
-		    <string name="subitem4_detalles_libro">About</string>
-		    <string name="bar_search_detalles_libro">Search bar</string>
-	    
-	    <!-- CrossingList -->
-	    <string name="title_activity_crossing_list">CrossingListActivity</string>
-	    
-		    <!-- Crossing -->
-		    <string name="title_activity_crossing">CrossingActivity</string>
-    
-    
+
+    <!-- BookList -->
+    <string name="title_activity_book_list">BookListActivity</string>
+    <string name="menu_settings_book_list">Settings</string>
+    <string name="subitem1_book_list">Add book</string>
+    <string name="subitem2_book_list">Profile</string>
+    <string name="subitem3_book_list">Settings</string>
+    <string name="subitem4_book_list">About</string>
+    <string name="bar_search_book_list">Search bar</string>
+
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Book</string>
+    <string name="title_activity_book_activity">Book</string>
+    <string name="menu_settings_detalles_libro">Settings</string>
+    <string name="subitem1_detalles_libro">Add to list</string>
+    <string name="subitem2_detalles_libro">Profile</string>
+    <string name="subitem3_detalles_libro">Settings</string>
+    <string name="subitem4_detalles_libro">About</string>
+    <string name="bar_search_detalles_libro">Search bar</string>
+
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">CrossingListActivity</string>
+
+    <!-- Crossing -->
+    <string name="title_activity_crossing">CrossingActivity</string>
     <string name="title_activity_buscar_libros">BookSearch</string>
     <string name="title_activity_resultado_busqueda_libros">SearchResult</string>
     <string name="title_activity_prueba_internet">PruebaInternet</string>
     <string name="title_activity_uj">UJ</string>
     <string name="title_testitem_detail">TestItem Detail</string>
     <string name="title_testitem_list">TestItems</string>
-    
-    
+
     <!-- User -->
     <string name="title_activity_user">User</string>
-    
+
     <!-- Search Book -->
     <string name="searchbook_searchby">Search by:</string>
+
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
@@ -76,7 +73,7 @@
     <string name="login_logging">Logging in…</string>
     <string name="login_pleasewait">Please, wait a moment.</string>
     <string name="login_invalid">Invalid login. Try again!</string>
-    
+
     <!-- Signup -->
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="signup_username_hint">username</string>
@@ -105,5 +102,8 @@
     <string name="about_author3">Nicolás De Boni</string>
     <string name="about_author4">Juan Muñoz</string>
     <string name="about_author5">Mario Sanz</string>
+    
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">UserProfileActivity</string>
 
 </resources>
