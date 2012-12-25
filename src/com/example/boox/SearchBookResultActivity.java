@@ -6,18 +6,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class ResultadoBusquedaLibrosActivity extends Activity {
+public class SearchBookResultActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.resultado_busqueda_libros);
+		setContentView(R.layout.activity_search_book_result);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.resultado_busqueda_libros, menu);
+
+		getMenuInflater().inflate(R.menu.activity_search_book_result, menu);
 		return true;
 	}
 

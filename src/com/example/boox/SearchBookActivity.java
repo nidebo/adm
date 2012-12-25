@@ -62,9 +62,9 @@ public class SearchBookActivity extends Activity {
 		if (result != null) {
 			String contents = result.getContents();
 			if (contents != null) {
-				// showDialog(R.string.result_succeeded, result.toString());
-				TextView text = (TextView) findViewById(R.id.textView2);
-				text.setText(result.toString());
+				TextView isbn = (TextView) findViewById(R.id.textView2);
+				isbn.setText(result.toString());
+				//Llamar aqui a SearchBookResultActivity
 			} else {
 				// showDialog(R.string.result_failed,
 				// getString(R.string.result_failed_why));

@@ -38,7 +38,7 @@
             android:label="@string/title_activity_buscar_libros" >
         </activity>
         <activity
-            android:name="com.example.boox.ResultadoBusquedaLibrosActivity"
+            android:name=".SearchBookResultActivity"
             android:label="@string/title_activity_resultado_busqueda_libros" >
         </activity>
         <activity
