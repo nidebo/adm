@@ -50,7 +50,7 @@ public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
 		
 		return ListaDeLibros;
 	}
-public ArrayList<Libro> ObtenerListaLibrosPorBúsqueda(String busqueda){
+public ArrayList<Libro> ObtenerListaLibrosPorBusqueda(String busqueda){
 	//No se como funcionará lo de la api, pero de alguna forma se podrán buscar libros,
 	//si hay que hacerlo por separado o no ya no lo sé, simplemente añade más funciones
 	//si hace falta, en plan buscar por editorial o por cualquier campo que pueda ser util
