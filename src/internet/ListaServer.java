@@ -30,11 +30,35 @@ import android.os.AsyncTask;
 
 public class ListaServer {
 	
-	public class Lista {
-		ArrayList<String> l;
+	public class ListaLibros {
+		ArrayList<auxLibro> alibro;
 		
-		public ArrayList<String> getLista() {
-			return l;
+		public ArrayList<auxLibro> getLibros() {
+			return alibro;
+		}
+	}
+	
+	public class ListaListas {
+		ArrayList <auxLista> alista;
+		
+		public ArrayList<auxLista> getListas() {
+			return alista;
+		}
+	}
+	
+	public class auxLibro {
+		String isbn;
+		
+		public String getIsbn() {
+			return isbn;
+		}
+	}
+	
+	public class auxLista {
+		String name;
+		
+		public String getName() {
+			return name;
 		}
 	}
 	
@@ -64,8 +88,8 @@ public class ListaServer {
 	
 	public ArrayList<String> obtenerLibrosLista(String lname, String uname){
 		
-		//ArrayList<String> isbnLibros=new ArrayList<String>();
-		Lista aux = new Lista();
+		ArrayList<String> isbnLibros=new ArrayList<String>();
+		ListaLibros aux = new ListaLibros();
 		
 		AsyncGetBooks gb = new AsyncGetBooks();
 
@@ -78,18 +102,22 @@ public class ListaServer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		for(int i=0; i < aux.getLibros().size(); i++) {
+    		isbnLibros.add(aux.getLibros().get(i).getIsbn());
+    	}
 		//Aqui te bajas del servidor los libros de la lista NombreLista de Usuario y los metes en isbnLibros
-		return aux.getLista();
+		return isbnLibros;
 	}
 	
 	public ArrayList<String> obtenerListas(String uname){
-		//ArrayList<String> isbnLibros=new ArrayList<String>();
-		Lista aux = new Lista();
+		ArrayList<String> nombreListas=new ArrayList<String>();
+		ListaListas aux = new ListaListas();
 		
-		AsyncGetBooks gb = new AsyncGetBooks();
+		AsyncGetLists gl = new AsyncGetLists();
 
 		try {
-			aux = gb.execute(uname).get();
+			aux = gl.execute(uname).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,8 +125,12 @@ public class ListaServer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		for(int i=0; i < aux.getListas().size(); i++) {
+    		nombreListas.add(aux.getListas().get(i).getName());
+    	}
 		//Aqui te bajas del servidor las listas de Usuario y las metes en isbnLibros
-		return aux.getLista();
+		return nombreListas;
 	}
 	
 	public class AsyncDeleteList extends AsyncTask<String, Void, Void> {
@@ -295,18 +327,18 @@ public class ListaServer {
 		}
 	}
 	
-	public class AsyncGetBooks extends AsyncTask<String, Void, Lista> {
+	public class AsyncGetBooks extends AsyncTask<String, Void, ListaLibros> {
 
 		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
 		
 		@Override
-		protected Lista doInBackground(String... params) {
+		protected ListaLibros doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			
 			 URL url;
-			 Lista li = new Lista();
+			 ListaLibros li = new ListaLibros();
 			try {
 				//String uname = "nicolas";
 				url = new URL("http://boox.eu01.aws.af.cm/users/" + 
@@ -338,7 +370,7 @@ public class ListaServer {
 					json = new JSONObject(responseString);
 
 				    li = gson.fromJson(json.toString(),
-						Lista.class);
+						ListaLibros.class);
 				   // txt.setText(String.valueOf(al.getListaAmigos().size()));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -357,17 +389,17 @@ public class ListaServer {
 	
 	}
 	
-	public class AsyncGetLists extends AsyncTask<String, Void, Lista> {
+	public class AsyncGetLists extends AsyncTask<String, Void, ListaListas> {
 		//boolean cool = true;
 				StringBuilder sb;
 				String responseString;
 				
 				@Override
-				protected Lista doInBackground(String... params) {
+				protected ListaListas doInBackground(String... params) {
 					// TODO Auto-generated method stub
 					
 					 URL url;
-					 Lista li = new Lista();
+					 ListaListas li = new ListaListas();
 					try {
 						//String uname = "nicolas";
 						url = new URL("http://boox.eu01.aws.af.cm/users/" + 
@@ -399,7 +431,7 @@ public class ListaServer {
 							json = new JSONObject(responseString);
 
 						    li = gson.fromJson(json.toString(),
-								Lista.class);
+								ListaListas.class);
 						   // txt.setText(String.valueOf(al.getListaAmigos().size()));
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
