@@ -1,4 +1,4 @@
-package listasLibros;
+package zzzDuplicados;
 
 import java.sql.Date;
 import java.sql.Struct;
@@ -85,7 +85,6 @@ public class SaleInfo{
 	public void setBuyLink(String buyLink) {
 		this.buyLink = buyLink;
 	}
-
 
 
 	public class Price{

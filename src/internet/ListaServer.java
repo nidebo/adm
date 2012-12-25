@@ -30,7 +30,7 @@ import android.os.AsyncTask;
 
 public class ListaServer {
 	
-	public class ListaLibros {
+	private class ListaLibros {
 		ArrayList<auxLibro> alibro;
 		
 		public ArrayList<auxLibro> getLibros() {
@@ -38,7 +38,7 @@ public class ListaServer {
 		}
 	}
 	
-	public class ListaListas {
+	private class ListaListas {
 		ArrayList <auxLista> alista;
 		
 		public ArrayList<auxLista> getListas() {
@@ -46,7 +46,7 @@ public class ListaServer {
 		}
 	}
 	
-	public class auxLibro {
+	private class auxLibro {
 		String isbn;
 		
 		public String getIsbn() {
@@ -54,7 +54,7 @@ public class ListaServer {
 		}
 	}
 	
-	public class auxLista {
+	private class auxLista {
 		String name;
 		
 		public String getName() {
@@ -62,25 +62,25 @@ public class ListaServer {
 		}
 	}
 	
-	public void borraLista(String lname, String uname){
+	public void borraListaDeUsuario(String lname, String uname){
 		
 		AsyncDeleteList dl = new AsyncDeleteList();
 		dl.execute(lname, uname);
 	}
 	
-	public void creaLista(String lname, String uname){
+	public void creaListaDeUsuario(String lname, String uname){
 
 		AsyncSaveList sl = new AsyncSaveList();
 		sl.execute(lname, uname);
 	}
 	
-	public void agregaLibro(String lname, String uname, String isbn){
+	public void agregaLibroALista(String lname, String uname, String isbn){
 
 		AsyncSaveBook sl = new AsyncSaveBook();
 		sl.execute(lname, uname, isbn);
 	}
 	
-	public void borraLibro(String lname, String uname, String isbn){
+	public void borraLibroDeLista(String lname, String uname, String isbn){
 		
 		AsyncDeleteBook db = new AsyncDeleteBook();
 		db.execute(lname,uname,isbn);
@@ -133,7 +133,7 @@ public class ListaServer {
 		return nombreListas;
 	}
 	
-	public class AsyncDeleteList extends AsyncTask<String, Void, Void> {
+	private class AsyncDeleteList extends AsyncTask<String, Void, Void> {
 		
 		@Override
 		protected void onPreExecute(){
@@ -181,7 +181,7 @@ public class ListaServer {
 		}
 	}
 	
-	public class AsyncSaveList extends AsyncTask<String, Void, Void> {
+	private class AsyncSaveList extends AsyncTask<String, Void, Void> {
 		
 		@Override
 		protected void onPreExecute(){
@@ -229,7 +229,7 @@ public class ListaServer {
 		}
 	}
 
-	public class AsyncSaveBook extends AsyncTask<String, Void, Void> {
+	private class AsyncSaveBook extends AsyncTask<String, Void, Void> {
 	
 	@Override
 	protected void onPreExecute(){
@@ -278,7 +278,7 @@ public class ListaServer {
 	}
 }
 
-	public class AsyncDeleteBook extends AsyncTask<String, Void, Void> {
+	private class AsyncDeleteBook extends AsyncTask<String, Void, Void> {
 		
 		@Override
 		protected void onPreExecute(){
@@ -327,7 +327,7 @@ public class ListaServer {
 		}
 	}
 	
-	public class AsyncGetBooks extends AsyncTask<String, Void, ListaLibros> {
+	private class AsyncGetBooks extends AsyncTask<String, Void, ListaLibros> {
 
 		//boolean cool = true;
 		StringBuilder sb;
@@ -389,7 +389,7 @@ public class ListaServer {
 	
 	}
 	
-	public class AsyncGetLists extends AsyncTask<String, Void, ListaListas> {
+	private class AsyncGetLists extends AsyncTask<String, Void, ListaListas> {
 		//boolean cool = true;
 				StringBuilder sb;
 				String responseString;

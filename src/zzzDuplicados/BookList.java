@@ -1,6 +1,7 @@
-package listasLibros;
+package zzzDuplicados;
 
 import java.util.List;
+
 
 public class BookList {
 
@@ -27,10 +28,5 @@ public class BookList {
 		this.items = items;
 	}
 
-
-
-	
-	
-	
 	
 }

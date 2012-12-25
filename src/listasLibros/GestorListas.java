@@ -1,22 +1,29 @@
 package listasLibros;
 
-import internet.PruebaInternet;
+import internet.ListaServer;
 
 import java.util.ArrayList;
+
+import apiGoogle.InterfazAPI;
 
 
 public class GestorListas {
 	ArrayList<ListaLibros> lista = new ArrayList<ListaLibros>(); 
-	PruebaInternet conexion=new PruebaInternet();
+	InterfazAPI api=new InterfazAPI();
+	ListaServer servidor=new ListaServer();
+	String usuarioActual;
 	
-	public GestorListas() { //Constructor
-		
+	public GestorListas(String nombreDeUsuario) { //Constructor
+		usuarioActual=nombreDeUsuario;
 	}
 	
 	public void addListaVacia(String nombre){//No avisa si ya existe
 		if(!existe(nombre)){
 		ListaLibros lis = new ListaLibros(nombre);
 		lista.add(lis);
+		
+		//Queda comprobar, si es posible, si ha sido bien agregada o no
+		servidor.creaListaDeUsuario(nombre, usuarioActual);
 		}
 	}
 	
@@ -28,9 +35,11 @@ public class GestorListas {
 				i=lista.size();
 		}
 		lista.remove(lis);
+		//Queda comprobar, si es posible, si ha sido bien agregada o no
+		servidor.borraListaDeUsuario(nombreLista, usuarioActual);
 	}
 	
-	private boolean existe(String nombreLista) {
+	private boolean existe(String nombreLista) {//Sin servidor
 		boolean ex = false;
 		ListaLibros aux = null;
 		if (!lista.isEmpty())
@@ -43,7 +52,14 @@ public class GestorListas {
 	}
 	
 	//Devuelve todos los libros de una lista
-	public ArrayList<Libro> getListaDeLibros(String nombreLista){
+	public ArrayList<Libro> getListaDeLibros(String nombreLista){//Sin servidor
+		if (lista==null){
+			ArrayList<String> ids=new ArrayList<String>();
+			ids=servidor.obtenerLibrosLista(nombreLista, usuarioActual);
+			for(int i=0;i<ids.size();i++){
+				//lista.add(object)
+			}
+		}
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
@@ -53,26 +69,37 @@ public class GestorListas {
 		return lis.getListaLibros();
 	}
 	
-	public void borraLibroDeLista(int isbn, String nombreLista){
+	public void borraLibroDeLista(String isbn, String nombreLista){//id==isbn?
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
 			if (lis.getNombreLista()==nombreLista)
 				i=lista.size();
 		}
-		lis.borraLibroPorIsbn(isbn);
+		lis.borraLibroPorIsbn(isbn);//id==isbn?
+		//Queda comprobar, si es posible, si ha sido bien agregada o no
+		servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
 	}
 	
-	public void addLibroEnLista(Libro lib, String nombreLista){
+	public void addLibroEnLista(String isbn, String nombreLista){//id==isbn?
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
 			if (lis.getNombreLista()==nombreLista)
 				i=lista.size();
 		}
+		
+		
+		//añadir cosas al constructor en la clase libro!!!!
+		Libro lib=new Libro(isbn);//idid==isbn?
+		//añadir cosas al constructor en la clase libro
+		
 		lis.addLibro(lib);
+		//Queda comprobar, si es posible, si ha sido bien agregada o no
+		servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
 	}
 	
+	//If null, sacarlo del servidor
 	//Devuelve un array con los nombres de las listas
 	public ArrayList<String> getNombresListas() {
 		ArrayList<String> nombres = new ArrayList<String>(); 
@@ -104,7 +131,7 @@ public class GestorListas {
 	 *  La funcion esta tendrï¿½a que ser llamada al cerrar la aplicaciï¿½n (de aqui el no
 	 *  sabes si esto es posible de hacer) cuando se hayan detectado cambios y haya
 	 *  conexiï¿½n a internet (cada x tiempo).
-	 * */
+	 * 
 	public void guardaLista(String nombreLista, String uname){//Necesitarï¿½ nombre de usuario
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -125,6 +152,6 @@ public class GestorListas {
 	public void borraListaLibros(){
 		//las dos opciones anteriores
 
-	}
+	}*/
 	
 }

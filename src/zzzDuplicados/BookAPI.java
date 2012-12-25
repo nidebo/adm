@@ -1,7 +1,9 @@
-package listasLibros;
+package zzzDuplicados;
 
 import java.sql.Date;
 import java.util.ArrayList;
+
+
 
 
 public class BookAPI {
@@ -72,11 +74,6 @@ public class BookAPI {
 		this.accessInfo = accessinfo;
 	}
 	
-	
-	
-	
-
-
 }
 
 

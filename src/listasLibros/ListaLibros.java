@@ -39,11 +39,11 @@ public class ListaLibros {
 			libros.add(i);
 	}
 
-	public Libro getLibroPorId(int id){
+	public Libro getLibroPorId(String id){//id==isbn?
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			lib = libros.get(i);
-			if (lib.getIsbn()==id)
+			if (lib.getIsbn()==id)//id==isbn?
 				i=libros.size();
 		}
 		return lib;
@@ -61,11 +61,11 @@ public class ListaLibros {
 		return ex;
 	}
 	
-	public void borraLibroPorIsbn(int isbn){
+	public void borraLibroPorIsbn(String isbn){//id==isbn?
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			 lib = libros.get(i); 
-			 	if (lib.getIsbn()==isbn)
+			 	if (lib.getIsbn()==isbn)//id==isbn?
 			 		libros.remove(lib);
 			}
 	}
@@ -73,6 +73,11 @@ public class ListaLibros {
 	public ArrayList<Libro> getListaLibros() {
 		return libros;
 	}
+	
+	
+	
+	
+	/*
 	
 	//Funciones relativas al servidor
 	public void guardaListaLibros(String lname, String uname){
@@ -191,7 +196,7 @@ public class AsyncSave extends AsyncTask<String, Void, Void> {
 
 
 		}
-	}
+	}*/
 }
 
 

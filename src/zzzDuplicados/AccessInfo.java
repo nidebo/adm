@@ -1,4 +1,4 @@
-package listasLibros;
+package zzzDuplicados;
 public class AccessInfo{
 	String country;
 	String viewability;

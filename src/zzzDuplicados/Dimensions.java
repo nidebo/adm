@@ -1,4 +1,4 @@
-package listasLibros;
+package zzzDuplicados;
 
 public class Dimensions{
 	String height;

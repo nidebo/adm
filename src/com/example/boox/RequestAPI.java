@@ -1,8 +1,9 @@
 package com.example.boox;
 import java.util.List;
 
-import listasLibros.BookAPI;
-import listasLibros.BookList;
+import zzzDuplicados.BookAPI;
+import zzzDuplicados.BookList;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
