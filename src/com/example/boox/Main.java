@@ -1,5 +1,6 @@
 package com.example.boox;
 
+import internet.ListaServer;
 import internet.PruebaInternet;
 
 import java.io.BufferedInputStream;

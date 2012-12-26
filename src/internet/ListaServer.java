@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;
@@ -31,34 +32,64 @@ import android.os.AsyncTask;
 public class ListaServer {
 	
 	private class ListaLibros {
-		ArrayList<auxLibro> alibro;
+		private List<auxLibro> books;
 		
-		public ArrayList<auxLibro> getLibros() {
-			return alibro;
+		public List<auxLibro> getLibros() {
+			return books;
+		}
+		
+		public void setLibros(List<auxLibro> libros) {
+			this.books = libros;
 		}
 	}
 	
 	private class ListaListas {
-		ArrayList <auxLista> alista;
+		private List <auxLista> customLists;
 		
-		public ArrayList<auxLista> getListas() {
-			return alista;
+		public List<auxLista> getListas() {
+			return customLists;
+		}
+		
+		public void setListas(List<auxLista> listas) {
+			this.customLists = listas;
 		}
 	}
 	
 	private class auxLibro {
 		String isbn;
 		
+		public auxLibro() {
+		}
+		
+		public auxLibro(String isbn) {
+			this.isbn = isbn;
+		}
+		
 		public String getIsbn() {
 			return isbn;
+		}
+		
+		public void setIsbn(String isbn) {
+			this.isbn = isbn;
 		}
 	}
 	
 	private class auxLista {
 		String name;
 		
+		public auxLista() {
+		}
+		
+		public auxLista(String name) {
+			this.name = name;
+		}
+				
 		public String getName() {
 			return name;
+		}
+				
+		public void setName(String name) {
+			this.name = name;
 		}
 	}
 	
@@ -88,13 +119,11 @@ public class ListaServer {
 	
 	public ArrayList<String> obtenerLibrosLista(String lname, String uname){
 		
-		ArrayList<String> isbnLibros=new ArrayList<String>();
-		ListaLibros aux = new ListaLibros();
-		
+		ArrayList<String> isbnLibros=new ArrayList<String>();		
 		AsyncGetBooks gb = new AsyncGetBooks();
 
 		try {
-			aux = gb.execute(lname,uname).get();
+			isbnLibros = gb.execute(lname,uname).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,21 +132,17 @@ public class ListaServer {
 			e.printStackTrace();
 		}
 		
-		for(int i=0; i < aux.getLibros().size(); i++) {
-    		isbnLibros.add(aux.getLibros().get(i).getIsbn());
-    	}
 		//Aqui te bajas del servidor los libros de la lista NombreLista de Usuario y los metes en isbnLibros
 		return isbnLibros;
 	}
 	
 	public ArrayList<String> obtenerListas(String uname){
-		ArrayList<String> nombreListas=new ArrayList<String>();
-		ListaListas aux = new ListaListas();
 		
+		ArrayList<String> nombreListas=new ArrayList<String>();
 		AsyncGetLists gl = new AsyncGetLists();
 
 		try {
-			aux = gl.execute(uname).get();
+			nombreListas = gl.execute(uname).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,9 +151,6 @@ public class ListaServer {
 			e.printStackTrace();
 		}
 		
-		for(int i=0; i < aux.getListas().size(); i++) {
-    		nombreListas.add(aux.getListas().get(i).getName());
-    	}
 		//Aqui te bajas del servidor las listas de Usuario y las metes en isbnLibros
 		return nombreListas;
 	}
@@ -145,13 +167,13 @@ public class ListaServer {
 			//////////////
 			HttpClient client = new DefaultHttpClient();
 
-			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/" +
+			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delCustomList"); 
 			
 			JSONObject json = new JSONObject();
 			try {
-				json.put("uname", params[0]);
-				json.put("custom", params[1]);
+				json.put("uname", params[1]);
+				json.put("custom", params[0]);
 	            StringEntity se;
 				se = new StringEntity(json.toString());
 	            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -193,13 +215,13 @@ public class ListaServer {
 			//////////////
 			HttpClient client = new DefaultHttpClient();
 
-			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/" +
+			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/addCustomList"); 
 			
 			JSONObject json = new JSONObject();
 			try {
-				json.put("uname", params[0]);
-				json.put("custom", params[1]);
+				json.put("uname", params[1]);
+				json.put("custom", params[0]);
 	            StringEntity se;
 				se = new StringEntity(json.toString());
 	            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -241,13 +263,13 @@ public class ListaServer {
 		//////////////
 		HttpClient client = new DefaultHttpClient();
 
-		HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/" +
+		HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 				params[1] + "/addBookToCustomList"); 
 		
 		JSONObject json = new JSONObject();
 		try {
-			json.put("uname", params[0]);
-			json.put("custom", params[1]);
+			json.put("uname", params[1]);
+			json.put("custom", params[0]);
 			json.put("book", params[2]);
             StringEntity se;
 			se = new StringEntity(json.toString());
@@ -290,13 +312,13 @@ public class ListaServer {
 			//////////////
 			HttpClient client = new DefaultHttpClient();
 
-			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/" +
+			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delBookFromCustomList"); 
 			
 			JSONObject json = new JSONObject();
 			try {
-				json.put("uname", params[0]);
-				json.put("custom", params[1]);
+				json.put("uname", params[1]);
+				json.put("custom", params[0]);
 				json.put("book", params[2]);
 	            StringEntity se;
 				se = new StringEntity(json.toString());
@@ -327,18 +349,19 @@ public class ListaServer {
 		}
 	}
 	
-	private class AsyncGetBooks extends AsyncTask<String, Void, ListaLibros> {
+	private class AsyncGetBooks extends AsyncTask<String, Void, ArrayList<String>> {
 
 		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
 		
 		@Override
-		protected ListaLibros doInBackground(String... params) {
+		protected ArrayList<String> doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			
 			 URL url;
 			 ListaLibros li = new ListaLibros();
+			 ArrayList<String> res = new ArrayList<String>();
 			try {
 				//String uname = "nicolas";
 				url = new URL("http://boox.eu01.aws.af.cm/users/" + 
@@ -360,22 +383,24 @@ public class ListaServer {
 				responseString = sb.toString();
 			    
 			    urlConnection.disconnect();
-			    
-			    GsonBuilder builder = new GsonBuilder();
+			
+			 	GsonBuilder builder = new GsonBuilder();
 				Gson gson = builder.create();
 
 				JSONObject json;
 				
-				try {
-					json = new JSONObject(responseString);
+				json = new JSONObject(responseString);
 
-				    li = gson.fromJson(json.toString(),
-						ListaLibros.class);
+			    li = gson.fromJson(json.toString(), ListaLibros.class);
+			    
+				
+				for(int i=0; i < li.getLibros().size(); i++) {
+		    		res.add(li.getLibros().get(i).getIsbn());
+		    	}
 				   // txt.setText(String.valueOf(al.getListaAmigos().size()));
-				} catch (JSONException e) {
+			} catch (JSONException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				e.printStackTrace();
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -383,23 +408,28 @@ public class ListaServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+
+			
 			     
-			return li;
+			return res;
 		}
+		
 	
 	}
 	
-	private class AsyncGetLists extends AsyncTask<String, Void, ListaListas> {
+	private class AsyncGetLists extends AsyncTask<String, Void, ArrayList<String>> {
 		//boolean cool = true;
 				StringBuilder sb;
 				String responseString;
 				
 				@Override
-				protected ListaListas doInBackground(String... params) {
+				protected ArrayList<String> doInBackground(String... params) {
 					// TODO Auto-generated method stub
 					
 					 URL url;
 					 ListaListas li = new ListaListas();
+					 ArrayList<String> res = new ArrayList<String>();
 					try {
 						//String uname = "nicolas";
 						url = new URL("http://boox.eu01.aws.af.cm/users/" + 
@@ -427,16 +457,17 @@ public class ListaServer {
 
 						JSONObject json;
 						
-						try {
-							json = new JSONObject(responseString);
+						json = new JSONObject(responseString);
 
-						    li = gson.fromJson(json.toString(),
-								ListaListas.class);
-						   // txt.setText(String.valueOf(al.getListaAmigos().size()));
-						} catch (JSONException e) {
+						li = gson.fromJson(json.toString(),	ListaListas.class);
+						
+						for(int i=0; i < li.getListas().size(); i++) {
+				    		res.add(li.getListas().get(i).getName());
+				    	}
+						
+					} catch (JSONException e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						e.printStackTrace();
 					} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -445,7 +476,7 @@ public class ListaServer {
 						e.printStackTrace();
 					}
 					     
-					return li;
+					return res;
 				}
 			
 	}
