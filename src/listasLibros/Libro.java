@@ -7,38 +7,40 @@ import zzzDuplicados.VolumeInfo.ImageLinks;
 public class Libro {
 	String id;
 	String isbn;
-	String titulo;
-	ArrayList<String> autores;
-	String editorial;
-	String descripcion;
-	String fechaPublicacion;
-	int numeroDePaginas;
-	ArrayList<String> categorias;
-	Float puntuacionMedia;
-	String pais;
-	String idioma;
+	String title;
+	ArrayList<String> authors;
+	String publisher;
+	String description;
+	String publishedDate;
+	int pageCount;
+	String mainCategory;
+	ArrayList<String> categories;
+	Float averageRating;
+	String country;
+	String language;
 	ImageLinks imageLinks;
 	
 
 	public Libro(String id, String isbn, String titulo,
 			ArrayList<String> autores, String editorial, String descripcion,
-			String fechaPublicacion, int numeroDePaginas,
+			String fechaPublicacion, int numeroDePaginas, String categoriaPrincipal,
 			ArrayList<String> categorias, Float puntuacionMedia, String pais,
 			String idioma, ImageLinks imageLinks) {
 		super();
 		
 		this.id = id;
 		this.isbn = isbn;
-		this.titulo = titulo;
-		this.autores = autores;
-		this.editorial = editorial;
-		this.descripcion = descripcion;
-		this.fechaPublicacion = fechaPublicacion;
-		this.numeroDePaginas = numeroDePaginas;
-		this.categorias = categorias;
-		this.puntuacionMedia = puntuacionMedia;
-		this.pais = pais;
-		this.idioma = idioma;
+		this.title = titulo;
+		this.authors = autores;
+		this.publisher = editorial;
+		this.description = descripcion;
+		this.publishedDate = fechaPublicacion;
+		this.pageCount = numeroDePaginas;
+		this.mainCategory=categoriaPrincipal;
+		this.categories = categorias;
+		this.averageRating = puntuacionMedia;
+		this.country = pais;
+		this.language = idioma;
 		this.imageLinks = imageLinks;
 	}
 	
@@ -64,83 +66,92 @@ public class Libro {
 	}
 
 	public String getTitulo() {
-		return titulo;
+		return title;
 	}
 
 	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+		this.title = titulo;
 	}
 
 	public ArrayList<String> getAutores() {
-		return autores;
+		return authors;
 	}
 
 	public void setAutores(ArrayList<String> autores) {
-		this.autores = autores;
+		this.authors = autores;
 	}
 
 	public String getEditorial() {
-		return editorial;
+		return publisher;
 	}
 
 	public void setEditorial(String editorial) {
-		this.editorial = editorial;
+		this.publisher = editorial;
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return description;
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		this.description = descripcion;
 	}
 
 	public String getFechaPublicacion() {
-		return fechaPublicacion;
+		return publishedDate;
 	}
 
 	public void setFechaPublicacion(String fechaPublicacion) {
-		this.fechaPublicacion = fechaPublicacion;
+		this.publishedDate = fechaPublicacion;
 	}
 
 	public int getNumeroDePaginas() {
-		return numeroDePaginas;
+		return pageCount;
 	}
 
 	public void setNumeroDePaginas(int numeroDePaginas) {
-		this.numeroDePaginas = numeroDePaginas;
+		this.pageCount = numeroDePaginas;
 	}
 
+	public String getCategoriaPrincipal() {
+		return mainCategory;
+	}
+
+	public void setCategoriaPrincipal(String categoriaPrincipal) {
+		this.mainCategory = categoriaPrincipal;
+	}
+
+	
 	public ArrayList<String> getCategorias() {
-		return categorias;
+		return categories;
 	}
 
 	public void setCategorias(ArrayList<String> categorias) {
-		this.categorias = categorias;
+		this.categories = categorias;
 	}
 
 	public Float getPuntuacionMedia() {
-		return puntuacionMedia;
+		return averageRating;
 	}
 
 	public void setPuntuacionMedia(Float puntuacionMedia) {
-		this.puntuacionMedia = puntuacionMedia;
+		this.averageRating = puntuacionMedia;
 	}
 
 	public String getPais() {
-		return pais;
+		return country;
 	}
 
 	public void setPais(String pais) {
-		this.pais = pais;
+		this.country = pais;
 	}
 
 	public String getIdioma() {
-		return idioma;
+		return language;
 	}
 
 	public void setIdioma(String idioma) {
-		this.idioma = idioma;
+		this.language = idioma;
 	}
 
 	public ImageLinks getImageLinks() {
