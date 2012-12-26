@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import apiGoogle.InterfazAPI;
 
-
+//Hay que hacer un flag que nos indique si
+//estamos trabajando con datos buenos, con incertidumbre, o con mierda
 public class GestorListas {
 	ArrayList<ListaLibros> lista = new ArrayList<ListaLibros>(); 
 	InterfazAPI api=new InterfazAPI();
@@ -14,16 +15,32 @@ public class GestorListas {
 	String usuarioActual;
 	
 	public GestorListas(String nombreDeUsuario) { //Constructor
+		ActualizarTodoDeServidor();//Actualizar de local, y COMPROBAR (nueva funcion) de servidor
+		//Si no está en local, solo de servidor
 		usuarioActual=nombreDeUsuario;
+	}
+	
+	public void ActualizarTodoDeServidor(){
+		ArrayList<String> listaNombresListas;
+		listaNombresListas=servidor.obtenerListas(usuarioActual);
+		for(int i=0;i<listaNombresListas.size();i++){//Cargamos nombres listas
+			addListaVacia(listaNombresListas.get(i));
+			ArrayList<String> listaLibros;
+			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
+			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
+				Libro lib=api.ObtenerLibroPorId(listaLibros.get(j));
+				addLibroEnLista(lib,listaNombresListas.get(i));
+			}
+		}
 	}
 	
 	public void addListaVacia(String nombre){//No avisa si ya existe
 		if(!existe(nombre)){
 		ListaLibros lis = new ListaLibros(nombre);
-		lista.add(lis);
-		
+				
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
 		servidor.creaListaDeUsuario(nombre, usuarioActual);
+		lista.add(lis);
 		}
 	}
 	
@@ -34,9 +51,9 @@ public class GestorListas {
 			if (lis.getNombreLista()==nombreLista)
 				i=lista.size();
 		}
-		lista.remove(lis);
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
 		servidor.borraListaDeUsuario(nombreLista, usuarioActual);
+		lista.remove(lis);
 	}
 	
 	private boolean existe(String nombreLista) {//Sin servidor
@@ -53,13 +70,7 @@ public class GestorListas {
 	
 	//Devuelve todos los libros de una lista
 	public ArrayList<Libro> getListaDeLibros(String nombreLista){//Sin servidor
-		if (lista==null){
-			ArrayList<String> ids=new ArrayList<String>();
-			ids=servidor.obtenerLibrosLista(nombreLista, usuarioActual);
-			for(int i=0;i<ids.size();i++){
-				//lista.add(object)
-			}
-		}
+		//Nos fiamos de que la lista está correctamente actualizada del servidor
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
@@ -76,12 +87,12 @@ public class GestorListas {
 			if (lis.getNombreLista()==nombreLista)
 				i=lista.size();
 		}
-		lis.borraLibroPorIsbn(isbn);//id==isbn?
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
 		servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
+		lis.borraLibroPorIsbn(isbn);//id==isbn?
 	}
 	
-	public void addLibroEnLista(String isbn, String nombreLista){//id==isbn?
+	public void addLibroEnLista(Libro lib, String nombreLista){//id==isbn?
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
@@ -89,19 +100,15 @@ public class GestorListas {
 				i=lista.size();
 		}
 		
-		
-		//añadir cosas al constructor en la clase libro!!!!
-		Libro lib=new Libro(isbn);//idid==isbn?
-		//añadir cosas al constructor en la clase libro
-		
-		lis.addLibro(lib);
+	
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
-		servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
+		servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getIsbn());
+		lis.addLibro(lib);
 	}
 	
-	//If null, sacarlo del servidor
-	//Devuelve un array con los nombres de las listas
+
 	public ArrayList<String> getNombresListas() {
+		//Tambien suponemos que va bien tras ActualizarTodoDeServidor()
 		ArrayList<String> nombres = new ArrayList<String>(); 
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -110,48 +117,5 @@ public class GestorListas {
 		}
 		return nombres;
 	}
-	
-	//////////////////////////////////
-	///SERVIDOR
-	///////////////////////
-	
-	/*
-	 * Dos opciones, por una parte, la de las estructuras que he dejado aqui:
-	 * 	bï¿½sicamente es tratar como diferentes guardar y borrar lista
-	 * 	asi se podrï¿½a borrar cuando te de la gana y guardar... pues igual
-	 *  el problema de esto es que es muy manual y habrï¿½a que tener siempre
-	 *  conexion a la red.
-	 *  
-	 *  Por otra parte, cosa que yo creo que es mejor idea pero no se si es posible:
-	 *  Unir las dos funciones guardar y borrar listas para que ï¿½nicamente
-	 *  se llame cuando se vaya a cerrar la aplicaciï¿½n. Habria que detectar que hayan
-	 *  o no habido cambios (esto es sencillo, con un flag), y serï¿½a una funcion
-	 *  actualizar que ya llamase a guardar o borrar libros de ListaLibros, que serï¿½a
-	 *  desde donde se accede al servidor.
-	 *  La funcion esta tendrï¿½a que ser llamada al cerrar la aplicaciï¿½n (de aqui el no
-	 *  sabes si esto es posible de hacer) cuando se hayan detectado cambios y haya
-	 *  conexiï¿½n a internet (cada x tiempo).
-	 * 
-	public void guardaLista(String nombreLista, String uname){//Necesitarï¿½ nombre de usuario
-		ListaLibros lis = null;
-		for (int i=0; i<lista.size(); i++) { 
-			lis = lista.get(i);
-			if (lis.getNombreLista()==nombreLista)
-				i=lista.size();
-		}
-		lis.guardaListaLibros(nombreLista,uname);//Necesitarï¿½ nombre de usuario
-	}
-	
-	
-	public void cargaListaLibros(){
-		//No harï¿½a falta identificador, se supone que esto se harï¿½a al iniciar
-		//la aplicaciï¿½n
-
-	}
-	
-	public void borraListaLibros(){
-		//las dos opciones anteriores
-
-	}*/
 	
 }
