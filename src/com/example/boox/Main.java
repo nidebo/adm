@@ -11,8 +11,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import usuarios.Usuario;
+import zzzDuplicados.BookAPI;
+import zzzDuplicados.BookList;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -25,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
@@ -91,7 +102,6 @@ public class Main extends Activity {
     }
 
 	public void onPressNico(View view) {
-
     	Intent intent = new Intent(this, PruebaInternet.class);
     	startActivity(intent);
     }
@@ -119,6 +129,7 @@ public class Main extends Activity {
 		AsyncLogin lg = new AsyncLogin();
 		lg.execute(null, null, null);
     }
+		
 	
 	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
 

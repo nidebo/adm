@@ -1,5 +1,6 @@
 package com.example.boox;
 
+import zzzDuplicados.BookAPI;
 import internet.PruebaInternet;
 
 import com.example.boox.R;
@@ -10,8 +11,10 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import apiGoogle.InterfazAPI;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -40,7 +43,25 @@ public class SearchBookActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_search_book, menu);
 		return true;
 	}
-
+	public void onPressSearch(View view){
+		if(spinner_searchby.getSelectedItemPosition() == 0){
+			}
+		if(spinner_searchby.getSelectedItemPosition() == 1){
+			}
+		if(spinner_searchby.getSelectedItemPosition() == 2){
+			EditText etxt = (EditText) findViewById(R.id.editText1);
+			String isbn = etxt.getText().toString();
+			if(isbn != null){
+			InterfazAPI api = new InterfazAPI();
+			BookAPI libro = new BookAPI();
+			libro = api.ObtenerLibroPorIsbn(isbn);
+			TextView txt = (TextView) findViewById(R.id.textView2);
+			txt.setText(libro.getVolumeInfo().getTitle());
+			}
+			
+		}
+			
+	}
 	public void onPressScanBarcode(View view) {
 
 		IntentIntegrator integrator = new IntentIntegrator(
