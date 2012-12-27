@@ -1,19 +1,43 @@
 package com.example.boox;
 
+import internet.PruebaInternet.AsyncFriends;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import usuarios.AmigoList;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class TabFriendsFragment extends ListFragment {
 
     boolean mDualPane;
     int mCurCheckPosition = 1;
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
 
 	String strings[] = new String[]{
 			"Friend 1", 
@@ -27,14 +51,27 @@ public class TabFriendsFragment extends ListFragment {
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
 
-        // Populate list with our static array of titles.
-        if(list.isEmpty()){
-        	for(int i=0; i<strings.length; ++i)
-        		list.add(strings[i]);	
-        	setListAdapter(new ArrayAdapter<String>(getActivity(),
-        			android.R.layout.simple_list_item_1,
-        			list));
-        }
+
+        
+		SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		String uname = mySharedPreferences.getString("username", "");
+        
+		if(!uname.equals("")){
+			AsyncFriends a2 = new AsyncFriends();
+			a2.execute(uname, null, null);
+		}
+		else {
+	        // Populate list with our static array of titles.
+	        if(list.isEmpty()){
+	        	for(int i=0; i<strings.length; ++i)
+	        		list.add(strings[i]);	
+	        	setListAdapter(new ArrayAdapter<String>(getActivity(),
+	        			android.R.layout.simple_list_item_1,
+	        			list));
+	        }
+			
+		}
+
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
@@ -55,6 +92,81 @@ public class TabFriendsFragment extends ListFragment {
             showDetails(mCurCheckPosition);
         }*/
     }
+	
+	public class AsyncFriends extends AsyncTask<String, Void, Void> {
+
+		//boolean cool = true;
+		StringBuilder sb;
+		String responseString;
+		
+		@Override
+		protected Void doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			
+			 URL url;
+			try {
+
+				//String uname = "nicolas";
+				
+				url = new URL("http://boox.eu01.aws.af.cm/users/"+params[0]+"/friendList");
+			
+			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(in));
+				sb = new StringBuilder();
+				String line = null;
+				//line = reader.readLine();
+				//sb.append(line);
+				while ((line = reader.readLine()) != null) { 
+				    sb.append(line + "\n"); 
+				}
+				in.close();
+				responseString = sb.toString();
+			    
+			    urlConnection.disconnect();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			     
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			
+			GsonBuilder builder = new GsonBuilder();
+			Gson gson = builder.create();
+
+			JSONObject json;
+			AmigoList al;
+			try {
+				json = new JSONObject(responseString);
+
+			    al = gson.fromJson(json.toString(),
+					AmigoList.class);
+			    //txt.setText(String.valueOf(al.getListaAmigos().size()));
+		        if(list.isEmpty()){
+	        	for(int i=0; i<al.getListaAmigos().size(); ++i)
+	        		list.add(al.getListaAmigos().get(i).getNombre());	
+	        	setListAdapter(new ArrayAdapter<String>(getActivity(),
+	        			android.R.layout.simple_list_item_1,
+	        			list));
+	        	}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		}
+	
+	}
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

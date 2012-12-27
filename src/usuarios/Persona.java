@@ -1,37 +1,39 @@
 package usuarios;
 
 public class Persona {
-	String id;
+	//String id;
 	
-	String nombre;
-	String apellido;
-	String fechaNacimiento;
-	int CodigoPostal;
-	
+	//String nombre;
+	//String apellido;
+	//String fechaNacimiento;
+	//int CodigoPostal;
+	String _id;
+	String name;
+	String cp;
 		
 	public Persona(String idUsuario) {
 		super();
-		this.id = idUsuario;
+		this._id = idUsuario;
 	}
 
 	public String getId() {
-		return id;
+		return _id;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
-	public String getApellido() {
-		return apellido;
-	}
+//  public String getApellido() {
+//		return apellido;
+//	}
 	
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+//	public String getFechaNacimiento() {
+//		return fechaNacimiento;
+//	}
 	
-	public int getCodigoPostal() {
-		return CodigoPostal;
+	public String getCodigoPostal() {
+		return cp;
 	}
 	
 }

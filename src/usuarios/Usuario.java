@@ -3,9 +3,9 @@ package usuarios;
 public class Usuario extends Persona {
 	String password;
 	
-	public Usuario(String idUsuario, int codigoPostal, String password) {
+	public Usuario(String idUsuario, String codigoPostal, String password) {
 		super(idUsuario);
-		this.CodigoPostal=codigoPostal;
+		this.cp=codigoPostal;
 		this.password=password;
 	}
 
@@ -23,23 +23,23 @@ public class Usuario extends Persona {
 
 
 	public void setIdUsuario(String idUsuario) {
-		this.id = idUsuario;
+		this._id = idUsuario;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.name = nombre;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+//	public void setApellido(String apellido) {
+//		this.apellido = apellido;
+//	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+//	public void setFechaNacimiento(String fechaNacimiento) {
+//		this.fechaNacimiento = fechaNacimiento;
+//	}
 
-	public void setCodigoPostal(int codigoPostal) {
-		CodigoPostal = codigoPostal;
+	public void setCodigoPostal(String codigoPostal) {
+		cp = codigoPostal;
 	}
 	
 }
