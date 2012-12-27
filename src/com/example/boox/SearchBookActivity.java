@@ -71,7 +71,6 @@ public class SearchBookActivity extends Activity {
 		integrator.addExtra("RESULT_DISPLAY_DURATION_MS", 3000L);
 		integrator.addExtra("PROMPT_MESSAGE", "Custom prompt to scan a product");
 		integrator.initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES);
-
 		// Intent intent = new Intent(this, PruebaInternet.class);
 		// startActivity(intent);
 	}
