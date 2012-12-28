@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class ListaLibros {
 	
-	String s_NombreLista;
+	String NombreLista;
 	ArrayList<Libro> libros = new ArrayList<Libro>(); 
 	
 	public ListaLibros(String NombreLista) { //Constructor
-		s_NombreLista = NombreLista;
+		this.NombreLista = NombreLista;
 	}
 	
 	public String getNombreLista() {
-		return s_NombreLista;
+		return NombreLista;
 	}
 
 	public void setNombreLista(String NombreLista) {
-		this.s_NombreLista = NombreLista;
+		this.NombreLista = NombreLista;
 	}
 
 	public void addLibro(Libro i){//No avisa si ya existe el libro
@@ -59,6 +59,13 @@ public class ListaLibros {
 		return libros;
 	}
 	
+	public int tamanyo(){
+		return libros.size();
+	}
+	
+	public Libro getLibroPorIndice(int i){
+		return libros.get(i);
+	}
 }
 
 

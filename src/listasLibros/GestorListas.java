@@ -33,6 +33,15 @@ public class GestorListas {
 			}
 		}
 	}
+	public ArrayList<Libro> getListaAll(){
+		ArrayList<Libro> all= new ArrayList<Libro>();
+		for (int i=0;i<lista.size();i++){
+			for (int j=0;j<lista.get(i).tamanyo();j++){
+				all.add(lista.get(i).getLibroPorIndice(j));
+			}
+		}
+		return all;
+	}
 	
 	public void addListaVacia(String nombre){//No avisa si ya existe
 		if(!existe(nombre)){
