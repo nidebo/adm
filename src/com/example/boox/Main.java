@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+
+import listasLibros.GestorListas;
+import listasLibros.Libro;
 
 import usuarios.Usuario;
 import android.app.ActionBar;
@@ -33,8 +37,9 @@ public class Main extends Activity {
 	final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 
-	public Usuario usuarioActual= new Usuario("UsuarioDePrueba", "46015", "contrasenya"); 
-
+	public Usuario usuarioActual= new Usuario("pito", "46015", "contrasenya"); 
+	public GestorListas listasUsuario=new GestorListas (usuarioActual.getId());
+	ArrayList<Libro> prueba=listasUsuario.getListaAll();
 		
 	//private TabHost mTabHost;
     //private Resources mResources;

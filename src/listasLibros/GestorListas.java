@@ -20,7 +20,7 @@ public class GestorListas {
 		usuarioActual=nombreDeUsuario;
 	}
 	
-	public void ActualizarTodoDeServidor(){
+	private void ActualizarTodoDeServidor(){
 		ArrayList<String> listaNombresListas;
 		listaNombresListas=servidor.obtenerListas(usuarioActual);
 		for(int i=0;i<listaNombresListas.size();i++){//Cargamos nombres listas

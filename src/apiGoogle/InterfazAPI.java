@@ -238,7 +238,7 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 }
 
 public Libro pasarDeBookApiALibro(BookAPI book){
-	Libro lib = new Libro(book.getId(),   /////////// HA DE SER ISBN!!!!!
+	Libro lib = new Libro(book.getVolumeInfo().getIndustryIdentifiers().toString(),
 			book.getVolumeInfo().getTitle(),
 			book.getVolumeInfo().getAuthors(),
 			book.getVolumeInfo().getPublisher(),
