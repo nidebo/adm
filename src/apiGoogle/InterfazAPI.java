@@ -83,9 +83,19 @@ public class InterfazAPI {
 		
 		return ListaDeLibros;
 	}
-public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
-		
-		return ListaDeLibros;
+public List<BookAPI> ObtenerListaLibrosPorAutor(String autor){
+	List<BookAPI> books = null;
+	AsyncBookAuthor ab = new AsyncBookAuthor();	
+	try {
+		books = ab.execute(autor).get();
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return books;
 	}
 public ArrayList<Libro> ObtenerListaLibrosPorBusqueda(String busqueda){
 	//No se como funcionará lo de la api, pero de alguna forma se podrán buscar libros,
@@ -93,9 +103,11 @@ public ArrayList<Libro> ObtenerListaLibrosPorBusqueda(String busqueda){
 	//si hace falta, en plan buscar por editorial o por cualquier campo que pueda ser util
 	return ListaDeLibros;
 }
+
+
+
 public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 
-	//boolean cool = true;
 	StringBuilder sb;
 	String responseString;
 	String sturl;
@@ -146,6 +158,59 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 		return libros.get(0);
 	}
 
-}	
+}
+
+public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
+
+	StringBuilder sb;
+	String responseString;
+	String sturl;
 	
+	@Override
+	protected List<BookAPI> doInBackground(String... author) {
+		// TODO Auto-generated method stub
+		
+		 URL url;		 
+		try {
+			sturl = "https://www.googleapis.com/books/v1/volumes?q=author:"+author[0];
+			url = new URL(sturl);
+		
+		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(in));
+			sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) { 
+			    sb.append(line + "\n"); 
+			}
+			in.close();
+			responseString = sb.toString();
+		    
+		    urlConnection.disconnect();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		JSONObject json;
+		List<BookAPI> libros = null;
+		try {
+			
+			json = new JSONObject(responseString);
+			BookList detailbook  = gson.fromJson(responseString, BookList.class);
+			libros = detailbook.getItems();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return libros;
+	}
+}
+
 }

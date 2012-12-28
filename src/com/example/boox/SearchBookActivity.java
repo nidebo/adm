@@ -1,5 +1,7 @@
 package com.example.boox;
 
+import java.util.List;
+
 import zzzDuplicados.BookAPI;
 import internet.PruebaInternet;
 
@@ -47,10 +49,19 @@ public class SearchBookActivity extends Activity {
 		if(spinner_searchby.getSelectedItemPosition() == 0){
 			}
 		if(spinner_searchby.getSelectedItemPosition() == 1){
+			EditText etxt1 = (EditText) findViewById(R.id.editText1);
+			String autor = etxt1.getText().toString();
+			if(autor != null){
+			InterfazAPI api = new InterfazAPI();
+			List<BookAPI> libros = null;
+			libros = api.ObtenerListaLibrosPorAutor(autor);
+			TextView txt = (TextView) findViewById(R.id.textView2);
+			txt.setText(libros.get(2).getVolumeInfo().getTitle());		
 			}
+		}
 		if(spinner_searchby.getSelectedItemPosition() == 2){
-			EditText etxt = (EditText) findViewById(R.id.editText1);
-			String isbn = etxt.getText().toString();
+			EditText etxt2 = (EditText) findViewById(R.id.editText1);
+			String isbn = etxt2.getText().toString();
 			if(isbn != null){
 			InterfazAPI api = new InterfazAPI();
 			BookAPI libro = new BookAPI();
