@@ -1,10 +1,4 @@
-package zzzDuplicados;
-
-import java.sql.Date;
-import java.sql.Struct;
-import java.util.ArrayList;
-
-
+package librosGoogle;
 
 public class SaleInfo{
 	String country;

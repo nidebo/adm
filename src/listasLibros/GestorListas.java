@@ -28,7 +28,7 @@ public class GestorListas {
 			ArrayList<String> listaLibros;
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
-				Libro lib=api.ObtenerLibroPorId(listaLibros.get(j));
+				Libro lib=api.ObtenerLibroPorIsbn(listaLibros.get(j));
 				addLibroEnLista(lib,listaNombresListas.get(i));
 			}
 		}

@@ -1,10 +1,4 @@
-package zzzDuplicados;
-
-import java.sql.Date;
-import java.util.ArrayList;
-
-
-
+package librosGoogle;
 
 public class BookAPI {
 	String id;

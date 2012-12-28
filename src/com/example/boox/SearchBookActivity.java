@@ -1,9 +1,8 @@
 package com.example.boox;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import zzzDuplicados.BookAPI;
-import internet.PruebaInternet;
+import listasLibros.Libro;
 
 import com.example.boox.R;
 
@@ -53,9 +52,9 @@ public class SearchBookActivity extends Activity {
 			txt.setText(titulo);
 			if(titulo != null){
 			InterfazAPI api = new InterfazAPI();
-			List<BookAPI> libros = null;
+			ArrayList<Libro> libros = null;
 			libros = api.ObtenerListaLibrosPorTitulo(titulo);
-			txt.setText(libros.get(1).getVolumeInfo().getTitle());		
+			txt.setText(libros.get(1).getTitulo());		
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 1){
@@ -63,10 +62,10 @@ public class SearchBookActivity extends Activity {
 			String autor = etxt1.getText().toString();
 			if(autor != null){
 			InterfazAPI api = new InterfazAPI();
-			List<BookAPI> libros = null;
+			ArrayList<Libro> libros = null;
 			libros = api.ObtenerListaLibrosPorAutor(autor);
 			TextView txt = (TextView) findViewById(R.id.textView2);
-			txt.setText(libros.get(2).getVolumeInfo().getTitle());		
+			txt.setText(libros.get(2).getTitulo());		
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 2){
@@ -74,10 +73,10 @@ public class SearchBookActivity extends Activity {
 			String isbn = etxt2.getText().toString();
 			if(isbn != null){
 			InterfazAPI api = new InterfazAPI();
-			BookAPI libro = new BookAPI();
+			Libro libro = new Libro();
 			libro = api.ObtenerLibroPorIsbn(isbn);
 			TextView txt = (TextView) findViewById(R.id.textView2);
-			txt.setText(libro.getVolumeInfo().getTitle());
+			txt.setText(libro.getTitulo());
 			}
 			
 		}

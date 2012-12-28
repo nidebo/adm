@@ -1,11 +1,6 @@
-package zzzDuplicados;
+package librosGoogle;
 
-import java.sql.Date;
-import java.sql.Struct;
 import java.util.ArrayList;
-
-
-
 
 public class VolumeInfo {
 	String title;

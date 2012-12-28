@@ -2,10 +2,10 @@ package listasLibros;
 
 import java.util.ArrayList;
 
-import zzzDuplicados.VolumeInfo.ImageLinks;
+import librosGoogle.VolumeInfo.ImageLinks;
+
 
 public class Libro {
-	String id;
 	String isbn;
 	String title;
 	ArrayList<String> authors;
@@ -21,14 +21,13 @@ public class Libro {
 	ImageLinks imageLinks;
 	
 
-	public Libro(String id, String isbn, String titulo,
+	public Libro(String isbn, String titulo,
 			ArrayList<String> autores, String editorial, String descripcion,
 			String fechaPublicacion, int numeroDePaginas, String categoriaPrincipal,
 			ArrayList<String> categorias, Float puntuacionMedia, String pais,
 			String idioma, ImageLinks imageLinks) {
 		super();
 		
-		this.id = id;
 		this.isbn = isbn;
 		this.title = titulo;
 		this.authors = autores;
@@ -45,16 +44,10 @@ public class Libro {
 	}
 	
 	public Libro(String isbn){
-		this.id=isbn;
-		
+		this.isbn=isbn;
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	
+	public Libro(){
 	}
 
 	public String getIsbn() {

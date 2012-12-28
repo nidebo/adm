@@ -1,4 +1,4 @@
-package zzzDuplicados;
+package librosGoogle;
 public class AccessInfo{
 	String country;
 	String viewability;
