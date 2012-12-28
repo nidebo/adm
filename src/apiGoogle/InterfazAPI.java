@@ -97,6 +97,23 @@ public List<BookAPI> ObtenerListaLibrosPorAutor(String autor){
 	}
 	return books;
 	}
+
+public List<BookAPI> ObtenerListaLibrosPorTitulo(String titulo){
+	List<BookAPI> books = null;
+	AsyncBookTitle ab = new AsyncBookTitle();	
+	try {
+		books = ab.execute(titulo).get();
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return books;
+	}
+
+
 public ArrayList<Libro> ObtenerListaLibrosPorBusqueda(String busqueda){
 	//No se como funcionará lo de la api, pero de alguna forma se podrán buscar libros,
 	//si hay que hacerlo por separado o no ya no lo sé, simplemente añade más funciones
@@ -173,6 +190,59 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 		 URL url;		 
 		try {
 			sturl = "https://www.googleapis.com/books/v1/volumes?q=author:"+author[0];
+			url = new URL(sturl);
+		
+		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(in));
+			sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) { 
+			    sb.append(line + "\n"); 
+			}
+			in.close();
+			responseString = sb.toString();
+		    
+		    urlConnection.disconnect();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		JSONObject json;
+		List<BookAPI> libros = null;
+		try {
+			
+			json = new JSONObject(responseString);
+			BookList detailbook  = gson.fromJson(responseString, BookList.class);
+			libros = detailbook.getItems();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return libros;
+	}
+}
+
+public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
+
+	StringBuilder sb;
+	String responseString;
+	String sturl;
+	
+	@Override
+	protected List<BookAPI> doInBackground(String... title) {
+		// TODO Auto-generated method stub
+		
+		 URL url;		 
+		try {
+			sturl = "https://www.googleapis.com/books/v1/volumes?q=title:"+title[0];
 			url = new URL(sturl);
 		
 		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

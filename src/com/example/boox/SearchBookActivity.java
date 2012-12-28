@@ -47,7 +47,17 @@ public class SearchBookActivity extends Activity {
 	}
 	public void onPressSearch(View view){
 		if(spinner_searchby.getSelectedItemPosition() == 0){
+			EditText etxt1 = (EditText) findViewById(R.id.editText1);
+			TextView txt = (TextView) findViewById(R.id.textView2);
+			String titulo = etxt1.getText().toString();
+			txt.setText(titulo);
+			if(titulo != null){
+			InterfazAPI api = new InterfazAPI();
+			List<BookAPI> libros = null;
+			libros = api.ObtenerListaLibrosPorTitulo(titulo);
+			txt.setText(libros.get(1).getVolumeInfo().getTitle());		
 			}
+		}
 		if(spinner_searchby.getSelectedItemPosition() == 1){
 			EditText etxt1 = (EditText) findViewById(R.id.editText1);
 			String autor = etxt1.getText().toString();
