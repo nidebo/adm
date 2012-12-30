@@ -47,14 +47,16 @@ public class SearchBookActivity extends Activity {
 	public void onPressSearch(View view){
 		if(spinner_searchby.getSelectedItemPosition() == 0){
 			EditText etxt1 = (EditText) findViewById(R.id.editText1);
-			TextView txt = (TextView) findViewById(R.id.textView2);
 			String titulo = etxt1.getText().toString();
-			txt.setText(titulo);
 			if(titulo != null){
 			InterfazAPI api = new InterfazAPI();
 			ArrayList<Libro> libros = null;
 			libros = api.ObtenerListaLibrosPorTitulo(titulo);
-			txt.setText(libros.get(1).getTitulo());		
+			TextView txt = (TextView) findViewById(R.id.textView2);
+			if(libros != null)
+				txt.setText(libros.get(1).getTitulo());	
+			else
+				txt.setText("No encontrado");
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 1){
@@ -65,7 +67,10 @@ public class SearchBookActivity extends Activity {
 			ArrayList<Libro> libros = null;
 			libros = api.ObtenerListaLibrosPorAutor(autor);
 			TextView txt = (TextView) findViewById(R.id.textView2);
-			txt.setText(libros.get(2).getTitulo());		
+			if(libros != null)
+				txt.setText(libros.get(1).getTitulo());	
+			else
+				txt.setText("No encontrado");
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 2){
@@ -76,7 +81,10 @@ public class SearchBookActivity extends Activity {
 			Libro libro = new Libro();
 			libro = api.ObtenerLibroPorIsbn(isbn);
 			TextView txt = (TextView) findViewById(R.id.textView2);
-			txt.setText(libro.getTitulo());
+			if(libro != null)
+				txt.setText(libro.getTitulo());	
+			else
+				txt.setText("No encontrado");
 			}
 			
 		}
