@@ -102,7 +102,7 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 		
 		 URL url;		 
 		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
+			sturl = "https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
 			url = new URL(sturl);
 		
 		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -162,7 +162,7 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 		
 		 URL url;		 
 		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=inauthor:"+author[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
+			sturl = "https://www.googleapis.com/books/v1/volumes?q=inauthor:"+author[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
 			url = new URL(sturl);
 		
 		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -218,7 +218,7 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 		
 		 URL url;		 
 		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+title[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
+			sturl = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+title[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
 			url = new URL(sturl);
 		
 		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

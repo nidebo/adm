@@ -49,42 +49,30 @@ public class SearchBookActivity extends Activity {
 			EditText etxt1 = (EditText) findViewById(R.id.editText1);
 			String titulo = etxt1.getText().toString();
 			if(titulo != null){
-			InterfazAPI api = new InterfazAPI();
-			ArrayList<Libro> libros = null;
-			libros = api.ObtenerListaLibrosPorTitulo(titulo);
-			TextView txt = (TextView) findViewById(R.id.textView2);
-			if(libros != null)
-				txt.setText(libros.get(1).getTitulo());	
-			else
-				txt.setText("No encontrado");
+				Intent i = new Intent(this, SearchBookResultActivity.class);
+				i.putExtra("modo", 0);
+				i.putExtra("contenido", titulo);
+				startActivity(i);
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 1){
 			EditText etxt1 = (EditText) findViewById(R.id.editText1);
 			String autor = etxt1.getText().toString();
 			if(autor != null){
-			InterfazAPI api = new InterfazAPI();
-			ArrayList<Libro> libros = null;
-			libros = api.ObtenerListaLibrosPorAutor(autor);
-			TextView txt = (TextView) findViewById(R.id.textView2);
-			if(libros != null)
-				txt.setText(libros.get(1).getTitulo());	
-			else
-				txt.setText("No encontrado");
+				Intent i = new Intent(this, SearchBookResultActivity.class);
+				i.putExtra("modo", 1);
+				i.putExtra("contenido", autor);
+				startActivity(i);
 			}
 		}
 		if(spinner_searchby.getSelectedItemPosition() == 2){
 			EditText etxt2 = (EditText) findViewById(R.id.editText1);
 			String isbn = etxt2.getText().toString();
 			if(isbn != null){
-			InterfazAPI api = new InterfazAPI();
-			Libro libro = new Libro();
-			libro = api.ObtenerLibroPorIsbn(isbn);
-			TextView txt = (TextView) findViewById(R.id.textView2);
-			if(libro != null)
-				txt.setText(libro.getTitulo());	
-			else
-				txt.setText("No encontrado");
+				Intent i = new Intent(this, SearchBookResultActivity.class);
+				i.putExtra("modo", 2);
+				i.putExtra("contenido", isbn);
+				startActivity(i);
 			}
 			
 		}
@@ -110,9 +98,10 @@ public class SearchBookActivity extends Activity {
 		if (result != null) {
 			String contents = result.getContents();
 			if (contents != null) {
-				TextView isbn = (TextView) findViewById(R.id.textView2);
-				isbn.setText(result.toString());
-				//Llamar aqui a SearchBookResultActivity
+				Intent i = new Intent(this, SearchBookResultActivity.class);
+				i.putExtra("modo", 2);
+				i.putExtra("contenido", contents);
+				startActivity(i);
 			} else {
 				// showDialog(R.string.result_failed,
 				// getString(R.string.result_failed_why));
