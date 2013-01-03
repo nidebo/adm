@@ -17,9 +17,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,28 +97,76 @@ public class ListaServer {
 		}
 	}
 	
-	public void borraListaDeUsuario(String lname, String uname){
+	public boolean borraListaDeUsuario(String lname, String uname){
 		
+		boolean flag;
 		AsyncDeleteList dl = new AsyncDeleteList();
-		dl.execute(lname, uname);
+		try {
+			flag = dl.execute(lname, uname).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
-	public void creaListaDeUsuario(String lname, String uname){
+	public boolean creaListaDeUsuario(String lname, String uname){
 
+		boolean flag;
 		AsyncSaveList sl = new AsyncSaveList();
-		sl.execute(lname, uname);
+		try {
+			flag = sl.execute(lname, uname).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
-	public void agregaLibroALista(String lname, String uname, String isbn){
-
-		AsyncSaveBook sl = new AsyncSaveBook();
-		sl.execute(lname, uname, isbn);
-	}
-	
-	public void borraLibroDeLista(String lname, String uname, String isbn){
+	public boolean agregaLibroALista(String lname, String uname, String isbn){
 		
+		boolean flag;
+		AsyncSaveBook sl = new AsyncSaveBook();
+		try {
+			flag = sl.execute(lname, uname, isbn).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean borraLibroDeLista(String lname, String uname, String isbn){
+		
+		boolean flag;
 		AsyncDeleteBook db = new AsyncDeleteBook();
-		db.execute(lname,uname,isbn);
+		try {
+			flag = db.execute(lname,uname,isbn).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
 	public ArrayList<String> obtenerLibrosLista(String lname, String uname){
@@ -155,17 +207,22 @@ public class ListaServer {
 		return nombreListas;
 	}
 	
-	private class AsyncDeleteList extends AsyncTask<String, Void, Void> {
+	private class AsyncDeleteList extends AsyncTask<String, Void, Boolean> {
+		
+		boolean cool = true;
 		
 		@Override
-		protected void onPreExecute(){
+		protected Boolean doInBackground(String... params) {
+			////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
 
-		}
-		
-		@Override
-		protected Void doInBackground(String... params) {
-			//////////////
-			HttpClient client = new DefaultHttpClient();
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+			////////////////////////////////////////////
+			HttpClient client = new DefaultHttpClient(httpParameters);
 
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delCustomList"); 
@@ -179,41 +236,48 @@ public class ListaServer {
 	            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 	            request.setEntity(se);
 				HttpResponse response = client.execute(request);
+			} catch (ConnectTimeoutException e) {
+				cool = false;
+				e.printStackTrace();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} 
 			     
-			return null;
+			return cool;
 		}
 
-		@Override
-		protected void onPostExecute(Void result) {
-
-
-		}
 	}
 	
-	private class AsyncSaveList extends AsyncTask<String, Void, Void> {
+	private class AsyncSaveList extends AsyncTask<String, Void, Boolean> {
+		
+		boolean cool = true;
 		
 		@Override
-		protected void onPreExecute(){
+		protected Boolean doInBackground(String... params) {
+			////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
 
-		}
-		
-		@Override
-		protected Void doInBackground(String... params) {
-			//////////////
-			HttpClient client = new DefaultHttpClient();
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+			////////////////////////////////////////////
+			HttpClient client = new DefaultHttpClient(httpParameters);
 
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/addCustomList"); 
@@ -227,41 +291,47 @@ public class ListaServer {
 	            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 	            request.setEntity(se);
 				HttpResponse response = client.execute(request);
+			} catch (ConnectTimeoutException e) {
+				cool = false;
+				e.printStackTrace();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} 
 			     
-			return null;
+			return cool;
 		}
 
-		@Override
-		protected void onPostExecute(Void result) {
-
-
-		}
 	}
 
-	private class AsyncSaveBook extends AsyncTask<String, Void, Void> {
-	
+	private class AsyncSaveBook extends AsyncTask<String, Void, Boolean> {
+		
+		boolean cool = true;
 	@Override
-	protected void onPreExecute(){
+	protected Boolean doInBackground(String... params) {
+		////////////////////////////////////////////
+		HttpParams httpParameters = new BasicHttpParams();
 
-	}
-	
-	@Override
-	protected Void doInBackground(String... params) {
-		//////////////
-		HttpClient client = new DefaultHttpClient();
+		int timeoutConnection = 1500;
+		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+		int timeoutSocket = 1500;
+		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+		////////////////////////////////////////////
+		HttpClient client = new DefaultHttpClient(httpParameters);
 
 		HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 				params[1] + "/addBookToCustomList"); 
@@ -276,41 +346,48 @@ public class ListaServer {
             se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             request.setEntity(se);
 			HttpResponse response = client.execute(request);
+		} catch (ConnectTimeoutException e) {
+			cool = false;
+			e.printStackTrace();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
+			cool = false;
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
+			cool = false;
 			e.printStackTrace();
 		} catch (ClientProtocolException e1) {
 			// TODO Auto-generated catch block
+			cool = false;
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
+			cool = false;
 			e1.printStackTrace();
 		} 
 		     
-		return null;
+		return cool;
 	}
 
-	@Override
-	protected void onPostExecute(Void result) {
-
-
-	}
 }
 
-	private class AsyncDeleteBook extends AsyncTask<String, Void, Void> {
+	private class AsyncDeleteBook extends AsyncTask<String, Void, Boolean> {
+		
+		boolean cool = true;
 		
 		@Override
-		protected void onPreExecute(){
+		protected Boolean doInBackground(String... params) {
+			////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
 
-		}
-		
-		@Override
-		protected Void doInBackground(String... params) {
-			//////////////
-			HttpClient client = new DefaultHttpClient();
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+			////////////////////////////////////////////
+			HttpClient client = new DefaultHttpClient(httpParameters);
 
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delBookFromCustomList"); 
@@ -325,28 +402,30 @@ public class ListaServer {
 	            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 	            request.setEntity(se);
 				HttpResponse response = client.execute(request);
+			} catch (ConnectTimeoutException e) {
+				cool = false;
+				e.printStackTrace();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+				cool = false;
 				e1.printStackTrace();
 			} 
 			     
-			return null;
+			return cool;
 		}
 
-		@Override
-		protected void onPostExecute(Void result) {
-
-
-		}
 	}
 	
 	private class AsyncGetBooks extends AsyncTask<String, Void, ArrayList<String>> {
@@ -368,14 +447,15 @@ public class ListaServer {
 						params[1] + "/getCustomList/" + params[0]);
 			
 			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			    urlConnection.setConnectTimeout(1500);
+			   // urlConnection.setReadTimeout(3000);
 			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(in));
 				sb = new StringBuilder();
 				String line = null;
-				//line = reader.readLine();
-				//sb.append(line);
+
 				while ((line = reader.readLine()) != null) { 
 				    sb.append(line + "\n"); 
 				}
@@ -398,14 +478,21 @@ public class ListaServer {
 		    		res.add(li.getLibros().get(i).getIsbn());
 		    	}
 				   // txt.setText(String.valueOf(al.getListaAmigos().size()));
+			} catch (ConnectTimeoutException e) {
+				res = null;
+				e.printStackTrace();
+				
 			} catch (JSONException e) {
 					// TODO Auto-generated catch block
+				res = null;
 				e.printStackTrace();
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
+				res = null;
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				res = null;
 				e.printStackTrace();
 			}
 			
@@ -419,7 +506,6 @@ public class ListaServer {
 	}
 	
 	private class AsyncGetLists extends AsyncTask<String, Void, ArrayList<String>> {
-		//boolean cool = true;
 				StringBuilder sb;
 				String responseString;
 				
@@ -436,6 +522,7 @@ public class ListaServer {
 								params[0] + "/getAllCustomLists");
 					
 					    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+					    urlConnection.setConnectTimeout(1500);
 					    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
 						BufferedReader reader = new BufferedReader(
@@ -464,15 +551,21 @@ public class ListaServer {
 						for(int i=0; i < li.getListas().size(); i++) {
 				    		res.add(li.getListas().get(i).getName());
 				    	}
-						
+					} catch (ConnectTimeoutException e) {
+						res = null;
+						e.printStackTrace();
+	
 					} catch (JSONException e) {
 							// TODO Auto-generated catch block
+						res = null;
 						e.printStackTrace();
 					} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
+						res = null;
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						res = null;
 						e.printStackTrace();
 					}
 					     
