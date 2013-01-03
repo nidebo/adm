@@ -114,6 +114,32 @@ public class GestorCrossings {
 		return existe;			
 	}
 	
+	public Crossing GetCrossing(String LibroQueMeSolicitan, String UsuarioQueMeLoSolicita){
+		Crossing crossingABuscar=new Crossing(LibroQueMeSolicitan,UsuarioQueMeLoSolicita,false);
+		Crossing aux = null;
+		if (!listaCrossings.isEmpty())
+			for (int i=0; i<listaCrossings.size(); i++) { 
+				aux = listaCrossings.get(i); 
+				if (aux.getIsbn1()==crossingABuscar.getIsbn1()&&aux.getUsuario2()==crossingABuscar.getUsuario2()){
+					return listaCrossings.get(i);
+				}
+			}
+		return null;			
+	}
+	
+	public Crossing GetCrossing(String LibroQueQuiero){
+		Crossing crossingABuscar=new Crossing(LibroQueQuiero,usuarioActual,true);
+		Crossing aux = null;
+		if (!listaCrossings.isEmpty())
+			for (int i=0; i<listaCrossings.size(); i++) { 
+				aux = listaCrossings.get(i); 
+				if (aux.getIsbn2()==crossingABuscar.getIsbn2()&&aux.getUsuario1()==crossingABuscar.getUsuario1()){
+					return listaCrossings.get(i);
+				}
+			}
+		return null;			
+	}
+	
 	public int getNumeroCrossingsUsuarioActual(){
 		return listaCrossings.size();
 	}
