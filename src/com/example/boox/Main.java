@@ -12,6 +12,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.http.conn.ConnectTimeoutException;
+
 import listasLibros.GestorListas;
 import listasLibros.Libro;
 
@@ -22,6 +24,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -60,7 +64,7 @@ public class Main extends Activity {
         
         setContentView(R.layout.main);
         
- 
+
         //mTabHost = getTabHost();
         //mResources = getResources(); 
         
@@ -127,13 +131,14 @@ public class Main extends Activity {
     }
 		
 	
-	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
+	public class AsyncLogin extends AsyncTask<Void, Void, Boolean> {
 
 		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
 		String uname;
 		String pass;
+		boolean flag = true;
 		
 		@Override
 		protected void onPreExecute(){
@@ -144,63 +149,97 @@ public class Main extends Activity {
 		}
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			
 			URL url;
-			try {
-				//String uname = "nicolas";
-				url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
-			
-			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+			if(IsConnectedToNetwork(context)){
+				try {
+					//String uname = "nicolas";
+					url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
+				
+				    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+				    urlConnection.setConnectTimeout(1500);
+				    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(in));
-				String line = null;
-				line = reader.readLine();
-				in.close();
-				responseString = line;
-			    
-			    urlConnection.disconnect();
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(in));
+					String line = null;
+					line = reader.readLine();
+					in.close();
+					responseString = line;
+				    
+				    urlConnection.disconnect();
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					flag = false;
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					flag = false;
+					e.printStackTrace();
+				}
 			}
+			else
+				flag = false;
 			     
-			return null;
+			return flag;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Boolean result) {
 
 			// Stop the indeterminate progress bar and close dialog
 	        setProgressBarIndeterminateVisibility(false);
 	        progressDialog.dismiss();
-			
-			if(responseString.equals("true")){
-				
-				SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
-						mode);
-				SharedPreferences.Editor myEditor = mySharedPreferences.edit();
+	        if(result){
+	        	if(responseString.equals("true")){
+					
+					SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
+							mode);
+					SharedPreferences.Editor myEditor = mySharedPreferences.edit();
 
-				myEditor.putString("username", uname);
-				myEditor.commit();
-		        Intent intent = new Intent(context, TabsActivity.class);
-		       	startActivity(intent);
-		       	
-			}
-			else {
-				Toast toast = Toast.makeText(
+					myEditor.putString("username", uname);
+					myEditor.commit();
+			        Intent intent = new Intent(context, TabsActivity.class);
+			       	startActivity(intent);
+			       	
+				}
+				else {
+					Toast toast = Toast.makeText(
+							getApplicationContext(), 
+							getResources().getString(R.string.login_invalid), 
+							Toast.LENGTH_SHORT);
+					toast.show();
+				}
+	        }
+	        else {
+	        	Toast toast = Toast.makeText(
 						getApplicationContext(), 
-						getResources().getString(R.string.login_invalid), 
+						getResources().getString(R.string.login_internet_error), 
 						Toast.LENGTH_SHORT);
 				toast.show();
-			}
+	        }		
 		}
 	}
+	
+    public boolean IsConnectedToNetwork(Context context)
+    {
+        ConnectivityManager conManager = (ConnectivityManager) 
+context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] allNetworkInfo = conManager.getAllNetworkInfo();
+        NetworkInfo currNetworkInfo;
+        boolean anythingConnected = false;
+        for (int i = 0; i < allNetworkInfo.length; i++)
+        {
+            currNetworkInfo = allNetworkInfo[i];
+            if (currNetworkInfo.getState() == NetworkInfo.State.CONNECTED)
+               anythingConnected = true;
+        }
+
+        return anythingConnected;
+    }
+
+
     /*private void addBooksTab() {
     	 
     	Intent intent = new Intent(this, BooksTabFragment.class);

@@ -15,9 +15,10 @@ public class GestorListas {
 	String usuarioActual;
 	
 	public GestorListas(String nombreDeUsuario) { //Constructor
-		ActualizarTodoDeServidor();//Actualizar de local, y COMPROBAR (nueva funcion) de servidor
-		//Si no está en local, solo de servidor
 		usuarioActual=nombreDeUsuario;
+		ActualizarTodoDeServidor();//Actualizar de local, y COMPROBAR (nueva funcion) de servidor
+		//Si no estï¿½ en local, solo de servidor
+		
 	}
 	
 	private void ActualizarTodoDeServidor(){
@@ -79,7 +80,7 @@ public class GestorListas {
 	
 	//Devuelve todos los libros de una lista
 	public ArrayList<Libro> getListaDeLibros(String nombreLista){//Sin servidor
-		//Nos fiamos de que la lista está correctamente actualizada del servidor
+		//Nos fiamos de que la lista estï¿½ correctamente actualizada del servidor
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);

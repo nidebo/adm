@@ -73,6 +73,7 @@
     <string name="login_logging">Logging in…</string>
     <string name="login_pleasewait">Please, wait a moment.</string>
     <string name="login_invalid">Invalid login. Try again!</string>
+    <string name="login_internet_error">Problem with connection. Please check your connectivity and try again.</string>
 
     <!-- Signup -->
     <string name="title_activity_sign_up">SignUpActivity</string>
@@ -86,6 +87,8 @@
     <string name="signup_pleasewait">Please, wait a moment.</string>
     <string name="signup_confirm_pass_error">Password confirmation failed. Please try again.</string>
     <string name="signup_user_created">User successfully created</string>
+    <string name ="signup_already_exists_error">Username already exists. Please try again.</string>
+    <string name ="signup_internet_error">Problem with connection. Please check your connectivity and try again.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">SettingsActivity</string>
