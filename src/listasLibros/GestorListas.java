@@ -44,17 +44,19 @@ public class GestorListas {
 		return all;
 	}
 	
-	public void addListaVacia(String nombre){//No avisa si ya existe
+	//Si el nombre de la lista ya existe o hay problemas con el servidor, devuelve false
+	public Boolean addListaVacia(String nombre){
+		Boolean correcto=false;
 		if(!existe(nombre)){
-		ListaLibros lis = new ListaLibros(nombre);
-				
-		//Queda comprobar, si es posible, si ha sido bien agregada o no
-		servidor.creaListaDeUsuario(nombre, usuarioActual);
-		lista.add(lis);
+			ListaLibros lis = new ListaLibros(nombre);
+			correcto=servidor.creaListaDeUsuario(nombre, usuarioActual);
+			lista.add(lis);
 		}
+		return correcto;
 	}
 	
-	public void BorraLista(String nombreLista){
+	public Boolean BorraLista(String nombreLista){
+		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
@@ -62,8 +64,10 @@ public class GestorListas {
 				i=lista.size();
 		}
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
-		servidor.borraListaDeUsuario(nombreLista, usuarioActual);
-		lista.remove(lis);
+		correcto = servidor.borraListaDeUsuario(nombreLista, usuarioActual);
+		if (correcto)
+			lista.remove(lis);
+		return correcto;
 	}
 	
 	private boolean existe(String nombreLista) {//Sin servidor
@@ -90,19 +94,23 @@ public class GestorListas {
 		return lis.getListaLibros();
 	}
 	
-	public void borraLibroDeLista(String isbn, String nombreLista){//id==isbn?
+	public Boolean borraLibroDeLista(String isbn, String nombreLista){//id==isbn?
+		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
 			if (lis.getNombreLista()==nombreLista)
 				i=lista.size();
 		}
-		//Queda comprobar, si es posible, si ha sido bien agregada o no
-		servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
-		lis.borraLibroPorIsbn(isbn);//id==isbn?
+
+		correcto = servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
+		if (correcto)
+			lis.borraLibroPorIsbn(isbn);//id==isbn?
+		return correcto;
 	}
 	
-	public void addLibroEnLista(Libro lib, String nombreLista){//id==isbn?
+	public Boolean addLibroEnLista(Libro lib, String nombreLista){//id==isbn?
+		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
@@ -110,10 +118,10 @@ public class GestorListas {
 				i=lista.size();
 		}
 		
-	
-		//Queda comprobar, si es posible, si ha sido bien agregada o no
-		servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getIsbn());
-		lis.addLibro(lib);
+		correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getIsbn());
+		if (correcto)
+			lis.addLibro(lib);
+		return correcto;
 	}
 	
 

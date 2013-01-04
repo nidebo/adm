@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
+import apiGoogle.InterfazAPI;
 
 public class Main extends Activity {
 	
@@ -44,7 +45,8 @@ public class Main extends Activity {
 	public Usuario usuarioActual= new Usuario("pito", "46015", "contrasenya"); 
 	public GestorListas listasUsuario=new GestorListas (usuarioActual.getId());
 	ArrayList<Libro> prueba=listasUsuario.getListaAll();
-		
+	InterfazAPI api = new InterfazAPI();
+
 	//private TabHost mTabHost;
     //private Resources mResources;
  
@@ -58,7 +60,8 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Libro lib =api.ObtenerLibroPorIsbn("9781594130014");
+        listasUsuario.addLibroEnLista(lib, "lista1");
         // This must be called before ANY content is created
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
