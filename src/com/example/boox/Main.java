@@ -11,8 +11,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import listasLibros.GestorListas;
 import listasLibros.Libro;
@@ -140,14 +151,14 @@ public class Main extends Activity {
     }
 		
 	
-	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
+	public class AsyncLogin extends AsyncTask<Void, Void, Boolean> {
 
-		//boolean cool = true;
+		
 		StringBuilder sb;
 		String responseString;
 		String uname;
 		String pass;
-		//boolean flag = true;
+		boolean flag = true;
 		
 		@Override
 		protected void onPreExecute(){
@@ -158,44 +169,60 @@ public class Main extends Activity {
 		}
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			
-			URL url;
-				try {
-					//String uname = "nicolas";
-					url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
-				
-				    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-				    urlConnection.setConnectTimeout(1500);
-				    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
 
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+			// HttpResponse response;
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
 					BufferedReader reader = new BufferedReader(
-							new InputStreamReader(in));
+							new InputStreamReader(stream));
 					String line = null;
 					line = reader.readLine();
-					in.close();
+					stream.close();
 					responseString = line;
-				    
-				    urlConnection.disconnect();
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			     
-			return null;
+			return flag;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Boolean result) {
 
 			// Stop the indeterminate progress bar and close dialog
 	        setProgressBarIndeterminateVisibility(false);
 	        progressDialog.dismiss();
-	       
-	        	if(responseString.equals("true")){
+	       if(result){
+	    	   if(responseString.equals("true")){
 					
 					SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
 							mode);
@@ -213,7 +240,15 @@ public class Main extends Activity {
 							getResources().getString(R.string.login_invalid), 
 							Toast.LENGTH_SHORT);
 					toast.show();
-				}	
+				} 
+	       } else {
+	    	   Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.login_internet_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+	       }
+	        		
 		}
 	}
 	

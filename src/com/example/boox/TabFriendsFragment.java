@@ -1,7 +1,5 @@
 package com.example.boox;
 
-import internet.PruebaInternet.AsyncFriends;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +10,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +37,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabFriendsFragment extends ListFragment {
 
@@ -61,6 +68,7 @@ public class TabFriendsFragment extends ListFragment {
 			a2.execute(uname, null, null);
 		}
 		else {
+			//no se pudo obtener el usuario del que listar los amigos
 	        // Populate list with our static array of titles.
 	        if(list.isEmpty()){
 	        	for(int i=0; i<strings.length; ++i)
@@ -95,22 +103,21 @@ public class TabFriendsFragment extends ListFragment {
 	
 	public class AsyncFriends extends AsyncTask<String, Void, Void> {
 
-		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
+		boolean flag = true;
 		
 		@Override
 		protected Void doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			
-			 URL url;
-			try {
+			URL url;
 
+			try {
 				//String uname = "nicolas";
-				
 				url = new URL("http://boox.eu01.aws.af.cm/users/"+params[0]+"/friendList");
 			
 			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			    urlConnection.setConnectTimeout(1500);
 			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
 				BufferedReader reader = new BufferedReader(
@@ -126,43 +133,43 @@ public class TabFriendsFragment extends ListFragment {
 				responseString = sb.toString();
 			    
 			    urlConnection.disconnect();
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			     
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
-			
-			GsonBuilder builder = new GsonBuilder();
-			Gson gson = builder.create();
+		
+				GsonBuilder builder = new GsonBuilder();
+				Gson gson = builder.create();
 
-			JSONObject json;
-			AmigoList al;
-			try {
-				json = new JSONObject(responseString);
+				JSONObject json;
+				AmigoList al;
+				try {
+					json = new JSONObject(responseString);
 
-			    al = gson.fromJson(json.toString(),
-					AmigoList.class);
-			    //txt.setText(String.valueOf(al.getListaAmigos().size()));
-		        if(list.isEmpty()){
-	        	for(int i=0; i<al.getListaAmigos().size(); ++i)
-	        		list.add(al.getListaAmigos().get(i).getNombre());	
-	        	setListAdapter(new ArrayAdapter<String>(getActivity(),
-	        			android.R.layout.simple_list_item_1,
-	        			list));
-	        	}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+				    al = gson.fromJson(json.toString(),
+						AmigoList.class);
+				    //txt.setText(String.valueOf(al.getListaAmigos().size()));
+			        if(list.isEmpty()){
+		        	for(int i=0; i<al.getListaAmigos().size(); ++i)
+		        		list.add(al.getListaAmigos().get(i).getNombre());	
+		        	setListAdapter(new ArrayAdapter<String>(getActivity(),
+		        			android.R.layout.simple_list_item_1,
+		        			list));
+		        	}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 		}
 	

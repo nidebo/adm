@@ -52,7 +52,10 @@
     <string name="title_activity_uj">UJ</string>
     <string name="title_testitem_detail">TestItem Detail</string>
     <string name="title_testitem_list">TestItems</string>
-
+	
+    <!-- Friends -->
+    <string name="friends_internet_error">Problem with connection. Please check your connectivity and try again.</string>
+    
     <!-- User -->
     <string name="title_activity_user">User</string>
 
