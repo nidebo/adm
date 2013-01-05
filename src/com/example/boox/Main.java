@@ -44,7 +44,7 @@ public class Main extends Activity {
 
 	public Usuario usuarioActual= new Usuario("pito", "46015", "contrasenya"); 
 	public GestorListas listasUsuario=new GestorListas (usuarioActual.getId());
-	ArrayList<Libro> prueba=listasUsuario.getListaAll();
+	//ArrayList<Libro> prueba=listasUsuario.getListaAll();
 	InterfazAPI api = new InterfazAPI();
 
 	//private TabHost mTabHost;
@@ -60,8 +60,14 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Libro lib =api.ObtenerLibroPorIsbn("9781594130014");
-        listasUsuario.addLibroEnLista(lib, "lista1");
+        //Libro lib =api.ObtenerLibroPorIsbn("9781594130014");
+       // listasUsuario.AddLibroEnLista(lib, "lista1");
+        listasUsuario.AddLibroEnCompartibles("0000000000000");
+        
+        
+        
+        
+        
         // This must be called before ANY content is created
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         

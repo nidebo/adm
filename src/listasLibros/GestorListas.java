@@ -13,24 +13,29 @@ public class GestorListas {
 	InterfazAPI api=new InterfazAPI();
 	ListaServer servidor=new ListaServer();
 	String usuarioActual;
+	ListaCompartibles shared;
 	
 	public GestorListas(String nombreDeUsuario) { //Constructor
 		usuarioActual=nombreDeUsuario;
-		ActualizarTodoDeServidor();//Actualizar de local, y COMPROBAR (nueva funcion) de servidor
-		//Si no est� en local, solo de servidor
+		shared= new ListaCompartibles(nombreDeUsuario);
+		ActualizarTodoDeServidor();
+		//Actualizar de local, y COMPROBAR de servidor
+		//Si no estan en local, solo de servidor
 		
+		//Hay que meter un flag al actualizar todo de servidor, para tener encuenta si podemos
+		//trabajar o ir devolviendo errores al recibir solicitudes
 	}
 	
 	private void ActualizarTodoDeServidor(){
 		ArrayList<String> listaNombresListas;
 		listaNombresListas=servidor.obtenerListas(usuarioActual);
 		for(int i=0;i<listaNombresListas.size();i++){//Cargamos nombres listas
-			addListaVacia(listaNombresListas.get(i));
+			AddListaVacia(listaNombresListas.get(i));
 			ArrayList<String> listaLibros;
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
 				Libro lib=api.ObtenerLibroPorIsbn(listaLibros.get(j));
-				addLibroEnLista(lib,listaNombresListas.get(i));
+				AddLibroEnLista(lib,listaNombresListas.get(i));
 			}
 		}
 	}
@@ -45,7 +50,7 @@ public class GestorListas {
 	}
 	
 	//Si el nombre de la lista ya existe o hay problemas con el servidor, devuelve false
-	public Boolean addListaVacia(String nombre){
+	public Boolean AddListaVacia(String nombre){
 		Boolean correcto=false;
 		if(!existe(nombre)){
 			ListaLibros lis = new ListaLibros(nombre);
@@ -83,7 +88,7 @@ public class GestorListas {
 	}
 	
 	//Devuelve todos los libros de una lista
-	public ArrayList<Libro> getListaDeLibros(String nombreLista){//Sin servidor
+	public ArrayList<Libro> GetListaDeLibros(String nombreLista){//Sin servidor
 		//Nos fiamos de que la lista est� correctamente actualizada del servidor
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -94,7 +99,7 @@ public class GestorListas {
 		return lis.getListaLibros();
 	}
 	
-	public Boolean borraLibroDeLista(String isbn, String nombreLista){//id==isbn?
+	public Boolean BorraLibroDeLista(String isbn, String nombreLista){//id==isbn?
 		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -109,7 +114,7 @@ public class GestorListas {
 		return correcto;
 	}
 	
-	public Boolean addLibroEnLista(Libro lib, String nombreLista){//id==isbn?
+	public Boolean AddLibroEnLista(Libro lib, String nombreLista){//id==isbn?
 		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -136,4 +141,26 @@ public class GestorListas {
 		return nombres;
 	}
 	
+	//Libros compartidos:
+	
+	public ArrayList<ParLibroUsuario> getListaCompletaDeLibrosCompartibles(){
+		return shared.getListaCompartibles();
+	} //Error si devuelve null
+	
+	public ArrayList<String> quienTieneElLibro(String IsbnLibro){
+		return shared.quienTieneElLibro(IsbnLibro);
+	} //Error si devuelve null
+	
+	public boolean AddLibroEnCompartibles(String IsbnLibro){
+		/*if(shared.AddLibroUsuario(IsbnLibro)==false)
+			AddListaVacia("FALSE_5_juan");
+		else
+			AddListaVacia("TRUE_5_juan");
+		*/
+		return shared.AddLibroUsuario(IsbnLibro);
+	} //Si false, ha habido error
+	
+	public boolean BorraLibroDeCompartibles(String IsbnLibro){
+		return shared.BorraLibroUsuario(IsbnLibro);
+	} //Si false, ha habido error
 }
