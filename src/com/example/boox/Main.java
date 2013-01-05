@@ -140,14 +140,14 @@ public class Main extends Activity {
     }
 		
 	
-	public class AsyncLogin extends AsyncTask<Void, Void, Boolean> {
+	public class AsyncLogin extends AsyncTask<Void, Void, Void> {
 
 		//boolean cool = true;
 		StringBuilder sb;
 		String responseString;
 		String uname;
 		String pass;
-		boolean flag = true;
+		//boolean flag = true;
 		
 		@Override
 		protected void onPreExecute(){
@@ -158,10 +158,9 @@ public class Main extends Activity {
 		}
 		
 		@Override
-		protected Boolean doInBackground(Void... params) {
+		protected Void doInBackground(Void... params) {
 			
 			URL url;
-			if(IsConnectedToNetwork(context)){
 				try {
 					//String uname = "nicolas";
 					url = new URL("http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
@@ -180,27 +179,22 @@ public class Main extends Activity {
 				    urlConnection.disconnect();
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
-					flag = false;
 					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					flag = false;
 					e.printStackTrace();
 				}
-			}
-			else
-				flag = false;
 			     
-			return flag;
+			return null;
 		}
 
 		@Override
-		protected void onPostExecute(Boolean result) {
+		protected void onPostExecute(Void result) {
 
 			// Stop the indeterminate progress bar and close dialog
 	        setProgressBarIndeterminateVisibility(false);
 	        progressDialog.dismiss();
-	        if(result){
+	       
 	        	if(responseString.equals("true")){
 					
 					SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
@@ -219,15 +213,7 @@ public class Main extends Activity {
 							getResources().getString(R.string.login_invalid), 
 							Toast.LENGTH_SHORT);
 					toast.show();
-				}
-	        }
-	        else {
-	        	Toast toast = Toast.makeText(
-						getApplicationContext(), 
-						getResources().getString(R.string.login_internet_error), 
-						Toast.LENGTH_SHORT);
-				toast.show();
-	        }		
+				}	
 		}
 	}
 	
