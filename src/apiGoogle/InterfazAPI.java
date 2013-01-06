@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -215,6 +218,7 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 	@Override
 	protected List<BookAPI> doInBackground(String... title) {
 		// TODO Auto-generated method stub
+		
 		
 		 URL url;		 
 		try {
