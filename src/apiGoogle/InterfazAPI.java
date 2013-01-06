@@ -1,18 +1,19 @@
 package apiGoogle;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -20,17 +21,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
-import android.widget.TextView;
-
-
-import com.example.boox.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 
 import librosGoogle.BookAPI;
 import librosGoogle.BookList;
-import librosGoogle.VolumeInfo.ImageLinks;
 import listasLibros.Libro;
 
 public class InterfazAPI {
@@ -103,32 +99,51 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 	protected BookAPI doInBackground(String... isbn) {
 		// TODO Auto-generated method stub
 		
-		 URL url;		 
-		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
-			url = new URL(sturl);
-		
-		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-		    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+			HttpParams httpParameters = new BasicHttpParams();
 
-			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(in));
-			sb = new StringBuilder();
-			String line = null;
-			while ((line = reader.readLine()) != null) { 
-			    sb.append(line + "\n"); 
+			boolean flag = true;
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+			
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(stream));
+					sb = new StringBuilder();
+					String line = null;
+					while ((line = reader.readLine()) != null) { 
+					    sb.append(line + "\n"); 
+					}
+					stream.close();
+					responseString = sb.toString();
+				}
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			in.close();
-			responseString = sb.toString();
-		    
-		    urlConnection.disconnect();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+			
+			
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
@@ -162,33 +177,50 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 	@Override
 	protected List<BookAPI> doInBackground(String... author) {
 		// TODO Auto-generated method stub
-		
-		 URL url;		 
-		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=inauthor:"+author[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
-			url = new URL(sturl);
-		
-		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-		    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(in));
-			sb = new StringBuilder();
-			String line = null;
-			while ((line = reader.readLine()) != null) { 
-			    sb.append(line + "\n"); 
+			HttpParams httpParameters = new BasicHttpParams();
+
+			boolean flag = true;
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"https://www.googleapis.com/books/v1/volumes?q=inauthor:"+author[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+			
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(stream));
+					sb = new StringBuilder();
+					String line = null;
+					while ((line = reader.readLine()) != null) { 
+					    sb.append(line + "\n"); 
+					}
+					stream.close();
+					responseString = sb.toString();
+				}
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			in.close();
-			responseString = sb.toString();
-		    
-		    urlConnection.disconnect();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
@@ -218,34 +250,52 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 	@Override
 	protected List<BookAPI> doInBackground(String... title) {
 		// TODO Auto-generated method stub
-		
-		
-		 URL url;		 
-		try {
-			sturl = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+title[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M";
-			url = new URL(sturl);
-		
-		    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-		    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(in));
-			sb = new StringBuilder();
-			String line = null;
-			while ((line = reader.readLine()) != null) { 
-			    sb.append(line + "\n"); 
+		
+		HttpParams httpParameters = new BasicHttpParams();
+
+		boolean flag = true;
+		int timeoutConnection = 1500;
+		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+		int timeoutSocket = 1500;
+		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+		DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+		HttpGet request = new HttpGet(
+				"https://www.googleapis.com/books/v1/volumes?q=intitle:"+title[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+		request.setHeader("Accept", "application/json");
+		BasicHttpResponse response;
+		
+		try {
+			response = (BasicHttpResponse) client.execute(request);
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				InputStream stream = entity.getContent();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(stream));
+				sb = new StringBuilder();
+				String line = null;
+				while ((line = reader.readLine()) != null) { 
+				    sb.append(line + "\n"); 
+				}
+				stream.close();
+				responseString = sb.toString();
 			}
-			in.close();
-			responseString = sb.toString();
-		    
-		    urlConnection.disconnect();
-		} catch (MalformedURLException e) {
+		} catch (ConnectTimeoutException e) {
+			flag = false;
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
+			flag = false;
 			e.printStackTrace();
 		} catch (IOException e) {
+			flag = false;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
@@ -254,14 +304,17 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 			json = new JSONObject(responseString);
 			BookList detailbook  = gson.fromJson(responseString, BookList.class);
 			if(detailbook.getTotalItems() == 0)
-				libros = null;
+				flag = false;
 			else
 				libros = detailbook.getItems();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return libros;
+		if(flag)
+			return libros;
+		else
+			return null;
 	}
 }
 
