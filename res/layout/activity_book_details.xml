@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".BookDetailsFragment" >
 
-    <RelativeLayout android:layout_gravity="fill_horizontal">
+    <RelativeLayout android:layout_gravity="fill_horizontal" >
         <ImageView
             android:id="@+id/thumbnail_imageView"
             android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_width="48dp"
         android:layout_height="15dp"
         android:layout_column="0" />
-    
+
     <TableLayout
         android:layout_gravity="fill_horizontal"
         android:layout_marginBottom="5dp"
