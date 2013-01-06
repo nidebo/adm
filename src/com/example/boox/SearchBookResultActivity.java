@@ -21,14 +21,17 @@ import apiGoogle.InterfazAPI;
 
 public class SearchBookResultActivity extends ListActivity {
 	ArrayList<Libro> libros = new ArrayList<Libro>();
+	Libro libro = new Libro();
+	int modo;
+	String cont;
 	Context context = this;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		Bundle extras = getIntent().getExtras();
-		int modo = extras.getInt("modo");
-		String cont = extras.getString("contenido");
+		modo = extras.getInt("modo");
+		cont = extras.getString("contenido");
 		
 		
 		InterfazAPI api = new InterfazAPI();
@@ -62,7 +65,6 @@ public class SearchBookResultActivity extends ListActivity {
 			}
 			else{
 				if(modo == 2){
-					Libro libro = new Libro();
 					libro = api.ObtenerLibroPorIsbn(cont);
 					if(libro != null){
 						titulos.add(libro.getTitulo());
@@ -83,7 +85,10 @@ public class SearchBookResultActivity extends ListActivity {
 		super.onListItemClick(list, view, position, id);
         Intent i = new Intent();
         i.setClass(context, BookActivity.class);
-        i.putExtra("isbn", libros.get(position).getIsbn());
+        if(modo == 2)
+        	i.putExtra("isbn", libro.getIsbn());
+        else
+        	i.putExtra("isbn", libros.get(position).getIsbn());
         startActivity(i);
 	}
 		
@@ -94,8 +99,4 @@ public class SearchBookResultActivity extends ListActivity {
 		getMenuInflater().inflate(R.menu.activity_search_book_result, menu);
 		return true;
 	}
-	
-
-	
-	
 }
