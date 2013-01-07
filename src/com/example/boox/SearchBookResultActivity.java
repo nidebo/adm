@@ -66,6 +66,7 @@ public class SearchBookResultActivity extends ListActivity {
 			else{
 				if(modo == 2){
 					libro = api.ObtenerLibroPorIsbn(cont);
+					//Este está bien, ya funcionará cuando se descomente esta funcion de bookAPI
 					if(libro != null){
 						titulos.add(libro.getTitulo());
 					}
@@ -85,7 +86,7 @@ public class SearchBookResultActivity extends ListActivity {
 		super.onListItemClick(list, view, position, id);
         Intent i = new Intent();
         i.setClass(context, BookActivity.class);
-        if(modo == 2)
+        if(modo == 2) //Aqui ni idea
         	i.putExtra("isbn", libro.getIsbn());
         else
         	i.putExtra("isbn", libros.get(position).getIsbn());
