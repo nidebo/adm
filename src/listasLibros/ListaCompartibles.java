@@ -36,16 +36,16 @@ public class ListaCompartibles {
 	}
 	
 	//Devuelve los usuarios que tienen un libro como intercambiable
-	public ArrayList<String> quienTieneElLibro(String IsbnLibro){
+	public ArrayList<String> quienTieneElLibro(String IdLibro){
 		ArrayList<String> listaLibros;
 		listaLibros=servidor.obtenerListas("adminUsuariosPorLibro");
 		//Lista total de libros compartidos por usuarios
 		if(listaLibros==null)
 			return null;
 		for(int i=0;i<listaLibros.size();i++){
-			if(listaLibros.get(i)==IsbnLibro){//Libro encontrado. Si no, no podemos hacer la llamada al servidor
+			if(listaLibros.get(i)==IdLibro){//Libro encontrado. Si no, no podemos hacer la llamada al servidor
 				ArrayList<String> listaUsuariosConLibro;
-				listaUsuariosConLibro=servidor.obtenerLibrosLista(IsbnLibro, "adminUsuariosPorLibro");
+				listaUsuariosConLibro=servidor.obtenerLibrosLista(IdLibro, "adminUsuariosPorLibro");
 				return listaUsuariosConLibro;
 			}
 		}

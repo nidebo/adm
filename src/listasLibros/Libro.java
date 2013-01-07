@@ -6,7 +6,8 @@ import librosGoogle.VolumeInfo.ImageLinks;
 
 
 public class Libro {
-	String isbn;
+	String id;
+	//String isbn;
 	String title;
 	ArrayList<String> authors;
 	String publisher;
@@ -21,14 +22,15 @@ public class Libro {
 	ImageLinks imageLinks;
 	
 
-	public Libro(String isbn, String titulo,
+	public Libro(String id, String isbn, String titulo,
 			ArrayList<String> autores, String editorial, String descripcion,
 			String fechaPublicacion, int numeroDePaginas, String categoriaPrincipal,
 			ArrayList<String> categorias, Float puntuacionMedia, String pais,
 			String idioma, ImageLinks imageLinks) {
 		super();
 		
-		this.isbn = isbn;
+		this.id=id;
+		//this.isbn = isbn;
 		this.title = titulo;
 		this.authors = autores;
 		this.publisher = editorial;
@@ -42,14 +44,18 @@ public class Libro {
 		this.language = idioma;
 		this.imageLinks = imageLinks;
 	}
-	
+	/*
 	public Libro(String isbn){
 		this.isbn=isbn;
-	}
+	}*/
 	
 	public Libro(){
 	}
 
+	public String getId() {
+		return id;
+	}
+	/*
 	public String getIsbn() {
 		return isbn;
 	}
@@ -57,7 +63,7 @@ public class Libro {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-
+*/
 	public String getTitulo() {
 		return title;
 	}

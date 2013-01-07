@@ -34,7 +34,7 @@ public class GestorListas {
 			ArrayList<String> listaLibros;
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
-				Libro lib=api.ObtenerLibroPorIsbn(listaLibros.get(j));
+				Libro lib=api.ObtenerLibroPorId(listaLibros.get(j));
 				AddLibroEnLista(lib,listaNombresListas.get(i));
 			}
 		}
@@ -99,7 +99,7 @@ public class GestorListas {
 		return lis.getListaLibros();
 	}
 	
-	public Boolean BorraLibroDeLista(String isbn, String nombreLista){//id==isbn?
+	public Boolean BorraLibroDeLista(String idLibro, String nombreLista){
 		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -108,13 +108,13 @@ public class GestorListas {
 				i=lista.size();
 		}
 
-		correcto = servidor.borraLibroDeLista(nombreLista, usuarioActual, isbn);
+		correcto = servidor.borraLibroDeLista(nombreLista, usuarioActual, idLibro);
 		if (correcto)
-			lis.borraLibroPorIsbn(isbn);//id==isbn?
+			lis.borraLibroPorId(idLibro);
 		return correcto;
 	}
 	
-	public Boolean AddLibroEnLista(Libro lib, String nombreLista){//id==isbn?
+	public Boolean AddLibroEnLista(Libro lib, String nombreLista){
 		Boolean correcto=false;
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
@@ -123,7 +123,7 @@ public class GestorListas {
 				i=lista.size();
 		}
 		
-		correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getIsbn());
+		correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getId());
 		if (correcto)
 			lis.addLibro(lib);
 		return correcto;
@@ -147,20 +147,20 @@ public class GestorListas {
 		return shared.getListaCompartibles();
 	} //Error si devuelve null
 	
-	public ArrayList<String> quienTieneElLibro(String IsbnLibro){
-		return shared.quienTieneElLibro(IsbnLibro);
+	public ArrayList<String> quienTieneElLibro(String IdLibro){
+		return shared.quienTieneElLibro(IdLibro);
 	} //Error si devuelve null
 	
-	public boolean AddLibroEnCompartibles(String IsbnLibro){
-		/*if(shared.AddLibroUsuario(IsbnLibro)==false)
+	public boolean AddLibroEnCompartibles(String IdLibro){
+		/*if(shared.AddLibroUsuario(IdLibro)==false)
 			AddListaVacia("FALSE_5_juan");
 		else
 			AddListaVacia("TRUE_5_juan");
 		*/
-		return shared.AddLibroUsuario(IsbnLibro);
+		return shared.AddLibroUsuario(IdLibro);
 	} //Si false, ha habido error
 	
-	public boolean BorraLibroDeCompartibles(String IsbnLibro){
-		return shared.BorraLibroUsuario(IsbnLibro);
+	public boolean BorraLibroDeCompartibles(String IdLibro){
+		return shared.BorraLibroUsuario(IdLibro);
 	} //Si false, ha habido error
 }

@@ -24,11 +24,11 @@ public class ListaLibros {
 			libros.add(i);
 	}
 
-	public Libro getLibroPorId(String id){//id==isbn?
+	public Libro getLibroPorId(String id){
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			lib = libros.get(i);
-			if (lib.getIsbn()==id)//id==isbn?
+			if (lib.getId()==id)
 				i=libros.size();
 		}
 		return lib;
@@ -40,17 +40,17 @@ public class ListaLibros {
 		if (!libros.isEmpty())
 			for (int i=0; i<libros.size(); i++) { 
 				aux = libros.get(i); 
-				 	if (aux.getIsbn()==lib.getIsbn())
+				 	if (aux.getId()==lib.getId())
 				 		ex = true;
 				}
 		return ex;
 	}
 	
-	public void borraLibroPorIsbn(String isbn){//id==isbn?
+	public void borraLibroPorId(String id){
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			 lib = libros.get(i); 
-			 	if (lib.getIsbn()==isbn)//id==isbn?
+			 	if (lib.getId()==id)
 			 		libros.remove(lib);
 			}
 	}

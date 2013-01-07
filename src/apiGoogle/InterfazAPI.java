@@ -31,7 +31,29 @@ import listasLibros.Libro;
 
 public class InterfazAPI {
 
-public Libro ObtenerLibroPorIsbn(String isbn){
+	public Libro ObtenerLibroPorId(String id){
+		
+		//Eliu, tienes que reemplazar está funcion entera
+		
+		BookAPI book = new BookAPI();
+		AsyncBookIsbn ab = new AsyncBookIsbn();	
+		id = id.replaceAll("\\s+", "");
+		try {
+			book = ab.execute(id).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(book != null)
+			return pasarDeBookApiALibro(book);	
+		else
+			return null;
+	}
+	
+/*public Libro ObtenerLibroPorIsbn(String isbn){
 		BookAPI book = new BookAPI();
 		AsyncBookIsbn ab = new AsyncBookIsbn();	
 		isbn = isbn.replaceAll("\\s+", "");
@@ -48,7 +70,7 @@ public Libro ObtenerLibroPorIsbn(String isbn){
 			return pasarDeBookApiALibro(book);	
 		else
 			return null;
-	}
+	}*/
 
 public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
 	List<BookAPI> books = null;
@@ -320,7 +342,10 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 
 public Libro pasarDeBookApiALibro(BookAPI book){
 	String isbn=book.getVolumeInfo().getIndustryIdentifiers().get(1).getIdentifier();
-	Libro lib = new Libro( isbn,
+	if (isbn==null)
+		isbn=book.getVolumeInfo().getIndustryIdentifiers().get(0).getIdentifier();
+	Libro lib = new Libro( book.getId(),
+			isbn,
 			book.getVolumeInfo().getTitle(),
 			book.getVolumeInfo().getAuthors(),
 			book.getVolumeInfo().getPublisher(),
