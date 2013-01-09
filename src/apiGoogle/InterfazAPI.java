@@ -32,11 +32,9 @@ import listasLibros.Libro;
 public class InterfazAPI {
 
 	public Libro ObtenerLibroPorId(String id){
-		
-		//Eliu, tienes que reemplazar está funcion entera
-		
+				
 		BookAPI book = new BookAPI();
-		AsyncBookIsbn ab = new AsyncBookIsbn();	
+		AsyncBookId ab = new AsyncBookId();	
 		id = id.replaceAll("\\s+", "");
 		try {
 			book = ab.execute(id).get();
@@ -111,6 +109,87 @@ public ArrayList<Libro> ObtenerListaLibrosPorTitulo(String titulo){
 		return null;
 	}
 
+
+
+public class AsyncBookId extends AsyncTask<String, Void, BookAPI> {
+
+	StringBuilder sb;
+	String responseString;
+	String sturl;
+	
+	@Override
+	protected BookAPI doInBackground(String... id) {
+		// TODO Auto-generated method stub
+		
+			HttpParams httpParameters = new BasicHttpParams();
+
+			boolean flag = true;
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"https://www.googleapis.com/books/v1/volumes?q=d:"+id[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+			
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(stream));
+					sb = new StringBuilder();
+					String line = null;
+					while ((line = reader.readLine()) != null) { 
+					    sb.append(line + "\n"); 
+					}
+					stream.close();
+					responseString = sb.toString();
+				}
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+			
+			
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		JSONObject json;
+		List<BookAPI> libros = null;
+		try {
+			
+			json = new JSONObject(responseString);
+			BookList detailbook  = gson.fromJson(responseString, BookList.class);
+			if(detailbook.getTotalItems() == 0)
+				libros = null;
+			else
+				libros = detailbook.getItems();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(libros == null)
+			return null;
+		else
+			return libros.get(0);
+	}
+
+}
+
 public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 
 	StringBuilder sb;
@@ -132,7 +211,7 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 
 			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
 			HttpGet request = new HttpGet(
-					"https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&maxResults=10&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+					"https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
 			request.setHeader("Accept", "application/json");
 			BasicHttpResponse response;
 			
