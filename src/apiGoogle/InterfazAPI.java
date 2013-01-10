@@ -476,8 +476,8 @@ public Libro pasarDeBookApiALibro(BookAPI book){
 	/*if(book.getVolumeInfo().getPageCount()==0){
 		lib.setNumeroDePaginas(0);
 	}
-	else
-		lib.setNumeroDePaginas(book.getVolumeInfo().getPageCount());*/
+	else*/
+		lib.setNumeroDePaginas(book.getVolumeInfo().getPageCount());
 	
 	
 	if(book.getVolumeInfo().getMainCategory()==null){
@@ -500,8 +500,8 @@ public Libro pasarDeBookApiALibro(BookAPI book){
 	/*if(book.getVolumeInfo().getAverageRating()==0.0){
 		lib.setPuntuacionMedia((float) 0);
 	}
-	else
-		lib.setPuntuacionMedia(book.getVolumeInfo().getAverageRating());*/
+	else*/
+		lib.setPuntuacionMedia(book.getVolumeInfo().getAverageRating());
 
 	
 	if(book.getSaleInfo().getCountry()==null){
