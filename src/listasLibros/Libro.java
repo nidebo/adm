@@ -44,10 +44,10 @@ public class Libro {
 		this.language = idioma;
 		this.imageLinks = imageLinks;
 	}
-	/*
-	public Libro(String isbn){
-		this.isbn=isbn;
-	}*/
+	
+	public Libro(String id){
+		this.id=id;
+	}
 	
 	public Libro(){
 	}
@@ -55,15 +55,15 @@ public class Libro {
 	public String getId() {
 		return id;
 	}
-	/*
-	public String getIsbn() {
+	
+	/*public String getIsbn() {
 		return isbn;
 	}
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-*/
+	}*/
+
 	public String getTitulo() {
 		return title;
 	}

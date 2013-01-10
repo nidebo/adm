@@ -239,6 +239,9 @@ public final class R {
         public static final int title_activity_user_profile=0x7f04004a;
         public static final int title_testitem_detail=0x7f040024;
         public static final int title_testitem_list=0x7f040025;
+        /**  Class Libro 
+         */
+        public static final int unknown_field=0x7f04004e;
         public static final int userprofile_addfriend=0x7f04004d;
     }
     public static final class style {
