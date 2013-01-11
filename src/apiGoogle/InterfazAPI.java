@@ -55,7 +55,7 @@ public class InterfazAPI {
 			return null;
 	}
 	
-/*public Libro ObtenerLibroPorIsbn(String isbn){
+public Libro ObtenerLibroPorIsbn(String isbn){
 		BookAPI book = new BookAPI();
 		AsyncBookIsbn ab = new AsyncBookIsbn();	
 		isbn = isbn.replaceAll("\\s+", "");
@@ -72,7 +72,7 @@ public class InterfazAPI {
 			return pasarDeBookApiALibro(book);	
 		else
 			return null;
-	}*/
+	}
 
 public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
 	List<BookAPI> books = null;

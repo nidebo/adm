@@ -53,20 +53,22 @@
     <string name="title_activity_uj">UJ</string>
     <string name="title_testitem_detail">TestItem Detail</string>
     <string name="title_testitem_list">TestItems</string>
-	
+
     <!-- Friends -->
     <string name="friends_internet_error">Problem with connection. Please check your connectivity and try again.</string>
-    
+
     <!-- User -->
     <string name="title_activity_user">User</string>
 
     <!-- Search Book -->
     <string name="searchbook_searchby">Search by:</string>
+
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
         <item>ISBN</item>
     </string-array>
+
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">Search here</string>
 
@@ -92,8 +94,8 @@
     <string name="signup_pleasewait">Please, wait a moment.</string>
     <string name="signup_confirm_pass_error">Password confirmation failed. Please try again.</string>
     <string name="signup_user_created">User successfully created</string>
-    <string name ="signup_already_exists_error">Username already exists. Please try again.</string>
-    <string name ="signup_internet_error">Problem with connection. Please check your connectivity and try again.</string>
+    <string name="signup_already_exists_error">Username already exists. Please try again.</string>
+    <string name="signup_internet_error">Problem with connection. Please check your connectivity and try again.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">SettingsActivity</string>
@@ -110,11 +112,17 @@
     <string name="about_author3">Nicolás De Boni</string>
     <string name="about_author4">Juan Muñoz</string>
     <string name="about_author5">Mario Sanz</string>
-    
+
     <!-- User Profile -->
     <string name="title_activity_user_profile">UserProfileActivity</string>
     <string name="userprofile_viewuserbooks">View user books</string>
 
     <!-- Class Libro -->
     <string name="unknown_field">Unknown</string>
+    
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">Boox</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Loading…</string>
+
 </resources>

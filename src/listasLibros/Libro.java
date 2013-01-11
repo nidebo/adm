@@ -7,7 +7,7 @@ import librosGoogle.VolumeInfo.ImageLinks;
 
 public class Libro {
 	String id;
-	//String isbn;
+	String isbn;
 	String title;
 	ArrayList<String> authors;
 	String publisher;
@@ -56,13 +56,13 @@ public class Libro {
 		return id;
 	}
 	
-	/*public String getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}*/
+	}
 
 	public String getTitulo() {
 		return title;
