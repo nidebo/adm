@@ -39,6 +39,7 @@
     <string name="subitem2_detalles_libro">Profile</string>
     <string name="subitem3_detalles_libro">Settings</string>
     <string name="subitem4_detalles_libro">About</string>
+    <string name="menu_share_detalles_libro">Share</string>
     <string name="bar_search_detalles_libro">Search bar</string>
 
     <!-- CrossingList -->
