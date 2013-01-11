@@ -4,8 +4,8 @@
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_settings" 
-        android:menuCategory="container">
+		android:icon="@drawable/ic_action_overflow" 
+		android:menuCategory="container">
         <menu>
             <item
                  android:id="@+id/subitem2"
