@@ -103,7 +103,8 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
 					mode);
 			SharedPreferences.Editor myEditor = mySharedPreferences.edit();
 
-			myEditor.putString("username", "");
+			//myEditor.putString("username", "");
+			myEditor.remove("username");
 			myEditor.commit();
 	        Intent intent = new Intent(this, LoginActivity.class);
 	       	startActivity(intent);
