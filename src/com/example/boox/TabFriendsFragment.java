@@ -71,10 +71,9 @@ public class TabFriendsFragment extends ListFragment {
 			//no se pudo obtener el usuario del que listar los amigos
 	        // Populate list with our static array of titles.
 	        if(list.isEmpty()){
-	        	for(int i=0; i<strings.length; ++i)
-	        		list.add(strings[i]);	
-	        	setListAdapter(new ArrayAdapter<String>(getActivity(),
-	        			android.R.layout.simple_list_item_1,
+	       	for(int i=0; i<strings.length; ++i)
+	       	list.add(strings[i]);	
+	       setListAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,
 	        			list));
 	        }
 			

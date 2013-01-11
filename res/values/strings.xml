@@ -20,6 +20,7 @@
     <string name="subitem2">Profile</string>
     <string name="subitem3">Settings</string>
     <string name="subitem4">About</string>
+    <string name="subitem5">Logout</string>
     <string name="bar_search">Search bar</string>
 
     <!-- BookList -->

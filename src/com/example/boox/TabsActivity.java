@@ -1,8 +1,10 @@
 package com.example.boox;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +14,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+
 
 public class TabsActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -29,6 +33,9 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +98,15 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.subitem4:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;
+    	case R.id.subitem5:
+			SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
+					mode);
+			SharedPreferences.Editor myEditor = mySharedPreferences.edit();
+
+			myEditor.putString("username", "");
+			myEditor.commit();
+	        Intent intent = new Intent(this, LoginActivity.class);
+	       	startActivity(intent);
     	}
     	return false;
 	}

@@ -3,12 +3,15 @@ package com.example.boox;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 
 public class SplashScreenActivity extends Activity {
 	
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
     // Set the display time, in milliseconds (or extract it out as a configurable parameter)
     private final int SPLASH_DISPLAY_LENGTH = 3000;
 
@@ -37,15 +40,32 @@ public class SplashScreenActivity extends Activity {
                     //Finish the splash activity so it can't be returned to.
                     SplashScreenActivity.this.finish();
                     // Create an Intent that will start the main activity.
-                    Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                    SplashScreenActivity.this.startActivity(mainIntent);
+            		SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs, mode);
+            		String uname = mySharedPreferences.getString("username", "");
+            		if(uname.equals("")){
+                        Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                        SplashScreenActivity.this.startActivity(mainIntent);
+            		}
+            		else {
+            			Intent mainIntent = new Intent(SplashScreenActivity.this, TabsActivity.class);
+                        SplashScreenActivity.this.startActivity(mainIntent);
+            		}
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }else{
             // if the splash is not enabled, then finish the activity immediately and go to main.
             finish();
-            Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-            SplashScreenActivity.this.startActivity(mainIntent);
+    		SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs, mode);
+    		String uname = mySharedPreferences.getString("username", "");
+    		if(uname.equals("")){
+                Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                SplashScreenActivity.this.startActivity(mainIntent);
+    		}
+    		else {
+    			Intent mainIntent = new Intent(SplashScreenActivity.this, TabsActivity.class);
+                SplashScreenActivity.this.startActivity(mainIntent);
+    		}
+
         }
     }
 

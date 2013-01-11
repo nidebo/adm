@@ -1,32 +1,19 @@
 package com.example.boox;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import listasLibros.GestorListas;
-import listasLibros.Libro;
-
-import usuarios.Usuario;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -51,8 +38,8 @@ public class LoginActivity extends Activity {
 	final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 
-	public Usuario usuarioActual= new Usuario("pito", "46015", "contrasenya"); 
-	public GestorListas listasUsuario=new GestorListas (usuarioActual.getId());
+	//public Usuario usuarioActual= new Usuario("pito", "46015", "contrasenya"); 
+	//public GestorListas listasUsuario=new GestorListas (usuarioActual.getId());
 	//ArrayList<Libro> prueba=listasUsuario.getListaAll();
 	InterfazAPI api = new InterfazAPI();
 
@@ -71,7 +58,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         //Libro lib =api.ObtenerLibroPorIsbn("9781594130014");
        // listasUsuario.AddLibroEnLista(lib, "lista1");
-        listasUsuario.AddLibroEnCompartibles("0000000000000");
+        //listasUsuario.AddLibroEnCompartibles("0000000000000");
         
         
         
