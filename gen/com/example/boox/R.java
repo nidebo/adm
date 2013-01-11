@@ -20,9 +20,10 @@ public final class R {
         public static final int default_user_icon=0x7f020000;
         public static final int got_thumbnail=0x7f020001;
         public static final int got_thumbnail_small=0x7f020002;
-        public static final int ic_action_search=0x7f020003;
-        public static final int ic_action_settings=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
+        public static final int ic_action_overflow=0x7f020003;
+        public static final int ic_action_search=0x7f020004;
+        public static final int ic_action_settings=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09000e;
