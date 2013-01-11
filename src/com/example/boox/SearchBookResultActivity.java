@@ -11,6 +11,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -98,5 +99,21 @@ public class SearchBookResultActivity extends ListActivity {
 
 		getMenuInflater().inflate(R.menu.activity_search_book_result, menu);
 		return true;
+	}
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+    	case R.id.search:
+    		startActivity(new Intent(this, SearchBookActivity.class));
+            return true;
+    	case R.id.subitem3:
+    		startActivity(new Intent(this, SettingsActivity.class));
+        	return true;
+    	case R.id.subitem4:
+    		startActivity(new Intent(this, AboutActivity.class));
+        	return true;
+    	}
+    	return false;
 	}
 }

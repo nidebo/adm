@@ -34,6 +34,12 @@ public class SettingsActivity extends Activity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 finish(); //startActivity(parentActivityIntent);
                 return true;
+        	case R.id.search:
+        		startActivity(new Intent(this, SearchBookActivity.class));
+                return true;
+        	case R.id.subitem4:
+        		startActivity(new Intent(this, AboutActivity.class));
+            	return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -43,10 +43,8 @@ public class InterfazAPI {
 		try {
 			book = ab.execute(id).get();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(book != null)
@@ -55,21 +53,19 @@ public class InterfazAPI {
 			return null;
 	}
 	
-public Libro ObtenerLibroPorIsbn(String isbn){
+	public Libro ObtenerLibroPorIsbn(String isbn) {
 		BookAPI book = new BookAPI();
-		AsyncBookIsbn ab = new AsyncBookIsbn();	
+		AsyncBookIsbn ab = new AsyncBookIsbn();
 		isbn = isbn.replaceAll("\\s+", "");
 		try {
 			book = ab.execute(isbn).get();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(book != null)
-			return pasarDeBookApiALibro(book);	
+		if (book != null)
+			return pasarDeBookApiALibro(book);
 		else
 			return null;
 	}

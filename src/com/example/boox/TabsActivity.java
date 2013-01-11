@@ -82,13 +82,16 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
-	    	case R.id.subitem3:
-	    		startActivity(new Intent(this, SettingsActivity.class));
-	        	return true;
-	    	case R.id.subitem4:
-	    		startActivity(new Intent(this, AboutActivity.class));
-	        	return true;
-	    	}
+    	case R.id.search:
+    		startActivity(new Intent(this, SearchBookActivity.class));
+            return true;
+    	case R.id.subitem3:
+    		startActivity(new Intent(this, SettingsActivity.class));
+        	return true;
+    	case R.id.subitem4:
+    		startActivity(new Intent(this, AboutActivity.class));
+        	return true;
+    	}
     	return false;
 	}
 

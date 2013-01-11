@@ -7,29 +7,28 @@
         android:icon="@drawable/ic_action_settings" 
         android:menuCategory="container">
         <menu>
-            <item
-                 android:id="@+id/subitem1_book_list"
-                 android:title="@string/subitem1_book_list"/>
+		    <item android:id="@+id/share"
+		          android:title="@string/menu_share_detalles_libro"
+		          android:icon="@android:drawable/ic_menu_share"
+		          android:showAsAction="ifRoom" />
             <item
                  android:id="@+id/subitem2_book_list"
-                 android:title="@string/subitem2_book_list"/>
+                 android:title="@string/subitem2_book_list"
+                 android:icon="@android:drawable/ic_menu_edit"/>
             <item
                  android:id="@+id/subitem3_book_list"
-                 android:title="@string/subitem3_book_list"/>
+                 android:title="@string/subitem3_book_list"
+                 android:icon="@android:drawable/ic_menu_preferences"/>
            	<item
                  android:id="@+id/subitem4_book_list"
-                 android:title="@string/subitem4_book_list"/>
+                 android:title="@string/subitem4_book_list"
+                 android:icon="@android:drawable/ic_menu_info_details" />
         </menu>
     </item>
     
-    <item android:id="@+id/share"
-          android:title="@string/menu_share_detalles_libro"
-          android:icon="@android:drawable/ic_menu_share"
-          android:showAsAction="ifRoom" />
-    
-    <item android:id="@+id/search_book_list"
-          android:title="@string/bar_search_book_list"
-          android:icon="@drawable/ic_action_search"
-          android:showAsAction="collapseActionView|ifRoom"
-          android:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/search"
+          android:title="@string/bar_search"
+          android:orderInCategory="90"
+          android:showAsAction="ifRoom"
+          android:icon="@drawable/ic_action_search" />
 </menu>

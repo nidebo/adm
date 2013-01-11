@@ -89,6 +89,15 @@ public class CrossingListActivity extends FragmentActivity implements OnItemClic
                 //startActivity(parentActivityIntent);
                 finish();
                 return true;
+        	case R.id.search:
+        		startActivity(new Intent(this, SearchBookActivity.class));
+                return true;
+        	case R.id.subitem3:
+        		startActivity(new Intent(this, SettingsActivity.class));
+            	return true;
+        	case R.id.subitem4:
+        		startActivity(new Intent(this, AboutActivity.class));
+            	return true;
         }
         return super.onOptionsItemSelected(item);
     }

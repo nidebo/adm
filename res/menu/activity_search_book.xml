@@ -1,9 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/menu_settings_book_list"
+        android:title="@string/menu_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_settings" 
+        android:menuCategory="container">
+        <menu>
+            <item
+                 android:id="@+id/subitem2"
+                 android:title="@string/subitem2_book_list"
+                 android:icon="@android:drawable/ic_menu_edit"/>
+            <item
+                 android:id="@+id/subitem3"
+                 android:title="@string/subitem3_book_list"
+                 android:icon="@android:drawable/ic_menu_preferences"/>
+           	<item
+                 android:id="@+id/subitem4"
+                 android:title="@string/subitem4_book_list"
+                 android:icon="@android:drawable/ic_menu_info_details" />
+        </menu>
+    </item>
 
 </menu>

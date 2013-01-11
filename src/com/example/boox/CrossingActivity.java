@@ -2,6 +2,7 @@ package com.example.boox;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -27,6 +28,15 @@ public class CrossingActivity extends Activity {
             case android.R.id.home:
                 finish(); //NavUtils.navigateUpFromSameTask(this);
                 return true;
+        	case R.id.search:
+        		startActivity(new Intent(this, SearchBookActivity.class));
+                return true;
+        	case R.id.subitem3:
+        		startActivity(new Intent(this, SettingsActivity.class));
+            	return true;
+        	case R.id.subitem4:
+        		startActivity(new Intent(this, AboutActivity.class));
+            	return true;
         }
         return super.onOptionsItemSelected(item);
     }

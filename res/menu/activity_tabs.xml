@@ -8,24 +8,26 @@
         android:menuCategory="container">
         <menu>
             <item
-                 android:id="@+id/subitem1"
-                 android:title="@string/subitem1"/>
-            <item
                  android:id="@+id/subitem2"
-                 android:title="@string/subitem2"/>
+                 android:title="@string/subitem2"
+                 android:icon="@android:drawable/ic_menu_edit" />
             <item
                  android:id="@+id/subitem3"
-                 android:title="@string/subitem3" />
+                 android:title="@string/subitem3"
+                 android:icon="@android:drawable/ic_menu_preferences" />
            	<item
                  android:id="@+id/subitem4"
-                 android:title="@string/subitem4"/>
+                 android:title="@string/subitem4"
+                 android:icon="@android:drawable/ic_menu_info_details" />
         </menu>
     </item>
     
     <item android:id="@+id/search"
           android:title="@string/bar_search"
-          android:icon="@drawable/ic_action_search"
-          android:showAsAction="collapseActionView|ifRoom"
-          android:actionViewClass="android.widget.SearchView" />
+          android:orderInCategory="90"
+          android:showAsAction="ifRoom"
+          android:icon="@drawable/ic_action_search" />
+          <!-- android:showAsAction="collapseActionView|ifRoom"
+          android:actionViewClass="android.widget.SearchView" -->
     
 </menu>

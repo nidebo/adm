@@ -54,6 +54,16 @@ public class BookActivity extends FragmentActivity {
             			android.content.Intent.EXTRA_TEXT, 
             			Html.fromHtml("<p>elcresan just viewed Juego de Tronos on BooX</p>"));
             	startActivity(Intent.createChooser(sharingIntent, "Share with"));
+            	return true;
+        	case R.id.search:
+        		startActivity(new Intent(this, SearchBookActivity.class));
+                return true;
+        	case R.id.subitem3:
+        		startActivity(new Intent(this, SettingsActivity.class));
+            	return true;
+        	case R.id.subitem4:
+        		startActivity(new Intent(this, AboutActivity.class));
+            	return true;
         }
         return super.onOptionsItemSelected(item);
     }
