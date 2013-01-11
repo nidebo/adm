@@ -1,7 +1,5 @@
 package com.example.boox;
 
-import internet.PruebaInternet;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +45,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import apiGoogle.InterfazAPI;
 
-public class Main extends Activity {
+public class LoginActivity extends Activity {
 	
 	Context context = this;
 	final int mode = Activity.MODE_PRIVATE;
@@ -82,7 +80,7 @@ public class Main extends Activity {
         // This must be called before ANY content is created
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_login);
         
 
         //mTabHost = getTabHost();
@@ -101,7 +99,7 @@ public class Main extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
+        getMenuInflater().inflate(R.menu.activity_login, menu);
         return true;
     }
     
@@ -118,11 +116,6 @@ public class Main extends Activity {
 	public void onPressNotAUser(View view) {
 
     	Intent intent = new Intent(this, SignUpActivity.class);
-    	startActivity(intent);
-    }
-
-	public void onPressNico(View view) {
-    	Intent intent = new Intent(this, PruebaInternet.class);
     	startActivity(intent);
     }
 	
@@ -142,7 +135,7 @@ public class Main extends Activity {
 	public void onPressLogin(View view) {
 		
         setProgressBarIndeterminateVisibility(true);
-        progressDialog = ProgressDialog.show(Main.this, 
+        progressDialog = ProgressDialog.show(LoginActivity.this, 
         		getResources().getString(R.string.login_logging),
         		getResources().getString(R.string.login_pleasewait));
 
@@ -171,7 +164,6 @@ public class Main extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			
-			////////////////////////////////////////////////////////////////////////////////////////////////////
 			HttpParams httpParameters = new BasicHttpParams();
 
 			int timeoutConnection = 1500;
@@ -203,12 +195,10 @@ public class Main extends Activity {
 				flag = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 				flag = false;
 				e.printStackTrace();
 			} catch (IOException e) {
 				flag = false;
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			     

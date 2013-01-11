@@ -37,14 +37,14 @@ public class SplashScreenActivity extends Activity {
                     //Finish the splash activity so it can't be returned to.
                     SplashScreenActivity.this.finish();
                     // Create an Intent that will start the main activity.
-                    Intent mainIntent = new Intent(SplashScreenActivity.this, Main.class);
+                    Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     SplashScreenActivity.this.startActivity(mainIntent);
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }else{
             // if the splash is not enabled, then finish the activity immediately and go to main.
             finish();
-            Intent mainIntent = new Intent(SplashScreenActivity.this, Main.class);
+            Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
             SplashScreenActivity.this.startActivity(mainIntent);
         }
     }

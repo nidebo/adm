@@ -23,7 +23,7 @@
     <string name="bar_search">Search bar</string>
 
     <!-- BookList -->
-    <string name="title_activity_book_list">BookListActivity</string>
+    <string name="title_activity_book_list">Book List</string>
     <string name="menu_settings_book_list">Settings</string>
     <string name="subitem1_book_list">Add book</string>
     <string name="subitem2_book_list">Profile</string>
@@ -43,16 +43,12 @@
     <string name="bar_search_detalles_libro">Search bar</string>
 
     <!-- CrossingList -->
-    <string name="title_activity_crossing_list">CrossingListActivity</string>
+    <string name="title_activity_crossing_list">Crossing List</string>
 
     <!-- Crossing -->
-    <string name="title_activity_crossing">CrossingActivity</string>
-    <string name="title_activity_buscar_libros">BookSearch</string>
+    <string name="title_activity_crossing">Crossing</string>
+    <string name="title_activity_buscar_libros">Book Search</string>
     <string name="title_activity_resultado_busqueda_libros">SearchResult</string>
-    <string name="title_activity_prueba_internet">PruebaInternet</string>
-    <string name="title_activity_uj">UJ</string>
-    <string name="title_testitem_detail">TestItem Detail</string>
-    <string name="title_testitem_list">TestItems</string>
 
     <!-- Friends -->
     <string name="friends_internet_error">Problem with connection. Please check your connectivity and try again.</string>
@@ -62,13 +58,11 @@
 
     <!-- Search Book -->
     <string name="searchbook_searchby">Search by:</string>
-
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
         <item>ISBN</item>
     </string-array>
-
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">Search here</string>
 
@@ -83,7 +77,7 @@
     <string name="login_internet_error">Problem with connection. Please check your connectivity and try again.</string>
 
     <!-- Signup -->
-    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_sign_up">Sign Up</string>
     <string name="signup_username_hint">username</string>
     <string name="signup_password_hint">password</string>
     <string name="signup_confirm_password_hint">repeat password</string>
@@ -98,14 +92,14 @@
     <string name="signup_internet_error">Problem with connection. Please check your connectivity and try again.</string>
 
     <!-- Settings -->
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="set_new_username_hint">New username</string>
     <string name="set_new_password_hint">New password</string>
     <string name="set_confirm_password_hint">Repeat password</string>
     <string name="set_submitButton_text">Submit</string>
 
     <!-- About -->
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_about">About</string>
     <string name="about_authors_title">Authors:</string>
     <string name="about_author1">Beatriz Cortés</string>
     <string name="about_author2">Eliú Crespo</string>
@@ -114,7 +108,7 @@
     <string name="about_author5">Mario Sanz</string>
 
     <!-- User Profile -->
-    <string name="title_activity_user_profile">UserProfileActivity</string>
+    <string name="title_activity_user_profile">User Profile</string>
     <string name="userprofile_viewuserbooks">View user books</string>
 
     <!-- Class Libro -->
