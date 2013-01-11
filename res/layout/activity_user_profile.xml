@@ -3,22 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <QuickContactBadge
-        android:id="@+id/userThumbnail"
+    <ImageView
+        android:id="@+id/user_thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/hello_world"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:src="@drawable/default_user_icon" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/userThumbnail"
+        android:layout_alignTop="@+id/user_thumbnail"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/userThumbnail"
+        android:layout_toRightOf="@+id/user_thumbnail"
         android:orientation="vertical" >
 
         <TextView
@@ -33,18 +37,34 @@
             android:id="@+id/userprofile_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="JC Ruiz" />
+
+        <TextView
+            android:id="@+id/userprofile_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Valencia, Spain" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/add_remove"
+        android:id="@+id/viewuserbooks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/userThumbnail"
+        android:layout_alignLeft="@+id/user_thumbnail"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/userThumbnail"
+        android:layout_below="@+id/user_thumbnail"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/userprofile_addfriend" />
+        android:text="@string/userprofile_viewuserbooks" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/user_thumbnail"
+        android:layout_alignRight="@+id/viewuserbooks"
+        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

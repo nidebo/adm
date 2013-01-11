@@ -61,12 +61,13 @@
 
     <!-- Search Book -->
     <string name="searchbook_searchby">Search by:</string>
-
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
         <item>ISBN</item>
     </string-array>
+    <string name="searchbook_scanbutton">Scan barcode</string>
+    <string name="searchbook_searchbox_hint">Search here</string>
 
     <!-- Login -->
     <string name="login_username_hint">username</string>
@@ -111,9 +112,7 @@
     
     <!-- User Profile -->
     <string name="title_activity_user_profile">UserProfileActivity</string>
-    <string name="searchbook_scanbutton">Scan barcode</string>
-    <string name="searchbook_searchbox_hint">Search here</string>
-    <string name="userprofile_addfriend">Add to friendlist</string>
+    <string name="userprofile_viewuserbooks">View user books</string>
 
     <!-- Class Libro -->
     <string name="unknown_field">Unknown</string>
