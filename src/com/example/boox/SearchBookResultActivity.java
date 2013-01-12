@@ -84,9 +84,9 @@ public class SearchBookResultActivity extends ListActivity {
 			Intent i = new Intent();
 			i.setClass(context, BookActivity.class);
 			if(modo == 2)
-				i.putExtra("isbn", libro.getIsbn());
+				i.putExtra("id", libro.getId());
 			else
-				i.putExtra("isbn", libros.get(position).getIsbn());
+				i.putExtra("id", libros.get(position).getId());
 			startActivity(i);
 		}
 	}
