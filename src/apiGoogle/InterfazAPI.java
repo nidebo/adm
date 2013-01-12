@@ -456,7 +456,7 @@ public class InterfazAPI {
 		if (book.getVolumeInfo().getCategories()==null){
 		ArrayList<String> categ=new ArrayList<String>();
 		categ.add(desconocido);
-		lib.setAutores(categ);
+		lib.setCategorias(categ);
 		}
 		else{
 		lib.setAutores(book.getVolumeInfo().getCategories());
