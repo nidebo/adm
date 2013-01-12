@@ -48,7 +48,7 @@ public class SearchBookResultActivity extends ListActivity {
 					titulos.add(libros.get(i).getTitulo());
 			}
 			else{
-				titulos.add("No encontrado.");
+				titulos.add("No encontrado");
 			}
 		}
 		else{
@@ -74,20 +74,21 @@ public class SearchBookResultActivity extends ListActivity {
 				}
 			}
 		}
-		titulos.add(libros.get(0).getAutores().get(0).toString());
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));				
 	}
 
 	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
-        Intent i = new Intent();
-        i.setClass(context, BookActivity.class);
-        if(modo == 2)
-        	i.putExtra("isbn", libro.getIsbn());
-        else
-        	i.putExtra("isbn", libros.get(position).getIsbn());
-        startActivity(i);
+		if(list.getItemAtPosition(0) != "No encontrado"){
+			Intent i = new Intent();
+			i.setClass(context, BookActivity.class);
+			if(modo == 2)
+				i.putExtra("id", libro.getId());
+			else
+				i.putExtra("id", libros.get(position).getId());
+			startActivity(i);
+		}
 	}
 		
 	
