@@ -63,7 +63,7 @@ public class UserProfileActivity extends Activity {
         if(extras != null){
         	uname = extras.getString("uname");
             fname = extras.getString("fname");
-            String full = extras.getString("full");
+            full = extras.getString("full");
         	//obtener modo
         	String modo = extras.getString("modo");
         	if(modo.equals("borrar"))
