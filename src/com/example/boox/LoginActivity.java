@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
-	    	case R.id.subitem3:
+	    	case R.id.submenu_settings:
 	    		startActivity(new Intent(this, SettingsActivity.class));
 	        	return true;
 	    	}

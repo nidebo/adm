@@ -8,17 +8,17 @@
         android:menuCategory="container">
         <menu>
             <item
-                 android:id="@+id/subitem1_detalles_libro"
-                 android:title="@string/subitem1_detalles_libro"/>
+                 android:id="@+id/submenu_share"
+                 android:title="@string/submenu_share"/>
             <item
-                 android:id="@+id/subitem2_book_list"
-                 android:title="@string/subitem2_detalles_libro"/>
+                 android:id="@+id/submenu_profile"
+                 android:title="@string/submenu_profile"/>
             <item
-                 android:id="@+id/subitem3_book_list"
-                 android:title="@string/subitem3_detalles_libro"/>
+                 android:id="@+id/submenu_settings"
+                 android:title="@string/submenu_settings"/>
            	<item
-                 android:id="@+id/subitem4_book_list"
-                 android:title="@string/subitem4_detalles_libro"/>
+                 android:id="@+id/submenu_about"
+                 android:title="@string/submenu_about"/>
         </menu>
     </item>
     

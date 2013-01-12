@@ -37,7 +37,7 @@ public class SettingsActivity extends Activity {
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
                 return true;
-        	case R.id.subitem4:
+        	case R.id.submenu_about:
         		startActivity(new Intent(this, AboutActivity.class));
             	return true;
         }

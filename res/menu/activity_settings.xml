@@ -8,12 +8,12 @@
 		android:menuCategory="container">
         <menu>
             <item
-                 android:id="@+id/subitem2"
-                 android:title="@string/subitem2"
+                 android:id="@+id/submenu_profile"
+                 android:title="@string/submenu_profile"
                  android:icon="@android:drawable/ic_menu_edit" />
            	<item
-                 android:id="@+id/subitem4"
-                 android:title="@string/subitem4"
+                 android:id="@+id/submenu_about"
+                 android:title="@string/submenu_about"
                  android:icon="@android:drawable/ic_menu_info_details" />
         </menu>
     </item>

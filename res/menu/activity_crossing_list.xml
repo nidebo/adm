@@ -8,16 +8,16 @@
 		android:menuCategory="container">
         <menu>
             <item
-                 android:id="@+id/subitem2_book_list"
-                 android:title="@string/subitem2_book_list"
+                 android:id="@+id/submenu_profile"
+                 android:title="@string/submenu_profile"
                  android:icon="@android:drawable/ic_menu_edit"/>
             <item
-                 android:id="@+id/subitem3_book_list"
-                 android:title="@string/subitem3_book_list"
+                 android:id="@+id/submenu_settings"
+                 android:title="@string/submenu_settings"
                  android:icon="@android:drawable/ic_menu_preferences"/>
            	<item
-                 android:id="@+id/subitem4_book_list"
-                 android:title="@string/subitem4_book_list"
+                 android:id="@+id/submenu_about"
+                 android:title="@string/submenu_about"
                  android:icon="@android:drawable/ic_menu_info_details" />
         </menu>
     </item>

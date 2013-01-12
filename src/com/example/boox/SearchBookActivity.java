@@ -43,10 +43,10 @@ public class SearchBookActivity extends Activity {
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
-    	case R.id.subitem3:
+    	case R.id.submenu_settings:
     		startActivity(new Intent(this, SettingsActivity.class));
         	return true;
-    	case R.id.subitem4:
+    	case R.id.submenu_about:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;
     	}

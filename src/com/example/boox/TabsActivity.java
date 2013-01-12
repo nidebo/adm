@@ -92,17 +92,16 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.search:
     		startActivity(new Intent(this, SearchBookActivity.class));
             return true;
-    	case R.id.subitem3:
+    	case R.id.submenu_settings:
     		startActivity(new Intent(this, SettingsActivity.class));
         	return true;
-    	case R.id.subitem4:
+    	case R.id.submenu_about:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;
-    	case R.id.subitem5:
+    	case R.id.submenu_logout:
 			SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
 					mode);
 			SharedPreferences.Editor myEditor = mySharedPreferences.edit();
-
 			//myEditor.putString("username", "");
 			myEditor.remove("username");
 			myEditor.commit();

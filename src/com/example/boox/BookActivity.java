@@ -47,7 +47,7 @@ public class BookActivity extends FragmentActivity {
                 //startActivity(parentActivityIntent);
                 finish();
                 return true;
-            case R.id.share:
+            case R.id.submenu_share:
             	Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             	sharingIntent.setType("text/html");
             	sharingIntent.putExtra(
@@ -58,10 +58,10 @@ public class BookActivity extends FragmentActivity {
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
                 return true;
-        	case R.id.subitem3:
+        	case R.id.submenu_settings:
         		startActivity(new Intent(this, SettingsActivity.class));
             	return true;
-        	case R.id.subitem4:
+        	case R.id.submenu_about:
         		startActivity(new Intent(this, AboutActivity.class));
             	return true;
         }
