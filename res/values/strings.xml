@@ -47,7 +47,9 @@
 
     <!-- Friends -->
     <string name="friends_internet_error">Problem with connection. Please check your connectivity and try again.</string>
-
+	<string name="friends_delete">Friend successfully deleted.</string>
+	<string name="friends_not_found">Username not found. Please input a valid username and try again.</string>
+    
     <!-- User -->
     <string name="title_activity_user">User</string>
 

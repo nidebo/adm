@@ -152,6 +152,7 @@ public class SignUpActivity extends Activity {
 						e.printStackTrace();
 					} catch (ClientProtocolException e) {
 						// TODO Auto-generated catch block
+						flag = 2;
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block

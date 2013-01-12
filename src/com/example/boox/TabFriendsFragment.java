@@ -36,6 +36,7 @@ public class TabFriendsFragment extends ListFragment {
 	final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 	AmigoList al = new AmigoList();
+	String uname = "";
 
 	String strings[] = new String[]{
 			"Friend 1", 
@@ -52,7 +53,7 @@ public class TabFriendsFragment extends ListFragment {
 
         
 		SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
-		String uname = mySharedPreferences.getString("username", "");
+		uname = mySharedPreferences.getString("username", "");
         
 		if(!uname.equals("")){
 			AsyncFriends a2 = new AsyncFriends();
@@ -178,8 +179,10 @@ public class TabFriendsFragment extends ListFragment {
     	Intent intent = new Intent();
         intent.setClass(getActivity(), UserProfileActivity.class);
         intent.putExtra("index", pos);
-        intent.putExtra("uname", al.getListaAmigos().get(pos).getId());
+        intent.putExtra("uname", uname);
+        intent.putExtra("fname", al.getListaAmigos().get(pos).getId());
         intent.putExtra("full", al.getListaAmigos().get(pos).getNombre());
+        //intent.putExtra("modo", "borrar");
         startActivity(intent);
     	
         //showDetails(pos);

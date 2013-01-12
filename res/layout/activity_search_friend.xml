@@ -2,13 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFriendActivity" >
+    tools:context=".SearchBookActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/friendSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/searchbook_searchbox_hint"
+        android:textColor="@android:color/primary_text_light" >
+        <requestFocus />
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/friendSearchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/friendSearch"
+        android:layout_toRightOf="@+id/friendSearch"
+        android:src="@android:drawable/ic_menu_search"
+        android:onClick="onPressSearch" />
 
 </RelativeLayout>
