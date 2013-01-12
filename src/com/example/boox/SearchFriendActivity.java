@@ -80,6 +80,8 @@ public class SearchFriendActivity extends Activity {
 			friend = et1.getText().toString();
 			if(friend.equals(""))
 				flag = 2;
+			if(friend.equals(uname))
+				flag = 3;
 		}
 		
 
@@ -160,7 +162,7 @@ public class SearchFriendActivity extends Activity {
 			        intent.putExtra("uname", uname);
 			        intent.putExtra("fname", us.getId());
 			        intent.putExtra("full", us.getNombre());
-			        //intent.putExtra("modo", "");
+			        intent.putExtra("modo", "nosesabe");
 			        startActivity(intent);
 		        	
 				} catch (JSONException e) {
@@ -172,6 +174,13 @@ public class SearchFriendActivity extends Activity {
 				Toast toast = Toast.makeText(
 						getApplicationContext(), 
 						getResources().getString(R.string.friends_not_found), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			if(flag == 3){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.friends_auto_find), 
 						Toast.LENGTH_SHORT);
 				toast.show();
 			}

@@ -65,7 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/user_thumbnail"
         android:layout_alignRight="@+id/viewuserbooks"
-        android:onClick="onPressDeleteFriend"
         android:src="@android:drawable/ic_delete" />
 
 </RelativeLayout>

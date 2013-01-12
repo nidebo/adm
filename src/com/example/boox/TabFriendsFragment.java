@@ -182,7 +182,7 @@ public class TabFriendsFragment extends ListFragment {
         intent.putExtra("uname", uname);
         intent.putExtra("fname", al.getListaAmigos().get(pos).getId());
         intent.putExtra("full", al.getListaAmigos().get(pos).getNombre());
-        //intent.putExtra("modo", "borrar");
+        intent.putExtra("modo", "borrar");
         startActivity(intent);
     	
         //showDetails(pos);
