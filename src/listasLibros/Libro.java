@@ -9,6 +9,7 @@ public class Libro {
 	String id;
 	String isbn;
 	String title;
+	String subtitle;
 	ArrayList<String> authors;
 	String publisher;
 	String description;
@@ -22,7 +23,7 @@ public class Libro {
 	ImageLinks imageLinks;
 	
 
-	public Libro(String id, String isbn, String titulo,
+	/*public Libro(String id, String isbn, String titulo,
 			ArrayList<String> autores, String editorial, String descripcion,
 			String fechaPublicacion, int numeroDePaginas, String categoriaPrincipal,
 			ArrayList<String> categorias, Float puntuacionMedia, String pais,
@@ -44,6 +45,7 @@ public class Libro {
 		this.language = idioma;
 		this.imageLinks = imageLinks;
 	}
+	*/
 	
 	public Libro(String id){
 		this.id=id;
@@ -70,6 +72,14 @@ public class Libro {
 
 	public void setTitulo(String titulo) {
 		this.title = titulo;
+	}
+
+	public String getSubtitulo() {
+		return subtitle;
+	}
+
+	public void setSubtitulo(String subtitulo) {
+		this.subtitle = subtitulo;
 	}
 
 	public ArrayList<String> getAutores() {
