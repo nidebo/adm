@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class UserProfileActivity extends Activity {
 
@@ -12,6 +13,15 @@ public class UserProfileActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String uname = extras.getString("uname");
+            TextView id = (TextView) findViewById(R.id.userprofile_username);
+            id.setText(uname);
+            String full = extras.getString("full");
+            TextView id2 = (TextView) findViewById(R.id.userprofile_fullname);
+            id2.setText(full);
+        }
     }
 
     @Override

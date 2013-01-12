@@ -10,15 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHttpResponse;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +28,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class TabFriendsFragment extends ListFragment {
 
@@ -45,6 +35,7 @@ public class TabFriendsFragment extends ListFragment {
     int mCurCheckPosition = 1;
 	final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
+	AmigoList al = new AmigoList();
 
 	String strings[] = new String[]{
 			"Friend 1", 
@@ -151,7 +142,7 @@ public class TabFriendsFragment extends ListFragment {
 				Gson gson = builder.create();
 
 				JSONObject json;
-				AmigoList al;
+				
 				try {
 					json = new JSONObject(responseString);
 
@@ -187,6 +178,8 @@ public class TabFriendsFragment extends ListFragment {
     	Intent intent = new Intent();
         intent.setClass(getActivity(), UserProfileActivity.class);
         intent.putExtra("index", pos);
+        intent.putExtra("uname", al.getListaAmigos().get(pos).getId());
+        intent.putExtra("full", al.getListaAmigos().get(pos).getNombre());
         startActivity(intent);
     	
         //showDetails(pos);

@@ -98,6 +98,7 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.submenu_about:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;
+    	//
     	case R.id.submenu_logout:
 			SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
 					mode);
