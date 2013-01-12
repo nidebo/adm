@@ -29,15 +29,17 @@ public class SearchBookResultActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		Bundle extras = getIntent().getExtras();
 		modo = extras.getInt("modo");
 		cont = extras.getString("contenido");
 		
 		
 		InterfazAPI api = new InterfazAPI();
+		ArrayList<String> titulo = new ArrayList<String>();
+		titulo.add("prueba");
+		titulo.add(cont.toString());
 		ArrayList<String> titulos = new ArrayList<String>();
-
 
 		if(modo == 0){
 			libros = api.ObtenerListaLibrosPorTitulo(cont);
@@ -46,9 +48,7 @@ public class SearchBookResultActivity extends ListActivity {
 					titulos.add(libros.get(i).getTitulo());
 			}
 			else{
-				Toast to = new Toast(this);
-				to.setText("No encontrado");
-				to.show();
+				titulos.add("No encontrado.");
 			}
 		}
 		else{
@@ -59,9 +59,7 @@ public class SearchBookResultActivity extends ListActivity {
 						titulos.add(libros.get(i).getTitulo());
 				}
 				else{
-					Toast to = new Toast(this);
-					to.setText("No encontrado");
-					to.show();
+					titulos.add("No encontrado");
 					}
 			}
 			else{
@@ -71,13 +69,12 @@ public class SearchBookResultActivity extends ListActivity {
 						titulos.add(libro.getTitulo());
 					}
 					else{
-						Toast to = new Toast(this);
-						to.setText("No encontrado");
-						to.show();
+						titulos.add("No encontrado");
 					}
 				}
 			}
 		}
+		titulos.add(libros.get(0).getAutores().get(0).toString());
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));				
 	}
 

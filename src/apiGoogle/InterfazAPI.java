@@ -35,43 +35,45 @@ import listasLibros.Libro;
 
 public class InterfazAPI {
 
-	public Libro ObtenerLibroPorId(String id){
-				
-		BookAPI book = new BookAPI();
+	public Libro ObtenerLibroPorId(String id){				
+		BookList books = new BookList();
 		AsyncBookId ab = new AsyncBookId();	
+		Libro result = new Libro();
 		id = id.replaceAll("\\s+", "");
 		try {
-			book = ab.execute(id).get();
+			books = ab.execute(id).get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-		if(book != null)
-			return pasarDeBookApiALibro(book);	
-		else
+		if(books.getTotalItems() == 0)
 			return null;
+		result = pasarDeBookApiALibro(books.getItems().get(0));
+		return result;
 	}
 	
 	public Libro ObtenerLibroPorIsbn(String isbn) {
-		BookAPI book = new BookAPI();
+		BookList books = new BookList();
+		Libro result = new Libro();
 		AsyncBookIsbn ab = new AsyncBookIsbn();
 		isbn = isbn.replaceAll("\\s+", "");
 		try {
-			book = ab.execute(isbn).get();
+			books = ab.execute(isbn).get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-		if (book != null)
-			return pasarDeBookApiALibro(book);
-		else
+		if (books.getTotalItems() == 0)
 			return null;
+		result = pasarDeBookApiALibro(books.getItems().get(0));
+		return result;
 	}
 
 public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
-	List<BookAPI> books = null;
+	ArrayList<Libro> result = new ArrayList<Libro>();
+	BookList books = new BookList();
 	AsyncBookAuthor ab = new AsyncBookAuthor();	
 	autor = autor.replaceAll("\\s+", "+");
 	try {
@@ -83,15 +85,17 @@ public ArrayList<Libro> ObtenerListaLibrosPorAutor(String autor){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	if(books != null)	
-		return pasarListaDeBookApisALibro(books);
-	else
+	if(books.getTotalItems() == 0)	
 		return null;
+	
+	result = pasarListaDeBookApisALibro(books.getItems());
+	return result;
 
 	}
 
 public ArrayList<Libro> ObtenerListaLibrosPorTitulo(String titulo){
-	List<BookAPI> books = null;
+	ArrayList<Libro> result = new ArrayList<Libro>();
+	BookList books = new BookList();
 	AsyncBookTitle ab = new AsyncBookTitle();	
 	titulo = titulo.replaceAll("\\s+", "+");
 	try {
@@ -103,27 +107,26 @@ public ArrayList<Libro> ObtenerListaLibrosPorTitulo(String titulo){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	if(books != null)
-		return pasarListaDeBookApisALibro(books);
-	else
+	if(books.getTotalItems() == 0)
 		return null;
-	}
+	result = pasarListaDeBookApisALibro(books.getItems());
+	return result;
+}
 
 
 
-public class AsyncBookId extends AsyncTask<String, Void, BookAPI> {
+public class AsyncBookId extends AsyncTask<String, Void, BookList> {
 
 	StringBuilder sb;
 	String responseString;
 	String sturl;
 	
 	@Override
-	protected BookAPI doInBackground(String... id) {
+	protected BookList doInBackground(String... id) {
 		// TODO Auto-generated method stub
 		
 			HttpParams httpParameters = new BasicHttpParams();
 
-			boolean flag = true;
 			int timeoutConnection = 1500;
 			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
 
@@ -152,14 +155,11 @@ public class AsyncBookId extends AsyncTask<String, Void, BookAPI> {
 					responseString = sb.toString();
 				}
 			} catch (ConnectTimeoutException e) {
-				flag = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
-				flag = false;
 				e.printStackTrace();
 			} catch (IOException e) {
-				flag = false;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -169,35 +169,28 @@ public class AsyncBookId extends AsyncTask<String, Void, BookAPI> {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
-		List<BookAPI> libros = null;
+		BookList detailbook = new BookList();
 		try {
 			
 			json = new JSONObject(responseString);
-			BookList detailbook  = gson.fromJson(responseString, BookList.class);
-			if(detailbook.getTotalItems() == 0)
-				libros = null;
-			else
-				libros = detailbook.getItems();
+			detailbook  = gson.fromJson(responseString, BookList.class);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(libros == null)
-			return null;
-		else
-			return libros.get(0);
+		return detailbook;
 	}
 
 }
 
-public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
+public class AsyncBookIsbn extends AsyncTask<String, Void, BookList> {
 
 	StringBuilder sb;
 	String responseString;
 	String sturl;
 	
 	@Override
-	protected BookAPI doInBackground(String... isbn) {
+	protected BookList doInBackground(String... isbn) {
 		// TODO Auto-generated method stub
 		
 			HttpParams httpParameters = new BasicHttpParams();
@@ -231,14 +224,11 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 					responseString = sb.toString();
 				}
 			} catch (ConnectTimeoutException e) {
-				flag = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
-				flag = false;
 				e.printStackTrace();
 			} catch (IOException e) {
-				flag = false;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -249,39 +239,32 @@ public class AsyncBookIsbn extends AsyncTask<String, Void, BookAPI> {
 		Gson gson = builder.create();
 		JSONObject json;
 		List<BookAPI> libros = null;
+		BookList detailbook = new BookList();
 		try {
 			
 			json = new JSONObject(responseString);
-			BookList detailbook  = gson.fromJson(responseString, BookList.class);
-			if(detailbook.getTotalItems() == 0)
-				libros = null;
-			else
-				libros = detailbook.getItems();
+			detailbook  = gson.fromJson(responseString, BookList.class);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(libros == null)
-			return null;
-		else
-			return libros.get(0);
-	}
+		return detailbook;
+		}
 
 }
 
-public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
+public class AsyncBookAuthor extends AsyncTask<String, Void, BookList> {
 
 	StringBuilder sb;
 	String responseString;
 	String sturl;
 	
 	@Override
-	protected List<BookAPI> doInBackground(String... author) {
+	protected BookList doInBackground(String... author) {
 		// TODO Auto-generated method stub
 
 			HttpParams httpParameters = new BasicHttpParams();
 
-			boolean flag = true;
 			int timeoutConnection = 1500;
 			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
 
@@ -310,14 +293,11 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 					responseString = sb.toString();
 				}
 			} catch (ConnectTimeoutException e) {
-				flag = false;
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
-				flag = false;
 				e.printStackTrace();
 			} catch (IOException e) {
-				flag = false;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -325,15 +305,10 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
-		List<BookAPI> libros = null;
+		BookList libros = new BookList();
 		try {
-			
 			json = new JSONObject(responseString);
-			BookList detailbook  = gson.fromJson(responseString, BookList.class);
-			if(detailbook.getTotalItems() == 0)
-				libros = null;
-			else
-				libros = detailbook.getItems();
+			libros  = gson.fromJson(responseString, BookList.class);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -342,20 +317,19 @@ public class AsyncBookAuthor extends AsyncTask<String, Void, List<BookAPI>> {
 	}
 }
 
-public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
+public class AsyncBookTitle extends AsyncTask<String, Void, BookList> {
 
 	StringBuilder sb = null;
 	String responseString = null;
 	String sturl = null;
 	
 	@Override
-	protected List<BookAPI> doInBackground(String... title) {
+	protected BookList doInBackground(String... title) {
 		// TODO Auto-generated method stub
 
 		
 		HttpParams httpParameters = new BasicHttpParams();
 
-		boolean flag = true;
 		int timeoutConnection = 1500;
 		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
 
@@ -384,14 +358,11 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 				responseString = sb.toString();
 			}
 		} catch (ConnectTimeoutException e) {
-			flag = false;
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
-			flag = false;
 			e.printStackTrace();
 		} catch (IOException e) {
-			flag = false;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -400,22 +371,16 @@ public class AsyncBookTitle extends AsyncTask<String, Void, List<BookAPI>> {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		JSONObject json;
-		List<BookAPI> libros = null;
+		BookList detailbook = new BookList();
 		try {
 			json = new JSONObject(responseString);
-			BookList detailbook  = gson.fromJson(responseString, BookList.class);
-			if(detailbook.getTotalItems() == 0)
-				flag = false;
-			else
-				libros = detailbook.getItems();
+			detailbook  = gson.fromJson(responseString, BookList.class);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(flag)
-			return libros;
-		else
-			return null;
+		
+		return detailbook;
 	}
 }
 

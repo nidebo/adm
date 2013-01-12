@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class VolumeInfo {
 	String title;
+	String subtitle;
 	ArrayList<String> authors;
 	String publisher;
 	String publishedDate;
@@ -29,6 +30,9 @@ public class VolumeInfo {
 	
 	public String getTitle() {
 		return title;
+	}
+	public String getSubtitle() {
+		return subtitle;
 	}
 	public void setTitle(String title) {
 		this.title = title;

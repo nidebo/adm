@@ -1,5 +1,9 @@
 package com.example.boox;
 
+import java.util.ArrayList;
+
+import listasLibros.Libro;
+
 import com.example.boox.R;
 
 import android.os.Bundle;
@@ -23,7 +27,10 @@ public class SearchBookActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_book);
-
+		
+		ArrayList<Libro> libros = new ArrayList<Libro>();
+		Libro libro = new Libro();
+		
 		spinner_searchby = (Spinner) findViewById(R.id.searchby_spinner);
 		ArrayAdapter<CharSequence> spinner_adapter = ArrayAdapter.createFromResource(this, 
 				R.array.searchbook_searchby_options, android.R.layout.simple_spinner_item);
@@ -68,7 +75,8 @@ public class SearchBookActivity extends Activity {
 			EditText etxt1 = (EditText) findViewById(R.id.editText1);
 			String autor = etxt1.getText().toString();
 			if(autor != null){
-				Intent i = new Intent(this, SearchBookResultActivity.class);
+				Intent i = new Intent();
+				i.setClass(this, SearchBookResultActivity.class);
 				i.putExtra("modo", 1);
 				i.putExtra("contenido", autor);
 				startActivity(i);
