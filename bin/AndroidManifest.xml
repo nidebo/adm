@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.example.boox.SplashScreenActivity"
             android:label="@string/title_activity_splash_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,63 +27,67 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.boox.LoginActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".BookFragment"
+            android:name="com.example.boox.BookFragment"
             android:label="@string/title_activity_book_fragment" >
         </activity>
         <activity
-            android:name=".BookActivity"
+            android:name="com.example.boox.BookActivity"
             android:label="@string/title_activity_book_activity" >
         </activity>
         <activity
-            android:name=".SearchBookActivity"
+            android:name="com.example.boox.SearchBookActivity"
             android:label="@string/title_activity_buscar_libros" >
         </activity>
         <activity
-            android:name=".SearchBookResultActivity"
+            android:name="com.example.boox.SearchBookResultActivity"
             android:label="@string/title_activity_resultado_busqueda_libros" >
         </activity>
         <activity
-            android:name=".TabsActivity"
+            android:name="com.example.boox.TabsActivity"
             android:label="@string/title_activity_tabs" >
         </activity>
         <activity
-            android:name=".BookListActivity"
+            android:name="com.example.boox.BookListActivity"
             android:label="@string/title_activity_book_list" >
         </activity>
         <activity
-            android:name=".CrossingListActivity"
+            android:name="com.example.boox.CrossingListActivity"
             android:label="@string/title_activity_crossing_list" >
         </activity>
         <activity
-            android:name=".CrossingActivity"
+            android:name="com.example.boox.CrossingActivity"
             android:label="@string/title_activity_crossing" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.boox.CrossingListActivity" />
         </activity>
         <activity
-            android:name=".UserActivity"
+            android:name="com.example.boox.UserActivity"
             android:label="@string/title_activity_user" >
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.example.boox.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".AboutActivity"
+            android:name="com.example.boox.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.example.boox.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
         <activity
-            android:name=".UserProfileActivity"
+            android:name="com.example.boox.UserProfileActivity"
             android:label="@string/title_activity_user_profile" >
+        </activity>
+        <activity
+            android:name="com.example.boox.SearchFriendActivity"
+            android:label="@string/title_activity_search_friend" >
         </activity>
     </application>
 

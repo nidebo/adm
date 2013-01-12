@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Libro de ejemplo -->
@@ -18,6 +19,7 @@
     <string name="submenu_add">Add new</string>
     <string name="submenu_profile">Profile</string>
     <string name="submenu_settings">Settings</string>
+    <string name="submenu_find_friend">Find Friends</string>
     <string name="submenu_about">About</string>
     <string name="submenu_logout">Logout</string>
     <string name="bar_search">Search bar</string>
@@ -51,11 +53,13 @@
 
     <!-- Search Book -->
     <string name="searchbook_searchby">Search by:</string>
+
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
         <item>ISBN</item>
     </string-array>
+
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">Search here</string>
 
@@ -106,10 +110,11 @@
 
     <!-- Class Libro -->
     <string name="unknown_field">Unknown</string>
-    
+
     <!-- Splash -->
     <string name="title_activity_splash_screen">Boox</string>
     <string name="splash_screen_subtitle">Cross your books</string>
     <string name="splash_screen_loading">Loading…</string>
+    <string name="title_activity_search_friend">Find Friends</string>
 
 </resources>

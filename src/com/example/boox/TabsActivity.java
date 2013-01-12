@@ -95,6 +95,9 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.submenu_settings:
     		startActivity(new Intent(this, SettingsActivity.class));
         	return true;
+    	case R.id.submenu_find_friend:
+    		startActivity(new Intent(this, SearchFriendActivity.class));
+    		return true;
     	case R.id.submenu_about:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;

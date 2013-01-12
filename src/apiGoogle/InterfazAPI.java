@@ -385,119 +385,100 @@ public class InterfazAPI {
 	}
 
 	public Libro pasarDeBookApiALibro(BookAPI book){
-
 		String desconocido = "Unknown";
-		//String desconocido = getResources().getString(R.string.unknown_field);
-
+		//String desconocido = getActivity().getResources().getString(R.string.unknown_field);
 		Libro lib = new Libro(book.getId());
+		try{
+			String isbn;
+			if(book.getVolumeInfo().getIndustryIdentifiers().size()>=2)
+				isbn=book.getVolumeInfo().getIndustryIdentifiers().get(1).getIdentifier();
+			else{
+				if(book.getVolumeInfo().getIndustryIdentifiers().size()>=1&&book.getVolumeInfo().getIndustryIdentifiers().get(0).getType()=="ISBN_10")
+					isbn=book.getVolumeInfo().getIndustryIdentifiers().get(0).getIdentifier();
+				else
+					isbn=desconocido;
+			}
 
+			lib.setIsbn(isbn);
+			
+			}
+			catch(Exception e){
+				lib.setIsbn(desconocido);
+			}
 
-		String isbn=book.getVolumeInfo().getIndustryIdentifiers().get(1).getIdentifier();
-		if (isbn==null){
-			if(book.getVolumeInfo().getIndustryIdentifiers().get(0).getType()=="ISBN_10")
-				isbn=book.getVolumeInfo().getIndustryIdentifiers().get(0).getIdentifier();
+			if(book.getVolumeInfo().getTitle()==null){
+				lib.setTitulo(desconocido);
+			}
 			else
-				isbn=desconocido;
-		}
+				lib.setTitulo(book.getVolumeInfo().getTitle());
 
-		//lib.setIsbn(isbn);
+			if(book.getVolumeInfo().getSubtitle()==null){
+				lib.setSubtitulo(desconocido);
+			}
+			else
+				lib.setSubtitulo(book.getVolumeInfo().getSubtitle());
 
-		
-		if(book.getVolumeInfo().getTitle()==null){
-			lib.setTitulo(desconocido);
-		}
-		else
-			lib.setTitulo(book.getVolumeInfo().getTitle());
 
-		
-		if(book.getVolumeInfo().getSubtitle()==null){
-			lib.setSubtitulo(desconocido);
-		}
-		else
-			lib.setSubtitulo(book.getVolumeInfo().getSubtitle());
-		
-		
-		if (book.getVolumeInfo().getAuthors()==null){
-			ArrayList<String> aut=new ArrayList<String>();
-			aut.add(desconocido);
-			lib.setAutores(aut);
+			if (book.getVolumeInfo().getAuthors()==null){
+		ArrayList<String> aut=new ArrayList<String>();
+		aut.add(desconocido);
+		lib.setAutores(aut);
 		}
 		else{
-			lib.setAutores(book.getVolumeInfo().getAuthors());
+		lib.setAutores(book.getVolumeInfo().getAuthors());
 		}
 
-		
 		if(book.getVolumeInfo().getPublisher()==null){
-			lib.setEditorial(desconocido);
+		lib.setEditorial(desconocido);
 		}
 		else
-			lib.setEditorial(book.getVolumeInfo().getPublisher());
-
-
+		lib.setEditorial(book.getVolumeInfo().getPublisher());
 		if(book.getVolumeInfo().getDescription()==null){
-			lib.setDescripcion(desconocido);
+		lib.setDescripcion(desconocido);
 		}
 		else
-			lib.setDescripcion(book.getVolumeInfo().getDescription());
-
-
+		lib.setDescripcion(book.getVolumeInfo().getDescription());
 		if(book.getVolumeInfo().getPublishedDate()==null){
-			lib.setFechaPublicacion(desconocido);
+		lib.setFechaPublicacion(desconocido);
 		}
 		else
-			lib.setFechaPublicacion(book.getVolumeInfo().getPublishedDate());
-
-
+		lib.setFechaPublicacion(book.getVolumeInfo().getPublishedDate());
 		/*if(book.getVolumeInfo().getPageCount()==0){
 		lib.setNumeroDePaginas(0);
-	}
-	else*/
+		}
+		else*/
 		lib.setNumeroDePaginas(book.getVolumeInfo().getPageCount());
-
-
 		if(book.getVolumeInfo().getMainCategory()==null){
-			lib.setCategoriaPrincipal(desconocido);
+		lib.setCategoriaPrincipal(desconocido);
 		}
 		else
-			lib.setCategoriaPrincipal(book.getVolumeInfo().getMainCategory());
-
-
+		lib.setCategoriaPrincipal(book.getVolumeInfo().getMainCategory());
 		if (book.getVolumeInfo().getCategories()==null){
-			ArrayList<String> categ=new ArrayList<String>();
-			categ.add(desconocido);
-			lib.setAutores(categ);
+		ArrayList<String> categ=new ArrayList<String>();
+		categ.add(desconocido);
+		lib.setAutores(categ);
 		}
 		else{
-			lib.setAutores(book.getVolumeInfo().getCategories());
+		lib.setAutores(book.getVolumeInfo().getCategories());
 		}
-
-
 		/*if(book.getVolumeInfo().getAverageRating()==0.0){
 		lib.setPuntuacionMedia((float) 0);
-	}
-	else*/
+		}
+		else*/
 		lib.setPuntuacionMedia(book.getVolumeInfo().getAverageRating());
-
-
 		if(book.getSaleInfo().getCountry()==null){
-			lib.setPais(desconocido);
+		lib.setPais(desconocido);
 		}
 		else
-			lib.setPais(book.getSaleInfo().getCountry());
-
-
+		lib.setPais(book.getSaleInfo().getCountry());
 		if(book.getVolumeInfo().getLanguage()==null){
-			lib.setIdioma(desconocido);
+		lib.setIdioma(desconocido);
 		}
 		else
-			lib.setIdioma(book.getVolumeInfo().getLanguage());
-
-
+		lib.setIdioma(book.getVolumeInfo().getLanguage());
 		lib.setImageLinks(book.getVolumeInfo().getImageLinks());
-
-
 		return lib;
-	}
+		}
 
 	public ArrayList<Libro> pasarListaDeBookApisALibro(List<BookAPI> books){
 		ArrayList<Libro> arrayLibros= new ArrayList<Libro>();
