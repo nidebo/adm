@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddNewListActivity extends Activity {
 	
@@ -38,10 +39,28 @@ public class AddNewListActivity extends Activity {
     public void onPressAdd(View view) {
 
 		EditText et = (EditText) findViewById(R.id.add_list);
+    	String nlista = et.getText().toString();
 		GestorListas gl = new GestorListas(uname, AddNewListActivity.this);
-		String nlista = et.getText().toString();
-    	gl.AddListaVacia(nlista);
+		if(nlista.equals("All") || nlista.equals("Favoritos")){
+			Toast toast = Toast.makeText(
+					this, 
+					getResources().getString(R.string.login_invalid), 
+					Toast.LENGTH_SHORT);
+			toast.show();
+			//t.setText("Invalid name");
+			return;
+		}
+		if(gl.AddListaVacia(nlista) == false){
+			//t.setText("List already exist");
+			Toast toast = Toast.makeText(
+					this, 
+					getResources().getString(R.string.login_invalid), 
+					Toast.LENGTH_SHORT);
+			toast.show();
+			return;
+		}
     	Intent intent = new Intent();
+    	gl.AddListaVacia(nlista);
         intent.setClass(context, TabsActivity.class);
         intent.putExtra("addlist", nlista);
         startActivity(intent);

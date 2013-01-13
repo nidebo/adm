@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TabBooksFragment extends ListFragment {
 
@@ -56,26 +57,29 @@ public class TabBooksFragment extends ListFragment {
         
         //restoreData()
 
-        //SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
-		//uname = mySharedPreferences.getString("username", "");
+        SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		uname = mySharedPreferences.getString("username", "");
 		//String addL = mySharedPreferences.getString("addlist", "");
         gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
-			for(int i=0; i<listas.size(); ++i)
-				list.add(listas.get(i));
-			
-			//if(addL.equals("true")){
-		        Bundle extras = getActivity().getIntent().getExtras();
-		        String nueva;
-		        if(extras != null){
-		        	nueva = extras.getString("addlist");
-		        	list.add(nueva);
-		        }
-			//}
-
+        	boolean repe = false;
+	        Bundle extras = getActivity().getIntent().getExtras();
+	        String nueva = "";
+	        if(extras != null){
+	        	nueva = extras.getString("addlist");	
+	        }
+			for(int i=0; i<listas.size(); ++i){
+				if(listas.get(i).equals(nueva))
+					repe = true;
+					list.add(listas.get(i));
+			}
+			if(!repe){
+				list.add(nueva);
+			}
+	
 	        setListAdapter(new ArrayAdapter<String>(getActivity(),
 	                android.R.layout.simple_list_item_1,
 	                list));
@@ -122,7 +126,19 @@ public class TabBooksFragment extends ListFragment {
 	        	intent.putExtra("lista", list.get(item.getItemId()));
 	        	startActivity(intent);
 		}else if(item.getTitle() == "Delete"){
-			gl.BorraLista(list.get(item.getItemId()));
+			if(list.get(item.getItemId()).equals("All") || list.get(item.getItemId()).equals("Favoritos")){
+				Toast toast = Toast.makeText(
+						getActivity(), 
+						getResources().getString(R.string.login_invalid), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}else{
+				gl.BorraLista(list.get(item.getItemId()));
+				list.remove(item.getItemId());
+				this.setListAdapter((new ArrayAdapter<String>(getActivity(),
+		                android.R.layout.simple_list_item_1,
+		                list)));				
+			}				
 		}else {
 			return false;
 		}
