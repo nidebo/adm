@@ -20,10 +20,8 @@ import android.widget.Toast;
 
 public class MyBD extends SQLiteOpenHelper {
 	
-	Context context;
 	public MyBD(Context context) {
 		super(context, "bdlibros.db", null, 1);
-		this.context=context;
 	}
 	
 	
@@ -44,10 +42,9 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	/*Inserta libro en la bilioteca */
 	
-	public boolean InsertarLibro(Libro book){
+	public void InsertarLibro(Libro book) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String id = book.getId();
-		if(id == null) return false;
 		String isbn = book.getIsbn();
 		if(isbn == null) isbn=" ";
 		String title = book.getTitulo();
@@ -76,28 +73,17 @@ public class MyBD extends SQLiteOpenHelper {
 		if(average == null) average = (float) 0.0;
 		String insert = "INSERT INTO todos (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES('"+
 						id+"','"+isbn +"','"+title+"','"+subtitle+"','"+authors+"','"+photo +"','"+publisher+"','"+description+"','"+language+"','"+Float.toString(average)+"');";
-		try{
-			bd.execSQL(insert);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-			return false;			
-		}
-		return true;
+		bd.execSQL(insert);
 	}
 	
 	/*Lista todos los libros de la biblioteca*/
 	
-	public ListaLibros ListaDeTodosLibros(){
+	public ListaLibros ListaDeTodosLibros()throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Libro libro= new Libro();
 		ListaLibros lista_libros = new ListaLibros("todos");
 		Cursor consulta = null;
-		try{
 			consulta = bd.rawQuery("SELECT * FROM todos", null);
-		}
-		catch(SQLiteException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
 		if(consulta.moveToFirst()){
 			do{
 				libro= new Libro(consulta.getString(0));
@@ -124,15 +110,12 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	/*Devuelve el libro que se busca pasando como parámetro de búsqueda el id*/
 	
-	public Libro DetalleLibroId(String id){
+	public Libro DetalleLibroId(String id)throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Libro libro= null;
 		Cursor consulta = null;
-		try{
-			consulta = bd.rawQuery("SELECT * FROM todos WHERE id= ? ", new String[]{id});
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		consulta = bd.rawQuery("SELECT * FROM todos WHERE id= ? ", new String[]{id});
+		
 		if(consulta.moveToFirst()){
 			libro= new Libro(consulta.getString(0));
 			libro.setIsbn(consulta.getString(1));
@@ -155,51 +138,40 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	/*borra todos los libros de la biblioteca*/
-	public void BorrarLibros(){
+	public void BorrarLibros()throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete = "DELETE FROM todos";
-		try{
+		
 			bd.execSQL(delete);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		
 	}
 	
 	/*borrar un libro concreto de la biblioteca*/
-	public void BorrarLibro(String id){
+	public void BorrarLibro(String id)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete = "DELETE FROM todos WHERE id = " + id;
-		try{
-			bd.execSQL(delete);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(delete);
+		
 	}
 	
 	/********   MANEJO AMIGO ******/
 	
 	/*Inserta un amigo*/
-	public void InsertarAmigo(Persona user){
+	public void InsertarAmigo(Persona user)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "INSERT INTO amigos (id, name, surname, cp) VALUES('"+
 						user.getId()+"','"+user.getNombre()+"','"+user.getCodigoPostal()+"');";
-		try{
-			bd.execSQL(insert);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(insert);
+		
 	}
 
 	/*Devuelve los detalles del amigo*/
-	public Usuario DetallesUsuarioId(int id){
+	public Usuario DetallesUsuarioId(int id)throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Usuario pers= (Usuario) new Persona(null);
 		Cursor consulta = null;
-		try{
-		 consulta = bd.rawQuery("SELECT * FROM amigos WHERE ID= ? ", new String[]{Integer.toString(id)});
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		consulta = bd.rawQuery("SELECT * FROM amigos WHERE ID= ? ", new String[]{Integer.toString(id)});
+		
 		if(consulta.moveToFirst()){
 				pers.setIdUsuario(consulta.getString(0));
 				pers.setNombre(consulta.getString(1));		
@@ -209,66 +181,50 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	/*Borra todos los amigos de la lista*/
-	public void BorrarAmigos(){
+	public void BorrarAmigos()throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete1 = "DELETE FROM amigos";
-		try{
-			bd.execSQL(delete1);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(delete1);
+		
 	}
 	
 	/*Borra un amigo en concreto*/
-	public void BorrarAmigo(String id){
+	public void BorrarAmigo(String id)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete1 = "DELETE FROM amigo WHERE id="+id;
-		try{
-			bd.execSQL(delete1);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(delete1);
+		
 	}
 	
 	
 	/*******    MANEJO LISTAS *********/
 	
 	/*Creacion de una nueva lista*/
-	public void CrearNuevaLista(String nombreLista){
+	public void CrearNuevaLista(String nombreLista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "CREATE TABLE " + nombreLista + " (id  VARCHAR(20))";
-		try{
-			bd.execSQL(insert);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(insert);
+		
 	}
 		
 	/*Insertamos un libro en la lista*/
-	public void InsertarLibroEnLista(String lista, Libro libro){
+	public void InsertarLibroEnLista(String lista, Libro libro) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "INSERT INTO " + lista + "(id) VALUES('"+libro.getId()+"');";
 		InsertarLibro(libro);
-		try{
-			bd.execSQL(insert);
-		}catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(insert);
+		
 	}
 	
 	/*Devuelve un objeto ListaLibros con todos los libros de la lista que se pasa como parametro*/
 	
-	public ListaLibros ListaDeLibros(String lista){
+	public ListaLibros ListaDeLibros(String lista) throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Libro libro= new Libro();
 		ListaLibros lista_libros = new ListaLibros(lista);
 		Cursor consulta = null;
-		try{
-			consulta = bd.rawQuery("SELECT * FROM "+lista, null);
-		}
-		catch(SQLiteException e1){
-			Toast.makeText(context, "No existe la lista", Toast.LENGTH_LONG).show();
-		}
+		consulta = bd.rawQuery("SELECT * FROM "+lista, null);
+		
 		if(consulta.moveToFirst()){
 			do{
 				libro= new Libro(consulta.getString(0));
@@ -296,28 +252,20 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	/*Elimina todos los libros de "lista"*/
 	
-	public void VaciarLista(String lista){
+	public void VaciarLista(String lista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete1 = "DELETE FROM " + lista;
-		try{
-			bd.execSQL(delete1);
-			}
-		catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(delete1);
+		
 	}
 	
 	/*Elimina una lista*/
 	
-	public void EliminarLista(String lista){
+	public void EliminarLista(String lista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete1 = "DROP TABLE "+ lista;
-		try{
-			bd.execSQL(delete1);
-			}
-		catch(SQLException e1){
-			Toast.makeText(context, e1.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		bd.execSQL(delete1);
+		
 	}
 	
 	/*
@@ -344,10 +292,9 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	/*Inserta libro en temporal */
 	
-	public boolean InsertarTemporal(Libro book){
+	public void InsertarTemporal(Libro book) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String id = book.getId();
-		if(id == null) return false;
 		String isbn = book.getIsbn();
 		if(isbn == null) isbn=" ";
 		String title = book.getTitulo();
@@ -376,27 +323,19 @@ public class MyBD extends SQLiteOpenHelper {
 		if(average == null) average = (float) 0.0;
 		String insert = "INSERT INTO temporal (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES('"+
 						id+"','"+isbn +"','"+title+"','"+subtitle+"','"+authors+"','"+photo +"','"+publisher+"','"+description+"','"+language+"','"+Float.toString(average)+"');";
-		try{
-			bd.execSQL(insert);
-		}catch(SQLException e1){
-			e1.printStackTrace();
-			return false;			
-		}
-		return true;
+		bd.execSQL(insert);
+		
 	}
 	
 	
 	/*Devuelve el libro temporal (Asumimos que siempre habrá un libro)*/
 	
-	public Libro DetalleTemporal(){
+	public Libro DetalleTemporal() throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Libro libro= null;
 		Cursor consulta = null;
-		try{
-			consulta = bd.rawQuery("SELECT * FROM temporal", null);
-		}catch(SQLException e1){
-			e1.printStackTrace();
-		}
+		consulta = bd.rawQuery("SELECT * FROM temporal", null);
+		
 		if(consulta.moveToFirst()){
 			libro= new Libro(consulta.getString(0));
 			libro.setIsbn(consulta.getString(1));
@@ -419,14 +358,11 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	/*borra el libro temporal*/
-	public void BorrarTemporal(){
+	public void BorrarTemporal() throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String delete = "DELETE FROM temporal";
-		try{
-			bd.execSQL(delete);
-		}catch(SQLException e1){
-			e1.printStackTrace();
-		}
+		bd.execSQL(delete);
+		
 	}
 	
 }

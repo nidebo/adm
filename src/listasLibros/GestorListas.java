@@ -18,15 +18,16 @@ public class GestorListas {
 	String usuarioActual;
 	ListaCompartibles shared;
 	boolean datosActualizados;
-	MyBD bd= new MyBD(); //SIN ARUGMENTO
+	MyBD bd; //SIN ARUGMENTO
 
 	public GestorListas(String nombreDeUsuario, Context context) { //Constructor
 		usuarioActual=nombreDeUsuario;
 		shared= new ListaCompartibles(nombreDeUsuario);
 		datosActualizados=ActualizarTodo();
+		bd = new MyBD(context);
 		//Actualizar de local, y COMPROBAR de servidor
 		//Si no estan en local, solo de servidor
-
+		
 		//Hay que meter un flag al actualizar todo de servidor, para tener encuenta si podemos
 		//trabajar o ir devolviendo errores al recibir solicitudes
 	}
