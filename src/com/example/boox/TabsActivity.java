@@ -2,10 +2,12 @@ package com.example.boox;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +19,7 @@ import android.view.MenuItem;
 
 
 
-public class TabsActivity extends FragmentActivity implements ActionBar.TabListener {
+public class TabsActivity extends FragmentActivity implements ActionBar.TabListener{
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -95,13 +97,17 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.submenu_settings:
     		startActivity(new Intent(this, SettingsActivity.class));
         	return true;
+    	case R.id.submenu_add_list:
+    		startActivity(new Intent(this, AddNewListActivity.class));
+    		return true;     
+            
     	case R.id.submenu_find_friend:
     		startActivity(new Intent(this, SearchFriendActivity.class));
     		return true;
     	case R.id.submenu_about:
     		startActivity(new Intent(this, AboutActivity.class));
         	return true;
-    	//
+        	
     	case R.id.submenu_logout:
 			SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
 					mode);
@@ -111,6 +117,7 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
 			myEditor.commit();
 	        Intent intent = new Intent(this, LoginActivity.class);
 	       	startActivity(intent);
+    	
     	}
     	return false;
 	}

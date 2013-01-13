@@ -1,6 +1,10 @@
 package com.example.boox;
 
+import listasLibros.GestorListas;
+import listasLibros.Libro;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
@@ -8,13 +12,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class BookActivity extends FragmentActivity {
-
+	/*
+    final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname = "";
+	String id;
+	Libro lib = new Libro();
+	*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.detalles_libro);	
 		//Activate the up button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		
+        //SharedPreferences mySharedPreferences = this.getParent().getSharedPreferences(myPrefs, mode);
+		//uname = mySharedPreferences.getString("username", "");
+        //GestorListas gl = new GestorListas(uname); 
+        //Bundle extras = this.getIntent().getExtras();
+        //id = extras.getString("id");
+        //lib = gl.getLibroPorId(id);
 		
 		if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.

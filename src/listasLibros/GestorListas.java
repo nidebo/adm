@@ -65,7 +65,7 @@ public class GestorListas {
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
-			if (lis.getNombreLista()==nombreLista)
+			if (lis.getNombreLista().equals(nombreLista))
 				i=lista.size();
 		}
 		//Queda comprobar, si es posible, si ha sido bien agregada o no
@@ -81,7 +81,7 @@ public class GestorListas {
 		if (!lista.isEmpty())
 			for (int i=0; i<lista.size(); i++) { 
 				aux = lista.get(i); 
-				 	if (aux.getNombreLista()==nombreLista)
+				 	if (aux.getNombreLista().equals(nombreLista))
 				 		ex = true;
 				}
 		return ex;
@@ -93,7 +93,7 @@ public class GestorListas {
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
-			if (lis.getNombreLista()==nombreLista)
+			if (lis.getNombreLista().equals(nombreLista))
 				i=lista.size();
 		}
 		return lis.getListaLibros();
@@ -104,7 +104,7 @@ public class GestorListas {
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
-			if (lis.getNombreLista()==nombreLista)
+			if (lis.getNombreLista().equals(nombreLista))
 				i=lista.size();
 		}
 
@@ -119,7 +119,7 @@ public class GestorListas {
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
-			if (lis.getNombreLista()==nombreLista)
+			if (lis.getNombreLista().equals(nombreLista))
 				i=lista.size();
 		}
 		

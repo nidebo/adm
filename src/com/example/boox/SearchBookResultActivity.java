@@ -1,6 +1,8 @@
 package com.example.boox;
 
 import java.util.ArrayList;
+
+import listasLibros.GestorListas;
 import listasLibros.Libro;
 
 import com.example.boox.R;
@@ -10,17 +12,19 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 import apiGoogle.InterfazAPI;
 
 public class SearchBookResultActivity extends ListActivity {
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname;
+
 	ArrayList<Libro> libros = new ArrayList<Libro>();
 	Libro libro = new Libro();
 	int modo;
@@ -29,7 +33,12 @@ public class SearchBookResultActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
+				
+		uname = mySharedPreferences.getString("username", "");
+		GestorListas gl = new GestorListas(uname);
+		
 		Bundle extras = getIntent().getExtras();
 		modo = extras.getInt("modo");
 		cont = extras.getString("contenido");

@@ -2,12 +2,20 @@ package com.example.boox;
 
 import java.util.ArrayList;
 
+import listasLibros.GestorListas;
+import listasLibros.Libro;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,29 +23,36 @@ public class BookListFragment extends ListFragment {
 
     boolean mDualPane;
     int mCurCheckPosition = 0; 
+    
 
-	String books[] = new String[]{
-			"Juego de Tronos", 
-			"Choque de Reyes",
-			"Tormenta de Espadas",
-			"Fest’n de Cuervos",
-			"Danza de Dragones",
-			"Dr‡cula",
-			"El Conde de Montecristo",
-			"Los Tres Mosqueteros",
-			"El Hobbit",
-			"El Se–or de los Anillos"};
-
+    
+    final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname = "";
+	ArrayList<Libro> books = new ArrayList<Libro>();;
+	String lista;
 	public ArrayList<String> booklist = new ArrayList<String>();
 	
 	
 	@Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
-
+               
+        SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		uname = mySharedPreferences.getString("username", "");
+        GestorListas gl = new GestorListas(uname); 
+        Bundle extras = this.getActivity().getIntent().getExtras();
+        lista = extras.getString("lista");
+        int f = extras.getInt("all");
+        if(f == 1)
+        	books = gl.getListaAll();
+        else
+        	books = gl.GetListaDeLibros(lista);
+		
         // Populate list with our static array of titles.
-		for(int i=0; i<books.length; ++i)
-			booklist.add(books[i]);	
+		for(int i=0; i<books.size(); ++i)
+			booklist.add(books.get(i).getTitulo());	
+		
         setListAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1,
                 booklist));
@@ -120,7 +135,8 @@ public class BookListFragment extends ListFragment {
             // the dialog fragment with selected text.
             Intent intent = new Intent();
             intent.setClass(getActivity(), BookActivity.class);
-            intent.putExtra("index", index);
+            intent.putExtra("id", books.get(index).getId());
+
             startActivity(intent);
         }
     }
@@ -131,10 +147,6 @@ public class BookListFragment extends ListFragment {
 		//getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
 	//}
 	
-	public void addItem(String s){
-		booklist.add(s);
-	}
-
 	/*
 	@Override
     public void onCreate(Bundle savedInstanceState) {

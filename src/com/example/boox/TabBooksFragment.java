@@ -2,6 +2,9 @@ package com.example.boox;
 
 import java.util.ArrayList;
 
+import listasLibros.GestorListas;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,18 +24,12 @@ public class TabBooksFragment extends ListFragment {
 
     boolean mDualPane;
     int mCurCheckPosition = 0;
-
+	
+    final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname = "";
 	String strings[] = new String[]{
-			"All", 
-			"Wishlist",
-			"Givelist",
-			"Custom list 1",
-			"Custom list 2",
-			"Custom list 3",
-			"Custom list 4",
-			"Custom list 5",
-			"Custom list 6",
-			"Custom list 7"};
+			"All"};
 
 	public ArrayList<String> list = new ArrayList<String>();
 
@@ -50,10 +47,15 @@ public class TabBooksFragment extends ListFragment {
         
         //restoreData()
 
+        SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		uname = mySharedPreferences.getString("username", "");
+        GestorListas gl = new GestorListas(uname);     
+        ArrayList<String> listas= gl.getNombresListas();
+        listas.add(0, "All");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
-			for(int i=0; i<strings.length; ++i)
-				list.add(strings[i]);	
+			for(int i=0; i<listas.size(); ++i)
+				list.add(listas.get(i));	
 	        setListAdapter(new ArrayAdapter<String>(getActivity(),
 	                android.R.layout.simple_list_item_1,
 	                list));
@@ -95,7 +97,10 @@ public class TabBooksFragment extends ListFragment {
     	
     	Intent intent = new Intent();
         intent.setClass(getActivity(), BookListActivity.class);
-        intent.putExtra("index", pos);
+        if(pos == 0)
+        	intent.putExtra("all", 1);
+        else
+        intent.putExtra("lista", list.get(pos));
         startActivity(intent);
     	
         //showDetails(pos);
