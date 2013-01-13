@@ -3,6 +3,7 @@ package com.example.boox;
 import listasLibros.GestorListas;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,6 +41,10 @@ public class AddNewListActivity extends Activity {
 		GestorListas gl = new GestorListas(uname, AddNewListActivity.this);
 		String nlista = et.getText().toString();
     	gl.AddListaVacia(nlista);
+    	Intent intent = new Intent();
+        intent.setClass(context, TabsActivity.class);
+        intent.putExtra("addlist", nlista);
+        startActivity(intent);
     	//this.finish();
     }
  

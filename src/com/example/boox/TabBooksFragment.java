@@ -56,15 +56,26 @@ public class TabBooksFragment extends ListFragment {
         
         //restoreData()
 
-        SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
-		uname = mySharedPreferences.getString("username", "");
+        //SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		//uname = mySharedPreferences.getString("username", "");
+		//String addL = mySharedPreferences.getString("addlist", "");
         gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
 			for(int i=0; i<listas.size(); ++i)
-				list.add(listas.get(i));	
+				list.add(listas.get(i));
+			
+			//if(addL.equals("true")){
+		        Bundle extras = getActivity().getIntent().getExtras();
+		        String nueva;
+		        if(extras != null){
+		        	nueva = extras.getString("addlist");
+		        	list.add(nueva);
+		        }
+			//}
+
 	        setListAdapter(new ArrayAdapter<String>(getActivity(),
 	                android.R.layout.simple_list_item_1,
 	                list));

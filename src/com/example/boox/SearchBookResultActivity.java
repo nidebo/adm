@@ -92,10 +92,12 @@ public class SearchBookResultActivity extends ListActivity {
 			Intent i = new Intent();
 			i.setClass(context, BookActivity.class);
 			if(modo == 2){
+				mbd.BorrarTemporal();
 				mbd.InsertarTemporal(libro);
 				i.putExtra("id", libro.getId());
 			}
 			else{
+				mbd.BorrarTemporal();
 				mbd.InsertarTemporal(libros.get(position));
 				i.putExtra("id", libros.get(position).getId());
 			}
