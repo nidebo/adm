@@ -60,7 +60,7 @@ public class BookFragment extends Fragment {
         id = extras.getString("id");
         //GestorListas gl = new GestorListas(uname, BookActivity.this); 
         //lib = gl.getLibroPorId(id);
-		MyBD mbd = new MyBD(getActivity());
+		MyBD mbd = new MyBD(getActivity(),uname);
         book = mbd.DetalleLibroId(id);
 
         // Set title
