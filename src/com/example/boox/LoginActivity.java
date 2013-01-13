@@ -112,12 +112,6 @@ public class LoginActivity extends Activity {
        	startActivity(intent);
     }
     
-    public void onPressMario(View view) {
-
-        Intent intent = new Intent(this, SearchBookActivity.class);
-        startActivity(intent);
-    }
-    
     
 	public void onPressLogin(View view) {
 		

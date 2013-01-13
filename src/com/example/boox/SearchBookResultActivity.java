@@ -37,7 +37,7 @@ public class SearchBookResultActivity extends ListActivity {
 		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
 				
 		uname = mySharedPreferences.getString("username", "");
-		GestorListas gl = new GestorListas(uname);
+		GestorListas gl = new GestorListas(uname, SearchBookResultActivity.this);
 		
 		Bundle extras = getIntent().getExtras();
 		modo = extras.getInt("modo");

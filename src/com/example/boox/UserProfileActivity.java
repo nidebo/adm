@@ -27,24 +27,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import usuarios.AmigoList;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class UserProfileActivity extends Activity {
 
@@ -78,10 +76,8 @@ public class UserProfileActivity extends Activity {
     		try {
 				esAmigo = fs.execute(null, null, null).get();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
@@ -178,7 +174,6 @@ public class UserProfileActivity extends Activity {
     	
 		@Override
 		protected Integer doInBackground(Void... params) {
-			// TODO Auto-generated method stub
 
 				HttpParams httpParameters = new BasicHttpParams();
 
@@ -216,19 +211,15 @@ public class UserProfileActivity extends Activity {
 	            		cool = false;
 	            		e.printStackTrace();
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (ClientProtocolException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					}
@@ -271,7 +262,6 @@ public class UserProfileActivity extends Activity {
     	
 		@Override
 		protected Integer doInBackground(Void... params) {
-			// TODO Auto-generated method stub
 
 				HttpParams httpParameters = new BasicHttpParams();
 
@@ -309,19 +299,15 @@ public class UserProfileActivity extends Activity {
 	            		cool = false;
 	            		e.printStackTrace();
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (ClientProtocolException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						cool = false;
 						e.printStackTrace();
 					}
@@ -367,7 +353,6 @@ public class UserProfileActivity extends Activity {
 		
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO Auto-generated method stub
 			URL url;
 
 			try {
@@ -411,15 +396,12 @@ public class UserProfileActivity extends Activity {
 				    
 
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			     

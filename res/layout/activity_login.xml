@@ -5,31 +5,15 @@
     android:background="@android:color/background_dark"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="onPressEliu"
-        android:text="Eliu" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="onPressMario"
-        android:text="Mario" />
-
     <ImageView
         android:id="@+id/imageView1"
+        android:contentDescription="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
+        android:onClick="onPressEliu"
         android:src="@drawable/ic_launcher" />
         
     <EditText

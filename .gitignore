@@ -1,2 +1,12 @@
 
 bin/ADM_Project.apk
+
+*.class
+
+*.lock
+
+bin/resources.ap_
+
+*.dex
+
+bin/AndroidManifest.xml

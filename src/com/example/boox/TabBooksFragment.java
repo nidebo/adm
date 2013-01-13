@@ -49,7 +49,7 @@ public class TabBooksFragment extends ListFragment {
 
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
-        GestorListas gl = new GestorListas(uname);     
+        GestorListas gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
         // Populate list with our static array of titles.

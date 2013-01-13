@@ -27,13 +27,10 @@
 
     <!-- BookList -->
     <string name="title_activity_book_list">Book List</string>
-    <string name="menu_settings_book_list">Settings</string>
-    <string name="bar_search_book_list">Search bar</string>
 
     <!-- Book -->
     <string name="title_activity_book_fragment">Book</string>
     <string name="title_activity_book_activity">Book</string>
-    <string name="menu_settings_detalles_libro">Settings</string>
     <string name="subitem1_detalles_libro">Add to list</string>
     <string name="submenu_share">Share</string>
     <string name="bar_search_detalles_libro">Search bar</string>
@@ -102,12 +99,13 @@
 
     <!-- About -->
     <string name="title_activity_about">About</string>
-    <string name="about_authors_title">Authors:</string>
+    <string name="about_authors_title">Creators:</string>
     <string name="about_author1">Beatriz Cortés</string>
     <string name="about_author2">Eliú Crespo</string>
     <string name="about_author3">Nicolás De Boni</string>
     <string name="about_author4">Juan Muñoz</string>
     <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Special thanks:</string>
 
     <!-- User Profile -->
     <string name="title_activity_user_profile">User Profile</string>
@@ -117,10 +115,12 @@
     <string name="unknown_field">Unknown</string>
 
     <!-- Splash -->
-    <string name="title_activity_splash_screen">Boox</string>
+    <string name="title_activity_splash_screen">BooX</string>
     <string name="splash_screen_subtitle">Cross your books</string>
     <string name="splash_screen_loading">Loading…</string>
-    <string name="title_activity_search_friend">Find Friends</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">Find friends</string>
     <string name="add_list_hint">List name here</string>
-    <string name="title_activity_AddNewList"> Add New list</string>
+    <string name="title_activity_add_new_list"> Add New list</string>
 </resources>

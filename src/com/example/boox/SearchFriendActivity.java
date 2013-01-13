@@ -166,7 +166,6 @@ public class SearchFriendActivity extends Activity {
 			        startActivity(intent);
 		        	
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

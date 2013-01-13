@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import listasLibros.GestorListas;
 import listasLibros.Libro;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -40,7 +36,7 @@ public class BookListFragment extends ListFragment {
                
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
-        GestorListas gl = new GestorListas(uname); 
+        GestorListas gl = new GestorListas(uname, this.getActivity()); 
         Bundle extras = this.getActivity().getIntent().getExtras();
         lista = extras.getString("lista");
         int f = extras.getInt("all");

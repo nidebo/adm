@@ -34,7 +34,6 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//no comprueba si usuario ya existe, DE MOMENTO
 public class SignUpActivity extends Activity {
 	
 	Context context = this;
@@ -143,19 +142,15 @@ public class SignUpActivity extends Activity {
 	            		flag = 2;
 	            		e.printStackTrace();
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						flag = 2;
 						e.printStackTrace();
 					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
 						flag = 2;
 						e.printStackTrace();
 					} catch (ClientProtocolException e) {
-						// TODO Auto-generated catch block
 						flag = 2;
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						flag = 2;
 						e.printStackTrace();
 					}

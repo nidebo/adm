@@ -91,7 +91,7 @@
         </activity>
         <activity
             android:name="com.example.boox.AddNewListActivity"
-            android:label="@string/title_activity_AddNewList" >
+            android:label="@string/title_activity_add_new_list" >
         </activity>
     </application>
 

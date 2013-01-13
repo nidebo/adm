@@ -1,10 +1,6 @@
 package com.example.boox;
 
-import listasLibros.GestorListas;
-import listasLibros.Libro;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;

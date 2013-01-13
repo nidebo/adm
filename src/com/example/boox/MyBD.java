@@ -1,22 +1,17 @@
 package com.example.boox;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.List;
 
+import librosGoogle.VolumeInfo;
+import listasLibros.Libro;
+import listasLibros.ListaLibros;
 import usuarios.Persona;
 import usuarios.Usuario;
-import librosGoogle.VolumeInfo;
-import librosGoogle.VolumeInfo.ImageLinks;
-import listasLibros.*;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 public class MyBD extends SQLiteOpenHelper {
 	
