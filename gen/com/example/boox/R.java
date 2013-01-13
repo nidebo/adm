@@ -150,9 +150,11 @@ public final class R {
         public static final int about_authors_title=0x7f040046;
         public static final int about_thanks_title=0x7f04004c;
         /**  Add List 
+ Add List 
          */
         public static final int addlist_add_list_hint=0x7f040051;
         /**  Main 
+ Main 
          */
         public static final int app_name=0x7f040003;
         public static final int bar_search=0x7f040015;
@@ -171,6 +173,7 @@ public final class R {
         public static final int friends_delete_text=0x7f040020;
         public static final int friends_find_text=0x7f040025;
         /**  Friends 
+ Friends 
          */
         public static final int friends_internet_error=0x7f04001e;
         public static final int friends_not_found=0x7f040023;
@@ -183,6 +186,7 @@ public final class R {
         public static final int login_password_hint=0x7f04002c;
         public static final int login_pleasewait=0x7f040030;
         /**  Login 
+ Login 
          */
         public static final int login_username_hint=0x7f04002b;
         public static final int menu_settings=0x7f04000c;
@@ -219,42 +223,54 @@ public final class R {
         public static final int tab2=0x7f04000a;
         public static final int tab3=0x7f04000b;
         /**  About 
+ About 
          */
         public static final int title_activity_about=0x7f040045;
         public static final int title_activity_add_new_list=0x7f040050;
         public static final int title_activity_book_activity=0x7f04001b;
         /**  Book 
+ Book 
          */
         public static final int title_activity_book_fragment=0x7f04001a;
         /**  BookList 
+ BookList 
          */
         public static final int title_activity_book_list=0x7f040016;
         /**  Search Book 
+ Search Book 
          */
         public static final int title_activity_book_search=0x7f040026;
         public static final int title_activity_book_search_result=0x7f04002a;
         /**  Crossing 
+ Crossing 
          */
         public static final int title_activity_crossing=0x7f04001d;
         /**  CrossingList 
+ CrossingList 
          */
         public static final int title_activity_crossing_list=0x7f04001c;
         /**  Search Friend 
+ Search Friend 
          */
         public static final int title_activity_search_friend=0x7f04004f;
         /**  Settings 
+ Settings 
          */
         public static final int title_activity_settings=0x7f040040;
         /**  Signup 
+ Signup 
          */
         public static final int title_activity_sign_up=0x7f040033;
         /**  Splash 
+ Splash 
          */
         public static final int title_activity_splash_screen=0x7f040005;
         /**  Tabs 
+ Tabs 
          */
         public static final int title_activity_tabs=0x7f040008;
         /**  User Profile 
+ User Profile 
          */
         public static final int title_activity_user_profile=0x7f04004d;
         public static final int userprofile_viewuserbooks=0x7f04004e;

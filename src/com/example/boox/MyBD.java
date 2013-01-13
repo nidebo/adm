@@ -30,7 +30,7 @@ public class MyBD extends SQLiteOpenHelper {
 	arg0.execSQL("CREATE TABLE todos (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
 	arg0.execSQL("CREATE TABLE amigos (id  VARCHAR(20), name VARCHAR(20),  cp INTEGER )");
 	arg0.execSQL("CREATE TABLE temporal (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
-	arg0.execSQL("CREATE TABLE publicos (id  VARCHAR(20))");
+
 	}
 		
 	@Override
@@ -203,8 +203,17 @@ public class MyBD extends SQLiteOpenHelper {
 	/*Creacion de una nueva lista*/
 	public void CrearNuevaLista(String nombreLista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
+		Boolean existe=false;
 		String insert = "CREATE TABLE " + nombreLista + " (id  VARCHAR(20))";
-		bd.execSQL(insert);
+		ArrayList<ListaLibros> liston = ListadoListas();
+		for(int i =0;i<liston.size();i++){
+			String lista = liston.get(i).getNombreLista();
+			if(lista.equals(nombreLista) || lista.equals("android_metadata") || lista.equals("amigos") || lista.equals("temporal") || lista.equals("publicos")){
+				existe = true;
+				break;
+			}
+		}
+		if(!existe)	bd.execSQL(insert);
 		
 	}
 		
@@ -278,7 +287,7 @@ public class MyBD extends SQLiteOpenHelper {
 		if(consulta.moveToFirst()){
 			do{
 				String lista = consulta.getString(0);
-				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal")){
+				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos")){
 					ListaLibros lista_libros = new ListaLibros(lista);
 					lista_libros = ListaDeLibros(lista);
 					if(lista.equals("todos")) lista_libros.setNombreLista("All");

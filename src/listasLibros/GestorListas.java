@@ -17,7 +17,7 @@ public class GestorListas {
 	ListaServer servidor=new ListaServer();
 	String usuarioActual;
 	ListaCompartibles shared;
-	boolean datosActualizados;
+	boolean datosActualizados = true;
 	MyBD bd; //SIN ARUGMENTO
 
 	public GestorListas(String nombreDeUsuario, Context context) { //Constructor
