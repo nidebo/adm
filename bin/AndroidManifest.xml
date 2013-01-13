@@ -89,6 +89,10 @@
             android:name="com.example.boox.AddNewListActivity"
             android:label="@string/title_activity_add_new_list" >
         </activity>
+        <activity
+            android:name="com.example.boox.FriendsBooksActivity"
+            android:label="@string/title_activity_friend_books_activity" >
+        </activity>
     </application>
 
 </manifest>

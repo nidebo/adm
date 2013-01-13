@@ -62,7 +62,9 @@
     <string name="searchbook_scanbutton">Escanear</string>
     <string name="searchbook_searchbox_hint">_______</string>
     <string name="title_activity_book_search_result">Resultados de búsqueda</string>
-
+    <string name="not_found">No encontrado</string>
+    
+    
     <!-- Login -->
     <string name="login_username_hint">usuario</string>
     <string name="login_password_hint">contraseña</string>
@@ -115,6 +117,8 @@
     
     <!-- Add List -->
     <string name="addlist_add_list_hint">Nombre de la lista</string>
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Libros de amigos</string>
     
     
 </resources>
