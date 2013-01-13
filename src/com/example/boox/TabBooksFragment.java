@@ -12,9 +12,15 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,9 +30,12 @@ public class TabBooksFragment extends ListFragment {
 
     boolean mDualPane;
     int mCurCheckPosition = 0;
-	
+
+    AdapterView.AdapterContextMenuInfo info;
+
     final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
+	GestorListas gl;
 	String uname = "";
 	String strings[] = new String[]{
 			"All"};
@@ -49,7 +58,7 @@ public class TabBooksFragment extends ListFragment {
 
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
-        GestorListas gl = new GestorListas(uname, this.getActivity());     
+        gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
         // Populate list with our static array of titles.
@@ -60,7 +69,7 @@ public class TabBooksFragment extends ListFragment {
 	                android.R.layout.simple_list_item_1,
 	                list));
         }
-
+        registerForContextMenu(getListView());
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
         /*View detallesLibro = getActivity().findViewById(R.id.details);
@@ -81,9 +90,35 @@ public class TabBooksFragment extends ListFragment {
         }*/
     }
 	
-	public void addItem(String s){
-		list.add(s);
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+		info = (AdapterContextMenuInfo) menuInfo;
+		menu.setHeaderTitle("Crossing options"); //(crossingList.get(info.position).getTitle2());
+		menu.add(Menu.NONE, info.position, 0, "View");
+		menu.add(Menu.NONE, info.position, 0, "Delete");
 	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		if(item.getTitle() == "View"){
+			Intent intent = new Intent();
+			intent.setClass(getActivity(), BookListActivity.class);
+	        if(item.getItemId() == 0)
+	        	intent.putExtra("all", 1);
+	        else
+	        	intent.putExtra("lista", list.get(item.getItemId()));
+	        	startActivity(intent);
+		}else if(item.getTitle() == "Delete"){
+			gl.BorraLista(list.get(item.getItemId()));
+		}else {
+			return false;
+		}
+		return true;
+	}
+
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
