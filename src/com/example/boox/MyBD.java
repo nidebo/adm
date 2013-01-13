@@ -20,8 +20,8 @@ import android.widget.Toast;
 
 public class MyBD extends SQLiteOpenHelper {
 	
-	public MyBD(Context context) {
-		super(context, "bdlibros.db", null, 1);
+	public MyBD(Context context,String nombre) {
+		super(context, nombre+".db", null, 1);
 	}
 	
 	
