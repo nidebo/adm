@@ -41,6 +41,6 @@ public class AddNewListActivity extends Activity {
 		String nlista = et.getText().toString();
     	gl.AddListaVacia(nlista);
     	//this.finish();
-     }
+    }
  
-   }
+}

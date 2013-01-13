@@ -10,3 +10,7 @@ bin/resources.ap_
 *.dex
 
 bin/AndroidManifest.xml
+
+*.class
+
+*.class

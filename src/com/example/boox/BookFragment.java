@@ -4,6 +4,10 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
+import listasLibros.Libro;
+
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,8 +18,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class BookFragment extends Fragment {
+	
+    final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname = "";
+	String id;
+	Libro book = new Libro();
 	
 	View bookdetails_view;
 	ImageView thumbnail;
@@ -39,12 +50,35 @@ public class BookFragment extends Fragment {
         return getArguments().getInt("index", 0);
     }
     
-    /*@Override
+    @Override
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
+		
+        SharedPreferences mySharedPreferences = this.getActivity().getParent().getSharedPreferences(myPrefs, mode);
+		uname = mySharedPreferences.getString("username", "");
+        Bundle extras = this.getActivity().getIntent().getExtras();
+        id = extras.getString("id");
+        //GestorListas gl = new GestorListas(uname, BookActivity.this); 
+        //lib = gl.getLibroPorId(id);
+		MyBD mbd = new MyBD(getActivity());
+        book = mbd.DetalleLibroId(id);
 
-        View view = getActivity().findViewById(R.id.details);
-    }*/
+        // Set title
+        TextView title = (TextView) getActivity().findViewById(R.id.title);
+        title.setText(book.getTitulo());
+        // Set subtitle
+        TextView subtitle = (TextView) getActivity().findViewById(R.id.subtitle);
+        subtitle.setText(book.getSubtitulo());
+        // Set author(s)
+        String authors = book.getAutores().get(0);
+        if(book.getAutores().size() > 1)
+        	for(int i=1; i<book.getAutores().size(); ++i)
+        		authors = authors + ", " + book.getAutores().get(i);
+        TextView author = (TextView) getActivity().findViewById(R.id.author);
+        author.setText(authors);
+        // Set publisher
+        // ...
+    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

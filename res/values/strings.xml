@@ -9,6 +9,11 @@
     <!-- Main -->
     <string name="app_name">BooX</string>
     <string name="hello_world">Hello world!</string>
+
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Loading…</string>
  
     <!-- Tabs -->
     <string name="title_activity_tabs">BooX</string>
@@ -23,47 +28,46 @@
     <string name="submenu_find_friend">Find Friends</string>
     <string name="submenu_about">About</string>
     <string name="submenu_logout">Logout</string>
+    <string name="submenu_share">Share</string>
     <string name="bar_search">Search bar</string>
 
     <!-- BookList -->
     <string name="title_activity_book_list">Book List</string>
+    <string name="booklist_add_book">Add book to this list</string>
+    <string name="booklist_remove_book">Remove from this list</string>
+    <string name="booklist_delete_list">Delete list</string>
 
     <!-- Book -->
     <string name="title_activity_book_fragment">Book</string>
     <string name="title_activity_book_activity">Book</string>
-    <string name="subitem1_detalles_libro">Add to list</string>
-    <string name="submenu_share">Share</string>
-    <string name="bar_search_detalles_libro">Search bar</string>
 
     <!-- CrossingList -->
     <string name="title_activity_crossing_list">Crossing List</string>
 
     <!-- Crossing -->
     <string name="title_activity_crossing">Crossing</string>
-    <string name="title_activity_buscar_libros">Book Search</string>
-    <string name="title_activity_resultado_busqueda_libros">SearchResult</string>
 
     <!-- Friends -->
     <string name="friends_internet_error">Problem with connection. Please check your connectivity and try again.</string>
-	<string name="friends_delete">Friend successfully deleted.</string>
-	<string name="friends_add">Friend successfully added.</string>
+	<string name="friends_add_text">Add to friendlist</string>
+	<string name="friends_delete_text">Remove from friendlist</string>
+  	<string name="friends_add">Friend successfully added</string>
+	<string name="friends_delete">Friend successfully deleted</string>
 	<string name="friends_not_found">Username not found. Please input a valid username and try again.</string>
 	<string name="friends_auto_find">That will be you!</string>
+	<string name="friends_find_text">Find your friends in BooX</string>
     
-    <!-- User -->
-    <string name="title_activity_user">User</string>
-
     <!-- Search Book -->
+    <string name="title_activity_book_search">Book Search</string>
     <string name="searchbook_searchby">Search by:</string>
-
     <string-array name="searchbook_searchby_options">
         <item>Title</item>
         <item>Author</item>
         <item>ISBN</item>
     </string-array>
-
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">Search here</string>
+    <string name="title_activity_book_search_result">Search Results</string>
 
     <!-- Login -->
     <string name="login_username_hint">username</string>
@@ -110,17 +114,13 @@
     <!-- User Profile -->
     <string name="title_activity_user_profile">User Profile</string>
     <string name="userprofile_viewuserbooks">View user books</string>
-
-    <!-- Class Libro -->
-    <string name="unknown_field">Unknown</string>
-
-    <!-- Splash -->
-    <string name="title_activity_splash_screen">BooX</string>
-    <string name="splash_screen_subtitle">Cross your books</string>
-    <string name="splash_screen_loading">Loading…</string>
     
     <!-- Search Friend -->
     <string name="title_activity_search_friend">Find friends</string>
-    <string name="add_list_hint">List name here</string>
-    <string name="title_activity_add_new_list"> Add New list</string>
+    <string name="title_activity_add_new_list">Add New list</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">List name here</string>
+    
+    
 </resources>

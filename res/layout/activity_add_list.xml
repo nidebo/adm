@@ -13,7 +13,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="@string/add_list_hint"
+        android:hint="@string/addlist_add_list_hint"
         android:textColor="@android:color/primary_text_light" >
         <requestFocus />
     </EditText>

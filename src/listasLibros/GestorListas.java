@@ -23,8 +23,8 @@ public class GestorListas {
 	public GestorListas(String nombreDeUsuario, Context context) { //Constructor
 		usuarioActual=nombreDeUsuario;
 		shared= new ListaCompartibles(nombreDeUsuario);
-		datosActualizados=ActualizarTodo();
 		bd = new MyBD(context);
+		datosActualizados=ActualizarTodo();
 		//Actualizar de local, y COMPROBAR de servidor
 		//Si no estan en local, solo de servidor
 		

@@ -40,11 +40,11 @@
         </activity>
         <activity
             android:name="com.example.boox.SearchBookActivity"
-            android:label="@string/title_activity_buscar_libros" >
+            android:label="@string/title_activity_book_search" >
         </activity>
         <activity
             android:name="com.example.boox.SearchBookResultActivity"
-            android:label="@string/title_activity_resultado_busqueda_libros" >
+            android:label="@string/title_activity_book_search_result" >
         </activity>
         <activity
             android:name="com.example.boox.TabsActivity"
@@ -64,10 +64,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.boox.CrossingListActivity" />
-        </activity>
-        <activity
-            android:name="com.example.boox.UserActivity"
-            android:label="@string/title_activity_user" >
         </activity>
         <activity
             android:name="com.example.boox.SettingsActivity"
