@@ -148,6 +148,14 @@ public class UserProfileActivity extends Activity {
     	return false;
 	}
     
+    public void onPressViewBooksFriend(View view){
+
+    	Intent i = new Intent();
+		i.setClass(this, FriendsBooksActivity.class);
+		i.putExtra("friend", fname);
+		startActivity(i);
+    }
+    
     
 //    public void onPressDeleteFriend(View view) {
 //    	

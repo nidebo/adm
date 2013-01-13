@@ -68,6 +68,7 @@
     <string name="searchbook_scanbutton">Scan barcode</string>
     <string name="searchbook_searchbox_hint">Search here</string>
     <string name="title_activity_book_search_result">Search Results</string>
+    <string name="not_found">Not found</string>
 
     <!-- Login -->
     <string name="login_username_hint">username</string>
@@ -122,5 +123,7 @@
     <!-- Add List -->
     <string name="addlist_add_list_hint">List name here</string>
     
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Friends Books</string>
     
 </resources>
