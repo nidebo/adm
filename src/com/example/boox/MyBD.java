@@ -29,9 +29,9 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
-/*	arg0.execSQL("CREATE TABLE todos (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
+	arg0.execSQL("CREATE TABLE todos (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
 	arg0.execSQL("CREATE TABLE amigos (id  VARCHAR(20), name VARCHAR(20),  cp INTEGER )");
-	*/
+	arg0.execSQL("CREATE TABLE temporal (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
 	}
 		
 	@Override
