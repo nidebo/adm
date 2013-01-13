@@ -88,12 +88,18 @@ public class SearchBookResultActivity extends ListActivity {
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
 		if(!list.getItemAtPosition(0).equals(getResources().getString(R.string.not_found))){
+			MyBD mbd = new MyBD(this,uname);
 			Intent i = new Intent();
 			i.setClass(context, BookActivity.class);
-			if(modo == 2)
+			if(modo == 2){
+				mbd.InsertarTemporal(libro);
 				i.putExtra("id", libro.getId());
-			else
+			}
+			else{
+				mbd.InsertarTemporal(libros.get(position));
 				i.putExtra("id", libros.get(position).getId());
+			}
+			i.putExtra("temp", 1);
 			startActivity(i);
 		}
 	}

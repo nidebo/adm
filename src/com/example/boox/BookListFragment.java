@@ -132,6 +132,7 @@ public class BookListFragment extends ListFragment {
             Intent intent = new Intent();
             intent.setClass(getActivity(), BookActivity.class);
             intent.putExtra("id", books.get(index).getId());
+            intent.putExtra("temp", 0);
 
             startActivity(intent);
         }
