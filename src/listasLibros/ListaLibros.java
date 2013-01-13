@@ -28,7 +28,7 @@ public class ListaLibros {
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			lib = libros.get(i);
-			if (lib.getId()==id)
+			if (lib.getId().equals(id))
 				i=libros.size();
 		}
 		return lib;
@@ -40,7 +40,7 @@ public class ListaLibros {
 		if (!libros.isEmpty())
 			for (int i=0; i<libros.size(); i++) { 
 				aux = libros.get(i); 
-				 	if (aux.getId()==lib.getId())
+				 	if (aux.getId().equals(lib.getId()))
 				 		ex = true;
 				}
 		return ex;
@@ -50,7 +50,7 @@ public class ListaLibros {
 		Libro lib = null;
 		for (int i=0; i<libros.size(); i++) { 
 			 lib = libros.get(i); 
-			 	if (lib.getId()==id)
+			 	if (lib.getId().equals(id))
 			 		libros.remove(lib);
 			}
 	}

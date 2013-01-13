@@ -43,7 +43,7 @@ public class ListaCompartibles {
 		if(listaLibros==null)
 			return null;
 		for(int i=0;i<listaLibros.size();i++){
-			if(listaLibros.get(i)==IdLibro){//Libro encontrado. Si no, no podemos hacer la llamada al servidor
+			if(listaLibros.get(i).equals(IdLibro)){//Libro encontrado. Si no, no podemos hacer la llamada al servidor
 				ArrayList<String> listaUsuariosConLibro;
 				listaUsuariosConLibro=servidor.obtenerLibrosLista(IdLibro, "adminUsuariosPorLibro");
 				return listaUsuariosConLibro;
