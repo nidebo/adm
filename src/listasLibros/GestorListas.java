@@ -17,7 +17,7 @@ public class GestorListas {
 	ListaServer servidor=new ListaServer();
 	String usuarioActual;
 	ListaCompartibles shared;
-	boolean datosActualizados = true;
+	boolean datosActualizados;
 	MyBD bd; //SIN ARUGMENTO
 
 	public GestorListas(String nombreDeUsuario, Context context) { //Constructor
@@ -25,6 +25,7 @@ public class GestorListas {
 		shared= new ListaCompartibles(nombreDeUsuario);
 		bd = new MyBD(context);
 		datosActualizados=ActualizarTodo();
+		
 		//Actualizar de local, y COMPROBAR de servidor
 		//Si no estan en local, solo de servidor
 		
@@ -34,7 +35,7 @@ public class GestorListas {
 
 	private boolean ActualizarTodo(){
 		boolean correcto=true;
-		ArrayList<String> listaNombresListas;
+		ArrayList<String> listaNombresListas=null;
 		listaNombresListas=servidor.obtenerListas(usuarioActual);
 		if(listaNombresListas==null){
 			actualizarTodoDeBD();
@@ -67,6 +68,7 @@ public class GestorListas {
 	public void actualizarTodoDeBD(){ //BEA, para tí :D
 		//obtener una lista de nombres de listas, y para cada nombre, meter la lista como un
 		//nuevo elementeo de "ArrayList<ListaLibros> lista"
+		lista = bd.ListadoListas();
 	}
 	
 	
@@ -92,6 +94,7 @@ public class GestorListas {
 				ListaLibros lis = new ListaLibros(nombre);
 				correcto=servidor.creaListaDeUsuario(nombre, usuarioActual);
 				lista.add(lis);
+				bd.CrearNuevaLista(nombre);
 			}
 		}
 		else{

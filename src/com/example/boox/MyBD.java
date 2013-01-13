@@ -1,17 +1,22 @@
 package com.example.boox;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.List;
 
-import librosGoogle.VolumeInfo;
-import listasLibros.Libro;
-import listasLibros.ListaLibros;
 import usuarios.Persona;
 import usuarios.Usuario;
+import librosGoogle.VolumeInfo;
+import librosGoogle.VolumeInfo.ImageLinks;
+import listasLibros.*;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class MyBD extends SQLiteOpenHelper {
 	
@@ -25,6 +30,7 @@ public class MyBD extends SQLiteOpenHelper {
 	arg0.execSQL("CREATE TABLE todos (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
 	arg0.execSQL("CREATE TABLE amigos (id  VARCHAR(20), name VARCHAR(20),  cp INTEGER )");
 	arg0.execSQL("CREATE TABLE temporal (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
+	arg0.execSQL("CREATE TABLE publicos (id  VARCHAR(20))");
 	}
 		
 	@Override
@@ -263,24 +269,25 @@ public class MyBD extends SQLiteOpenHelper {
 		
 	}
 	
-	/*
-	public ArrayList ListadoListas(){
+	
+	public ArrayList<ListaLibros> ListadoListas(){
 		SQLiteDatabase bd = getReadableDatabase();
-		ArrayList<String> lista = new ArrayList();
+		ArrayList<ListaLibros> todolistas = new ArrayList();
 		Cursor consulta = null;
-		try{
-			consulta = bd.rawQuery("SELECT * FROM listas", null);
-		}
-		catch(SQLiteException e1){
-			Toast.makeText(context, "No existe la lista", Toast.LENGTH_LONG).show();
-		}
+			consulta = bd.rawQuery("select name from sqlite_master where type = 'table';", null);
 		if(consulta.moveToFirst()){
 			do{
-				lista.add(consulta.getString(1));
+				String lista = consulta.getString(0);
+				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal")){
+					ListaLibros lista_libros = new ListaLibros(lista);
+					lista_libros = ListaDeLibros(lista);
+					if(lista.equals("todos")) lista_libros.setNombreLista("All");
+					todolistas.add(lista_libros);
+				}
 			}while(consulta.moveToNext());
 		}
-		return lista;
-	}*/
+		return todolistas;
+	}
 	
 	
 /****  MANEJO TEMPORAL  *****/
