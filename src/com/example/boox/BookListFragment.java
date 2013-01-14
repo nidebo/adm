@@ -11,17 +11,24 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class BookListFragment extends ListFragment {
 
     boolean mDualPane;
     int mCurCheckPosition = 0; 
     
-
-    
+    AdapterView.AdapterContextMenuInfo info;
+    GestorListas gl;
     final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 	String uname = "";
@@ -36,7 +43,7 @@ public class BookListFragment extends ListFragment {
                
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
-        GestorListas gl = new GestorListas(uname, this.getActivity()); 
+        gl = new GestorListas(uname, this.getActivity()); 
         Bundle extras = this.getActivity().getIntent().getExtras();
         lista = extras.getString("lista");
         int f = extras.getInt("all");
@@ -71,8 +78,46 @@ public class BookListFragment extends ListFragment {
             // Make sure our UI is in the correct state.
             showDetails(mCurCheckPosition);
         }
+        
+        registerForContextMenu(getListView());
     }
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+		info = (AdapterContextMenuInfo) menuInfo;
+		menu.setHeaderTitle("Crossing options"); 
+		menu.add(Menu.NONE, info.position, 0, "View");
+		menu.add(Menu.NONE, info.position, 0, "Delete");
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		if(item.getTitle() == "View"){
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), BookActivity.class);
+            intent.putExtra("id", books.get(item.getItemId()).getId());
+            intent.putExtra("temp", 0);
+            startActivity(intent);	
+            
+		}else if(item.getTitle() == "Delete"){			
+			try{
+			gl.BorraLibroDeLista(books.get(item.getItemId()).getId(), lista);
+			}catch(Exception e){
+			}
+			Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),getResources().getString(R.string.app_name),Toast.LENGTH_SHORT);
+					
+			toast.show();
+			booklist.remove(item.getItemId());
+	        setListAdapter(new ArrayAdapter<String>(getActivity(),
+	                android.R.layout.simple_list_item_1,
+	                booklist));
+			}	
+		return true;
+	}
+
+	
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -137,47 +182,4 @@ public class BookListFragment extends ListFragment {
             startActivity(intent);
         }
     }
-
-	//@Override
-	//public void onStart(){
-		//super.onStart();
-		//getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
-	//}
-	
-	/*
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.books_tab);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-        lvDatos = (ListView) findViewById(R.id.listView1);
-    	
-    	//final ArrayList<String> mLista = new ArrayList<String>();
-    	final ArrayAdapter<String> mAdapter = 
-    			new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strings); //mLista);
-    	lvDatos.setAdapter(mAdapter);
-        
-        //mLista.add("Lista Prueba 1");
-        mAdapter.notifyDataSetChanged();
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_books_tab, menu);
-        return true;
-    }
-
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
 }

@@ -65,44 +65,24 @@ public class TabBooksFragment extends ListFragment {
         listas.add(0, "All");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
-        	boolean repe = false;
-	        Bundle extras = getActivity().getIntent().getExtras();
-	        String nueva = "";
-	        if(extras != null){
-	        	nueva = extras.getString("addlist");	
-	        }
-			for(int i=0; i<listas.size(); ++i){
-				if(listas.get(i).equals(nueva))
-					repe = true;
-					list.add(listas.get(i));
-			}
-			if(!repe){
-				list.add(nueva);
-			}
-	
+			for(int i=0; i<listas.size(); ++i)
+				list.add(listas.get(i));
+			
+			//if(addL.equals("true")){
+		        Bundle extras = getActivity().getIntent().getExtras();
+		        String nueva;
+		        if(extras != null){
+		        	nueva = extras.getString("addlist");
+		        	list.add(nueva);
+		        }
+			//}
+
 	        setListAdapter(new ArrayAdapter<String>(getActivity(),
 	                android.R.layout.simple_list_item_1,
 	                list));
         }
         registerForContextMenu(getListView());
-        // Check to see if we have a frame in which to embed the details
-        // fragment directly in the containing UI.
-        /*View detallesLibro = getActivity().findViewById(R.id.details);
-        mDualPane = detallesLibro != null && detallesLibro.getVisibility() == View.VISIBLE;
-    	Log.d("BooksTab", "onActivityCreated -> mDualPane = " + (mDualPane ? "true" : "false"));
 
-        if(savedState != null){
-        	Log.d("BooksTab", "savedState = null");
-            // Restore last state for checked position.
-            mCurCheckPosition = savedState.getInt("curChoice", 0);
-        }
-        if(mDualPane){
-        	Log.d("BooksTab", "mDualPane = true");
-            // In dual-pane mode, list view highlights selected item.
-            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            // Make sure our UI is in the correct state.
-            showDetails(mCurCheckPosition);
-        }*/
     }
 	
 	@Override
@@ -127,18 +107,16 @@ public class TabBooksFragment extends ListFragment {
 	        	startActivity(intent);
 		}else if(item.getTitle() == "Delete"){
 			if(list.get(item.getItemId()).equals("All") || list.get(item.getItemId()).equals("Favoritos")){
-				Toast toast = Toast.makeText(
-						getActivity(), 
-						getResources().getString(R.string.login_invalid), 
-						Toast.LENGTH_SHORT);
-				toast.show();
+				Toast toa = new Toast(this.getActivity());
+				toa.setText("This list can't be deleted");
+				toa.show();
 			}else{
 				gl.BorraLista(list.get(item.getItemId()));
 				list.remove(item.getItemId());
 				this.setListAdapter((new ArrayAdapter<String>(getActivity(),
 		                android.R.layout.simple_list_item_1,
 		                list)));				
-			}				
+			}
 		}else {
 			return false;
 		}

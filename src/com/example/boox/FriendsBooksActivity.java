@@ -1,5 +1,7 @@
 package com.example.boox;
 
+import internet.ListaServer;
+
 import java.util.ArrayList;
 
 import listasLibros.GestorListas;
@@ -41,17 +43,20 @@ public class FriendsBooksActivity extends ListActivity {
 		
 		Bundle extras = getIntent().getExtras();
 		fname = extras.getString("friend");		
+		
+		
+		ListaServer ls = new ListaServer();
+		ArrayList<String> compartibles = new ArrayList<String>();
+		compartibles = ls.obtenerLibrosLista(fname, "adminLibrosPorUsuario");
+		//COMPROBAR QUE NO SEA NULL
+		//si no, que?
 		//InterfazAPI api = new InterfazAPI();
 		//Funcion para obtener los libros
 		//se meten en libros
 		//for donde se muestran los titulos
-		ArrayList<String> titulos = new ArrayList<String>();
-		titulos.add("Libros de "+fname.toString());
-		titulos.add("Prueba2");
-		titulos.add("Prueba3");
-		titulos.add("Prueba4");
-		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));				
-	}
+		compartibles.add(0,"Libros de "+fname.toString());
+		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, compartibles));
+}
 
 	/*@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
