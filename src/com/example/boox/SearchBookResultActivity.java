@@ -64,8 +64,9 @@ public class SearchBookResultActivity extends ListActivity {
 					titulos.add(libros.get(i).getTitulo());
 			}
 			else{
-				titulos.add(getResources().getString(R.string.not_found));
-				found = false;
+				Toast toast = Toast.makeText(this.getApplicationContext(),getResources().getString(R.string.not_found), Toast.LENGTH_SHORT);
+				toast.show();
+				finish();
 			}
 		}
 		else{
@@ -76,8 +77,9 @@ public class SearchBookResultActivity extends ListActivity {
 						titulos.add(libros.get(i).getTitulo());
 				}
 				else{
-					titulos.add(getResources().getString(R.string.not_found));
-					found = false;
+					Toast toast = Toast.makeText(this.getApplicationContext(),getResources().getString(R.string.not_found), Toast.LENGTH_SHORT);
+					toast.show();
+					finish();
 					}
 			}
 			else{
@@ -87,8 +89,9 @@ public class SearchBookResultActivity extends ListActivity {
 						titulos.add(libro.getTitulo());
 					}
 					else{
-						found = false;
-						titulos.add(getResources().getString(R.string.not_found));
+						Toast toast = Toast.makeText(this.getApplicationContext(),getResources().getString(R.string.not_found), Toast.LENGTH_SHORT);
+						toast.show();
+						finish();						
 					}
 				}
 			}

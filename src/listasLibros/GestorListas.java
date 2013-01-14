@@ -23,7 +23,11 @@ public class GestorListas {
 		usuarioActual=nombreDeUsuario;
 		shared= new ListaCompartibles(nombreDeUsuario);
 		bd = new MyBD(context,nombreDeUsuario);
-		datosActualizados=ActualizarTodo();
+		try{
+			datosActualizados=ActualizarTodo();
+		}catch(Exception e){
+			
+		}
 	}
 
 	private boolean ActualizarTodo(){
@@ -40,6 +44,7 @@ public class GestorListas {
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			if(listaLibros==null)
 				correcto=false;
+			try{
 			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
 				Libro lib=bd.DetalleLibroId(listaLibros.get(j));
 				if(lib==null){
@@ -52,6 +57,9 @@ public class GestorListas {
 						correcto=false;
 				}
 				else AddLibroEnLista(lib,listaNombresListas.get(i));
+			}
+			}catch(Exception e){
+				
 			}
 		}
 		return correcto;
@@ -165,10 +173,14 @@ public class GestorListas {
 
 			correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getId());
 			if (correcto){
+				try{
 				lis.addLibro(lib);
 				Libro libro=bd.DetalleLibroId(lib.id);
 				if(libro==null) bd.InsertarLibro(lib);
 				bd.InsertarLibroEnLista(nombreLista, libro);
+				}catch(Exception e){
+					
+				}
 			}
 		}else
 			return false; //Intentar actualizar?
