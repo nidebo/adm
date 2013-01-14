@@ -42,12 +42,12 @@
     <string name="title_activity_crossing">Crossing</string>
 
     <!-- Friends -->
-    <string name="friends_internet_error">Il y a des problèmes de connexion. S\'il te plait, vérifie la connexion et éssaye à nouveau.</string>
+    <string name="friends_internet_error">Il y a des problèmes de connexion. S\'il te pla&#xEE;t, vérifie la connexion et éssaye à nouveau.</string>
 	<string name="friends_add_text">Ajouter à Amis</string>
 	<string name="friends_delete_text">Supprimer des Amis</string>
    	<string name="friends_add">Ami ajouté</string>
 	<string name="friends_delete">Ami supprimé</string>
-	<string name="friends_not_found">Nom d\'utilisateur pas retrouvé. S\'il te plaît, écris un nom d'utilisateur valide.</string>
+	<string name="friends_not_found">Nom d\'utilisateur pas retrouvé. S\'il te pla&#xEE;t, écris un nom d'utilisateur valide.</string>
 	<string name="friends_auto_find">C\'est toi!</string>
 	<string name="friends_find_text">Retrouve tes amis sur BooX</string>
     
@@ -71,9 +71,9 @@
     <string name="login_button_text">Accéder!</string>
     <string name="login_notauser">Nouveau sur BooX? Inscris-toi ici!</string>
     <string name="login_logging">Ouverture de session…</string>
-    <string name="login_pleasewait">S\'il te plaît, attends un instant.</string>
+    <string name="login_pleasewait">S\'il te pla&#xEE;t, attends un instant.</string>
     <string name="login_invalid">Ouverture de session incorrecte. Essaye à nouveau!</string>
-    <string name="login_internet_error">Il y a des problèmes de connexion. S\'il te plaît, vérifie la connexion et essaye à nouveau.</string>
+    <string name="login_internet_error">Il y a des problèmes de connexion. S\'il te pla&#xEE;t, vérifie la connexion et essaye à nouveau.</string>
 
     <!-- Signup -->
     <string name="title_activity_sign_up">Inscription</string>
@@ -84,11 +84,11 @@
     <string name="signup_zipcode_hint">code postale</string>
     <string name="signup_button_text">Inscris-toi!</string>
     <string name="signup_sending">Envoyant données…</string>
-    <string name="signup_pleasewait">S\'il te plaît, attends un instant.</string>
-    <string name="signup_confirm_pass_error">Le mot de passe n\'est pas le même. S\'il te plaît, essaye à nouveau.</string>
+    <string name="signup_pleasewait">S\'il te pla&#xEE;t, attends un instant.</string>
+    <string name="signup_confirm_pass_error">Le mot de passe n\'est pas le même. S\'il te pla&#xEE;t, essaye à nouveau.</string>
     <string name="signup_user_created">Utilisateur crée</string>
-    <string name="signup_already_exists_error">Le nom d\'utilisateur existe déjà. S\'il te plaît, essaye à nouveau.</string>
-    <string name="signup_internet_error">Il y a des problèmes de connexion. S\'il te plaît, vérifie la connexion et essaye à nouveau.</string>
+    <string name="signup_already_exists_error">Le nom d\'utilisateur existe déjà. S\'il te pla&#xEE;t, essaye à nouveau.</string>
+    <string name="signup_internet_error">Il y a des problèmes de connexion. S\'il te pla&#xEE;t, vérifie la connexion et essaye à nouveau.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Configuration</string>
