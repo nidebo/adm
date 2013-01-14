@@ -65,8 +65,8 @@ public class ListaCompartibles {
 		if(!listaLibrosCompartidos.contains(libro)){
 			flag1=servidor.creaListaDeUsuario(libro, "adminUsuariosPorLibro");
 		}
+
 		if(!listaNombresUsuarios.contains(usuarioActual)){
-			//En este IF no se porque mierdas pasa algo raro
 			flag2=servidor.creaListaDeUsuario(usuarioActual, "adminLibrosPorUsuario");
 		}
 		if(flag1==false || flag2==false)

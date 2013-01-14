@@ -3,14 +3,13 @@ package listasLibros;
 import internet.ListaServer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.example.boox.MyBD;
 
 import android.content.Context;
 import apiGoogle.InterfazAPI;
 
-//Hay que hacer un flag que nos indique si
-//estamos trabajando con datos buenos, con incertidumbre, o con mierda
 public class GestorListas {
 	ArrayList<ListaLibros> lista = new ArrayList<ListaLibros>();
 	InterfazAPI api=new InterfazAPI();
@@ -18,19 +17,13 @@ public class GestorListas {
 	String usuarioActual;
 	ListaCompartibles shared;
 	boolean datosActualizados = true;
-	MyBD bd; //SIN ARUGMENTO
+	MyBD bd;
 
 	public GestorListas(String nombreDeUsuario, Context context) { //Constructor
 		usuarioActual=nombreDeUsuario;
 		shared= new ListaCompartibles(nombreDeUsuario);
 		bd = new MyBD(context,nombreDeUsuario);
 		datosActualizados=ActualizarTodo();
-		
-		//Actualizar de local, y COMPROBAR de servidor
-		//Si no estan en local, solo de servidor
-		
-		//Hay que meter un flag al actualizar todo de servidor, para tener encuenta si podemos
-		//trabajar o ir devolviendo errores al recibir solicitudes
 	}
 
 	private boolean ActualizarTodo(){
@@ -62,19 +55,9 @@ public class GestorListas {
 		return correcto;
 	}
 	
-	
-	
-	
-	public void actualizarTodoDeBD(){ //BEA, para tí :D
-		//obtener una lista de nombres de listas, y para cada nombre, meter la lista como un
-		//nuevo elementeo de "ArrayList<ListaLibros> lista"
+	public void actualizarTodoDeBD(){ 
 		lista = bd.ListadoListas();
 	}
-	
-	
-	
-	
-	
 	
 	public ArrayList<Libro> getListaAll(){
 		ArrayList<Libro> all= new ArrayList<Libro>();
@@ -83,6 +66,9 @@ public class GestorListas {
 				all.add(lista.get(i).getLibroPorIndice(j));
 			}
 		}
+		HashSet<Libro> h = new HashSet<Libro>(all);
+		all.clear();
+		all.addAll(h);
 		return all;
 	}
 
@@ -211,12 +197,6 @@ public class GestorListas {
 
 	public boolean AddLibroEnCompartibles(String IdLibro){
 		if(datosActualizados==true){
-
-			/*if(shared.AddLibroUsuario(IdLibro)==false)
-			AddListaVacia("FALSE_5_juan");
-		else
-			AddListaVacia("TRUE_5_juan");
-			 */
 
 			return shared.AddLibroUsuario(IdLibro);
 		}
