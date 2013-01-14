@@ -72,8 +72,8 @@ public class MyBD extends SQLiteOpenHelper {
 		if(language == null) language = " ";
 		Float average = book.getPuntuacionMedia();
 		if(average == null) average = (float) 0.0;
-		String insert = "INSERT INTO todos (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES('"+
-						id+"','"+isbn +"','"+title+"','"+subtitle+"','"+authors+"','"+photo +"','"+publisher+"','"+description+"','"+language+"','"+Float.toString(average)+"');";
+		String insert = "INSERT INTO todos (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES(\""+
+						id+"\",\""+isbn +"\",\""+title+"\",\""+subtitle+"\",\""+authors+"\",\""+photo +"\",\""+publisher+"\",\""+description+"\",\""+language+"\",\""+Float.toString(average)+"\");";
 		bd.execSQL(insert);
 	}
 	
@@ -265,6 +265,23 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	
+	public ArrayList<String> ListadoNombreListas(){
+		SQLiteDatabase bd = getReadableDatabase();
+		ArrayList<String> todolistas = new ArrayList();
+		Cursor consulta = null;
+			consulta = bd.rawQuery("select name from sqlite_master where type = 'table';", null);
+		if(consulta.moveToFirst()){
+			do{
+				String lista = consulta.getString(0);
+				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos")){
+					if(lista.equals("todos")) lista = "All";
+					todolistas.add(lista);
+				}
+			}while(consulta.moveToNext());
+		}
+		return todolistas;
+	}
+	
 	public ArrayList<ListaLibros> ListadoListas(){
 		SQLiteDatabase bd = getReadableDatabase();
 		ArrayList<ListaLibros> todolistas = new ArrayList();
@@ -325,8 +342,8 @@ public class MyBD extends SQLiteOpenHelper {
 		if(language == null) language = " ";
 		Float average = book.getPuntuacionMedia();
 		if(average == null) average = (float) 0.0;
-		String insert = "INSERT INTO temporal (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES('"+
-						id+"','"+isbn +"','"+title+"','"+subtitle+"','"+authors+"','"+photo +"','"+publisher+"','"+description+"','"+language+"','"+Float.toString(average)+"');";
+		String insert = "INSERT INTO todos (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES(\""+
+				id+"\",\""+isbn +"\",\""+title+"\",\""+subtitle+"\",\""+authors+"\",\""+photo +"\",\""+publisher+"\",\""+description+"\",\""+language+"\",\""+Float.toString(average)+"\");";
 		bd.execSQL(insert);
 		
 	}
