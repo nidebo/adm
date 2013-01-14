@@ -120,16 +120,31 @@ public class SearchBookResultActivity extends ListActivity {
 		if(item.getTitle() != null && misListas != null &&
 				found){
 			if(modo != 2){
+				if(item.getTitle().toString().equals("Crossing List")){
+					
+					//ADD A CROSSING
+					Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added to Crossing", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+				else{
 				gl.AddLibroEnLista(libros.get(item.getItemId()), item.getTitle().toString());
 				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
 				toast.show();
+				}
 			}else{
+				if(item.getTitle().toString().equals("Crossing List")){	
+					//ADD A CROSSING
+					Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added to Crossing", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+				else{
 				gl.AddLibroEnLista(libro, item.getTitle().toString());
 				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		}
-     		return true;
+	}
+		return true;
 	}
 
 	

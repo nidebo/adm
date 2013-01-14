@@ -127,10 +127,8 @@ public class BookListFragment extends ListFragment {
 				return true;
 			}
 			else{
-			try{
 			gl.BorraLibroDeLista(books.get(item.getItemId()).getId(), lista);
-			}catch(Exception e){
-			}
+			
 			Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),getResources().getString(R.string.book_deleted),Toast.LENGTH_SHORT);
 					
 			toast.show();
