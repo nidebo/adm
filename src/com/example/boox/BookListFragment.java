@@ -101,7 +101,12 @@ public class BookListFragment extends ListFragment {
             intent.putExtra("temp", 0);
             startActivity(intent);	
             
-		}else if(item.getTitle() == "Delete"){			
+		}else if(item.getTitle() == "Delete"){
+			if(lista.equals("All")){
+				Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),getResources.getString(R.string.remove_from_all), duration)
+				toast.show();
+				return true;
+			}
 			try{
 			gl.BorraLibroDeLista(books.get(item.getItemId()).getId(), lista);
 			}catch(Exception e){

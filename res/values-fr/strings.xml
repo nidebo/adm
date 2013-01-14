@@ -47,7 +47,7 @@
 	<string name="friends_delete_text">Supprimer des Amis</string>
    	<string name="friends_add">Ami ajouté</string>
 	<string name="friends_delete">Ami supprimé</string>
-	<string name="friends_not_found">Nom d\'utilisateur pas retrouvé. S\'il te pla&#xEE;t, écris un nom d'utilisateur valide.</string>
+	<string name="friends_not_found">Nom d\'utilisateur pas retrouvé. S\'il te pla&#xEE;t, écris un nom d\'utilisateur valide.</string>
 	<string name="friends_auto_find">C\'est toi!</string>
 	<string name="friends_find_text">Retrouve tes amis sur BooX</string>
     

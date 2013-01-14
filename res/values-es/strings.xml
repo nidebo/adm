@@ -31,6 +31,8 @@
     <string name="booklist_remove_book">Eliminar de esta lista</string>
     <string name="booklist_delete_list">Eliminar lista</string>
     <string name="book_deleted">Libro eliminado</string>
+    <string name="remove_from_all">Lo sentimos, no puedes eliminar libros de la lista All</string>
+    
     
 
     <!-- Book -->
