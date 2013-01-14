@@ -46,12 +46,13 @@ public class AddNewListActivity extends Activity {
 			t.show();
 			return;
 		}
-		if(gl.AddListaVacia(nlista) == false){
+		boolean added = false;
+		added = gl.AddListaVacia(nlista);
+		if(added = false){
 			Toast t = Toast.makeText(this.getApplicationContext(), "Esa lista ya existe" ,Toast.LENGTH_SHORT);
 			t.show();
 			return;
 		}
-		gl.AddListaVacia(nlista);
 		Toast t = Toast.makeText(this.getApplicationContext(), "Lista creada" ,Toast.LENGTH_SHORT);
 		t.show();
     	Intent intent = new Intent();

@@ -55,7 +55,6 @@ public class TabBooksFragment extends ListFragment {
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
         
-        //restoreData()
 
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");

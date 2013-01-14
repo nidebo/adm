@@ -33,10 +33,11 @@ import listasLibros.Libro;
 public class InterfazAPI {
 
 	public Libro ObtenerLibroPorId(String id){				
-		BookAPI book = new BookAPI();
+
 		Libro result = new Libro();
 		id = id.replaceAll("\\s+", "");
 		AsyncBookId ab = new AsyncBookId();
+		BookAPI book = new BookAPI();
 		try {
 			book = ab.execute(id).get();
 		} catch (InterruptedException e) {

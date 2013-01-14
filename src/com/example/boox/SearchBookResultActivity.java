@@ -38,6 +38,7 @@ public class SearchBookResultActivity extends ListActivity {
 	int modo;
 	String cont;
 	Context context = this;
+	boolean found = true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,6 +65,7 @@ public class SearchBookResultActivity extends ListActivity {
 			}
 			else{
 				titulos.add(getResources().getString(R.string.not_found));
+				found = false;
 			}
 		}
 		else{
@@ -75,6 +77,7 @@ public class SearchBookResultActivity extends ListActivity {
 				}
 				else{
 					titulos.add(getResources().getString(R.string.not_found));
+					found = false;
 					}
 			}
 			else{
@@ -84,6 +87,7 @@ public class SearchBookResultActivity extends ListActivity {
 						titulos.add(libro.getTitulo());
 					}
 					else{
+						found = false;
 						titulos.add(getResources().getString(R.string.not_found));
 					}
 				}
@@ -110,7 +114,8 @@ public class SearchBookResultActivity extends ListActivity {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		if(item.getTitle() != null && misListas != null){
+		if(item.getTitle() != null && misListas != null &&
+				found){
 			if(modo != 2){
 				gl.AddLibroEnLista(libros.get(item.getItemId()), item.getTitle().toString());
 				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
