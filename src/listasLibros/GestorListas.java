@@ -44,12 +44,14 @@ public class GestorListas {
 				Libro lib=bd.DetalleLibroId(listaLibros.get(j));
 				if(lib==null){
 					lib=api.ObtenerLibroPorId(listaLibros.get(j));
-					if(lib!=null)
+					if(lib!=null){
 						bd.InsertarLibro(lib);
+						AddLibroEnLista(lib,listaNombresListas.get(i));
+					}
 					else
 						correcto=false;
 				}
-				AddLibroEnLista(lib,listaNombresListas.get(i));
+				else AddLibroEnLista(lib,listaNombresListas.get(i));
 			}
 		}
 		return correcto;
@@ -165,8 +167,8 @@ public class GestorListas {
 			if (correcto){
 				lis.addLibro(lib);
 				Libro libro=bd.DetalleLibroId(lib.id);
-				if(libro==null)
-					bd.InsertarLibro(lib);
+				if(libro==null) bd.InsertarLibro(lib);
+				bd.InsertarLibroEnLista(nombreLista, libro);
 			}
 		}else
 			return false; //Intentar actualizar?
