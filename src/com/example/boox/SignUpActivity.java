@@ -1,5 +1,7 @@
 package com.example.boox;
 
+import internet.ListaServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +28,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +42,9 @@ public class SignUpActivity extends Activity {
 	Context context = this;
 	
 	ProgressDialog progressDialog;
+	String username = "";
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +114,7 @@ public class SignUpActivity extends Activity {
 	            EditText cptxt = (EditText) findViewById(R.id.signup_zipcode);
 	            EditText fulltxt = (EditText) findViewById(R.id.signup_fullname);
 	            
-	            String username = utxt.getText().toString();
+	            username = utxt.getText().toString();
 	            String cp = cptxt.getText().toString();
 	            String full = fulltxt.getText().toString();
 	           
@@ -193,7 +199,14 @@ public class SignUpActivity extends Activity {
 						getResources().getString(R.string.signup_user_created), 
 						Toast.LENGTH_SHORT);
 				toast.show();
-				
+				ListaServer ls = new ListaServer();
+				ls.creaListaDeUsuario(username, "adminLibrosPorUsuario");
+				SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
+						mode);
+				SharedPreferences.Editor myEditor = mySharedPreferences.edit();
+
+				myEditor.putString("username", username);
+				myEditor.commit();
 		        Intent intent = new Intent(context, TabsActivity.class);
 		       	startActivity(intent);
 			}
