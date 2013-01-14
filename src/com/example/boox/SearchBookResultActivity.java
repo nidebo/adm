@@ -13,18 +13,26 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import apiGoogle.InterfazAPI;
 
 public class SearchBookResultActivity extends ListActivity {
 	final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
-	String uname;
 
+	ArrayList<String> misListas;
+	String uname;
+    AdapterView.AdapterContextMenuInfo info;
+    GestorListas gl;
 	ArrayList<Libro> libros = new ArrayList<Libro>();
 	Libro libro = new Libro();
 	int modo;
@@ -37,13 +45,13 @@ public class SearchBookResultActivity extends ListActivity {
 		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
 				
 		uname = mySharedPreferences.getString("username", "");
-		GestorListas gl = new GestorListas(uname, SearchBookResultActivity.this);
+		gl = new GestorListas(uname, SearchBookResultActivity.this);
 		
 		Bundle extras = getIntent().getExtras();
 		modo = extras.getInt("modo");
 		cont = extras.getString("contenido");
 		
-		
+		misListas = gl.getNombresListas();
 		InterfazAPI api = new InterfazAPI();
 		ArrayList<String> titulo = new ArrayList<String>();
 		ArrayList<String> titulos = new ArrayList<String>();
@@ -81,9 +89,45 @@ public class SearchBookResultActivity extends ListActivity {
 				}
 			}
 		}
-		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));				
+		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));			
+        registerForContextMenu(getListView());
 	}
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		ArrayList<String> misListas = gl.getNombresListas();
+		info = (AdapterContextMenuInfo) menuInfo;
+		menu.setHeaderTitle("Add to:"); 
+		//menu.add("Crossing List");
+		if(misListas!=null){
+			for(int i=0; i<misListas.size(); i++)
+				menu.add(Menu.NONE, info.position, 0, misListas.get(i));
+		}
+		else
+			menu.add(Menu.NONE, info.position, 0, "");
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		if(item.getTitle() != null && misListas != null){
+			if(modo != 2){
+				gl.AddLibroEnLista(libros.get(item.getItemId()), item.getTitle().toString());
+				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
+				toast.show();
+			}else{
+				gl.AddLibroEnLista(libro, item.getTitle().toString());
+				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		}
+     		return true;
+	}
+
+	
+	
+	
+	
 	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
