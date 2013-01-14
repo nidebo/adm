@@ -44,22 +44,23 @@ public class GestorListas {
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			if(listaLibros==null)
 				correcto=false;
-			try{
+
 			for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
 				Libro lib=bd.DetalleLibroId(listaLibros.get(j));
 				if(lib==null){
 					lib=api.ObtenerLibroPorId(listaLibros.get(j));
 					if(lib!=null){
+						try{
 						bd.InsertarLibro(lib);
+						}catch(Exception e){
+							
+						}
 						AddLibroEnLista(lib,listaNombresListas.get(i));
 					}
 					else
 						correcto=false;
 				}
 				else AddLibroEnLista(lib,listaNombresListas.get(i));
-			}
-			}catch(Exception e){
-				
 			}
 		}
 		return correcto;
@@ -90,7 +91,11 @@ public class GestorListas {
 				ListaLibros lis = new ListaLibros(nombre);
 				correcto=servidor.creaListaDeUsuario(nombre, usuarioActual);
 				lista.add(lis);
+				try{
 				bd.CrearNuevaLista(nombre);
+				}catch(Exception e){
+					
+				}
 			}
 		}
 		else{
@@ -154,7 +159,11 @@ public class GestorListas {
 			correcto = servidor.borraLibroDeLista(nombreLista, usuarioActual, idLibro);
 			if (correcto){
 				lis.borraLibroPorId(idLibro);
+				try{
 				bd.BorrarLibro(idLibro);
+				}catch(Exception e){
+					
+				}
 			}
 		}else
 			return false;//Intentar actualizar?
