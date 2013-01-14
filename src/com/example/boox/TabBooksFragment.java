@@ -3,6 +3,7 @@ package com.example.boox;
 import java.util.ArrayList;
 
 import listasLibros.GestorListas;
+import listasLibros.Libro;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import apiGoogle.InterfazAPI;
 
 public class TabBooksFragment extends ListFragment {
 
@@ -58,7 +60,8 @@ public class TabBooksFragment extends ListFragment {
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
 		//String addL = mySharedPreferences.getString("addlist", "");
-        gl = new GestorListas(uname, this.getActivity());     
+
+		gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
         listas.add(1, "Crossing List");

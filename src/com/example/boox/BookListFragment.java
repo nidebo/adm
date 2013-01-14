@@ -1,5 +1,7 @@
 package com.example.boox;
 
+import internet.ListaServer;
+
 import java.util.ArrayList;
 
 import listasLibros.GestorListas;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import apiGoogle.InterfazAPI;
 
 public class BookListFragment extends ListFragment {
 
@@ -52,9 +55,18 @@ public class BookListFragment extends ListFragment {
         	books = gl.getListaAll();
         else
         	if(f == 2){
-        		//Coger de crossing
-        		//books = gl.getListaCompletaDeLibrosCompartibles();
-        		books = gl.getListaAll();
+        		Libro book = new Libro();
+        		ListaServer ls = new ListaServer();
+        		InterfazAPI api = new InterfazAPI();
+        		ArrayList<String> compartibles = new ArrayList<String>();
+        		compartibles = ls.obtenerLibrosLista(uname, "adminLibrosPorUsuario");
+
+        		for(int i=0; i< compartibles.size(); i++){
+        			book = api.ObtenerLibroPorId(compartibles.get(i));
+        			if(book != null){
+        				books.add(book);
+        			}
+        		}
         	}
         	else
         		books = gl.GetListaDeLibros(lista);

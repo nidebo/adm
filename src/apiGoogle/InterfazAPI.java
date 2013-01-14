@@ -33,20 +33,20 @@ import listasLibros.Libro;
 public class InterfazAPI {
 
 	public Libro ObtenerLibroPorId(String id){				
-		BookList books = new BookList();
-		AsyncBookId ab = new AsyncBookId();	
+		BookAPI book = new BookAPI();
 		Libro result = new Libro();
 		id = id.replaceAll("\\s+", "");
+		AsyncBookId ab = new AsyncBookId();
 		try {
-			books = ab.execute(id).get();
+			book = ab.execute(id).get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-		if(books.getTotalItems() == 0)
+		if(book == null)
 			return null;
-		result = pasarDeBookApiALibro(books.getItems().get(0));
+		result = pasarDeBookApiALibro(book);
 		return result;
 	}
 
@@ -112,14 +112,14 @@ public class InterfazAPI {
 
 
 
-	public class AsyncBookId extends AsyncTask<String, Void, BookList> {
+	public class AsyncBookId extends AsyncTask<String, Void, BookAPI> {
 
 		StringBuilder sb;
 		String responseString;
 		String sturl;
 
 		@Override
-		protected BookList doInBackground(String... id) {
+		protected BookAPI doInBackground(String... id) {
 			// TODO Auto-generated method stub
 
 			HttpParams httpParameters = new BasicHttpParams();
@@ -132,7 +132,7 @@ public class InterfazAPI {
 
 			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
 			HttpGet request = new HttpGet(
-					"https://www.googleapis.com/books/v1/volumes?q=d:"+id[0]+"&key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
+					"https://www.googleapis.com/books/v1/volumes/"+id[0]+"?key=AIzaSyC9DevpMpZeWSTZFBwjhzql2iJKvpVwF7M");
 			request.setHeader("Accept", "application/json");
 			BasicHttpResponse response;
 
@@ -166,16 +166,16 @@ public class InterfazAPI {
 			GsonBuilder builder = new GsonBuilder();
 			Gson gson = builder.create();
 			JSONObject json;
-			BookList detailbook = new BookList();
+			BookAPI book = new BookAPI();
 			try {
 
 				json = new JSONObject(responseString);
-				detailbook  = gson.fromJson(responseString, BookList.class);
+				book  = gson.fromJson(responseString, BookAPI.class);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return detailbook;
+			return book;
 		}
 
 	}
@@ -497,12 +497,12 @@ public class InterfazAPI {
 				lib.setCategorias(categ);
 			}
 			else
-				lib.setAutores(book.getVolumeInfo().getCategories());
+				lib.setCategorias((book.getVolumeInfo().getCategories()));
 		}
 		catch(Exception e){
 			ArrayList<String> categ=new ArrayList<String>();
 			categ.add(desconocido);
-			lib.setAutores(categ);
+			lib.setCategorias(categ);
 		}
 
 		/*if(book.getVolumeInfo().getAverageRating()==0.0){
