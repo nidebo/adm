@@ -60,7 +60,7 @@
         <item>ISBN</item>
     </string-array>
     <string name="searchbook_scanbutton">Escanear</string>
-    <string name="searchbook_searchbox_hint">_______</string>
+    <string name="searchbook_searchbox_hint">Busca aquí</string>
     <string name="title_activity_book_search_result">Resultados de búsqueda</string>
     <string name="not_found">No encontrado</string>
     

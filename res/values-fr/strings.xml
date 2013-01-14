@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Chargement…</string>
+ 
+    <!-- Tabs --> 
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">Livres</string>
+    <string name="tab2">Crossings</string>
+    <string name="tab3">Amis</string>
+    <string name="menu_settings">Configuration</string>
+    <string name="submenu_add">Ajouter liste</string>
+    <string name="submenu_profile">Profil (bientôt)</string>
+    <string name="submenu_settings">Configuration</string>
+    <string name="submenu_add_list">Ajouter liste</string>
+    <string name="submenu_find_friend">Trouver des amis</string>
+    <string name="submenu_about">À propos de</string>
+    <string name="submenu_logout">Fermer session</string>
+    <string name="submenu_share">Partager</string>
+    <string name="bar_search">Search bar</string>
+
+    <!-- BookList -->
+    <string name="title_activity_book_list">Liste de livres</string>
+    <string name="booklist_add_book">Ajouter un livre à cette liste</string>
+    <string name="booklist_remove_book">Supprimer de cette liste</string>
+    <string name="booklist_delete_list">Supprimer liste</string>
+
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Livre</string>
+    <string name="title_activity_book_activity">Livre</string>
+
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">Liste de crossings</string>
+
+    <!-- Crossing -->
+    <string name="title_activity_crossing">Crossing</string>
+
+    <!-- Friends -->
+    <string name="friends_internet_error">Il y a des problèmes de connexion. S\'il te plait, vérifie la connexion et éssaye à nouveau.</string>
+	<string name="friends_add_text">Ajouter à Amis</string>
+	<string name="friends_delete_text">Supprimer des Amis</string>
+   	<string name="friends_add">Ami ajouté</string>
+	<string name="friends_delete">Ami supprimé</string>
+	<string name="friends_not_found">Nom d\'utilisateur pas retrouvé. S\'il te plaît, écris un nom d'utilisateur valide.</string>
+	<string name="friends_auto_find">C\'est toi!</string>
+	<string name="friends_find_text">Retrouve tes amis sur BooX</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">Chercher des livres</string>
+    <string name="searchbook_searchby">Chercher par:</string>
+    <string-array name="searchbook_searchby_options">
+        <item>Titre</item>
+        <item>Auteur</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">Scanner</string>
+    <string name="searchbook_searchbox_hint">Chercher ici</string>
+    <string name="title_activity_book_search_result">Résultats de recherche</string>
+    <string name="not_found">Introuvable</string>
+    
+    
+    <!-- Login -->
+    <string name="login_username_hint">nom d\'utilisateur</string>
+    <string name="login_password_hint">mot de passe</string>
+    <string name="login_button_text">Accéder!</string>
+    <string name="login_notauser">Nouveau sur BooX? Inscris-toi ici!</string>
+    <string name="login_logging">Ouverture de session…</string>
+    <string name="login_pleasewait">S\'il te plaît, attends un instant.</string>
+    <string name="login_invalid">Ouverture de session incorrecte. Essaye à nouveau!</string>
+    <string name="login_internet_error">Il y a des problèmes de connexion. S\'il te plaît, vérifie la connexion et essaye à nouveau.</string>
+
+    <!-- Signup -->
+    <string name="title_activity_sign_up">Inscription</string>
+    <string name="signup_username_hint">nom d\'utilisateur</string>
+    <string name="signup_password_hint">mot de passe</string>
+    <string name="signup_confirm_password_hint">confirmation du mot de passe</string>
+    <string name="signup_fullname_hint">nom et prénom</string>
+    <string name="signup_zipcode_hint">code postale</string>
+    <string name="signup_button_text">Inscris-toi!</string>
+    <string name="signup_sending">Envoyant données…</string>
+    <string name="signup_pleasewait">S\'il te plaît, attends un instant.</string>
+    <string name="signup_confirm_pass_error">Le mot de passe n\'est pas le même. S\'il te plaît, essaye à nouveau.</string>
+    <string name="signup_user_created">Utilisateur crée</string>
+    <string name="signup_already_exists_error">Le nom d\'utilisateur existe déjà. S\'il te plaît, essaye à nouveau.</string>
+    <string name="signup_internet_error">Il y a des problèmes de connexion. S\'il te plaît, vérifie la connexion et essaye à nouveau.</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">Configuration</string>
+    <string name="set_new_username_hint">Nouveau nom d\'utilisateur</string>
+    <string name="set_new_password_hint">Nouveau mot de passe</string>
+    <string name="set_confirm_password_hint">Confirmation du mot de passe</string>
+    <string name="set_submitButton_text">Envoyer</string>
+
+    <!-- About -->
+    <string name="title_activity_about">À propos de</string>
+    <string name="about_authors_title">Créateurs:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Remerciements:</string>
+
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">Profil de l\'utilisateur</string>
+    <string name="userprofile_viewuserbooks">Voir livres de l\'utilisateur</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">Retrouver des Amis</string>
+    <string name="title_activity_add_new_list">Ajouter nouvelle liste</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">Nom de la liste</string>
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Livres des Amis</string>
+    
+    
+</resources>
