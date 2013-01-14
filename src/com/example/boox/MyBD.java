@@ -150,7 +150,7 @@ public class MyBD extends SQLiteOpenHelper {
 	/*borrar un libro concreto de la biblioteca*/
 	public void BorrarLibro(String id)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		String delete = "DELETE FROM todos WHERE id = " + id;
+		String delete = "DELETE FROM todos WHERE id = '" + id+"'";
 		bd.execSQL(delete);
 		
 	}
@@ -192,7 +192,7 @@ public class MyBD extends SQLiteOpenHelper {
 	/*Borra un amigo en concreto*/
 	public void BorrarAmigo(String id)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		String delete1 = "DELETE FROM amigo WHERE id="+id;
+		String delete1 = "DELETE FROM amigo WHERE id='"+id+"'";
 		bd.execSQL(delete1);
 		
 	}
@@ -201,27 +201,26 @@ public class MyBD extends SQLiteOpenHelper {
 	/*******    MANEJO LISTAS *********/
 	
 	/*Creacion de una nueva lista*/
-	public void CrearNuevaLista(String nombreLista) throws SQLException{
+	public boolean CrearNuevaLista(String nombreLista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		Boolean existe=false;
+		Boolean noexiste=false;
 		String insert = "CREATE TABLE " + nombreLista + " (id  VARCHAR(20))";
 		ArrayList<ListaLibros> liston = ListadoListas();
 		for(int i =0;i<liston.size();i++){
 			String lista = liston.get(i).getNombreLista();
 			if(lista.equals(nombreLista) || lista.equals("android_metadata") || lista.equals("amigos") || lista.equals("temporal") || lista.equals("publicos")){
-				existe = true;
+				noexiste = false;
 				break;
 			}
 		}
-		if(!existe)	bd.execSQL(insert);
-		
+		if(noexiste)	bd.execSQL(insert);
+		return noexiste;
 	}
 		
 	/*Insertamos un libro en la lista*/
 	public void InsertarLibroEnLista(String lista, Libro libro) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "INSERT INTO " + lista + "(id) VALUES('"+libro.getId()+"');";
-		InsertarLibro(libro);
 		bd.execSQL(insert);
 		
 	}
@@ -237,22 +236,8 @@ public class MyBD extends SQLiteOpenHelper {
 		
 		if(consulta.moveToFirst()){
 			do{
-				libro= new Libro(consulta.getString(0));
-				libro.setIsbn(consulta.getString(1));
-				libro.setTitulo(consulta.getString(2));
-				libro.setSubtitulo(consulta.getString(3));
-				String[] aux = consulta.getString(4).split(",");
-				ArrayList<String> authors = new ArrayList<String>(); 
-				for(int i=0;i<aux.length;i++)	authors.add(aux[i]);
-				libro.setAutores(authors);
-				VolumeInfo volume = new VolumeInfo();
-				VolumeInfo.ImageLinks imagen = volume.new ImageLinks();
-				imagen.setMedium(consulta.getString(5));
-				libro.setImageLinks(imagen);
-				libro.setEditorial(consulta.getString(6));
-				libro.setDescripcion(consulta.getString(7));
-				libro.setIdioma(consulta.getString(8));
-				libro.setPuntuacionMedia(consulta.getFloat(9));	
+				String id = consulta.getString(0);
+				libro = DetalleLibroId(id);
 				lista_libros.addLibro(libro);
 			}while(consulta.moveToNext());
 		}
@@ -341,11 +326,11 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	/*Devuelve el libro temporal (Asumimos que siempre habrá un libro)*/
 	
-	public Libro DetalleTemporal() throws SQLException{
+	public Libro DetalleTemporal(String id) throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
 		Libro libro= null;
 		Cursor consulta = null;
-		consulta = bd.rawQuery("SELECT * FROM temporal", null);
+		consulta = bd.rawQuery("SELECT * FROM todos WHERE id= ? ", new String[]{id});
 		
 		if(consulta.moveToFirst()){
 			libro= new Libro(consulta.getString(0));
