@@ -38,8 +38,6 @@ public class TabBooksFragment extends ListFragment {
 	public static final String myPrefs = "prefs";
 	GestorListas gl;
 	String uname = "";
-	String strings[] = new String[]{
-			"All"};
 
 	public ArrayList<String> list = new ArrayList<String>();
 
@@ -63,6 +61,7 @@ public class TabBooksFragment extends ListFragment {
         gl = new GestorListas(uname, this.getActivity());     
         ArrayList<String> listas= gl.getNombresListas();
         listas.add(0, "All");
+        listas.add(1, "Crossing List");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
 			for(int i=0; i<listas.size(); ++i)
@@ -102,13 +101,14 @@ public class TabBooksFragment extends ListFragment {
 			intent.setClass(getActivity(), BookListActivity.class);
 	        if(item.getItemId() == 0)
 	        	intent.putExtra("all", 1);
-	        else
+	        else if(item.getItemId() == 1)
+	        		intent.putExtra("all", 2);
+	        else intent.putExtra("all", 0);
 	        	intent.putExtra("lista", list.get(item.getItemId()));
 	        	startActivity(intent);
 		}else if(item.getTitle() == "Delete"){
-			if(list.get(item.getItemId()).equals("All") || list.get(item.getItemId()).equals("Favoritos")){
-				Toast toa = new Toast(this.getActivity());
-				toa.setText("This list can't be deleted");
+			if(list.get(item.getItemId()).equals("All") || list.get(item.getItemId()).equals("Crossing List") || list.get(item.getItemId()).equals("Favoritos") ){
+				Toast toa = Toast.makeText(this.getActivity().getApplicationContext(), "This list can't be deleted" ,Toast.LENGTH_SHORT);
 				toa.show();
 			}else{
 				gl.BorraLista(list.get(item.getItemId()));
@@ -139,7 +139,11 @@ public class TabBooksFragment extends ListFragment {
         intent.setClass(getActivity(), BookListActivity.class);
         if(pos == 0)
         	intent.putExtra("all", 1);
-        else
+        else 
+        	if(pos == 1)
+        		intent.putExtra("all", 2);
+        	else
+        		intent.putExtra("all", 0);
         intent.putExtra("lista", list.get(pos));
         startActivity(intent);
     	

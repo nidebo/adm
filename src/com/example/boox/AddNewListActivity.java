@@ -41,20 +41,18 @@ public class AddNewListActivity extends Activity {
 		EditText et = (EditText) findViewById(R.id.add_list);
 		GestorListas gl = new GestorListas(uname, AddNewListActivity.this);
 		String nlista = et.getText().toString();
-		if(nlista.equals("All") || nlista.equals("Favoritos")){
-			Toast t = new Toast(this);
-			t.setText("Invalid name");
+		if(nlista.equals("All") || nlista.equals("Crossing List") || nlista.equals("Favoritos")){
+			Toast t = Toast.makeText(this.getApplicationContext(), "Nombre invalido" ,Toast.LENGTH_SHORT);
 			t.show();
 			return;
 		}
 		if(gl.AddListaVacia(nlista) == false){
-			Toast t = new Toast(this);
-			t.setText("List already exist");
+			Toast t = Toast.makeText(this.getApplicationContext(), "Esa lista ya existe" ,Toast.LENGTH_SHORT);
 			t.show();
 			return;
 		}
-		Toast t = new Toast(this);
-		t.setText("List Created");
+		gl.AddListaVacia(nlista);
+		Toast t = Toast.makeText(this.getApplicationContext(), "Lista creada" ,Toast.LENGTH_SHORT);
 		t.show();
     	Intent intent = new Intent();
         intent.setClass(context, TabsActivity.class);

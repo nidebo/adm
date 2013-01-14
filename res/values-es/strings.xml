@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Libro de ejemplo -->
+    <string name="example_title">Juego de Tronos</string>
+    <string name="example_subtitle">Canción de hielo y fuego 1</string>
+    <string name="example_author">George R.R. Martin</string>
 
     <!-- Main -->
     <string name="app_name">BooX</string>
+    <string name="hello_world">Hola mundo!</string>
 
     <!-- Splash -->
     <string name="title_activity_splash_screen">BooX</string>

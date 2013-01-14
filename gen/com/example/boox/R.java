@@ -151,19 +151,9 @@ public final class R {
         public static final int about_thanks_title=0x7f04004f;
         /**  Add List 
  Add List 
- Add List 
- Add List 
- Add List 
- Add List 
- Add List 
          */
         public static final int addlist_add_list_hint=0x7f040054;
         /**  Main 
- Main 
- Main 
- Main 
- Main 
- Main 
  Main 
          */
         public static final int app_name=0x7f040003;
@@ -175,6 +165,7 @@ public final class R {
         public static final int example_author=0x7f040002;
         public static final int example_subtitle=0x7f040001;
         /**  Libro de ejemplo 
+ Libro de ejemplo 
          */
         public static final int example_title=0x7f040000;
         public static final int friends_add=0x7f040023;
@@ -184,11 +175,6 @@ public final class R {
         public static final int friends_delete_text=0x7f040022;
         public static final int friends_find_text=0x7f040027;
         /**  Friends 
- Friends 
- Friends 
- Friends 
- Friends 
- Friends 
  Friends 
          */
         public static final int friends_internet_error=0x7f040020;
@@ -202,11 +188,6 @@ public final class R {
         public static final int login_password_hint=0x7f04002f;
         public static final int login_pleasewait=0x7f040033;
         /**  Login 
- Login 
- Login 
- Login 
- Login 
- Login 
  Login 
          */
         public static final int login_username_hint=0x7f04002e;
@@ -247,120 +228,56 @@ public final class R {
         public static final int tab3=0x7f04000b;
         /**  About 
  About 
- About 
- About 
- About 
- About 
- About 
          */
         public static final int title_activity_about=0x7f040048;
         public static final int title_activity_add_new_list=0x7f040053;
         public static final int title_activity_book_activity=0x7f04001d;
         /**  Book 
  Book 
- Book 
- Book 
- Book 
- Book 
- Book 
          */
         public static final int title_activity_book_fragment=0x7f04001c;
         /**  BookList 
  BookList 
- BookList 
- BookList 
- BookList 
- BookList 
- BookList 
          */
         public static final int title_activity_book_list=0x7f040016;
         /**  Search Book 
- Search Book 
- Search Book 
- Search Book 
- Search Book 
- Search Book 
  Search Book 
          */
         public static final int title_activity_book_search=0x7f040028;
         public static final int title_activity_book_search_result=0x7f04002c;
         /**  Crossing 
  Crossing 
- Crossing 
- Crossing 
- Crossing 
- Crossing 
- Crossing 
          */
         public static final int title_activity_crossing=0x7f04001f;
         /**  CrossingList 
- CrossingList 
- CrossingList 
- CrossingList 
- CrossingList 
- CrossingList 
  CrossingList 
          */
         public static final int title_activity_crossing_list=0x7f04001e;
         /**  Friend Books Activity 
  Friend Books Activity 
- Friend Books Activity 
- Friend Books Activity 
- Friend Books Activity 
- Friend Books Activity 
          */
         public static final int title_activity_friend_books_activity=0x7f040055;
         /**  Search Friend 
- Search Friend 
- Search Friend 
- Search Friend 
- Search Friend 
- Search Friend 
  Search Friend 
          */
         public static final int title_activity_search_friend=0x7f040052;
         /**  Settings 
  Settings 
- Settings 
- Settings 
- Settings 
- Settings 
- Settings 
          */
         public static final int title_activity_settings=0x7f040043;
         /**  Signup 
- Signup 
- Signup 
- Signup 
- Signup 
- Signup 
  Signup 
          */
         public static final int title_activity_sign_up=0x7f040036;
         /**  Splash 
  Splash 
- Splash 
- Splash 
- Splash 
- Splash 
- Splash 
          */
         public static final int title_activity_splash_screen=0x7f040005;
         /**  Tabs 
  Tabs 
- Tabs 
- Tabs 
- Tabs 
- Tabs 
- Tabs 
          */
         public static final int title_activity_tabs=0x7f040008;
         /**  User Profile 
- User Profile 
- User Profile 
- User Profile 
- User Profile 
- User Profile 
  User Profile 
          */
         public static final int title_activity_user_profile=0x7f040050;

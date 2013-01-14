@@ -45,12 +45,19 @@ public class BookListFragment extends ListFragment {
 		uname = mySharedPreferences.getString("username", "");
         gl = new GestorListas(uname, this.getActivity()); 
         Bundle extras = this.getActivity().getIntent().getExtras();
-        lista = extras.getString("lista");
+
         int f = extras.getInt("all");
+        lista = extras.getString("lista");
         if(f == 1)
         	books = gl.getListaAll();
         else
-        	books = gl.GetListaDeLibros(lista);
+        	if(f == 2){
+        		//Coger de crossing
+        		//books = gl.getListaCompletaDeLibrosCompartibles();
+        		books = gl.getListaAll();
+        	}
+        	else
+        		books = gl.GetListaDeLibros(lista);
 		
         // Populate list with our static array of titles.
 		for(int i=0; i<books.size(); ++i)
@@ -103,10 +110,11 @@ public class BookListFragment extends ListFragment {
             
 		}else if(item.getTitle() == "Delete"){
 			if(lista.equals("All")){
-				Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),getResources.getString(R.string.remove_from_all), duration)
+				Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),getResources().getString(R.string.remove_from_all), Toast.LENGTH_SHORT);
 				toast.show();
 				return true;
 			}
+			else{
 			try{
 			gl.BorraLibroDeLista(books.get(item.getItemId()).getId(), lista);
 			}catch(Exception e){
@@ -119,6 +127,8 @@ public class BookListFragment extends ListFragment {
 	                android.R.layout.simple_list_item_1,
 	                booklist));
 			}	
+		return true;
+		}
 		return true;
 	}
 

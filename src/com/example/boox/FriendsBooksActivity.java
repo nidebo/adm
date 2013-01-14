@@ -4,20 +4,15 @@ import internet.ListaServer;
 
 import java.util.ArrayList;
 
-import listasLibros.GestorListas;
 import listasLibros.Libro;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import apiGoogle.InterfazAPI;
 
 public class FriendsBooksActivity extends ListActivity {
@@ -43,19 +38,24 @@ public class FriendsBooksActivity extends ListActivity {
 		
 		Bundle extras = getIntent().getExtras();
 		fname = extras.getString("friend");		
-		
-		
+		InterfazAPI api = new InterfazAPI();
+
+		ArrayList<Libro> libs = new ArrayList<Libro>();
 		ListaServer ls = new ListaServer();
+		Libro lib = new Libro();
 		ArrayList<String> compartibles = new ArrayList<String>();
+		ArrayList<String> titulos = new ArrayList<String>();
 		compartibles = ls.obtenerLibrosLista(fname, "adminLibrosPorUsuario");
-		//COMPROBAR QUE NO SEA NULL
-		//si no, que?
-		//InterfazAPI api = new InterfazAPI();
-		//Funcion para obtener los libros
-		//se meten en libros
-		//for donde se muestran los titulos
-		compartibles.add(0,"Libros de "+fname.toString());
-		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, compartibles));
+		for(int i=0; i< compartibles.size(); i++){
+			lib = api.ObtenerLibroPorId(compartibles.get(i));
+			if(lib != null){
+				libs.add(lib);
+				titulos.add(lib.getTitulo());
+			}
+		}
+	
+		titulos.add(0,"Libros de "+fname.toString());
+		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
 }
 
 	/*@Override
