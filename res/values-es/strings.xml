@@ -30,6 +30,8 @@
     <string name="booklist_add_book">Añadir libro a esta lista</string>
     <string name="booklist_remove_book">Eliminar de esta lista</string>
     <string name="booklist_delete_list">Eliminar lista</string>
+    <string name="book_deleted">Libro eliminado</string>
+    
 
     <!-- Book -->
     <string name="title_activity_book_fragment">Libro</string>
