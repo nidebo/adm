@@ -175,6 +175,7 @@ public class InterfazAPI {
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
 			return book;
 		}

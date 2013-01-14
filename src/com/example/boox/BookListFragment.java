@@ -97,7 +97,7 @@ public class BookListFragment extends ListFragment {
             // Make sure our UI is in the correct state.
             showDetails(mCurCheckPosition);
         }
-        
+        this.getActivity().getActionBar().setTitle(lista);
         registerForContextMenu(getListView());
     }
 

@@ -5,6 +5,7 @@ import internet.ListaServer;
 import java.util.ArrayList;
 
 import listasLibros.Libro;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
@@ -53,8 +54,7 @@ public class FriendsBooksActivity extends ListActivity {
 				titulos.add(lib.getTitulo());
 			}
 		}
-	
-		titulos.add(0,"Libros de "+fname.toString());
+		this.getActionBar().setTitle("Libros de "+fname);
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
 }
 
