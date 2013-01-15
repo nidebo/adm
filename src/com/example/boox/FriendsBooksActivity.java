@@ -76,7 +76,7 @@ public class FriendsBooksActivity extends ListActivity {
 		//ArrayList<String> misListas = gl.getNombresListas();
 		info = (AdapterContextMenuInfo) menuInfo;
 		//menu.setHeaderTitle("Add to:"); 
-		menu.add(Menu.NONE, info.position, 0, "Proponer Crossing");
+		menu.add(Menu.NONE, info.position, 0, R.string.crossing_proposal);
 		
 	}
 

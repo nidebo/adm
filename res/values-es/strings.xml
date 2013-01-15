@@ -59,6 +59,7 @@
 	<string name="friends_not_found">Nombre de usuario no encontado. Por favor, inserta un nombre de usuario válido.</string>
 	<string name="friends_auto_find">¡Ese eres tú!</string>
 	<string name="friends_find_text">Encuentra a tus amigos en BooX</string>
+	<string name="crossing_proposal">Proponer para crossing</string>
     
     <!-- Search Book -->
     <string name="title_activity_book_search">Buscar libros</string>
