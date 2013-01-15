@@ -121,9 +121,9 @@ public class SearchBookResultActivity extends ListActivity {
 				found){
 			if(modo != 2){
 				if(item.getTitle().toString().equals("Crossing List")){
-					
+					gl.AddLibroEnCompartibles(libros.get(item.getItemId()).getId());
 					//ADD A CROSSING
-					Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added to Crossing", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(this.getApplicationContext(),libros.get(item.getItemId()).getTitulo()+" added to Crossing", Toast.LENGTH_SHORT);
 					toast.show();
 				}
 				else{
@@ -134,12 +134,12 @@ public class SearchBookResultActivity extends ListActivity {
 			}else{
 				if(item.getTitle().toString().equals("Crossing List")){	
 					//ADD A CROSSING
-					Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added to Crossing", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(this.getApplicationContext(),libros.get(item.getItemId()).getTitulo()+"added to Crossing", Toast.LENGTH_SHORT);
 					toast.show();
 				}
 				else{
 				gl.AddLibroEnLista(libro, item.getTitle().toString());
-				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(this.getApplicationContext(),libros.get(item.getItemId()).getTitulo()+" added to "+item.getTitle().toString(), Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		}
