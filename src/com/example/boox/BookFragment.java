@@ -3,6 +3,7 @@ package com.example.boox;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.DecimalFormat;
 
 import listasLibros.Libro;
 
@@ -18,9 +19,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements OnRatingBarChangeListener {
 	
     final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
@@ -30,6 +34,14 @@ public class BookFragment extends Fragment {
 	
 	View bookdetails_view;
 	ImageView thumbnail;
+	TextView title, subtitle, author, publisher, num_pages;
+	TextView description_title, description;
+	
+	// Variables para RatingBar
+    RatingBar ratingBar;
+    TextView countText;
+    int count;
+    float curRate;
 	
 	/**
      * Create a new instance of DetailsFragment, initialized to
@@ -63,21 +75,32 @@ public class BookFragment extends Fragment {
 		MyBD mbd = new MyBD(getActivity(),uname);
         book = mbd.DetalleLibroId(id);
 
-        // Set title
-        TextView title = (TextView) getActivity().findViewById(R.id.title);
+
+        title = (TextView) getActivity().findViewById(R.id.title);
         title.setText(book.getTitulo());
-        // Set subtitle
-        TextView subtitle = (TextView) getActivity().findViewById(R.id.subtitle);
+        
+        subtitle = (TextView) getActivity().findViewById(R.id.subtitle);
         subtitle.setText(book.getSubtitulo());
-        // Set author(s)
+        
         String authors = book.getAutores().get(0);
         if(book.getAutores().size() > 1)
         	for(int i=1; i<book.getAutores().size(); ++i)
         		authors = authors + ", " + book.getAutores().get(i);
-        TextView author = (TextView) getActivity().findViewById(R.id.author);
+        author = (TextView) getActivity().findViewById(R.id.author);
         author.setText(authors);
-        // Set publisher
-        // ...
+
+        publisher = (TextView) getActivity().findViewById(R.id.publisher);
+        publisher.setText(book.getEditorial());
+
+        num_pages = (TextView) getActivity().findViewById(R.id.numpages);
+        num_pages.setText(book.getNumeroDePaginas());
+
+        description = (TextView) getActivity().findViewById(R.id.description);
+        description.setText(book.getDescripcion());
+        
+        ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
+        ratingBar.setRating(book.getPuntuacionMedia());
+        ratingBar.setOnRatingBarChangeListener(this);
     }
     
     @Override
@@ -96,6 +119,17 @@ public class BookFragment extends Fragment {
         
         return bookdetails_view;
     }
+
+	@Override
+	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser){
+
+        //DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        //curRate = Float.valueOf(decimalFormat.format((curRate * count + rating) / ++count));
+        Toast.makeText(this.getActivity(),
+                "You rated this with " + curRate + " points", Toast.LENGTH_SHORT).show();
+        //setRatingBar.setRating(curRate);
+        countText.setText(count + " Ratings");
+	}
     
 
 /*

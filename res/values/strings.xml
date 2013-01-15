@@ -42,6 +42,7 @@
     <!-- Book -->
     <string name="title_activity_book_fragment">Book</string>
     <string name="title_activity_book_activity">Book</string>
+    <string name="book_description_title">Description</string> <!--  -->
 
     <!-- CrossingList -->
     <string name="title_activity_crossing_list">Crossing List</string>

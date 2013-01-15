@@ -1,42 +1,41 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".BookFragment" >
 
-    <RelativeLayout
-        android:layout_column="0"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="0"
-        android:minHeight="90dp"
-        android:minWidth="60dp" >
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" >
 
-        <ImageView
-            android:id="@+id/thumbnail_imageView"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/hello_world"
-            android:src="@android:drawable/picture_frame" />
-    </RelativeLayout>
+            android:layout_height="match_parent" >
 
-    <TableLayout
-        android:layout_column="1"
-        android:layout_columnSpan="2"
-        android:layout_gravity="fill_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_row="0" >
+            <ImageView
+                android:id="@+id/thumbnail_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/hello_world"
+                android:minHeight="80dp"
+                android:minWidth="60dp"
+                android:src="@android:drawable/picture_frame" />
 
-        <TableRow
-            android:id="@+id/row_title"
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/title"
@@ -44,30 +43,61 @@
                 android:layout_height="wrap_content"
                 android:text="@string/example_title"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/row_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/example_subtitle" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/example_author" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/numpages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" >
+
+        <TableRow
+            android:id="@+id/row_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
         </TableRow>
 
         <TableRow
             android:id="@+id/row_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/example_author" />
         </TableRow>
 
         <TableRow
@@ -77,22 +107,57 @@
         </TableRow>
     </TableLayout>
 
-    <Space
-        android:layout_width="124dp"
-        android:layout_height="1dp"
-        android:layout_column="1"
-        android:layout_row="0" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical" >
 
-    <Space
-        android:layout_width="147dp"
-        android:layout_height="15dp"
-        android:layout_column="2"
-        android:layout_row="0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" >
 
-    <Space
-        android:layout_width="100dp"
-        android:layout_height="226dp"
-        android:layout_column="3"
-        android:layout_row="1" />
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0"
+                android:scaleX="0.85"
+                android:scaleY="0.85" />
 
-</GridLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/book_description_title" />
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No description available" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>
