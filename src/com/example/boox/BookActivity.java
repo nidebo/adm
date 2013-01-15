@@ -67,7 +67,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         mbd.BorrarTemporal();
 
 
-        loadThumbnail();
+        //loadThumbnail();
         
         loadBookData();
 	}
@@ -110,16 +110,16 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
             			android.content.Intent.EXTRA_TEXT, 
             			Html.fromHtml("<p>I just viewed " + book_title + " on BooX</p>"));
             	*/
+            	//startActivity(Intent.createChooser(sharingIntent, "Share with"));
             	Intent intent = new Intent(Intent.ACTION_SEND); 
             	intent.setType("text/plain"); 
-
-            	intent.putExtra(Intent.EXTRA_SUBJECT, "Subject"); 
-            	intent.putExtra(Intent.EXTRA_TEXT, "http://www.google.com" + " " + "shared via"); 
+            	intent.putExtra(Intent.EXTRA_SUBJECT, "BooX"); 
+            	intent.putExtra(Intent.EXTRA_TEXT, "http://ooomf.com/boox"); 
 
             	Intent chooser = Intent.createChooser(
-            			intent, "tell friend" /*getString(R.string.tell_friend) + " "+ content.getTitle()*/); 
+            			intent, "tell a friend about BooX"); 
             	startActivity(chooser);
-            	//startActivity(Intent.createChooser(sharingIntent, "Share with"));
+            	
             	return true;
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
