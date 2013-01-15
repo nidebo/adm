@@ -22,9 +22,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.RatingBar;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -73,41 +75,30 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         book = mbd.DetalleLibroId(id);
         mbd.BorrarTemporal();
 
-        final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);
-        addButton.setOnClickListener(new Button.OnClickListener() {  
-            @Override
-			public void onClick(View v){
-            	final String lista[] = {null};
-            	ArrayList<String> listas = gl.getNombresListas();
-            	final CharSequence[] items = new CharSequence[1024];   // = { "One", "two", "three" };
-            	
-            	for(int i=0; i<listas.size(); i++)
-            		items[i] = listas.get(i);
-            	
-                AlertDialog.Builder builder = new AlertDialog.Builder(BookActivity.this);
-                builder.setTitle("Select a list");
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-					public void onClick(DialogInterface dialog, int item) {
-                    	lista[0] = items[item].toString();
-                        //Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
-                        
-                    	try{
-                    		if(lista[0] != null){
-                    			gl.AddLibroEnLista(book, lista[0]);
-                    			Toast toast = Toast.makeText(BookActivity.this, "Book added to the list", Toast.LENGTH_SHORT);
-                    			toast.show();
-                    		}
-                    	} catch(Exception e){
-                    		Toast toast = Toast.makeText(BookActivity.this, "Error", Toast.LENGTH_SHORT);
-                    		toast.show();
-                    	}
-                    }
-                });
-                builder.show();
-                }
-             });
         
+     	final ArrayList<String> listas = gl.getNombresListas();
+     
+     	final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);
+     	addButton.setOnClickListener(new Button.OnClickListener(){
+     		@Override
+			public void onClick(View v){
+     	     	AlertDialog.Builder builder = new AlertDialog.Builder(BookActivity.this);
+     	        ArrayAdapter<String> la = new ArrayAdapter<String>(BookActivity.this,
+     	        		android.R.layout.simple_list_item_1, listas);
+     	        builder.setAdapter(la, new DialogInterface.OnClickListener() {
+     	            @Override
+     				public void onClick(DialogInterface dialog, int item) {
+     	            		gl.AddLibroEnLista(book, listas.get(item));
+     	            		Toast toast = Toast.makeText(BookActivity.this, book.getTitulo()+" added to the list "+listas.get(item), Toast.LENGTH_SHORT);
+     	            		toast.show();
+     	            	}     
+     	        });
+     	        builder.show();     			
+     			
+     		}
+     	}
+     	);
+
         //loadThumbnail();
         
         loadBookData();
