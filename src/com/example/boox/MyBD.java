@@ -340,7 +340,7 @@ public class MyBD extends SQLiteOpenHelper {
 		if(language == null) language = " ";
 		Float average = book.getPuntuacionMedia();
 		if(average == null) average = (float) 0.0;
-		String insert = "INSERT INTO todos (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES(\""+
+		String insert = "INSERT INTO temporal (id,isbn, title, subtitle, author, photo, editorial, description, language,averageRating) VALUES(\""+
 				id+"\",\""+isbn +"\",\""+title+"\",\""+subtitle+"\",\""+authors+"\",\""+photo +"\",\""+publisher+"\",\""+description+"\",\""+language+"\",\""+Float.toString(average)+"\");";
 		bd.execSQL(insert);
 		
