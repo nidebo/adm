@@ -71,7 +71,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
 		MyBD mbd = new MyBD(BookActivity.this,uname);
-        book = mbd.DetalleLibroId(id);
+        book = mbd.DetalleTemporal();
         mbd.BorrarTemporal();
 
         

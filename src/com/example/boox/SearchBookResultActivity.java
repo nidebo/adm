@@ -105,7 +105,7 @@ public class SearchBookResultActivity extends ListActivity {
 		ArrayList<String> misListas = gl.getNombresListas();
 		info = (AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle("Add to:"); 
-		menu.add("Crossing List");
+		menu.add(Menu.NONE, info.position, 0, "Crossing List");
 		if(misListas!=null){
 			for(int i=0; i<misListas.size(); i++)
 				menu.add(Menu.NONE, info.position, 0, misListas.get(i));
@@ -121,13 +121,12 @@ public class SearchBookResultActivity extends ListActivity {
 			if(modo != 2){
 				if(item.getTitle().toString().equals("Crossing List")){
 					gl.AddLibroEnCompartibles(libros.get(item.getItemId()).getId());
-					//ADD A CROSSING
 					Toast toast = Toast.makeText(this.getApplicationContext(),libros.get(item.getItemId()).getTitulo()+" added to Crossing", Toast.LENGTH_SHORT);
 					toast.show();
 				}
 				else{
 				gl.AddLibroEnLista(libros.get(item.getItemId()), item.getTitle().toString());
-				Toast toast = Toast.makeText(this.getApplicationContext(),"Book Added", Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(this.getApplicationContext(), libros.get(item.getItemId()).getTitulo()+" Added", Toast.LENGTH_SHORT);
 				toast.show();
 				}
 			}else{
