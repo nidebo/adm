@@ -31,6 +31,10 @@ public class GestorListas {
 		}
 	}
 
+	public boolean EstanLosDatosActualizados(){
+		return datosActualizados;
+	}
+	
 	private boolean ActualizarTodo(){
 		boolean correcto=true;
 		ArrayList<String> listaNombresListas=null;
@@ -41,7 +45,7 @@ public class GestorListas {
 		}
 		for(int i=0;i<listaNombresListas.size();i++){//Cargamos nombres listas
 			AddListaVacia(listaNombresListas.get(i));
-			ArrayList<String> listaLibros;
+			/*ArrayList<String> listaLibros;
 			listaLibros=servidor.obtenerLibrosLista(listaNombresListas.get(i), usuarioActual);
 			if(listaLibros==null)
 				correcto=false;
@@ -62,7 +66,7 @@ public class GestorListas {
 						correcto=false;
 				}
 				else AddLibroEnLista(lib,listaNombresListas.get(i));
-			}
+			}*/
 		}
 		return correcto;
 	}
@@ -116,8 +120,10 @@ public class GestorListas {
 			}
 
 			correcto = servidor.borraListaDeUsuario(nombreLista, usuarioActual);
-			if (correcto)
+			if (correcto){
 				lista.remove(lis);
+				bd.EliminarLista(nombreLista);
+			}
 		}else
 			return false;//Intentar descargar el modelo de internet?
 		return correcto;
@@ -138,6 +144,34 @@ public class GestorListas {
 	//Devuelve todos los libros de una lista
 	public ArrayList<Libro> GetListaDeLibros(String nombreLista){//Sin servidor
 		//Puede que devuelva algo sin actualizar, no podemos cercionarnos
+		
+		
+		ArrayList<String> listaLibros;
+		listaLibros=servidor.obtenerLibrosLista(nombreLista, usuarioActual);
+		if(listaLibros==null)
+			return null;
+
+		for(int j=0;j<listaLibros.size();j++){//Cargamos libros en listas
+			Libro lib=bd.DetalleLibroId(listaLibros.get(j));
+			if(lib==null){
+				lib=api.ObtenerLibroPorId(listaLibros.get(j));
+				if(lib!=null){
+					try{
+					bd.InsertarLibro(lib);
+					}catch(Exception e){
+						
+					}
+					AddLibroEnLista(lib,nombreLista);
+				}
+				/*else
+					return null;*/
+			}
+			else AddLibroEnLista(lib,nombreLista);
+		}
+		
+		
+		
+		
 		ListaLibros lis = null;
 		for (int i=0; i<lista.size(); i++) { 
 			lis = lista.get(i);
