@@ -56,7 +56,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 		//Activate the up button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 				
-		SharedPreferences mySharedPreferences = getParent().getSharedPreferences(myPrefs, mode);
+		SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
@@ -64,6 +64,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         //lib = gl.getLibroPorId(id);
 		MyBD mbd = new MyBD(BookActivity.this,uname);
         book = mbd.DetalleLibroId(id);
+        mbd.BorrarTemporal();
 
 
         loadThumbnail();
@@ -103,12 +104,22 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
                 finish();
                 return true;
             case R.id.submenu_share:
-            	Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            	/*Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             	sharingIntent.setType("text/html");
             	sharingIntent.putExtra(
             			android.content.Intent.EXTRA_TEXT, 
             			Html.fromHtml("<p>I just viewed " + book_title + " on BooX</p>"));
-            	startActivity(Intent.createChooser(sharingIntent, "Share with"));
+            	*/
+            	Intent intent = new Intent(Intent.ACTION_SEND); 
+            	intent.setType("text/plain"); 
+
+            	intent.putExtra(Intent.EXTRA_SUBJECT, "Subject"); 
+            	intent.putExtra(Intent.EXTRA_TEXT, "http://www.google.com" + " " + "shared via"); 
+
+            	Intent chooser = Intent.createChooser(
+            			intent, "tell friend" /*getString(R.string.tell_friend) + " "+ content.getTitle()*/); 
+            	startActivity(chooser);
+            	//startActivity(Intent.createChooser(sharingIntent, "Share with"));
             	return true;
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
@@ -138,7 +149,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         		authors = authors + ", " + book.getAutores().get(i);
         author = (TextView) findViewById(R.id.author);
         author.setText(authors);
-
+/*
         publisher = (TextView) findViewById(R.id.publisher);
         publisher.setText(book.getEditorial());
 
@@ -147,7 +158,7 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 
         description = (TextView) findViewById(R.id.description);
         description.setText(book.getDescripcion());
-        
+  */      
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setRating(book.getPuntuacionMedia());
         ratingBar.setOnRatingBarChangeListener(this);
