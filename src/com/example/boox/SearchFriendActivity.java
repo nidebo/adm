@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -58,6 +59,22 @@ public class SearchFriendActivity extends Activity {
 		return true;
 	}
 	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+    	case android.R.id.home:
+    // This is called when the Home (Up) button is pressed
+    // in the Action Bar.
+    		Intent parentActivityIntent = new Intent(this, TabsActivity.class);
+    		parentActivityIntent.addFlags(
+    				Intent.FLAG_ACTIVITY_CLEAR_TOP |
+    				Intent.FLAG_ACTIVITY_NEW_TASK);
+    		finish(); 
+    		return true;
+    	}
+    	return false;
+	}
     public void onPressSearch(View view) {
     	
         //setProgressBarIndeterminateVisibility(true);

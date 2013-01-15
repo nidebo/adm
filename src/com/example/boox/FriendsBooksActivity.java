@@ -85,7 +85,7 @@ public class FriendsBooksActivity extends ListActivity {
 		
 		//proponer crossing
 		
-		Toast toast = Toast.makeText(this.getApplicationContext(), libros.get(item.getItemId()).getTitulo()+" Added", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(this.getApplicationContext(), "PENE PENE PENE", Toast.LENGTH_SHORT);
 		toast.show();
 		
 		
@@ -118,6 +118,15 @@ public class FriendsBooksActivity extends ListActivity {
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
+    	case android.R.id.home:
+            // This is called when the Home (Up) button is pressed
+            // in the Action Bar.
+            Intent parentActivityIntent = new Intent(this, TabsActivity.class);
+            parentActivityIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish(); 
+            return true;
     	case R.id.search:
     		startActivity(new Intent(this, SearchBookActivity.class));
             return true;
