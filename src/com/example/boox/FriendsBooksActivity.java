@@ -13,7 +13,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import apiGoogle.InterfazAPI;
 
 public class FriendsBooksActivity extends ListActivity {
@@ -58,15 +60,19 @@ public class FriendsBooksActivity extends ListActivity {
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
 	}
 
-	/*@Override
+	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
-			Intent i = new Intent();
-			i.setClass();
-			i.putExtra();
-			startActivity(i);
+		MyBD mbd = new MyBD(this,uname);
+		mbd.BorrarTemporal();
+		mbd.InsertarTemporal(libro);
+		Intent i = new Intent();
+		i.setClass(context, BookActivity.class);
+		i.putExtra("id", libro.getId());
+		i.putExtra("temp", 1);
+		startActivity(i);
 	}
-	*/	
+		
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

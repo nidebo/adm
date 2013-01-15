@@ -70,28 +70,38 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 		uname = mySharedPreferences.getString("username", "");
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
-        gl = new GestorListas(uname, BookActivity.this); 
 		MyBD mbd = new MyBD(BookActivity.this,uname);
         book = mbd.DetalleLibroId(id);
         mbd.BorrarTemporal();
 
         
-     	final ArrayList<String> listas = gl.getNombresListas();
      
      	final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);
      	addButton.setOnClickListener(new Button.OnClickListener(){
      		@Override
 			public void onClick(View v){
+     	        gl = new GestorListas(uname, BookActivity.this); 
+     	     	final ArrayList<String> listas = gl.getNombresListas();
+     	     	listas.add(0, "Crossing List");
+
      	     	AlertDialog.Builder builder = new AlertDialog.Builder(BookActivity.this);
      	        ArrayAdapter<String> la = new ArrayAdapter<String>(BookActivity.this,
      	        		android.R.layout.simple_list_item_1, listas);
      	        builder.setAdapter(la, new DialogInterface.OnClickListener() {
      	            @Override
      				public void onClick(DialogInterface dialog, int item) {
+     	            	
+     	            	if(listas.get(item).toString().equals("Crossing List")){
+     						gl.AddLibroEnCompartibles(book.getId());
+     						//ADD A CROSSING
+     	            		Toast toast = Toast.makeText(BookActivity.this, book.getTitulo()+" added to the list "+listas.get(item), Toast.LENGTH_SHORT);
+     						toast.show();
+     					}else{     	            	
      	            		gl.AddLibroEnLista(book, listas.get(item));
      	            		Toast toast = Toast.makeText(BookActivity.this, book.getTitulo()+" added to the list "+listas.get(item), Toast.LENGTH_SHORT);
      	            		toast.show();
-     	            	}     
+     	            	} 
+     	            }
      	        });
      	        builder.show();     			
      			
