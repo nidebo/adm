@@ -3,7 +3,9 @@ package com.example.boox;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
+import listasLibros.GestorListas;
 import listasLibros.Libro;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +20,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -28,11 +32,13 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 	
 	String book_title = "unknown_book";  //Default string. Setter below
 	
+    final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);	
     final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 	String uname = "";
 	String id;
 	Libro book = new Libro();
+	GestorListas gl;
 	
 	View bookdetails_view;
 	ImageView thumbnail;
@@ -60,13 +66,23 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 		uname = mySharedPreferences.getString("username", "");
         Bundle extras = getIntent().getExtras();
         id = extras.getString("id");
-        //GestorListas gl = new GestorListas(uname, BookActivity.this); 
-        //lib = gl.getLibroPorId(id);
+        gl = new GestorListas(uname, BookActivity.this); 
 		MyBD mbd = new MyBD(BookActivity.this,uname);
         book = mbd.DetalleLibroId(id);
         mbd.BorrarTemporal();
-
-
+      
+        addButton.setOnClickListener(new Button.OnClickListener() {  
+            public void onClick(View v){
+            	String lista = new String();
+            	ArrayList<String> listas = new ArrayList<String>();
+            	//Crear lista-dialog rellena con listas
+            	//meter el valor pulsado en la variable lista
+            	//Descomentar
+    			//gl.AddLibroEnLista(book, lista);
+    			Toast toast = Toast.makeText(BookActivity.this,"Book Added", Toast.LENGTH_SHORT);
+    			toast.show();
+                }
+             });
         //loadThumbnail();
         
         loadBookData();
@@ -133,6 +149,8 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         }
         return super.onOptionsItemSelected(item);
     }
+
+    
     
     private void loadBookData(){
 
