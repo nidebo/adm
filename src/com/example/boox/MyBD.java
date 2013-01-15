@@ -38,7 +38,10 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	
-	
+	public void crearTodos(){
+		SQLiteDatabase bd = getWritableDatabase();
+		bd.execSQL("CREATE TABLE todos (id VARCHAR(20),isbn  VARCHAR(20), title VARCHAR(20), subtitle VARCHAR(50),author VARCHAR(500), photo VARCHAR(500), editorial VARCHAR(50), description VARCHAR(1000), language VARCHAR(20), averageRating FLOAT);");
+	}
 /****  MANEJO LISTA todos  *****/
 	
 	/*Inserta libro en la bilioteca */
@@ -205,14 +208,10 @@ public class MyBD extends SQLiteOpenHelper {
 		SQLiteDatabase bd = getWritableDatabase();
 		Boolean noexiste=false;
 		String insert = "CREATE TABLE " + nombreLista + " (id  VARCHAR(20))";
-		ArrayList<ListaLibros> liston = ListadoListas();
-		for(int i =0;i<liston.size();i++){
-			String lista = liston.get(i).getNombreLista();
-			if(lista.equals(nombreLista) || lista.equals("android_metadata") || lista.equals("amigos") || lista.equals("temporal") || lista.equals("publicos")){
-				noexiste = false;
-				break;
-			}
-		}
+		ArrayList<String> liston = ListadoNombreListas();
+		if(liston.contains(nombreLista)|| nombreLista.equals("android_metadata") || nombreLista.equals("amigos") || nombreLista.equals("temporal") || nombreLista.equals("publicos"))
+			noexiste = false;
+
 		if(noexiste)	bd.execSQL(insert);
 		return noexiste;
 	}
@@ -221,7 +220,6 @@ public class MyBD extends SQLiteOpenHelper {
 	public void InsertarLibroEnLista(String lista, Libro libro) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "INSERT INTO " + lista + "(id) VALUES('"+libro.getId()+"');";
-		InsertarLibro(libro);
 		bd.execSQL(insert);
 		
 	}
