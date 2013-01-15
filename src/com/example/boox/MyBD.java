@@ -112,7 +112,7 @@ public class MyBD extends SQLiteOpenHelper {
 		return lista_libros;
 	}
 	
-	/*Devuelve el libro que se busca pasando como parámetro de búsqueda el id*/
+	/*Devuelve el libro que se busca pasando como parï¿½metro de bï¿½squeda el id*/
 	
 	public Libro DetalleLibroId(String id)throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();
@@ -164,7 +164,7 @@ public class MyBD extends SQLiteOpenHelper {
 	public void InsertarAmigo(Persona user)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
 		String insert = "INSERT INTO amigos (id, name, surname, cp) VALUES('"+
-						user.getId()+"','"+user.getNombre()+"','"+user.getCodigoPostal()+"');";
+						user.getId()+"','"+user.getNombre()+"','"+user.getCP()+"');";
 		bd.execSQL(insert);
 		
 	}
@@ -347,7 +347,7 @@ public class MyBD extends SQLiteOpenHelper {
 	}
 	
 	
-	/*Devuelve el libro temporal (Asumimos que siempre habrá un libro)*/
+	/*Devuelve el libro temporal (Asumimos que siempre habrï¿½ un libro)*/
 	
 	public Libro DetalleTemporal() throws SQLException{
 		SQLiteDatabase bd = getReadableDatabase();

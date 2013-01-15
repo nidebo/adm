@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -125,14 +128,14 @@ public class LoginActivity extends Activity {
     }
 		
 	
-	public class AsyncLogin extends AsyncTask<Void, Void, Boolean> {
+	public class AsyncLogin extends AsyncTask<Void, Void, Integer> {
 
 		
 		StringBuilder sb;
 		String responseString;
 		String uname;
 		String pass;
-		boolean flag = true;
+		int flag = 1;
 		
 		@Override
 		protected void onPreExecute(){
@@ -140,59 +143,71 @@ public class LoginActivity extends Activity {
 			EditText et2 = (EditText) findViewById(R.id.login_password);
 			uname = et1.getText().toString();
 			pass = et2.getText().toString();
+			Pattern p = Pattern.compile("^[a-zA-Z0-9]+$");
+			Matcher m = p.matcher(uname);
+			if(!m.find())
+				flag = 2;
+			else{
+				m = p.matcher(pass);
+				if(!m.find())
+					flag = 2;
+			}
+				
 		}
 		
 		@Override
-		protected Boolean doInBackground(Void... params) {
-			
-			HttpParams httpParameters = new BasicHttpParams();
+		protected Integer doInBackground(Void... params) {
+			if(flag == 1){
+				HttpParams httpParameters = new BasicHttpParams();
 
-			int timeoutConnection = 1500;
-			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+				int timeoutConnection = 1500;
+				HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
 
-			int timeoutSocket = 1500;
-			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+				int timeoutSocket = 1500;
+				HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 
-			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
-			HttpGet request = new HttpGet(
-					"http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
-			request.setHeader("Accept", "application/json");
-			BasicHttpResponse response;
-			// HttpResponse response;
-			try {
-				response = (BasicHttpResponse) client.execute(request);
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					InputStream stream = entity.getContent();
-					BufferedReader reader = new BufferedReader(
-							new InputStreamReader(stream));
-					String line = null;
-					line = reader.readLine();
-					stream.close();
-					responseString = line;
+				DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+				HttpGet request = new HttpGet(
+						"http://boox.eu01.aws.af.cm/checkUser/"+uname+"/"+pass);
+				request.setHeader("Accept", "application/json");
+				BasicHttpResponse response;
+				// HttpResponse response;
+				try {
+					response = (BasicHttpResponse) client.execute(request);
+					HttpEntity entity = response.getEntity();
+					if (entity != null) {
+						InputStream stream = entity.getContent();
+						BufferedReader reader = new BufferedReader(
+								new InputStreamReader(stream));
+						String line = null;
+						line = reader.readLine();
+						stream.close();
+						responseString = line;
+					}
+				////////////////////////////////////////////////////////////////////////////////////////////////////
+				} catch (ConnectTimeoutException e) {
+					flag = 3;
+					e.printStackTrace();
+				} catch (ClientProtocolException e) {
+					flag = 3;
+					e.printStackTrace();
+				} catch (IOException e) {
+					flag = 3;
+					e.printStackTrace();
 				}
-			////////////////////////////////////////////////////////////////////////////////////////////////////
-			} catch (ConnectTimeoutException e) {
-				flag = false;
-				e.printStackTrace();
-			} catch (ClientProtocolException e) {
-				flag = false;
-				e.printStackTrace();
-			} catch (IOException e) {
-				flag = false;
-				e.printStackTrace();
 			}
+			
 			     
 			return flag;
 		}
 
 		@Override
-		protected void onPostExecute(Boolean result) {
+		protected void onPostExecute(Integer result) {
 
 			// Stop the indeterminate progress bar and close dialog
 	        setProgressBarIndeterminateVisibility(false);
 	        progressDialog.dismiss();
-	       if(result){
+	       if(result == 1){
 	    	   if(responseString.equals("true")){
 					
 					SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
@@ -205,17 +220,23 @@ public class LoginActivity extends Activity {
 			       	startActivity(intent);
 			       	
 				}
-				else {
+				else{
 					Toast toast = Toast.makeText(
 							getApplicationContext(), 
 							getResources().getString(R.string.login_invalid), 
 							Toast.LENGTH_SHORT);
 					toast.show();
 				} 
-	       } else {
+	       } else if(result == 3){
 	    	   Toast toast = Toast.makeText(
 						getApplicationContext(), 
 						getResources().getString(R.string.login_internet_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+	       }  else if(result == 2){
+	    	   Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.login_alphanum_error), 
 						Toast.LENGTH_SHORT);
 				toast.show();
 	       }

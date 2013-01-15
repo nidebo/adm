@@ -82,6 +82,7 @@
     <string name="login_pleasewait">Please, wait a moment.</string>
     <string name="login_invalid">Invalid login. Try again!</string>
     <string name="login_internet_error">Problem with connection. Please check your connectivity and try again.</string>
+    <string name="login_alphanum_error">Please use only alphanumeric characters.</string>
 
     <!-- Signup -->
     <string name="title_activity_sign_up">Sign Up</string>
@@ -97,6 +98,12 @@
     <string name="signup_user_created">User successfully created</string>
     <string name="signup_already_exists_error">Username already exists. Please try again.</string>
     <string name="signup_internet_error">Problem with connection. Please check your connectivity and try again.</string>
+    <string name="signup_empty_user_error">Please enter a valid username.</string>
+    <string name="signup_empty_fullname_error">Please enter your name.</string>
+    <string name="signup_password_length_error">Don\'t forget to enter a password.</string>
+    <string name="signup_username_alphanum_error">Please use only alphanumeric characters for username.</string>
+    <string name="signup_pass_alphanum_error">Please use only alphanumeric characters for password.</string>
+    
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>

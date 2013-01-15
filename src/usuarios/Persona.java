@@ -32,7 +32,7 @@ public class Persona {
 //		return fechaNacimiento;
 //	}
 	
-	public String getCodigoPostal() {
+	public String getCP() {
 		return cp;
 	}
 	

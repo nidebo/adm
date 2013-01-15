@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,6 +28,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,6 +40,8 @@ import android.widget.Toast;
 public class SignUpActivity extends Activity {
 	
 	Context context = this;
+	final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
 	
 	ProgressDialog progressDialog;
 
@@ -73,27 +78,50 @@ public class SignUpActivity extends Activity {
     
     public class AsyncAdd extends AsyncTask<Void, Void, Integer> {
     	
-    	EditText ptxt;
-    	EditText ctxt;
     	String pass;
+    	String cp;
+    	String full;
+    	String username;
     	int flag = 0;
     	//1 -> contraseña dup, 2 -> internet, 3 -> username ya existe
     	
 		@Override
 		protected void onPreExecute(){
-			ptxt = (EditText) findViewById(R.id.signup_password);
-			ctxt = (EditText) findViewById(R.id.signup_confirm_password);
+			EditText ptxt = (EditText) findViewById(R.id.signup_password);
+			EditText ctxt = (EditText) findViewById(R.id.signup_confirm_password);
 			pass = ptxt.getText().toString();
+            EditText utxt = (EditText) findViewById(R.id.signup_username);
+            EditText cptxt = (EditText) findViewById(R.id.signup_zipcode);
+            EditText fulltxt = (EditText) findViewById(R.id.signup_fullname);
+            
+            username = utxt.getText().toString();
+            cp = cptxt.getText().toString();
+            full = fulltxt.getText().toString();
 			String pass2 = ctxt.getText().toString();
-			if(!pass.equals(pass2))
-				flag = 1;
-			
+			Pattern p = Pattern.compile("^[a-zA-Z0-9]+$");
+			Matcher m = p.matcher(username);
+			if(!m.find())
+			  flag = 7;
+			else {
+				m = p.matcher(pass);
+				if(!m.find())
+					flag = 8;
+				else if(username.equals(""))
+					flag = 4;
+				else if(pass.length() == 0)
+					flag = 5;
+				else if (full.equals(""))
+					flag = 6;
+				else if(!pass.equals(pass2))
+					flag = 1;
+			}
+
 		}
 		
 		@Override
 		protected Integer doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-			if(flag != 1){
+			if(flag == 0){
 				HttpParams httpParameters = new BasicHttpParams();
 
 				int timeoutConnection = 1500;
@@ -104,13 +132,7 @@ public class SignUpActivity extends Activity {
 
 				DefaultHttpClient client = new DefaultHttpClient(httpParameters); 
 	            HttpPost httppost = new HttpPost("http://boox.eu01.aws.af.cm/users"); 
-	            EditText utxt = (EditText) findViewById(R.id.signup_username);
-	            EditText cptxt = (EditText) findViewById(R.id.signup_zipcode);
-	            EditText fulltxt = (EditText) findViewById(R.id.signup_fullname);
-	            
-	            String username = utxt.getText().toString();
-	            String cp = cptxt.getText().toString();
-	            String full = fulltxt.getText().toString();
+
 	           
 	            //String uname ="{\"uname\":\"" + username + "\"}";
 
@@ -187,13 +209,53 @@ public class SignUpActivity extends Activity {
 						Toast.LENGTH_SHORT);
 				toast.show();
 			}
+			else if(result == 5){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.signup_password_length_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			else if(result == 4){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.signup_empty_user_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			else if(result == 6){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.signup_empty_fullname_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			else if(result == 7){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.signup_username_alphanum_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			else if(result == 8){
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						getResources().getString(R.string.signup_pass_alphanum_error), 
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
 			else {
 				Toast toast = Toast.makeText(
 						getApplicationContext(), 
 						getResources().getString(R.string.signup_user_created), 
 						Toast.LENGTH_SHORT);
 				toast.show();
-				
+				SharedPreferences mySharedPreferences = getSharedPreferences(myPrefs,
+						mode);
+				SharedPreferences.Editor myEditor = mySharedPreferences.edit();
+
+				myEditor.putString("username", username);
+				myEditor.commit();
 		        Intent intent = new Intent(context, TabsActivity.class);
 		       	startActivity(intent);
 			}

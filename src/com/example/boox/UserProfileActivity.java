@@ -49,6 +49,7 @@ public class UserProfileActivity extends Activity {
 	String fname = "";
 	String uname = "";
 	String full = "";
+	String cp = "";
 	Context context = this;
 	ProgressDialog progressDialog;
 		
@@ -64,6 +65,7 @@ public class UserProfileActivity extends Activity {
         	uname = extras.getString("uname");
             fname = extras.getString("fname");
             full = extras.getString("full");
+            cp = extras.getString("cp");
         	//obtener modo
         	String modo = extras.getString("modo");
         	if(modo.equals("borrar"))
@@ -125,6 +127,8 @@ public class UserProfileActivity extends Activity {
             id.setText(fname);
             TextView id2 = (TextView) findViewById(R.id.userprofile_fullname);
             id2.setText(full);
+            TextView id3 = (TextView) findViewById(R.id.userprofile_location);
+            id3.setText("C.P: "+ cp);
        
     }
 

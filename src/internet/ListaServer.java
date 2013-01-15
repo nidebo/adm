@@ -223,7 +223,6 @@ public class ListaServer {
 			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 			////////////////////////////////////////////
 			HttpClient client = new DefaultHttpClient(httpParameters);
-
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delCustomList"); 
 			
@@ -278,7 +277,6 @@ public class ListaServer {
 			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 			////////////////////////////////////////////
 			HttpClient client = new DefaultHttpClient(httpParameters);
-
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/addCustomList"); 
 			
@@ -332,7 +330,6 @@ public class ListaServer {
 		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 		////////////////////////////////////////////
 		HttpClient client = new DefaultHttpClient(httpParameters);
-
 		HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 				params[1] + "/addBookToCustomList"); 
 		
@@ -388,7 +385,6 @@ public class ListaServer {
 			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 			////////////////////////////////////////////
 			HttpClient client = new DefaultHttpClient(httpParameters);
-
 			HttpPut request = new HttpPut("http://boox.eu01.aws.af.cm/users/" +
 					params[1] + "/delBookFromCustomList"); 
 			
@@ -443,8 +439,9 @@ public class ListaServer {
 			 ArrayList<String> res = new ArrayList<String>();
 			try {
 				//String uname = "nicolas";
+				String esp = params[0].replaceAll("\\s+", "%20");
 				url = new URL("http://boox.eu01.aws.af.cm/users/" + 
-						params[1] + "/getCustomList/" + params[0]);
+						params[1] + "/getCustomList/" + esp);
 			
 			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			    urlConnection.setConnectTimeout(1500);
