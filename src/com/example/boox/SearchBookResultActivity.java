@@ -42,6 +42,8 @@ public class SearchBookResultActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		
 		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
 				

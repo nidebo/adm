@@ -56,6 +56,8 @@ public class UserProfileActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         boolean seSabe = true;
         boolean esAmigo = true;
         if(extras != null){

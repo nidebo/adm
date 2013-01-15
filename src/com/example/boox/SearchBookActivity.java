@@ -28,6 +28,8 @@ public class SearchBookActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_book);
 		
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		ArrayList<Libro> libros = new ArrayList<Libro>();
 		Libro libro = new Libro();
 		
