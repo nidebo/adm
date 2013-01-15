@@ -109,19 +109,107 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
+            android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center" >
-            
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
             <TextView
-	            android:id="@+id/about_thanks"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_gravity="center"
-	            android:text="@string/about_thanks_title"
-	            android:textAppearance="?android:attr/textAppearanceLarge"
-	            android:textColor="@android:color/primary_text_dark" />
+                android:id="@+id/about_thanks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="@string/about_thanks_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab1"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab2"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab3"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab4"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab5"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab6"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab7"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab8"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab9"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab10"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab11"
+                android:textColor="@android:color/primary_text_dark" />
+
+            <TextView
+                android:id="@+id/collab12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab12"
+                android:textColor="@android:color/primary_text_dark" />
 
         </LinearLayout>
     </ScrollView>

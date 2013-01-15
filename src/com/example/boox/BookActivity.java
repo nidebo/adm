@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import listasLibros.GestorListas;
 import listasLibros.Libro;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -24,6 +26,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +34,7 @@ import android.widget.Toast;
 public class BookActivity extends FragmentActivity implements OnRatingBarChangeListener  {
 	
 	String book_title = "unknown_book";  //Default string. Setter below
-	
-    final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);	
+		
     final int mode = Activity.MODE_PRIVATE;
 	public static final String myPrefs = "prefs";
 	String uname = "";
@@ -70,22 +72,47 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
 		MyBD mbd = new MyBD(BookActivity.this,uname);
         book = mbd.DetalleLibroId(id);
         mbd.BorrarTemporal();
-      
+
+        final ImageButton addButton = (ImageButton) findViewById(R.id.imageButton1);
         addButton.setOnClickListener(new Button.OnClickListener() {  
-            public void onClick(View v){
-            	String lista = new String();
-            	ArrayList<String> listas = new ArrayList<String>();
-            	//Crear lista-dialog rellena con listas
-            	//meter el valor pulsado en la variable lista
-            	//Descomentar
-    			//gl.AddLibroEnLista(book, lista);
-    			Toast toast = Toast.makeText(BookActivity.this,"Book Added", Toast.LENGTH_SHORT);
-    			toast.show();
+            @Override
+			public void onClick(View v){
+            	final String lista[] = {null};
+            	ArrayList<String> listas = gl.getNombresListas();
+            	final CharSequence[] items = new CharSequence[1024];   // = { "One", "two", "three" };
+            	
+            	for(int i=0; i<listas.size(); i++)
+            		items[i] = listas.get(i);
+            	
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookActivity.this);
+                builder.setTitle("Select a list");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+					public void onClick(DialogInterface dialog, int item) {
+                    	lista[0] = items[item].toString();
+                        //Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+                        
+                    	try{
+                    		if(lista[0] != null){
+                    			gl.AddLibroEnLista(book, lista[0]);
+                    			Toast toast = Toast.makeText(BookActivity.this, "Book added to the list", Toast.LENGTH_SHORT);
+                    			toast.show();
+                    		}
+                    	} catch(Exception e){
+                    		Toast toast = Toast.makeText(BookActivity.this, "Error", Toast.LENGTH_SHORT);
+                    		toast.show();
+                    	}
+                    }
+                });
+                builder.show();
                 }
              });
+        
         //loadThumbnail();
         
         loadBookData();
+
+		this.getActionBar().setTitle(book_title);
 	}
 
 	@Override
@@ -110,23 +137,9 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // This is called when the Home (Up) button is pressed
-                // in the Action Bar.
-                Intent parentActivityIntent = new Intent(this, BookListActivity.class);
-                parentActivityIntent.addFlags(
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
-                //startActivity(parentActivityIntent);
                 finish();
                 return true;
             case R.id.submenu_share:
-            	/*Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            	sharingIntent.setType("text/html");
-            	sharingIntent.putExtra(
-            			android.content.Intent.EXTRA_TEXT, 
-            			Html.fromHtml("<p>I just viewed " + book_title + " on BooX</p>"));
-            	*/
-            	//startActivity(Intent.createChooser(sharingIntent, "Share with"));
             	Intent intent = new Intent(Intent.ACTION_SEND); 
             	intent.setType("text/plain"); 
             	intent.putExtra(Intent.EXTRA_SUBJECT, "BooX"); 
@@ -167,19 +180,31 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
         		authors = authors + ", " + book.getAutores().get(i);
         author = (TextView) findViewById(R.id.author);
         author.setText(authors);
-/*
+
         publisher = (TextView) findViewById(R.id.publisher);
-        publisher.setText(book.getEditorial());
+        try{
+        	publisher.setText(book.getEditorial());
+        }catch(Exception e){
+        	publisher.setText("[Unknown publisher]");
+        }
 
         num_pages = (TextView) findViewById(R.id.numpages);
-        num_pages.setText(book.getNumeroDePaginas());
+        try{
+        	num_pages.setText(book.getNumeroDePaginas());
+    	}catch(Exception e){
+    		num_pages.setText("[Unknown num. of pages]");
+    	}
 
         description = (TextView) findViewById(R.id.description);
-        description.setText(book.getDescripcion());
-  */      
+        try{
+        	description.setText(book.getDescripcion());
+		}catch(Exception e){
+			description.setText("No description available");
+		}
+       
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setRating(book.getPuntuacionMedia());
-        ratingBar.setOnRatingBarChangeListener(this);
+        //ratingBar.setOnRatingBarChangeListener(this);
     }
 	
 	private void loadThumbnail(){

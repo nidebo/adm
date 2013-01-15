@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="fill_horizontal" >
 
@@ -26,7 +26,7 @@
                 android:maxHeight="90dp"
                 android:maxWidth="60dp"
                 android:scaleType="matrix"
-                android:src="@drawable/UnknownBook" />
+                android:src="@drawable/unknown_book" />
 
                 <!-- android:src="@android:drawable/picture_frame" /> -->
 
@@ -76,14 +76,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" >
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@android:drawable/ic_input_add" />
-
         </RelativeLayout>
 
     </LinearLayout>
@@ -131,17 +123,25 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right" >
+            android:layout_height="wrap_content" >
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:numStars="5"
                 android:stepSize="1.0"
                 android:scaleX="0.85"
                 android:scaleY="0.85" />
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/ic_input_add" />
 
         </RelativeLayout>
 
@@ -149,6 +149,7 @@
             android:id="@+id/description_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="@string/book_description_title" />
 
         <ScrollView

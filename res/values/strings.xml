@@ -114,6 +114,18 @@
     <string name="about_author4">Juan Muñoz</string>
     <string name="about_author5">Mario Sanz</string>
     <string name="about_thanks_title">Special thanks:</string>
+    <string name="about_collab1">Alberto García (Logo and icons)</string>
+    <string name="about_collab2">Sergio Almenar (Valencian)</string>
+	<string name="about_collab3">Marta Álvarez (Galician)</string>
+	<string name="about_collab4">Vicente Castillo (German)</string>
+	<string name="about_collab5">Vincenzo Di Girolamo (Italian)</string>
+	<string name="about_collab6">Lis Díez (French)</string>
+	<string name="about_collab7">Jony Garrido (Basque)</string>
+	<string name="about_collab8">Rahul Nagar (Hindi)</string>
+	<string name="about_collab9">Luis Navarro (Japanese)</string>
+	<string name="about_collab10">Teresa Santamaría (Catalonian)</string>
+	<string name="about_collab11">Lykourgos Sigalas (Greek)</string>
+	<string name="about_collab12">Joonas Turunen (Finnish)</string>
 
     <!-- User Profile -->
     <string name="title_activity_user_profile">User Profile</string>

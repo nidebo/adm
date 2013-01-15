@@ -56,7 +56,7 @@ public class FriendsBooksActivity extends ListActivity {
 		}
 		this.getActionBar().setTitle("Libros de "+fname);
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
-}
+	}
 
 	/*@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
