@@ -56,7 +56,6 @@ public class SearchBookResultActivity extends ListActivity {
 		InterfazAPI api = new InterfazAPI();
 		ArrayList<String> titulo = new ArrayList<String>();
 		ArrayList<String> titulos = new ArrayList<String>();
-
 		if(modo == 0){
 			libros = api.ObtenerListaLibrosPorTitulo(cont);
 			if(libros != null){
@@ -106,7 +105,7 @@ public class SearchBookResultActivity extends ListActivity {
 		ArrayList<String> misListas = gl.getNombresListas();
 		info = (AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle("Add to:"); 
-		//menu.add("Crossing List");
+		menu.add("Crossing List");
 		if(misListas!=null){
 			for(int i=0; i<misListas.size(); i++)
 				menu.add(Menu.NONE, info.position, 0, misListas.get(i));
