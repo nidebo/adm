@@ -11,11 +11,16 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import apiGoogle.InterfazAPI;
 
 public class FriendsBooksActivity extends ListActivity {
@@ -25,6 +30,7 @@ public class FriendsBooksActivity extends ListActivity {
 	String uname;
 	String fname;
 
+    AdapterView.AdapterContextMenuInfo info;
 	ArrayList<Libro> libros = new ArrayList<Libro>();
 	Libro libro = new Libro();	
 	String usuario;
@@ -59,9 +65,40 @@ public class FriendsBooksActivity extends ListActivity {
 			}
 		}
 		this.getActionBar().setTitle("Libros de "+fname);
+        registerForContextMenu(getListView());
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
 	}
 
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		//ArrayList<String> misListas = gl.getNombresListas();
+		info = (AdapterContextMenuInfo) menuInfo;
+		//menu.setHeaderTitle("Add to:"); 
+		menu.add(Menu.NONE, info.position, 0, "Proponer Crossing");
+		
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		
+		//proponer crossing
+		
+		Toast toast = Toast.makeText(this.getApplicationContext(), libros.get(item.getItemId()).getTitulo()+" Added", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		
+		return true;
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
