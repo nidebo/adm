@@ -200,6 +200,9 @@ public class BookListFragment extends ListFragment {
             // Otherwise we need to launch a new activity to display
             // the dialog fragment with selected text.
             Intent intent = new Intent();
+            MyBD mbd = new MyBD( this.getActivity(),uname);
+            mbd.BorrarTemporal();
+			mbd.InsertarTemporal(books.get(index));
             intent.setClass(getActivity(), BookActivity.class);
             intent.putExtra("id", books.get(index).getId());
             intent.putExtra("temp", 0);

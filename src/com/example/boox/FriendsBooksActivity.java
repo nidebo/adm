@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -31,8 +32,7 @@ public class FriendsBooksActivity extends ListActivity {
 	String fname;
 
     AdapterView.AdapterContextMenuInfo info;
-	ArrayList<Libro> libros = new ArrayList<Libro>();
-	Libro libro = new Libro();	
+	ArrayList<Libro> libros = new ArrayList<Libro>();	
 	String usuario;
 	Context context = this;
 	
@@ -42,9 +42,9 @@ public class FriendsBooksActivity extends ListActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		
-		//SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
+		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
 				
-		//uname = mySharedPreferences.getString("username", "");
+		uname = mySharedPreferences.getString("username", "");
 		//GestorListas gl = new GestorListas(uname, this.context);
 		
 		Bundle extras = getIntent().getExtras();
@@ -60,7 +60,7 @@ public class FriendsBooksActivity extends ListActivity {
 		for(int i=0; i< compartibles.size(); i++){
 			lib = api.ObtenerLibroPorId(compartibles.get(i));
 			if(lib != null){
-				libs.add(lib);
+				libros.add(lib);
 				titulos.add(lib.getTitulo());
 			}
 		}
@@ -93,21 +93,16 @@ public class FriendsBooksActivity extends ListActivity {
 	}
 
 	
-	
-	
-	
-	
-	
-	
+
 	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
 		MyBD mbd = new MyBD(this,uname);
 		mbd.BorrarTemporal();
-		mbd.InsertarTemporal(libro);
+		mbd.InsertarTemporal(libros.get(position));
 		Intent i = new Intent();
 		i.setClass(context, BookActivity.class);
-		i.putExtra("id", libro.getId());
+		i.putExtra("id", libros.get(position).getId());
 		i.putExtra("temp", 1);
 		startActivity(i);
 	}
