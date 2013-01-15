@@ -10,12 +10,18 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import apiGoogle.InterfazAPI;
 
 public class FriendsBooksActivity extends ListActivity {
@@ -25,8 +31,8 @@ public class FriendsBooksActivity extends ListActivity {
 	String uname;
 	String fname;
 
-	ArrayList<Libro> libros = new ArrayList<Libro>();
-	Libro libro = new Libro();	
+    AdapterView.AdapterContextMenuInfo info;
+	ArrayList<Libro> libros = new ArrayList<Libro>();	
 	String usuario;
 	Context context = this;
 	
@@ -36,9 +42,9 @@ public class FriendsBooksActivity extends ListActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		
-		//SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
+		SharedPreferences mySharedPreferences = this.getSharedPreferences(myPrefs, mode);
 				
-		//uname = mySharedPreferences.getString("username", "");
+		uname = mySharedPreferences.getString("username", "");
 		//GestorListas gl = new GestorListas(uname, this.context);
 		
 		Bundle extras = getIntent().getExtras();
@@ -54,23 +60,49 @@ public class FriendsBooksActivity extends ListActivity {
 		for(int i=0; i< compartibles.size(); i++){
 			lib = api.ObtenerLibroPorId(compartibles.get(i));
 			if(lib != null){
-				libs.add(lib);
+				libros.add(lib);
 				titulos.add(lib.getTitulo());
 			}
 		}
 		this.getActionBar().setTitle("Libros de "+fname);
+        registerForContextMenu(getListView());
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos));
 	}
+
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		//ArrayList<String> misListas = gl.getNombresListas();
+		info = (AdapterContextMenuInfo) menuInfo;
+		//menu.setHeaderTitle("Add to:"); 
+		menu.add(Menu.NONE, info.position, 0, R.string.crossing_proposal);
+		
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		
+		//proponer crossing
+		
+		Toast toast = Toast.makeText(this.getApplicationContext(), "PENE PENE PENE", Toast.LENGTH_SHORT);
+		toast.show();
+		
+		
+		return true;
+	}
+
+	
 
 	@Override
 	protected void onListItemClick(ListView list, View view, int position, long id){
 		super.onListItemClick(list, view, position, id);
 		MyBD mbd = new MyBD(this,uname);
 		mbd.BorrarTemporal();
-		mbd.InsertarTemporal(libro);
+		mbd.InsertarTemporal(libros.get(position));
 		Intent i = new Intent();
 		i.setClass(context, BookActivity.class);
-		i.putExtra("id", libro.getId());
+		i.putExtra("id", libros.get(position).getId());
 		i.putExtra("temp", 1);
 		startActivity(i);
 	}
@@ -86,6 +118,15 @@ public class FriendsBooksActivity extends ListActivity {
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
+    	case android.R.id.home:
+            // This is called when the Home (Up) button is pressed
+            // in the Action Bar.
+            Intent parentActivityIntent = new Intent(this, TabsActivity.class);
+            parentActivityIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish(); 
+            return true;
     	case R.id.search:
     		startActivity(new Intent(this, SearchBookActivity.class));
             return true;

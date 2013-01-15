@@ -288,10 +288,9 @@ public class MyBD extends SQLiteOpenHelper {
 		if(consulta.moveToFirst()){
 			do{
 				String lista = consulta.getString(0);
-				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos")){
+				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos") && !lista.equals("todos")){
 					ListaLibros lista_libros = new ListaLibros(lista);
 					lista_libros = ListaDeLibros(lista);
-					if(lista.equals("todos")) lista_libros.setNombreLista("All");
 					todolistas.add(lista_libros);
 				}
 			}while(consulta.moveToNext());

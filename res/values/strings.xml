@@ -59,6 +59,7 @@
 	<string name="friends_not_found">Username not found. Please input a valid username and try again.</string>
 	<string name="friends_auto_find">That will be you!</string>
 	<string name="friends_find_text">Find your friends in BooX</string>
+	<string name="crossing_proposal">Crossing proposal</string>
     
     <!-- Search Book -->
     <string name="title_activity_book_search">Book Search</string>
