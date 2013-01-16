@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Libro de ejemplo -->
-    <string name="example_title">Joc de Trons</string>
-    <string name="example_subtitle">Cançó de gel i foc 1</string>
-    <string name="example_author">George R.R. Martin</string>
 
     <!-- Main -->
     <string name="app_name">BooX</string>
@@ -33,7 +29,7 @@
     <!-- BookList -->
     <string name="title_activity_book_list">Llistat de llibres</string>
     <string name="booklist_add_book">Afegir llibre a aquesta llista</string>
-    <string name="booklist_remove_book">Eliminar d'aquesta llista</string>
+    <string name="booklist_remove_book">Eliminar d\'aquesta llista</string>
     <string name="booklist_delete_list">Eliminar llista</string>
     <string name="book_deleted">Llibre eliminat</string>
     <string name="remove_from_all">Ho sentim, no pots eliminar llibres de la llista All</string>
@@ -53,10 +49,10 @@
     <!-- Friends -->
     <string name="friends_internet_error">Hi ha problemes amb la connexió. Si us plau, comprovi la connexió i torni a intentar-ho.</string>
   <string name="friends_add_text">Afegir a Amics</string>
-	<string name="friends_delete_text">Eliminar d'Amics</string>
+	<string name="friends_delete_text">Eliminar d\'Amics</string>
   	<string name="friends_add">Amic afegit</string>
 	<string name="friends_delete">Amic eliminat</string>
-	<string name="friends_not_found">Nom d'usuari no trobat. Si us plau, insereixi un nom d'usuari vàlid.</string>
+	<string name="friends_not_found">Nom d\'usuari no trobat. Si us plau, insereixi un nom d\'usuari vàlid.</string>
 	<string name="friends_auto_find">Aquell ets tu!</string>
 	<string name="friends_find_text">Trobi els seus amics en BooX</string>
     
@@ -77,11 +73,11 @@
     <!-- Login -->
     <string name="login_username_hint">usuari</string>
     <string name="login_password_hint">contrasenya</string>
-    <string name="login_button_text">¡Entri!</string>
-    <string name="login_notauser">¿Nou en BooX? ¡Registri's aquí!</string>
+    <string name="login_button_text">Entri!</string>
+    <string name="login_notauser">Nou en BooX? Registri\'s aquí!</string>
     <string name="login_logging">Iniciant sessió…</string>
     <string name="login_pleasewait">Si us plau, esperi un moment.</string>
-    <string name="login_invalid">Inici de sessió incorrecte. ¡Provi una altra vegada!</string>
+    <string name="login_invalid">Inici de sessió incorrecte. Provi una altra vegada!</string>
     <string name="login_internet_error">Hi ha problemes amb la connexió. Si us plau, comprovi la connexió i torni a intentar-ho.</string>
 
     <!-- Signup -->
@@ -91,17 +87,17 @@
     <string name="signup_confirm_password_hint">repetir contrasenya</string>
     <string name="signup_fullname_hint">nom complet</string>
     <string name="signup_zipcode_hint">codi postal</string>
-    <string name="signup_button_text">¡Registri's!</string>
+    <string name="signup_button_text">Registri\'s!</string>
     <string name="signup_sending">Enviant dades…</string>
     <string name="signup_pleasewait">Si us plau, esperi un moment.</string>
     <string name="signup_confirm_pass_error">La contrasenya no coincideix. Si us plau, torni a intentar-ho.</string>
     <string name="signup_user_created">Usuari creat</string>
-    <string name="signup_already_exists_error">El nom d'usuari ja existeix. Si us plalu, torni a intentar-ho.</string>
+    <string name="signup_already_exists_error">El nom d\'usuari ja existeix. Si us plau, torni a intentar-ho.</string>
     <string name="signup_internet_error">Hi ha problemes amb la connexió. Si us plau, comprovi la connexió i torni a intentar-ho.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Configuració</string>
-    <string name="set_new_username_hint">Nou nom d'usuari</string>
+    <string name="set_new_username_hint">Nou nom d\'usuari</string>
     <string name="set_new_password_hint">Nova contrasenya</string>
     <string name="set_confirm_password_hint">Repetir contrasenya</string>
     <string name="set_submitButton_text">Enviar</string>
@@ -117,8 +113,8 @@
     <string name="about_thanks_title">Agraïments:</string>
 
     <!-- User Profile -->
-    <string name="title_activity_user_profile">Perfil d'usuari</string>
-    <string name="userprofile_viewuserbooks">Veure llibres de l'usuari</string>
+    <string name="title_activity_user_profile">Perfil d\'usuari</string>
+    <string name="userprofile_viewuserbooks">Veure llibres de l\'usuari</string>
     
     <!-- Search Friend -->
     <string name="title_activity_search_friend">Trobar amics</string>
@@ -127,7 +123,7 @@
     <!-- Add List -->
     <string name="addlist_add_list_hint">Nom de la llista</string>
     <!-- Friend Books Activity -->
-    <string name="title_activity_friend_books_activity">Llibres d'amics</string>
+    <string name="title_activity_friend_books_activity">Llibres d\'amics</string>
     
     
 </resources>

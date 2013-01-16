@@ -84,7 +84,7 @@
     <string name="login_internet_error">Kapcsolati hiba. Kérlek ellenőrizd a csatlakozást, majd próbáld újra.</string>
 
     <!-- Signup -->
-    <string name="title_activity_sign_up">Regisztrálás/string>
+    <string name="title_activity_sign_up">Regisztrálás</string>
     <string name="signup_username_hint">Felhasználónév</string>
     <string name="signup_password_hint">Jelszó</string>
     <string name="signup_confirm_password_hint">Jelszó ismétlése</string>

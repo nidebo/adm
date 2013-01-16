@@ -52,8 +52,8 @@
  
     <!-- Friends -->
     <string name="friends_internet_error">Es gibt Probleme mit der Verbindung, bitte Verbindung überprüfen und noch mal versuchen.</string>
-21<string name="friends_add_text">Freunde hinzufügen</string>
-21<string name="friends_delete_text">Freunde löschen</string>
+	<string name="friends_add_text">Freunde hinzufügen</string>
+	<string name="friends_delete_text">Freunde löschen</string>
   	<string name="friends_add">Freund wurde gespeichert</string>
 	<string name="friends_delete">Freund wurde gelöscht</string>
 	<string name="friends_not_found">Der Nutzername wurde nicht gefunden. bitte geben Sie einen gultigen Nutzername ein .</string>
@@ -64,7 +64,7 @@
     <string name="title_activity_book_search">Bücher finden</string>
     <string name="searchbook_searchby">Suchen nach:</string>
     <string-array name="searchbook_searchby_options">
-        <item>Título</item>
+        <item>Título</item> 
         <item>Autor</item>
         <item>ISBN</item>
     </string-array>
