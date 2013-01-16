@@ -76,10 +76,7 @@ public class AddNewListActivity extends Activity {
 		}
 		Toast t = Toast.makeText(this.getApplicationContext(), "Lista creada" ,Toast.LENGTH_SHORT);
 		t.show();
-    	Intent intent = new Intent();
-        intent.setClass(context, TabsActivity.class);
-        intent.putExtra("addlist", nlista);
-        startActivity(intent);
+		finish();
     }
  
 }
