@@ -197,15 +197,15 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
 						InterfazAPI api = new InterfazAPI(); 
 						crossingList = new ArrayList<CrossingListRow>();
 						CrossingListRow row;
-						Libro lib1;
+						//Libro lib1;
 						Libro lib2;
 						for(int i=0; i<cross.getNumeroCrossingsUsuarioActual(); i++){
-							lib1 = api.ObtenerLibroPorId(cross.getCrossings().get(i).getbook1());
+							//lib1 = api.ObtenerLibroPorId(cross.getCrossings().get(i).getbook1());
 							lib2 = api.ObtenerLibroPorId(cross.getCrossings().get(i).getbook2());
 
 							row = new CrossingListRow();
 							row.setThumb1(R.drawable.got_thumbnail_small);
-							row.setTitle1(lib1.getTitulo());
+							//row.setTitle1(lib1.getTitulo());
 							row.setAuthor1(cross.getCrossings().get(0).user1);
 							row.setThumb2(R.drawable.got_thumbnail_small);
 							row.setTitle2(lib2.getTitulo());
