@@ -53,10 +53,12 @@ public class CrossingListActivity extends FragmentActivity implements OnItemClic
 	        crossingList.add(row);
         }
 
-		crossingListView = (ListView) findViewById(R.id.crossingList);
+		//crossingListView = (ListView) findViewById(R.id.crossingList);
 		CrossingListAdapter adapter = new CrossingListAdapter(this, crossingList);
-        crossingListView.setAdapter(adapter);
-        crossingListView.setOnItemClickListener(this);
+        //setAdapter(adapter);
+        //crossingListView.setOnItemClickListener(this);
+		
+		//setAdapter(new CrossingListAdapter(this, crossingList));
         
         registerForContextMenu(crossingListView);
     }

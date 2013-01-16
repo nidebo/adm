@@ -106,11 +106,11 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
         row.setState("Rejected");
         crossingList.add(row);
 
-		crossingListView = (ListView) getActivity().findViewById(R.id.crossingList);
+		//crossingListView = (ListView) getView().findViewById(R.id.crossingList);
 		CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
-        crossingListView.setAdapter(adapter);
-        crossingListView.setOnItemClickListener(this);
-
+        //crossingListView.setAdapter(adapter);
+        //crossingListView.setOnItemClickListener(this);
+		setListAdapter(adapter);
         
         
     }
