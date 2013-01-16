@@ -64,10 +64,10 @@ public class CrossingListActivity extends FragmentActivity implements OnItemClic
 	@Override
 	public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 		
-        Intent intent = new Intent();
-        intent.setClass(this, CrossingActivity.class);
-        intent.putExtra("index", position);
-        startActivity(intent);
+        //Intent intent = new Intent();
+        //intent.setClass(this, CrossingActivity.class);
+        //intent.putExtra("index", position);
+        //startActivity(intent);
 	}
 
     @Override
@@ -116,10 +116,10 @@ public class CrossingListActivity extends FragmentActivity implements OnItemClic
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		if(item.getTitle() == "View"){
-			Intent intent = new Intent();
-            intent.setClass(this	, CrossingActivity.class);
+			//Intent intent = new Intent();
+            //intent.setClass(this	, CrossingActivity.class);
             //intent.putExtra("index", item.getPosition());
-            startActivity(intent);
+            //startActivity(intent);
 		}else if(item.getTitle() == "Delete"){
 			// Do something
 		}else {

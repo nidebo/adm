@@ -60,13 +60,22 @@ public class BookListFragment extends ListFragment {
         		InterfazAPI api = new InterfazAPI();
         		ArrayList<String> compartibles = new ArrayList<String>();
         		compartibles = ls.obtenerLibrosLista(uname, "adminLibrosPorUsuario");
-
-        		for(int i=0; i< compartibles.size(); i++){
-        			book = api.ObtenerLibroPorId(compartibles.get(i));
-        			if(book != null){
-        				books.add(book);
-        			}
+        		if(compartibles != null){
+            		for(int i=0; i< compartibles.size(); i++){
+            			book = api.ObtenerLibroPorId(compartibles.get(i));
+            			if(book != null){
+            				books.add(book);
+            			}
+            		}
         		}
+        		else {
+ 		    	   Toast toast = Toast.makeText(
+ 							getActivity(), 
+ 							getResources().getString(R.string.friends_internet_error), 
+ 							Toast.LENGTH_SHORT);
+ 					toast.show();
+        		}
+
         	}
         	else
         		books = gl.GetListaDeLibros(lista);

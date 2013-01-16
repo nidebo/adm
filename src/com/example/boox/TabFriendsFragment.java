@@ -1,15 +1,20 @@
 package com.example.boox;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +33,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TabFriendsFragment extends ListFragment {
 
@@ -94,51 +100,61 @@ public class TabFriendsFragment extends ListFragment {
 	
 	public class AsyncFriends extends AsyncTask<String, Void, Void> {
 
-		StringBuilder sb;
+		StringBuilder sb = new StringBuilder();
 		String responseString;
 		boolean flag = true;
 		
 		@Override
 		protected Void doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			URL url;
-
-			try {
-				//String uname = "nicolas";
-				url = new URL("http://boox.eu01.aws.af.cm/users/"+params[0]+"/friendList");
 			
-			    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-			    urlConnection.setConnectTimeout(1500);
-			    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+			///////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
 
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(in));
-				sb = new StringBuilder();
-				String line = null;
-				//line = reader.readLine();
-				//sb.append(line);
-				while ((line = reader.readLine()) != null) { 
-				    sb.append(line + "\n"); 
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"http://boox.eu01.aws.af.cm/users/"+params[0]+"/friendList");
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+			// HttpResponse response;
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(stream));
+					String line = null;
+					while ((line = reader.readLine()) != null) { 
+					    sb.append(line + "\n"); 
+					}
+					stream.close();
+					responseString = sb.toString();
 				}
-				in.close();
-				responseString = sb.toString();
-			    
-			    urlConnection.disconnect();
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				e.printStackTrace();
+			}
 			     
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
-		
+			if(flag){
 				GsonBuilder builder = new GsonBuilder();
 				Gson gson = builder.create();
 
@@ -161,6 +177,14 @@ public class TabFriendsFragment extends ListFragment {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+			else {
+		    	   Toast toast = Toast.makeText(
+							getActivity(), 
+							getResources().getString(R.string.friends_internet_error), 
+							Toast.LENGTH_SHORT);
+					toast.show();
+			}
 
 		}
 	
