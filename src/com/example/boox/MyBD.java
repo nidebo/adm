@@ -206,8 +206,8 @@ public class MyBD extends SQLiteOpenHelper {
 	/*Creacion de una nueva lista*/
 	public boolean CrearNuevaLista(String nombreLista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		Boolean noexiste=false;
-		nombreLista = nombreLista.replaceAll(" ", "%20");
+		Boolean noexiste=true;
+		nombreLista = nombreLista.replaceAll(" ", "000");
 		String insert = "CREATE TABLE " + nombreLista + " (id  VARCHAR(20))";
 		ArrayList<String> liston = ListadoNombreListas();
 		if(liston.contains(nombreLista)|| nombreLista.equals("android_metadata") || nombreLista.equals("amigos") || nombreLista.equals("temporal") || nombreLista.equals("publicos"))
@@ -220,7 +220,7 @@ public class MyBD extends SQLiteOpenHelper {
 	/*Insertamos un libro en la lista*/
 	public void InsertarLibroEnLista(String lista, Libro libro) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		lista = lista.replaceAll(" ", "%20");
+		lista = lista.replaceAll(" ", "000");
 		String insert = "INSERT INTO " + lista + "(id) VALUES('"+libro.getId()+"');";
 		bd.execSQL(insert);
 		
@@ -233,7 +233,7 @@ public class MyBD extends SQLiteOpenHelper {
 		Libro libro= new Libro();
 		ListaLibros lista_libros = new ListaLibros(lista);
 		Cursor consulta = null;
-		lista = lista.replaceAll(" ", "%20");
+		lista = lista.replaceAll(" ", "000");
 		consulta = bd.rawQuery("SELECT * FROM "+lista, null);
 		
 		if(consulta.moveToFirst()){
@@ -251,7 +251,7 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	public void VaciarLista(String lista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		lista = lista.replaceAll(" ", "%20");
+		lista = lista.replaceAll(" ", "000");
 		String delete1 = "DELETE FROM " + lista;
 		bd.execSQL(delete1);
 		
@@ -261,7 +261,7 @@ public class MyBD extends SQLiteOpenHelper {
 	
 	public void EliminarLista(String lista) throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		lista = lista.replaceAll(" ", "%20");
+		lista = lista.replaceAll(" ", "000");
 		String delete1 = "DROP TABLE "+ lista;
 		bd.execSQL(delete1);
 		
@@ -277,7 +277,7 @@ public class MyBD extends SQLiteOpenHelper {
 			do{
 				String lista = consulta.getString(0);
 				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos") && !lista.equals("todos")){
-					lista = lista.replaceAll("%20", " ");;
+					lista = lista.replaceAll("000", " ");;
 					todolistas.add(lista);
 				}
 			}while(consulta.moveToNext());
@@ -294,7 +294,7 @@ public class MyBD extends SQLiteOpenHelper {
 			do{
 				String lista = consulta.getString(0);
 				if(!lista.equals("android_metadata") && !lista.equals("amigos") && !lista.equals("temporal") && !lista.equals("publicos") && !lista.equals("todos")){
-					lista = lista.replaceAll("%20", " ");
+					lista = lista.replaceAll("000", " ");
 					ListaLibros lista_libros = new ListaLibros(lista);
 					lista_libros = ListaDeLibros(lista);
 					todolistas.add(lista_libros);
@@ -307,7 +307,7 @@ public class MyBD extends SQLiteOpenHelper {
 	/*Borra un amigo en concreto*/
 	public void BorrarLibroLista(String id, String lista)throws SQLException{
 		SQLiteDatabase bd = getWritableDatabase();
-		lista = lista.replaceAll(" ", "%20");
+		lista = lista.replaceAll(" ", "000");
 		String delete1 = "DELETE FROM "+lista+ " WHERE id='"+id+"'";
 		bd.execSQL(delete1);
 		
