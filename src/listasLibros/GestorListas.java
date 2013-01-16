@@ -8,6 +8,7 @@ import java.util.HashSet;
 import com.example.boox.MyBD;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteException;
 import apiGoogle.InterfazAPI;
 
 public class GestorListas {
@@ -25,7 +26,7 @@ public class GestorListas {
 		bd = new MyBD(context,nombreDeUsuario);
 		try{
 			datosActualizados=ActualizarTodo();
-		}catch(Exception e){
+		}catch(SQLiteException e){
 			e.printStackTrace();
 		}
 	}
@@ -56,7 +57,7 @@ public class GestorListas {
 					if(lib!=null){
 						try{
 						bd.InsertarLibro(lib);
-						}catch(Exception e){
+						}catch(SQLiteException e){
 							
 						}
 						AddLibroEnLista(lib,listaNombresListas.get(i));
@@ -91,7 +92,7 @@ public class GestorListas {
 				lista.add(lis);
 				try{
 				bd.CrearNuevaLista(nombre);
-				}catch(Exception e){
+				}catch(SQLiteException e){
 					e.printStackTrace();
 				}
 			}
@@ -151,7 +152,7 @@ public class GestorListas {
 				if(lib!=null){
 					try{
 					bd.InsertarLibro(lib);
-					}catch(Exception e){
+					}catch(SQLiteException e){
 						
 					}
 					AddLibroEnLista(lib,nombreLista);
@@ -189,7 +190,7 @@ public class GestorListas {
 				lis.borraLibroPorId(idLibro);
 				try{
 				bd.BorrarLibro(idLibro);
-				}catch(Exception e){
+				}catch(SQLiteException e){
 					e.printStackTrace();
 				}
 			}
@@ -209,14 +210,14 @@ public class GestorListas {
 			}
 			try{
 				correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getId());
-			}catch(Exception e){}
+			}catch(SQLiteException e){}
 			if (correcto){
 				try{
 					lis.addLibro(lib);
 					Libro libro=bd.DetalleLibroId(lib.id);
 					if(libro==null) bd.InsertarLibro(lib);
 					bd.InsertarLibroEnLista(nombreLista, lib);
-					}catch(Exception e){
+					}catch(SQLiteException e){
 					e.printStackTrace();
 				}
 			}

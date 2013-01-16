@@ -45,10 +45,15 @@ public class InterfazAPI {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-		if(book == null)
+		try{
+		if(book.getVolumeInfo() == null)
 			return null;
-		result = pasarDeBookApiALibro(book);
-		return result;
+		else{
+			result = pasarDeBookApiALibro(book);
+			return result;
+		}}catch(Exception e){
+			return null;
+		}
 	}
 
 	public Libro ObtenerLibroPorIsbn(String isbn) {
