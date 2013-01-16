@@ -8,7 +8,6 @@ import java.util.HashSet;
 import com.example.boox.MyBD;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteException;
 import apiGoogle.InterfazAPI;
 
 public class GestorListas {
@@ -26,7 +25,7 @@ public class GestorListas {
 		bd = new MyBD(context,nombreDeUsuario);
 		try{
 			datosActualizados=ActualizarTodo();
-		}catch(SQLiteException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +91,7 @@ public class GestorListas {
 				lista.add(lis);
 				try{
 				bd.CrearNuevaLista(nombre);
-				}catch(SQLiteException e){
+				}catch(Exception e){
 					e.printStackTrace();
 				}
 			}
@@ -190,7 +189,7 @@ public class GestorListas {
 				lis.borraLibroPorId(idLibro);
 				try{
 				bd.BorrarLibro(idLibro);
-				}catch(SQLiteException e){
+				}catch(Exception e){
 					e.printStackTrace();
 				}
 			}
@@ -216,8 +215,8 @@ public class GestorListas {
 					lis.addLibro(lib);
 					Libro libro=bd.DetalleLibroId(lib.id);
 					if(libro==null) bd.InsertarLibro(lib);
-					bd.InsertarLibroEnLista(nombreLista, libro);
-				}catch(SQLiteException e){
+					bd.InsertarLibroEnLista(nombreLista, lib);
+					}catch(Exception e){
 					e.printStackTrace();
 				}
 			}

@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import listasLibros.Libro;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -36,16 +38,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
+import apiGoogle.InterfazAPI;
 
 public class TabCrossingsFragment extends ListFragment implements OnItemClickListener {
 
     boolean mDualPane;
     int mCurCheckPosition = 1;
 
-	String strings[] = new String[]{
-			"Crossing list 1", 
-			"Crossing list 2",
-			"Crossing list 3"};
+
 
 	public ArrayList<String> list = new ArrayList<String>(); 
 
@@ -64,13 +64,7 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
         SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
 		uname = mySharedPreferences.getString("username", "");
         // Populate list with our static array of titles.
-        if(list.isEmpty()){
-        	for(int i=0; i<strings.length; ++i)
-        		list.add(strings[i]);	
-        	setListAdapter(new ArrayAdapter<String>(getActivity(),
-        			android.R.layout.simple_list_item_1,
-        			list));
-        }
+
 
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
@@ -92,7 +86,7 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
         }*/
         
         
-        
+  /*      
         crossingList = new ArrayList<CrossingListRow>();
         CrossingListRow row;
         
@@ -105,13 +99,19 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
         row.setAuthor2("G.R.R. Martin");
         row.setState("Rejected");
         crossingList.add(row);
-
+*/
 		//crossingListView = (ListView) getView().findViewById(R.id.crossingList);
-		CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
+		//CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
         //crossingListView.setAdapter(adapter);
         //crossingListView.setOnItemClickListener(this);
-		setListAdapter(adapter);
-        
+
+        AsyncGetCross gc = new AsyncGetCross();
+        try{
+        	gc.execute(uname, null, null);
+        }catch(Exception e){
+        	// PONER LAYOUT SI PETAAAA
+    		//setListAdapter(adapter);
+        }
         
     }
 
@@ -194,12 +194,27 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
 						GestorCrossings.class);
 				    
 				    if(list.isEmpty()){
-		        	for(int i=0; i<cross.getNumeroCrossingsUsuarioActual(); ++i){
-		        	//	list.add(al.getListaAmigos().get(i).getNombre());	
-		        	//setListAdapter(new ArrayAdapter<String>(getActivity(),
-		        		//	android.R.layout.simple_list_item_1,
-		        			//list));
-		        	}
+						InterfazAPI api = new InterfazAPI(); 
+						crossingList = new ArrayList<CrossingListRow>();
+						CrossingListRow row;
+						Libro lib1;
+						Libro lib2;
+						for(int i=0; i<cross.getNumeroCrossingsUsuarioActual(); i++){
+							lib1 = api.ObtenerLibroPorId(cross.getCrossings().get(i).getbook1());
+							lib2 = api.ObtenerLibroPorId(cross.getCrossings().get(i).getbook2());
+
+							row = new CrossingListRow();
+							row.setThumb1(R.drawable.got_thumbnail_small);
+							row.setTitle1(lib1.getTitulo());
+							row.setAuthor1(cross.getCrossings().get(0).user1);
+							row.setThumb2(R.drawable.got_thumbnail_small);
+							row.setTitle2(lib2.getTitulo());
+							row.setAuthor2(cross.getCrossings().get(0).user2);
+							row.setState("Rejected");
+							crossingList.add(row);
+						}
+						CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
+						setListAdapter(adapter);
 				    }
 				}catch (JSONException e) {
 			    	   Toast toast = Toast.makeText(
@@ -209,9 +224,7 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
 						toast.show();
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-				// MODIFICAR LAYOUT AQUI
-				//Rellenar con los datos de cross (List de crossings)
+				}	
 			}
 			else {
 				//Fallo de conexion, cargar layout vacio
@@ -243,8 +256,5 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
     	
         //showDetails(pos);
     }
-	
-	public void addItem(String s){
-		list.add(s);
-	}
+
 }
