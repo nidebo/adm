@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">読み込んでいます...</string>
+ 
+    <!-- Tabs -->
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">本</string>
+    <string name="tab2">クロシングス</string>
+    <string name="tab3">友達</string>
+    <string name="menu_settings">設定</string>
+    <string name="submenu_add">リストを追加</string>
+    <string name="submenu_profile">プロフィール(クイック)</string>
+    <string name="submenu_settings">設定</string>
+    <string name="submenu_add_list">リストを追加</string>
+    <string name="submenu_find_friend">友達</string>
+    <string name="submenu_about">アプリケーションについて</string>
+    <string name="submenu_logout">ログアウト</string>
+    <string name="submenu_share">シェア</string>
+    <string name="bar_search">検索バー</string>
+
+    <!-- BookList -->
+    <string name="title_activity_book_list">ブックリスト</string>
+    <string name="booklist_add_book">このリストに本を追加</string>
+    <string name="booklist_remove_book">このリストから削除する</string>
+    <string name="booklist_delete_list">リストを削除する</string>
+    <string name="book_deleted">削除した本</string>
+    
+
+    <!-- Book -->
+    <string name="title_activity_book_fragment">本</string>
+    <string name="title_activity_book_activity">本</string>
+
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">クロシングスのリスト</string>
+
+    <!-- Crossing -->
+    <string name="title_activity_crossing">クロシングス</string>
+
+    <!-- Friends -->
+    <string name="friends_internet_error">ネットワーク問題. ネットワークを確認してやり直してください.</string>
+  <string name="friends_add_text">友達を追加</string>
+	<string name="friends_delete_text">友達から削除する</string>
+  	<string name="friends_add">追加された友達</string>
+	<string name="friends_delete">友達から削除されました</string>
+	<string name="friends_not_found">ユーザー名が見つかりません. 有効なユーザー名を検索してください.</string>
+	<string name="friends_auto_find">こちらはあなたです！</string>
+	<string name="friends_find_text">Booxで友達を探す</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">本を探す</string>
+    <string name="searchbook_searchby">検索の種類</string>
+    <string-array name="searchbook_searchby_options">
+        <item>タイトル</item>
+        <item>作家</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">スキャン</string>
+    <string name="searchbook_searchbox_hint">ここで検索する</string>
+    <string name="title_activity_book_search_result">検索結果</string>
+    <string name="not_found">見つけることができませんでした</string>
+    
+    
+    <!-- Login -->
+    <string name="login_username_hint">ユーザー</string>
+    <string name="login_password_hint">パスワード</string>
+    <string name="login_button_text">ログイン!</string>
+    <string name="login_notauser">初めてですか？ここでサインアップすることができます！</string>
+    <string name="login_logging">ログイン...</string>
+    <string name="login_pleasewait">ちょっと待ってください...</string>
+    <string name="login_invalid">ログインできませんでした. もう一度お試しください！</string>
+    <string name="login_internet_error">ネットワーク問題. ネットワークを確認してやり直してください</string>
+
+    <!-- Signup -->
+    <string name="title_activity_sign_up">サインアップ！</string>
+    <string name="signup_username_hint">ユーザー</string>
+    <string name="signup_password_hint">パスワード</string>
+    <string name="signup_confirm_password_hint">もう一度パスワードを挿入</string>
+    <string name="signup_fullname_hint">名前</string>
+    <string name="signup_zipcode_hint">郵便番号</string>
+    <string name="signup_button_text">サインアップ！</string>
+    <string name="signup_sending">データを送信しています...</string>
+    <string name="signup_pleasewait">ちょっと待ってください...</string>
+    <string name="signup_confirm_pass_error">パスワードが一致しません. もう一度やり直してください。</string>
+    <string name="signup_user_created">ユーザーが作成した</string>
+    <string name="signup_already_exists_error">ユーザ名はすでに存在します。. もう一度やり直してください.</string>
+    <string name="signup_internet_error">ネットワーク問題. ネットワークを確認してやり直してください.</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">設定</string>
+    <string name="set_new_username_hint">新しいユーザ名</string>
+    <string name="set_new_password_hint">新しいパスワード</string>
+    <string name="set_confirm_password_hint">もう一度パスワードを挿入</string>
+    <string name="set_submitButton_text">送信</string>
+
+    <!-- About -->
+    <string name="title_activity_about">アプリケーションについて</string>
+    <string name="about_authors_title">プログラマ:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">謝辞:</string>
+
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">ユーザープロファイル</string>
+    <string name="userprofile_viewuserbooks">ユーザーの本</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">友達を捜す</string>
+    <string name="title_activity_add_new_list">リストを追加</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">リスト名</string>
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">友達の本</string>
+    
+    
+</resources>

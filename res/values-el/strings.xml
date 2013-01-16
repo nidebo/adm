@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 
+    <!-- Libro de ejemplo -->
+    <string name="example_title">Παιχνίδια Θρόνων (Game of Thrones(</string>
+    <string name="example_subtitle">Τραγούδι του πάγου και της φωτιάς 1</string>
+    <string name="example_author">George R.R. Martin</string>
+ 
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+    <string name="hello_world">Γεια σου κόσμε!</string>
+ 
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Φόρτωση…</string>
+ 
+    <!-- Tabs -->
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">Βιβλία</string>
+    <string name="tab2">Crossings</string>
+    <string name="tab3">Φίλοι</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="submenu_add">Προσθήκη νέου</string>
+    <string name="submenu_profile">Προφίλ</string>
+    <string name="submenu_settings">Ρυθμίσεις</string>
+    <string name="submenu_add_list">Προσθήκη λίστας</string>
+    <string name="submenu_find_friend">Αναζήτηση φίλου</string>
+    <string name="submenu_about">Πληροφορίες</string>
+    <string name="submenu_logout">Αποσύνδεση</string>
+    <string name="submenu_share">Μοιράσου</string>
+    <string name="bar_search">Αναζήτηση</string>
+ 
+    <!-- BookList -->
+    <string name="title_activity_book_list">Λίστα Βιβλίων</string>
+    <string name="booklist_add_book">Προσθήκη βιβλίου στη λίστα</string>
+    <string name="booklist_remove_book">Αφαίρεση από τη λίστα</string>
+    <string name="booklist_delete_list">Διαφραγή Λιστας</string>
+    <string name="book_deleted">Το βιβλίο διεγράφει</string>
+    <string name="remove_from_all">Συγγνώμη , δε μπορείτε να διαγράψετε βιβλίο απο τη λίστα: Όλα</string>
+ 
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Βιβλίο</string>
+    <string name="title_activity_book_activity">Βιβλίο</string>
+ 
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">Crossing List</string>
+ 
+    <!-- Crossing -->
+    <string name="title_activity_crossing">Crossing</string>
+ 
+    <!-- Friends -->
+    <string name="friends_internet_error">Πρόβλημα σύνδεσης. Παρακαλώ ελέγξτε τη συνδεσή σας και προσπαθήσε ξανά.</string>
+  <string name="friends_add_text">Προσθήκη στη λίστα φίλων</string>
+  <string name="friends_delete_text">Διαγραφή απο τη λίστα φίλων</string>
+  	<string name="friends_add">Φιλία προστέθηκε επιτυχώς</string>
+	<string name="friends_delete">Φιλία διεγράφει επιτυχώς</string>
+	<string name="friends_not_found">Δεν βρέθηκε το όναμα χρήστη. Πρσπαθήστε ξανά με έγκυρο όνομα χρήστη.</string>
+	<string name="friends_auto_find">Αυτός/ή είσαι εσύ!</string>
+	<string name="friends_find_text">Βρές τους φίλους σου στο BooX</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">Αναζήτηση βιβλίου</string>
+    <string name="searchbook_searchby">Αναζήτηση κατα:</string>
+    <string-array name="searchbook_searchby_options">
+        <item>Τίτλος</item>
+        <item>Συγγραφέας</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">Σάρωση barcode</string>
+    <string name="searchbook_searchbox_hint">Αναζήτηση εδώ</string>
+    <string name="title_activity_book_search_result">Αναζήτηση Αποτελεσμάτων</string>
+    <string name="not_found">Δε βρέθηκε</string>
+ 
+    <!-- Login -->
+    <string name="login_username_hint">Όνομα χρήστη</string>
+    <string name="login_password_hint">Κωδικός</string>
+    <string name="login_button_text">Συνδεση!</string>
+    <string name="login_notauser">Νέος στο BooX? Sign up here!</string>
+    <string name="login_logging">Σύνδεση…</string>
+    <string name="login_pleasewait">Παρακαλώ περιμένεται.</string>
+    <string name="login_invalid">Ανεπιτυχής σύνδεση. Προσπαθήστε ξανά!</string>
+    <string name="login_internet_error">Πρόβλημα σύνδεσης. Παρακαλώ ελεγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</string>
+ 
+    <!-- Signup -->
+    <string name="title_activity_sign_up">Εγγραφή</string>
+    <string name="signup_username_hint">Όνομα χρήστη</string>
+    <string name="signup_password_hint">Κωδικός</string>
+    <string name="signup_confirm_password_hint">Επιβεβαίωση κωδικού</string>
+    <string name="signup_fullname_hint">Πλήρες όνομα</string>
+    <string name="signup_zipcode_hint">Ταχυδρομικός κώδικας</string>
+    <string name="signup_button_text">Εγγραφή!</string>
+    <string name="signup_sending">Αποστολή δεδομένων…</string>
+    <string name="signup_pleasewait">Παρακαλώ περιμένετε.</string>
+    <string name="signup_confirm_pass_error">Ανεπιτυχής επιβεβαίωση κωδικού. Παρακαλώ προσπαθήστε ξανά.</string>
+    <string name="signup_user_created">Επιτυχής δημιουργία χρήστη</string>
+    <string name="signup_already_exists_error">Το όνομα χρήση που επιλέξατε ήδη υπάρχει. Παρακαλώ δοκιμάστε ξανά.</string>
+    <string name="signup_internet_error">Πρόβλημα σύνδεσης. Παρακαλώ ελεγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</string>
+ 
+    <!-- Settings -->
+    <string name="title_activity_settings">Ρυθμίσεις</string>
+    <string name="set_new_username_hint">Νέο όνομα χρήστη</string>
+    <string name="set_new_password_hint">Νέος Κωδικός</string>
+    <string name="set_confirm_password_hint">Επιβεβαίωση κωδικού</string>
+    <string name="set_submitButton_text">Υποβολή</string>
+ 
+    <!-- About -->
+    <string name="title_activity_about">Πληροφορίες</string>
+    <string name="about_authors_title">Δημιουργοί:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Special thanks:</string>
+ 
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">Προφίλ χρήστη</string>
+    <string name="userprofile_viewuserbooks">Δείτε τα βιβλία του χρήστη</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">αναζήτηση φίλων</string>
+    <string name="title_activity_add_new_list">Προσθήκη νέας λίστας</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">Όνομα λίστας εδώ</string>
+    
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Βιβλία φίλων</string>
+    
+</resources>

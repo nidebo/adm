@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Kargatzen…</string>
+ 
+    <!-- Tabs -->
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">Liburuak</string>
+    <string name="tab2">Crossings</string>
+    <string name="tab3">Lagunak</string>
+    <string name="menu_settings">Konfigurazioa</string>
+    <string name="submenu_add">Zerrenda gehitu</string>
+    <string name="submenu_profile">Profila (laster)</string>
+    <string name="submenu_settings">Konfigurazioa</string>
+    <string name="submenu_add_list">Zerrenda gehitu</string>
+    <string name="submenu_find_friend">Lagunak bilatu</string>
+    <string name="submenu_about">-i buruz</string>
+    <string name="submenu_logout">Saioa amaitu</string>
+    <string name="submenu_share">Partekatu</string>
+    <string name="bar_search">Barra bilatu</string>
+
+    <!-- BookList -->
+    <string name="title_activity_book_list">Liburu zerrenda</string>
+    <string name="booklist_add_book">Zerrenda honi liburu gehitu</string>
+    <string name="booklist_remove_book">Zerrenda honetatik kendu</string>
+    <string name="booklist_delete_list">Zerrenda eliminatu</string>
+
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Liburua</string>
+    <string name="title_activity_book_activity">Liburua</string>
+
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">Crossings-en zerrenda</string>
+
+    <!-- Crossing -->
+    <string name="title_activity_crossing">Crossing</string>
+
+    <!-- Friends -->
+    <string name="friends_internet_error">Konexioarekin arazoak daude. Konexioa frogatu eta saiatu berriro, mesedez.</string>
+	<string name="friends_add_text">Lagunei gehitu</string>
+	<string name="friends_delete_text">lagunetatitk kendu</string>
+   	<string name="friends_add">Laguna gehituta</string>
+	<string name="friends_delete">Laguna kenduta</string>
+	<string name="friends_not_found">Erabiltzaileen izena es da aurkitu.  Baliodun izena sartu, mesedez.</string>
+	<string name="friends_auto_find">¡Hau zu zara!</string>
+	<string name="friends_find_text">Zeure lagunak Boox-en aurkitu</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">Liburuak bilatu</string>
+    <string name="searchbook_searchby">Bilatu:</string>
+    <string-array name="searchbook_searchby_options">
+        <item>Titulua</item>
+        <item>Autorea</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">Escaneatu</string>
+    <string name="searchbook_searchbox_hint"></string>
+    <string name="title_activity_book_search_result">Bilaketaren emaitzak</string>
+
+    <!-- Login -->
+    <string name="login_username_hint">Erabiltzailea</string>
+    <string name="login_password_hint">Pasahitza</string>
+    <string name="login_button_text">Sartu!</string>
+    <string name="login_notauser">¿Boox-en hasiberria? Erregistratu hemen!</string>
+    <string name="login_logging">Saioa hasten…</string>
+    <string name="login_pleasewait">Itxoin pizka bat, mesedez…</string>
+    <string name="login_invalid">Saioaren hasiera es da zuzena. Frogatu berriro!</string>
+    <string name="login_internet_error">Konexioarekin arazoak daude. Konexioa frogatu eta saiatu berriro, mesedez.</string>
+
+    <!-- Signup -->
+    <string name="title_activity_sign_up">Erregistroa</string>
+    <string name="signup_username_hint">Erabiltzailea</string>
+    <string name="signup_password_hint">Pasahitza</string>
+    <string name="signup_confirm_password_hint">Errepikatu pasahitza</string>
+    <string name="signup_fullname_hint">Izena</string>
+    <string name="signup_zipcode_hint">Posta kodea</string>
+    <string name="signup_button_text">Erregistratu!</string>
+    <string name="signup_sending">Datuak bidaltzen…</string>
+    <string name="signup_pleasewait">Itxoin pixka bat, mesedez</string>
+    <string name="signup_confirm_pass_error">Pasahitza ez da bat etortzen. Saiatu berrior, mesedez.</string>
+    <string name="signup_user_created">Erabiltzailea sortuta</string>
+    <string name="signup_already_exists_error">Izen berdina badago. Saiatu berriro, mesedez.</string>
+    <string name="signup_internet_error">Konexioarekin arazoak daude. Konexioa frogatu eta saiatu berriro, mesedez.</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">Konfigurazioa</string>
+    <string name="set_new_username_hint">Erabiltzailen izen berria</string>
+    <string name="set_new_password_hint">Pasahitza berria</string>
+    <string name="set_confirm_password_hint">Errepikatu pasahitza</string>
+    <string name="set_submitButton_text">Bidali</string>
+
+    <!-- About -->
+    <string name="title_activity_about">-i buruz</string>
+    <string name="about_authors_title">Sortzaileak:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Eskerrak:</string>
+
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">Erabiltzailen profila</string>
+    <string name="userprofile_viewuserbooks">Erabiltzailen liburuak ikusi</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">Lagunak bilatu</string>
+    <string name="title_activity_add_new_list">Zerrenda berri bat gehitu</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">Zerrendaren izena</string>
+    
+    
+</resources>

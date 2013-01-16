@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Libro de ejemplo -->
+    <string name="example_title">Die Herren von Winterfell</string>
+    <string name="example_subtitle">Das Lied von Eis und Feuer 1</string>
+    <string name="example_author">George R.R. Martin</string>
+ 
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+    <string name="hello_world">Hallo Welt!!</string>
+ 
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Laden…</string>
+ 
+    <!-- Tabs -->
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">Bücher</string>
+    <string name="tab2">Crossings</string>
+    <string name="tab3">Freunde</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="submenu_add">Liste hinzufügen</string>
+    <string name="submenu_profile">Profile</string>
+    <string name="submenu_settings">Einstellungen</string>
+    <string name="submenu_add_list">Liste hinzufügen</string>
+    <string name="submenu_find_friend">Freunde finden</string>
+    <string name="submenu_about">über</string>
+    <string name="submenu_logout">Herunterfahren</string>
+    <string name="submenu_share">Teilen</string>
+    <string name="bar_search">Suchenleiste</string>
+ 
+    <!-- BookList -->
+    <string name="title_activity_book_list">Bücher Liste </string>
+    <string name="booklist_add_book">Buch in die Liste einfügen</string>
+    <string name="booklist_remove_book">Buch löschen</string>
+    <string name="booklist_delete_list">Liste löschen</string>
+    <string name="book_deleted">Buch wurde gelöscht</string>
+    <string name="remove_from_all">Es tut uns Leid, die Bücher dieser Liste nicht können noicht gelöscht werden All</string>
+    
+    
+ 
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Buch</string>
+    <string name="title_activity_book_activity">Buch</string>
+ 
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">Crossings Liste</string>
+ 
+    <!-- Crossing -->
+    <string name="title_activity_crossing">Crossing</string>
+ 
+    <!-- Friends -->
+    <string name="friends_internet_error">Es gibt Probleme mit der Verbindung, bitte Verbindung überprüfen und noch mal versuchen.</string>
+21<string name="friends_add_text">Freunde hinzufügen</string>
+21<string name="friends_delete_text">Freunde löschen</string>
+  	<string name="friends_add">Freund wurde gespeichert</string>
+	<string name="friends_delete">Freund wurde gelöscht</string>
+	<string name="friends_not_found">Der Nutzername wurde nicht gefunden. bitte geben Sie einen gultigen Nutzername ein .</string>
+	<string name="friends_auto_find">Der bist du!</string>
+	<string name="friends_find_text">Finde deine Freunde in BooX</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">Bücher finden</string>
+    <string name="searchbook_searchby">Suchen nach:</string>
+    <string-array name="searchbook_searchby_options">
+        <item>Título</item>
+        <item>Autor</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">Scannen</string>
+    <string name="searchbook_searchbox_hint">Hier finden</string>
+    <string name="title_activity_book_search_result">Ergebnis der Suche</string>
+    <string name="not_found">Nicht gefunden</string>
+    
+    
+    <!-- Login -->
+    <string name="login_username_hint">Nutzer</string>
+    <string name="login_password_hint">Passwort</string>
+    <string name="login_button_text">Einloggen!</string>
+    <string name="login_notauser">¿Nuevo en BooX? Hier registrieren!</string>
+    <string name="login_logging">Anmeldung wird durchgeführt…</string>
+    <string name="login_pleasewait">Bitte, warten Sie einen Moment.</string>
+    <string name="login_invalid">. Bitte, noch mal versuchen</string>
+    <string name="login_internet_error">Es gibt Probleme mit der Verbindung, bitte Verbindung überprüfen und noch mal versuchen.</string>
+ 
+    <!-- Signup -->
+    <string name="title_activity_sign_up">Registrierung</string>
+    <string name="signup_username_hint">Nutzer</string>
+    <string name="signup_password_hint">Passwort</string>
+    <string name="signup_confirm_password_hint">Passwort bestätigen</string>
+    <string name="signup_fullname_hint">Vorname und Name</string>
+    <string name="signup_zipcode_hint">Postleitzahl</string>
+    <string name="signup_button_text"> Jetzt registrieren!</string>
+    <string name="signup_sending">Daten werden geschickt…</string>
+    <string name="signup_pleasewait">Bitte, warten Sie einen Moment.</string>
+    <string name="signup_confirm_pass_error">Die Passwörter sind nicht gleich, bitte noch mal eingeben.</string>
+    <string name="signup_user_created">Nutzer wurde gespeichert</string>
+    <string name="signup_already_exists_error">Der Name des Nutzers ist schon vorhanden, bitte noch mal versuchen.</string>
+    <string name="signup_internet_error">Es gibt Probleme mit der Verbindung, bitte Verbindung überprüfen und noch mal versuchen.</string>
+ 
+    <!-- Settings -->
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="set_new_username_hint">Neuer Nutzername</string>
+    <string name="set_new_password_hint">Neues Passwort</string>
+    <string name="set_confirm_password_hint">Passwort bestätigen</string>
+    <string name="set_submitButton_text">Senden</string>
+ 
+    <!-- About -->
+    <string name="title_activity_about">Über</string>
+    <string name="about_authors_title">Gründer:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Unseren herzlichen Dank:</string>
+ 
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">Nutzerprofile</string>
+    <string name="userprofile_viewuserbooks">Bücher des Nutzers zeigen</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">Freunde finden</string>
+    <string name="title_activity_add_new_list">Neue Liste hinzufügen</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">Name der Liste</string>
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Bücher meiner Freunde</string>
+    
+    
+</resources>

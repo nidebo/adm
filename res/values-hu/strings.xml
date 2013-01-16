@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Libro de ejemplo -->
+    <string name="example_title">Trónok harca</string>
+    <string name="example_subtitle">A tűz és jég dala 1</string>
+    <string name="example_author">George R.R. Martin</string>
+
+    <!-- Main -->
+    <string name="app_name">BooX</string>
+    <string name="hello_world">Helló világ!</string>
+
+    <!-- Splash -->
+    <string name="title_activity_splash_screen">BooX</string>
+    <string name="splash_screen_subtitle">Cross your books</string>
+    <string name="splash_screen_loading">Töltés…</string>
+ 
+    <!-- Tabs -->
+    <string name="title_activity_tabs">BooX</string>
+    <string name="tab1">Könyvek</string>
+    <string name="tab2">Crossings</string>
+    <string name="tab3">Barátok</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="submenu_add">Új hozzáadása</string>
+    <string name="submenu_profile">Profil</string>
+    <string name="submenu_settings">Beállítások</string>
+    <string name="submenu_add_list">Add list</string>
+    <string name="submenu_find_friend">Barátok keresése</string>
+    <string name="submenu_about">Info</string>
+    <string name="submenu_logout">Kijelentkezés</string>
+    <string name="submenu_share">Megosztás</string>
+    <string name="bar_search">Keresés</string>
+
+    <!-- BookList -->
+    <string name="title_activity_book_list">Könyv lista</string>
+    <string name="booklist_add_book">Könyv hozzáadása a listához</string>
+    <string name="booklist_remove_book">Eltávolítás a listából</string>
+    <string name="booklist_delete_list">Lista törlése</string>
+    <string name="book_deleted">Könyv törölve</string>
+    <string name="remove_from_all">Sajnos nem törölhetsz könyveket a "Minden" listáról</string>
+
+    <!-- Book -->
+    <string name="title_activity_book_fragment">Könyv</string>
+    <string name="title_activity_book_activity">Könyv</string>
+    <string name="book_description_title">Leírás</string> <!--  -->
+
+    <!-- CrossingList -->
+    <string name="title_activity_crossing_list">Crossing Lista</string>
+
+    <!-- Crossing -->
+    <string name="title_activity_crossing">Crossing</string>
+
+    <!-- Friends -->
+    <string name="friends_internet_error">Kapcsolati hiba. Kérlek ellenőrizd a kapcsolatot, majd próbáld újra.</string>
+  <string name="friends_add_text">Hozzáadás az ismerősökhöz</string>
+	<string name="friends_delete_text">Eltávolítás az ismerősök közül</string>
+  	<string name="friends_add">Ismerős sikeresen hozzáadva</string>
+	<string name="friends_delete">Ismerős sikeresen törölve</string>
+	<string name="friends_not_found">A felhasználónév nem található. Kérem írjon be egy megfelelő felhasználónevet, majd próbálja újra.</string>
+	<string name="friends_auto_find">Ez te vagy!</string>
+	<string name="friends_find_text">Keresd meg az ismerőseid BooX-on</string>
+    
+    <!-- Search Book -->
+    <string name="title_activity_book_search">Könyv keresése</string>
+    <string name="searchbook_searchby">Keresés:</string>
+    <string-array name="searchbook_searchby_options">
+        <item>Cím</item>
+        <item>Szerző</item>
+        <item>ISBN</item>
+    </string-array>
+    <string name="searchbook_scanbutton">Vonalkód leolvasása</string>
+    <string name="searchbook_searchbox_hint">Keresés itt</string>
+    <string name="title_activity_book_search_result">Keresés eredménye</string>
+    <string name="not_found">Nem található</string>
+
+    <!-- Login -->
+    <string name="login_username_hint">Felhasználónév</string>
+    <string name="login_password_hint">Jelszó</string>
+    <string name="login_button_text">Jelentkezz be!</string>
+    <string name="login_notauser">Új vagy? Regisztrálj itt!</string>
+    <string name="login_logging">Bejelentkezés…</string>
+    <string name="login_pleasewait">Kis türelmet.</string>
+    <string name="login_invalid">Hibás bejelentkezés. Próbáld újra!</string>
+    <string name="login_internet_error">Kapcsolati hiba. Kérlek ellenőrizd a csatlakozást, majd próbáld újra.</string>
+
+    <!-- Signup -->
+    <string name="title_activity_sign_up">Regisztrálás/string>
+    <string name="signup_username_hint">Felhasználónév</string>
+    <string name="signup_password_hint">Jelszó</string>
+    <string name="signup_confirm_password_hint">Jelszó ismétlése</string>
+    <string name="signup_fullname_hint">Teljes név</string>
+    <string name="signup_zipcode_hint">Irányítószám</string>
+    <string name="signup_button_text">Regisztrálj!</string>
+    <string name="signup_sending">Adatok küldése…</string>
+    <string name="signup_pleasewait">Kis türelmet.</string>
+    <string name="signup_confirm_pass_error">Hibás elszó ismétlés. Kérlek próbáld újra.</string>
+    <string name="signup_user_created">A felhasználó sikeresen elkészült</string>
+    <string name="signup_already_exists_error">A felhasználónév már létezik. Kérlek próbálj ki egy másikat.</string>
+    <string name="signup_internet_error">Kapcsolati hiba. Kérlek ellenőrizd a csatlakozást, majd próbáld újra.</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">Beállítások</string>
+    <string name="set_new_username_hint">Új felhasználó</string>
+    <string name="set_new_password_hint">Új jelszó</string>
+    <string name="set_confirm_password_hint">Jelszó ismétlése</string>
+    <string name="set_submitButton_text">Elküld</string>
+
+    <!-- About -->
+    <string name="title_activity_about">Info</string>
+    <string name="about_authors_title">Készítők:</string>
+    <string name="about_author1">Beatriz Cortés</string>
+    <string name="about_author2">Eliú Crespo</string>
+    <string name="about_author3">Nicolás De Boni</string>
+    <string name="about_author4">Juan Muñoz</string>
+    <string name="about_author5">Mario Sanz</string>
+    <string name="about_thanks_title">Special thanks:</string>
+    <string name="about_collab1">Alberto García (Logo and icons)</string>
+    <string name="about_collab2">Sergio Almenar (Valencian)</string>
+	<string name="about_collab3">Marta Álvarez (Galician)</string>
+	<string name="about_collab4">Vicente Castillo (German)</string>
+	<string name="about_collab5">Vincenzo Di Girolamo (Italian)</string>
+	<string name="about_collab6">Lis Díez (French)</string>
+	<string name="about_collab7">Jony Garrido (Basque)</string>
+	<string name="about_collab8">Rahul Nagar (Hindi)</string>
+	<string name="about_collab9">Luis Navarro (Japanese)</string>
+	<string name="about_collab10">Teresa Santamaría (Catalonian)</string>
+	<string name="about_collab11">Lykourgos Sigalas (Greek)</string>
+	<string name="about_collab12">Joonas Turunen (Finnish)</string>
+  <string name="about_collab13">Galambosi Máté (Hungarian)</string>
+
+    <!-- User Profile -->
+    <string name="title_activity_user_profile">Felhasználói profil</string>
+    <string name="userprofile_viewuserbooks">Könyvek megtekintése</string>
+    
+    <!-- Search Friend -->
+    <string name="title_activity_search_friend">Ismerősök keresése</string>
+    <string name="title_activity_add_new_list">Új lista hozzáadása</string>
+    
+    <!-- Add List -->
+    <string name="addlist_add_list_hint">Lista neve</string>
+    
+    <!-- Friend Books Activity -->
+    <string name="title_activity_friend_books_activity">Ismerősök könyvei</string>
+    
+</resources>
