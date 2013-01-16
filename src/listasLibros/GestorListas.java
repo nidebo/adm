@@ -78,9 +78,11 @@ public class GestorListas {
 	public ArrayList<Libro> getListaAll(){
 		ArrayList<Libro> all= new ArrayList<Libro>();
 		for (int i=0;i<lista.size();i++){
-			for (int j=0;j<lista.get(i).tamanyo();j++){
-				all.add(lista.get(i).getLibroPorIndice(j));
-			}
+			//for (int j=0;j<lista.get(i).tamanyo();j++){
+				ArrayList<Libro> aux=new ArrayList<Libro>();
+				aux=GetListaDeLibros(lista.get(i).getNombreLista());
+				all.addAll(aux);
+			//}
 		}
 		HashSet<Libro> h = new HashSet<Libro>(all);
 		all.clear();
@@ -214,14 +216,15 @@ public class GestorListas {
 				if (lis.getNombreLista().equals(nombreLista))
 					i=lista.size();
 			}
-
-			correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getId());
+			try{
+				correcto = servidor.agregaLibroALista(nombreLista, usuarioActual, lib.getId());
+			}catch(Exception e){}
 			if (correcto){
 				try{
-				lis.addLibro(lib);
-				Libro libro=bd.DetalleLibroId(lib.id);
-				if(libro==null) bd.InsertarLibro(lib);
-				bd.InsertarLibroEnLista(nombreLista, libro);
+					lis.addLibro(lib);
+					Libro libro=bd.DetalleLibroId(lib.id);
+					if(libro==null) bd.InsertarLibro(lib);
+					bd.InsertarLibroEnLista(nombreLista, libro);
 				}catch(SQLiteException e){
 					e.printStackTrace();
 				}
