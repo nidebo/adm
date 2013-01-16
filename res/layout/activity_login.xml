@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:onClick="onPressEliu"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/logo_black" />
         
     <EditText
         android:id="@+id/login_username"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_password"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="@string/login_button_text"
         android:onClick="onPressLogin"
