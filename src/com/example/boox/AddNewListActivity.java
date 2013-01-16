@@ -69,8 +69,8 @@ public class AddNewListActivity extends Activity {
 		}
 		boolean added = false;
 		added = gl.AddListaVacia(nlista);
-		if(added = false){
-			Toast t = Toast.makeText(this.getApplicationContext(), "Esa lista ya existe" ,Toast.LENGTH_SHORT);
+		if(added == false){
+			Toast t = Toast.makeText(this.getApplicationContext(), "Error" ,Toast.LENGTH_SHORT);
 			t.show();
 			return;
 		}

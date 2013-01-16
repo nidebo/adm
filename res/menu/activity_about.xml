@@ -6,12 +6,6 @@
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_overflow" 
         android:menuCategory="container">
-        <menu>
-            <item
-                 android:id="@+id/submenu_settings"
-                 android:title="@string/menu_settings"
-                 android:icon="@android:drawable/ic_menu_preferences" />
-        </menu>
     </item>
     
     <item android:id="@+id/search"

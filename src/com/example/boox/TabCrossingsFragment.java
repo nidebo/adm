@@ -206,11 +206,12 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
 							row = new CrossingListRow();
 							row.setThumb1(R.drawable.got_thumbnail_small);
 							//row.setTitle1(lib1.getTitulo());
+							row.setTitle1("???");
 							row.setAuthor1(cross.getCrossings().get(0).user1);
 							row.setThumb2(R.drawable.got_thumbnail_small);
 							row.setTitle2(lib2.getTitulo());
 							row.setAuthor2(cross.getCrossings().get(0).user2);
-							row.setState("Rejected");
+							row.setState("Proposal");
 							crossingList.add(row);
 						}
 						CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);

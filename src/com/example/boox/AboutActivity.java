@@ -36,9 +36,6 @@ public class AboutActivity extends Activity {
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
                 return true;
-        	case R.id.submenu_settings:
-        		startActivity(new Intent(this, SettingsActivity.class));
-            	return true;
         }
         return super.onOptionsItemSelected(item);
     }

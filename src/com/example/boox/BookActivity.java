@@ -140,23 +140,9 @@ public class BookActivity extends FragmentActivity implements OnRatingBarChangeL
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.submenu_share:
-            	Intent intent = new Intent(Intent.ACTION_SEND); 
-            	intent.setType("text/plain"); 
-            	intent.putExtra(Intent.EXTRA_SUBJECT, "BooX"); 
-            	intent.putExtra(Intent.EXTRA_TEXT, "http://ooomf.com/boox"); 
-
-            	Intent chooser = Intent.createChooser(
-            			intent, "tell a friend about BooX"); 
-            	startActivity(chooser);
-            	
-            	return true;
         	case R.id.search:
         		startActivity(new Intent(this, SearchBookActivity.class));
                 return true;
-        	case R.id.submenu_settings:
-        		startActivity(new Intent(this, SettingsActivity.class));
-            	return true;
         	case R.id.submenu_about:
         		startActivity(new Intent(this, AboutActivity.class));
             	return true;

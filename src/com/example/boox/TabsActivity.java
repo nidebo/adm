@@ -92,8 +92,15 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
     	case R.id.search:
     		startActivity(new Intent(this, SearchBookActivity.class));
             return true;
-    	case R.id.submenu_settings:
-    		startActivity(new Intent(this, SettingsActivity.class));
+        case R.id.submenu_share:
+        	Intent intent2 = new Intent(Intent.ACTION_SEND); 
+        	intent2.setType("text/plain"); 
+        	intent2.putExtra(Intent.EXTRA_SUBJECT, "BooX"); 
+        	intent2.putExtra(Intent.EXTRA_TEXT, "http://ooomf.com/boox"); 
+
+        	Intent chooser = Intent.createChooser(
+        			intent2, "tell a friend about BooX"); 
+        	startActivity(chooser);
         	return true;
     	case R.id.submenu_add_list:
     		startActivity(new Intent(this, AddNewListActivity.class));
@@ -113,6 +120,7 @@ public class TabsActivity extends FragmentActivity implements ActionBar.TabListe
 			//myEditor.putString("username", "");
 			myEditor.remove("username");
 			myEditor.commit();
+			finish();
 	        Intent intent = new Intent(this, LoginActivity.class);
 	       	startActivity(intent);
     	

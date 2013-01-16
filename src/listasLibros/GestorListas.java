@@ -89,12 +89,16 @@ public class GestorListas {
 			if(!existe(nombre)){
 				ListaLibros lis = new ListaLibros(nombre);
 				correcto=servidor.creaListaDeUsuario(nombre, usuarioActual);
-				lista.add(lis);
-				try{
-				bd.CrearNuevaLista(nombre);
-				}catch(SQLiteException e){
-					e.printStackTrace();
+				if(correcto){
+					lista.add(lis);
+					try{
+					bd.CrearNuevaLista(nombre);
+					}catch(SQLiteException e){
+						e.printStackTrace();
+					}
+					return true;
 				}
+				
 			}
 		}
 		else{
