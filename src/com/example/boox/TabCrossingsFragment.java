@@ -1,8 +1,32 @@
 package com.example.boox;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import crossings.GestorCrossings;
+
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -11,6 +35,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class TabCrossingsFragment extends ListFragment implements OnItemClickListener {
 
@@ -23,8 +48,10 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
 			"Crossing list 3"};
 
 	public ArrayList<String> list = new ArrayList<String>(); 
-	
-	
+
+    final int mode = Activity.MODE_PRIVATE;
+	public static final String myPrefs = "prefs";
+	String uname = new String();
 	public ListView crossingListView;
 	public ArrayList<CrossingListRow> crossingList;
     AdapterView.AdapterContextMenuInfo info;
@@ -34,6 +61,8 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
     public void onActivityCreated(Bundle savedState) {
         super.onActivityCreated(savedState);
 
+        SharedPreferences mySharedPreferences = this.getActivity().getSharedPreferences(myPrefs, mode);
+		uname = mySharedPreferences.getString("username", "");
         // Populate list with our static array of titles.
         if(list.isEmpty()){
         	for(int i=0; i<strings.length; ++i)
@@ -95,6 +124,108 @@ public class TabCrossingsFragment extends ListFragment implements OnItemClickLis
         //startActivity(intent);
 	}
 
+	public class AsyncGetCross extends AsyncTask<String, Void, Void> {
+
+		StringBuilder sb = new StringBuilder();
+		String responseString;
+		boolean flag = true;
+		
+		@Override
+		protected Void doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			
+			///////////////////////////////////////////////
+			HttpParams httpParameters = new BasicHttpParams();
+
+			int timeoutConnection = 1500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+
+			int timeoutSocket = 1500;
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+			DefaultHttpClient client = new DefaultHttpClient(httpParameters);
+			HttpGet request = new HttpGet(
+					"http://boox.eu01.aws.af.cm/users/"+uname+"/getCrossings");
+
+			request.setHeader("Accept", "application/json");
+			BasicHttpResponse response;
+		
+			try {
+				response = (BasicHttpResponse) client.execute(request);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream stream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(stream));
+					String line = null;
+					while ((line = reader.readLine()) != null) { 
+					    sb.append(line + "\n"); 
+					}
+					stream.close();
+					responseString = sb.toString();
+				}
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			} catch (ConnectTimeoutException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				flag = false;
+				e.printStackTrace();
+			} catch (IOException e) {
+				flag = false;
+				e.printStackTrace();
+			}
+			     
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			if(flag){
+				GsonBuilder builder = new GsonBuilder();
+				Gson gson = builder.create();
+				GestorCrossings cross = new GestorCrossings();
+				JSONObject json;
+				
+				try {
+					json = new JSONObject(responseString);
+
+				    cross = gson.fromJson(json.toString(),
+						GestorCrossings.class);
+				    
+				    if(list.isEmpty()){
+		        	for(int i=0; i<cross.getNumeroCrossingsUsuarioActual(); ++i){
+		        	//	list.add(al.getListaAmigos().get(i).getNombre());	
+		        	//setListAdapter(new ArrayAdapter<String>(getActivity(),
+		        		//	android.R.layout.simple_list_item_1,
+		        			//list));
+		        	}
+				    }
+				}catch (JSONException e) {
+			    	   Toast toast = Toast.makeText(
+								getActivity(), 
+								"error", 
+								Toast.LENGTH_LONG);
+						toast.show();
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// MODIFICAR LAYOUT AQUI
+				//Rellenar con los datos de cross (List de crossings)
+			}
+			else {
+				//Fallo de conexion, cargar layout vacio
+		    	   Toast toast = Toast.makeText(
+							getActivity(), 
+							getResources().getString(R.string.login_internet_error), 
+							Toast.LENGTH_SHORT);
+					toast.show();
+			}
+
+		}
+	
+	}
+	
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

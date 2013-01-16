@@ -1,60 +1,61 @@
 package crossings;
 
 public class Crossing {
-		private String usuario1;
-		private String usuario2;
-		private String isbn1;
-		private String isbn2;
-		private String estado;
+		public String user1;
+		public String user2;
+		public String book1;
+		public String book2;
+		public String state;
+		public String _id;
 
 		public Crossing(String libro, String usuario, Boolean UsuarioSoyYo){
 			if (UsuarioSoyYo==true){
-				this.isbn2=libro;
-				this.usuario1=usuario;
+				this.book2=libro;
+				this.user1=usuario;
 			}
 			else{
-				this.isbn1=libro;
-				this.usuario2=usuario;
+				this.book1=libro;
+				this.user2=usuario;
 			}
 		}
 		
-		public String getUsuario1() {
-			return usuario1;
+		public String getuser1() {
+			return user1;
 		}
 
-		public void setUsuario1(String usuario1) {
-			this.usuario1 = usuario1;
+		public void setuser1(String user1) {
+			this.user1 = user1;
 		}
 
-		public String getUsuario2() {
-			return usuario2;
+		public String getuser2() {
+			return user2;
 		}
 
-		public void setUsuario2(String usuario2) {
-			this.usuario2 = usuario2;
+		public void setuser2(String user2) {
+			this.user2 = user2;
 		}
 
-		public String getIsbn1() {
-			return isbn1;
+		public String getbook1() {
+			return book1;
 		}
 
-		public void setIsbn1(String isbn1) {
-			this.isbn1 = isbn1;
+		public void setbook1(String book1) {
+			this.book1 = book1;
 		}
 
-		public String getIsbn2() {
-			return isbn2;
+		public String getbook2() {
+			return book2;
 		}
 
-		public void setIsbn2(String isbn2) {
-			this.isbn2 = isbn2;
+		public void setbook2(String book2) {
+			this.book2 = book2;
 		}
 		
-		public String getEstado() {
-			return estado;
+		public String getstate() {
+			return state;
 		}
 
-		public void setEstado(String Estado) {
-			this.estado = Estado;
+		public void setstate(String state) {
+			this.state = state;
 		}
 }

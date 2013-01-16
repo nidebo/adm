@@ -1,28 +1,27 @@
 package crossings;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GestorCrossings {
-	String usuarioActual;
-	ArrayList<Crossing> listaCrossings=new ArrayList<Crossing>();
+//	String usuarioActual;
+	List<Crossing> crossings;
 	
-	public GestorCrossings(String usuarioActual){
-		this.usuarioActual=usuarioActual;
-		
-		
-		
-		////////////////////////////
-		Crossing uno= new Crossing("Libro que quiero", usuarioActual, true);
-		uno.setUsuario2("Nico");
-		
-		Crossing dos= new Crossing("Libro que quieren de mí", "Juan", false);
-		dos.setUsuario1(usuarioActual);
-		
-		listaCrossings.add(uno);
-		listaCrossings.add(dos);
-		////////////////////////////
+	public GestorCrossings(){
+
+
 	}
 	
+	public List<Crossing> getCrossings(){
+		
+		return crossings;
+	}
+	
+	public int getNumeroCrossingsUsuarioActual(){
+		return crossings.size();
+	}
+}
+/*	
 	public Boolean AddCrossing(String LibroQueQuiero){
 		Crossing nuevoIntercambio=new Crossing(LibroQueQuiero,usuarioActual,true);
 		if(!existe(nuevoIntercambio)){
@@ -144,3 +143,4 @@ public class GestorCrossings {
 		return listaCrossings.size();
 	}
 }
+*/
