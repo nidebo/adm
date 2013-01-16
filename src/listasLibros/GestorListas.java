@@ -74,21 +74,13 @@ public class GestorListas {
 	public void actualizarTodoDeBD(){ 
 		lista = bd.ListadoListas();
 	}
-	
+
 	public ArrayList<Libro> getListaAll(){
-		ArrayList<Libro> all= new ArrayList<Libro>();
-		for (int i=0;i<lista.size();i++){
-			//for (int j=0;j<lista.get(i).tamanyo();j++){
-				ArrayList<Libro> aux=new ArrayList<Libro>();
-				aux=GetListaDeLibros(lista.get(i).getNombreLista());
-				all.addAll(aux);
-			//}
-		}
-		HashSet<Libro> h = new HashSet<Libro>(all);
-		all.clear();
-		all.addAll(h);
-		return all;
-	}
+        ArrayList<Libro> all= new ArrayList<Libro>();
+        ListaLibros todo = bd.ListaDeTodosLibros();
+        all = todo.getListaLibros();
+        return all;
+    }
 
 	//Si el nombre de la lista ya existe o hay problemas con el servidor, devuelve false
 	public Boolean AddListaVacia(String nombre){

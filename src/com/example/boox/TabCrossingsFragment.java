@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class TabCrossingsFragment extends ListFragment {
+public class TabCrossingsFragment extends ListFragment implements OnItemClickListener {
 
     boolean mDualPane;
     int mCurCheckPosition = 1;
@@ -21,6 +23,11 @@ public class TabCrossingsFragment extends ListFragment {
 			"Crossing list 3"};
 
 	public ArrayList<String> list = new ArrayList<String>(); 
+	
+	
+	public ListView crossingListView;
+	public ArrayList<CrossingListRow> crossingList;
+    AdapterView.AdapterContextMenuInfo info;
 	
 	
 	@Override
@@ -54,7 +61,39 @@ public class TabCrossingsFragment extends ListFragment {
             // Make sure our UI is in the correct state.
             showDetails(mCurCheckPosition);
         }*/
+        
+        
+        
+        crossingList = new ArrayList<CrossingListRow>();
+        CrossingListRow row;
+        
+        row = new CrossingListRow();
+        row.setThumb1(R.drawable.got_thumbnail_small);
+        row.setTitle1("Juego de Tronos");
+        row.setAuthor1("G.R.R. Martin");
+        row.setThumb2(R.drawable.got_thumbnail_small);
+        row.setTitle2("Choque de Reyes");
+        row.setAuthor2("G.R.R. Martin");
+        row.setState("Rejected");
+        crossingList.add(row);
+
+		crossingListView = (ListView) getActivity().findViewById(R.id.crossingList);
+		CrossingListAdapter adapter = new CrossingListAdapter(getActivity(), crossingList);
+        crossingListView.setAdapter(adapter);
+        crossingListView.setOnItemClickListener(this);
+
+        
+        
     }
+
+	@Override
+	public void onItemClick(AdapterView<?> a, View v, int pos, long id) {
+		
+        //Intent intent = new Intent();
+        //intent.setClass(getActivity(), CrossingActivity.class);
+        //intent.putExtra("index", pos);
+        //startActivity(intent);
+	}
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -66,10 +105,10 @@ public class TabCrossingsFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int pos, long id) {
     	Log.d("CrossingsTabFragment", "onListItemClick(" + pos + ")");
     	
-    	Intent intent = new Intent();
+    	/*Intent intent = new Intent();
         intent.setClass(getActivity(), CrossingListActivity.class);
         intent.putExtra("index", pos);
-        startActivity(intent);
+        startActivity(intent);*/
     	
         //showDetails(pos);
     }
@@ -77,98 +116,4 @@ public class TabCrossingsFragment extends ListFragment {
 	public void addItem(String s){
 		list.add(s);
 	}
-
-	/*@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		for(int i=0; i<strings.length; ++i)
-			list.add(strings[i]);	
-		ArrayAdapter<String> mAdapter = 
-    			new ArrayAdapter<String>(getActivity().getBaseContext(), 
-    									 android.R.layout.simple_list_item_1, 
-    									 list);
-		setListAdapter(mAdapter);
-    	return super.onCreateView(inflater, container, savedInstanceState);
-	}*/
-    
-    /**
-     * Helper function to show the details of a selected item, either by
-     * displaying a fragment in-place in the current UI, or starting a
-     * whole new activity in which it is displayed.
-     */
-    /*void showDetails(int index) {
-    	
-        mCurCheckPosition = index;
-
-        if(mDualPane){
-        	Log.d("BooksTab", "showDetails(DualPane");
-            // We can display everything in-place with fragments.
-            // Have the list highlight this item and show the data.
-            getListView().setItemChecked(index, true);
-
-            // Check what fragment is shown, replace if needed.
-            DetallesLibro bookDetails = (DetallesLibro) getFragmentManager().findFragmentById(R.id.details);
-            if (bookDetails == null || bookDetails.getShownIndex() != index) {
-                // Make new fragment to show this selection.
-                bookDetails = DetallesLibro.newInstance(index);
-
-                // Execute a transaction, replacing any existing
-                // fragment with this one inside the frame.
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.details, bookDetails);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.commit();
-            }
-        } else {
-        	Log.d("BooksTab", "showDetails(MonoPane)");
-            // Otherwise we need to launch a new activity to display
-            // the dialog fragment with selected text.
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), DetallesLibro.class);
-            intent.putExtra("index", index);
-            startActivity(intent);
-        }
-    }*/
-
-	//@Override
-	//public void onStart(){
-		//super.onStart();
-		//getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
-	//}
-
-	/*
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.books_tab);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-        lvDatos = (ListView) findViewById(R.id.listView1);
-    	
-    	//final ArrayList<String> mLista = new ArrayList<String>();
-    	final ArrayAdapter<String> mAdapter = 
-    			new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strings); //mLista);
-    	lvDatos.setAdapter(mAdapter);
-        
-        //mLista.add("Lista Prueba 1");
-        mAdapter.notifyDataSetChanged();
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_books_tab, menu);
-        return true;
-    }
-
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
 }
