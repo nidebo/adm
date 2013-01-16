@@ -11,10 +11,7 @@
 		          android:title="@string/submenu_share"
 		          android:icon="@android:drawable/ic_menu_share"
 		          android:showAsAction="ifRoom" />
-            <item
-                 android:id="@+id/submenu_profile"
-                 android:title="@string/submenu_profile"
-                 android:icon="@android:drawable/ic_menu_edit"/>
+
             <item
                  android:id="@+id/submenu_settings"
                  android:title="@string/submenu_settings"

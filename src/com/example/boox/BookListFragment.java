@@ -123,6 +123,9 @@ public class BookListFragment extends ListFragment {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		if(item.getTitle() == "View"){
+            MyBD mbd = new MyBD( this.getActivity(),uname);
+            mbd.BorrarTemporal();
+			mbd.InsertarTemporal(books.get(item.getItemId()));
             Intent intent = new Intent();
             intent.setClass(getActivity(), BookActivity.class);
             intent.putExtra("id", books.get(item.getItemId()).getId());

@@ -7,10 +7,6 @@
 		android:icon="@drawable/ic_action_overflow" 
 		android:menuCategory="container">
         <menu>
-            <item
-                 android:id="@+id/submenu_profile"
-                 android:title="@string/submenu_profile"
-                 android:icon="@android:drawable/ic_menu_edit" />
            
             <item
                  android:id="@+id/submenu_add_list"
