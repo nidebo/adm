@@ -211,6 +211,13 @@
                 android:text="@string/about_collab12"
                 android:textColor="@android:color/primary_text_dark" />
 
+            <TextView
+                android:id="@+id/collab13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_collab13"
+                android:textColor="@android:color/primary_text_dark" />
+
         </LinearLayout>
     </ScrollView>
 
